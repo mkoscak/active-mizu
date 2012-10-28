@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MessageImporter.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ActiveStyle_ICO" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1234567</Value>
+    </Setting>
+    <Setting Name="DueDateAdd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">14</Value>
+    </Setting>
+    <Setting Name="BankCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0200</Value>
+    </Setting>
+    <Setting Name="ConstSym" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0308</Value>
+    </Setting>
+    <Setting Name="Bank" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">VUB</Value>
+    </Setting>
+    <Setting Name="ClasifficationVAT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">UD</Value>
+    </Setting>
+    <Setting Name="Accounting" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="DPH_percent" Type="System.Single" Scope="Application">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="TypePrice" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SK</Value>
+    </Setting>
+    <Setting Name="Storage" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">01</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
