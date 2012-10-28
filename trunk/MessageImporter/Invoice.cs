@@ -12,7 +12,8 @@ namespace MessageImporter
     public enum InvoiceStatus
     {
         NonEquipped,
-        Equipped
+        Equipped,
+        Waiting
     }
 
     /// <summary>
@@ -25,11 +26,33 @@ namespace MessageImporter
             InvoiceItems = new List<InvoiceItem>();
         }
 
-        public Image i
+        public Image Icon
         {
             get
             {
-                return Equipped && !Canceled ? Icons.Eqipped : Icons.NonEquipped;
+                if (Canceled)
+                    return Icons.NonEquipped;
+                
+                Image ret = Icons.Eqipped;
+                
+                switch (InvoiceStatus)
+                {
+                    case InvoiceStatus.NonEquipped:
+                        ret = Icons.NonEquipped;
+                        break;
+                    case InvoiceStatus.Equipped:
+                        ret = Icons.Eqipped;
+                        break;
+                    case InvoiceStatus.Waiting:
+                        ret = Icons.Waiting;
+                        break;
+
+                    default:
+                        ret = Icons.Eqipped;
+                        break;
+                }
+
+                return ret;
             }
         }
 

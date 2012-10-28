@@ -13,7 +13,7 @@ namespace MessageImporter
     {
         internal InvoiceItem PairProduct { get; set; }
 
-        public Image i
+        public Image Icon
         {
             get
             {
