@@ -16,7 +16,7 @@ namespace MessageImporter
         {
             get
             {
-                return Process ? Icons.Eqipped : Icons.NonEquipped;
+                return Process ? Icons.Complete : Icons.NonComplete;
             }
         }
 
