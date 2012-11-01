@@ -6,6 +6,13 @@ using System.Drawing;
 
 namespace MessageImporter
 {
+    public enum StockItemState
+    {
+        Paired,
+        NonPaired,
+        Waiting
+    }
+
     /// <summary>
     /// Polozka objednavky
     /// </summary>
@@ -17,9 +24,19 @@ namespace MessageImporter
         {
             get
             {
-                return Equipped ? Icons.Eqipped : Icons.NonEquipped;
+                if (!Equipped)
+                    return Icons.NonComplete;
+
+                if (State == StockItemState.Paired)
+                    return Icons.Complete;
+                if (State == StockItemState.NonPaired)
+                    return Icons.NonComplete;
+
+                return Icons.Waiting;
             }
         }
+
+        public StockItemState State { get; set; }
 
         public bool Equipped { get; set; }
 

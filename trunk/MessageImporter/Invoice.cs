@@ -9,11 +9,11 @@ namespace MessageImporter
     /// <summary>
     /// stav objednavky
     /// </summary>
-    public enum InvoiceStatus
+    public enum InvoiceState
     {
-        NonEquipped,
-        Equipped,
-        Waiting
+        NonComplete,
+        Complete,
+        Cancelled
     }
 
     /// <summary>
@@ -31,24 +31,24 @@ namespace MessageImporter
             get
             {
                 if (Canceled)
-                    return Icons.NonEquipped;
+                    return Icons.NonComplete;
                 
-                Image ret = Icons.Eqipped;
+                Image ret = Icons.Complete;
                 
                 switch (InvoiceStatus)
                 {
-                    case InvoiceStatus.NonEquipped:
-                        ret = Icons.NonEquipped;
+                    case InvoiceState.NonComplete:
+                        ret = Icons.NonComplete;
                         break;
-                    case InvoiceStatus.Equipped:
-                        ret = Icons.Eqipped;
+                    case InvoiceState.Complete:
+                        ret = Icons.Complete;
                         break;
-                    case InvoiceStatus.Waiting:
+                    case InvoiceState.Cancelled:
                         ret = Icons.Waiting;
                         break;
 
                     default:
-                        ret = Icons.Eqipped;
+                        ret = Icons.Complete;
                         break;
                 }
 
@@ -63,12 +63,12 @@ namespace MessageImporter
         {
             get
             {
-                return InvoiceStatus == InvoiceStatus.Equipped;
+                return InvoiceStatus == InvoiceState.Complete;
             }
 
             set
             {
-                InvoiceStatus = value ? InvoiceStatus.Equipped : InvoiceStatus.NonEquipped;
+                InvoiceStatus = value ? InvoiceState.Complete : InvoiceState.NonComplete;
             }
         }
 
@@ -114,7 +114,7 @@ namespace MessageImporter
         public string BillingCountryName { get; set; }
         public string BillingPhoneNumber { get; set; }
 
-        internal InvoiceStatus InvoiceStatus;
+        internal InvoiceState InvoiceStatus;
         internal List<InvoiceItem> InvoiceItems { get; set; }
     }
 }

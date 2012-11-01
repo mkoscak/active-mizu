@@ -28,7 +28,7 @@ namespace MessageImporter
         {
             get
             {
-                return PairProduct == null ? Icons.NonEquipped : Icons.Eqipped;
+                return PairProduct == null ? Icons.NonComplete : Icons.Complete;
             }
         }
 
