@@ -24,7 +24,7 @@ namespace MessageImporter
 
         internal StockItem PairProduct { get; set; }
 
-        public Image i
+        public Image Icon
         {
             get
             {

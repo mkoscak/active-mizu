@@ -10,7 +10,8 @@ namespace MessageImporter
     {
         Paired,
         NonPaired,
-        Waiting
+        Waiting,
+        PermanentStorage
     }
 
     /// <summary>
@@ -18,25 +19,59 @@ namespace MessageImporter
     /// </summary>
     public class StockItem
     {
-        internal InvoiceItem PairProduct { get; set; }
+        private InvoiceItem pairProd;
+        internal InvoiceItem PairProduct 
+        {
+            get
+            {
+                return pairProd;
+            }
+
+            set
+            {
+                pairProd = value;
+                if (pairProd.Parent.Cancelled)
+                    State = StockItemState.PermanentStorage;    // ak je objednavka zrusena produkt ide na permanent storage
+            }
+        }
 
         public Image Icon
         {
             get
             {
+                // najvyssiu prioritu ma permanent storage
+                if (State == StockItemState.PermanentStorage)
+                    return Icons.Waiting;
+
                 if (!Equipped)
                     return Icons.NonComplete;
-
+                
                 if (State == StockItemState.Paired)
                     return Icons.Complete;
                 if (State == StockItemState.NonPaired)
                     return Icons.NonComplete;
+                if (State == StockItemState.Waiting)
+                    return Icons.Waiting;
 
-                return Icons.Waiting;
+                return Icons.Complete;
             }
         }
 
-        public StockItemState State { get; set; }
+        internal StockItemState PreviousState { get; set; }
+        private StockItemState state;
+        public StockItemState State
+        {
+            get
+            {
+                return state;
+            }
+
+            set
+            {
+                PreviousState = state;
+                state = value;
+            }
+        }
 
         public bool Equipped { get; set; }
 

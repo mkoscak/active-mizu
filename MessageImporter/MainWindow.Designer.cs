@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmActiveStyle));
             this.btnRead = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.txtInputPath = new System.Windows.Forms.TextBox();
@@ -398,7 +399,7 @@
             this.tabSelItems.Location = new System.Drawing.Point(4, 22);
             this.tabSelItems.Name = "tabSelItems";
             this.tabSelItems.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSelItems.Size = new System.Drawing.Size(113, 197);
+            this.tabSelItems.Size = new System.Drawing.Size(113, 108);
             this.tabSelItems.TabIndex = 1;
             this.tabSelItems.Text = "Selected";
             this.tabSelItems.UseVisualStyleBackColor = true;
@@ -411,7 +412,7 @@
             this.lbFilteredItems.FormattingEnabled = true;
             this.lbFilteredItems.Location = new System.Drawing.Point(0, 0);
             this.lbFilteredItems.Name = "lbFilteredItems";
-            this.lbFilteredItems.Size = new System.Drawing.Size(113, 199);
+            this.lbFilteredItems.Size = new System.Drawing.Size(113, 108);
             this.lbFilteredItems.TabIndex = 30;
             // 
             // lblUnpiredCount
@@ -687,6 +688,7 @@
             this.Controls.Add(this.btn2XML);
             this.Controls.Add(this.btnRead);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmActiveStyle";
             this.Text = "ActiveStyle (c) XML exporter";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
