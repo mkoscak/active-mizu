@@ -15,11 +15,11 @@ namespace MessageImporter
 {
     public partial class FrmActiveStyle : Form
     {
-        private const string productCode = "Product Code:";
-        private const string delivery = "Delivery:";
-        private const string deliveryText = "Delivery";
-        private const string orderRef = "Order Reference:";
-        private const string ourRef = "Our Reference:";
+        internal const string productCode = "Product Code:";
+        internal const string delivery = "Delivery:";
+        internal const string deliveryText = "Delivery";
+        internal const string orderRef = "Order Reference:";
+        internal const string ourRef = "Our Reference:";
 
         _Application outlook = new ApplicationClass();
 
@@ -70,7 +70,7 @@ namespace MessageImporter
             btnProcess_Click(btnProcess, new EventArgs());
         }
 
-        private void btnRead_Click(object sender, EventArgs e)
+        internal void btnRead_Click(object sender, EventArgs e)
         {
             // validacia
             if (txtInputPath.Text.Trim() == string.Empty)
@@ -215,17 +215,17 @@ namespace MessageImporter
             return null;
         }
    
-        private void log(string message)
+        internal void log(string message)
         {
             txtLog.AppendText(message + Environment.NewLine);
         }
 
-        private void logNewSection(string message)
+        internal void logNewSection(string message)
         {
             txtLog.AppendText(Environment.NewLine + message + Environment.NewLine);
         }
 
-        private string SelectDirectory(string title)
+        internal string SelectDirectory(string title)
         {
             try
             {
@@ -247,7 +247,7 @@ namespace MessageImporter
             return null;
         }
 
-        private void btnChoose_Click_1(object sender, EventArgs e)
+        internal void btnChoose_Click_1(object sender, EventArgs e)
         {
             var folder = SelectDirectory("Choose a directory with .msg and .cvs files");
             if (folder == null)
@@ -257,7 +257,7 @@ namespace MessageImporter
             txtInputPath.Text = folder;
         }
 
-        private void btnOutDir_Click_1(object sender, EventArgs e)
+        internal void btnOutDir_Click_1(object sender, EventArgs e)
         {
             var folder = SelectDirectory("Choose an output directory");
             if (folder == null)
@@ -267,13 +267,13 @@ namespace MessageImporter
             txtOutDir.Text = folder;
         }
 
-        private void btnClear_Click_1(object sender, EventArgs e)
+        internal void btnClear_Click_1(object sender, EventArgs e)
         {
             txtLog.Text = string.Empty;
         }
 
-        private const string processedDirectoryName = "processed";
-        private void BackupFile(string fileName)
+        internal const string processedDirectoryName = "processed";
+        internal void BackupFile(string fileName)
         {
             var dir = fileName.Substring(0, fileName.LastIndexOf('\\')+1);
             var procDir = dir + processedDirectoryName;
@@ -289,7 +289,7 @@ namespace MessageImporter
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnProcess_Click(object sender, EventArgs e)
+        internal void btnProcess_Click(object sender, EventArgs e)
         {
             logNewSection("Begin processing..");
             
@@ -349,7 +349,7 @@ namespace MessageImporter
             dataFiles.Refresh();
         }
 
-        private bool ProcessSelectedFiles()
+        internal bool ProcessSelectedFiles()
         {
             allMessages.Clear();
             allOrders.Clear();
@@ -429,7 +429,7 @@ namespace MessageImporter
             return true;
         }
 
-        private StockEntity ProcessCSVX(FileItem file)
+        internal StockEntity ProcessCSVX(FileItem file)
         {
             if (file == null)
                 return null;
@@ -471,7 +471,7 @@ namespace MessageImporter
             return ret;
         }
 
-        private void CreateInvoice(List<CSVFile> allOrders)
+        internal void CreateInvoice(List<CSVFile> allOrders)
         {
             allInvoices = new List<Invoice>();
             Invoice inv = null;
@@ -516,6 +516,9 @@ namespace MessageImporter
                         inv.OrderShipping = item.OrderShipping;
                         inv.OrderShippingMethod = item.OrderShippingMethod;
                         inv.OrderStatus = item.OrderStatus;
+                        // ak je stav objednavky zrusena v CSV, nastavime tento stav ak objednavke
+                        if (inv.OrderStatus.ToLower().Contains("cancel"))
+                            inv.Cancelled = true;
                         inv.OrderSubtotal = item.OrderSubtotal;
                         inv.OrderTax = item.OrderTax;
                         inv.ShippingCity = item.ShippingCity;
@@ -564,7 +567,7 @@ namespace MessageImporter
         /// <summary>
         /// Kurzovy prepocet, nakupna cena s dopravou..
         /// </summary>
-        private void CalcBuyingPrice(BindingList<StockItem> items)
+        internal void CalcBuyingPrice(BindingList<StockItem> items)
         {
             if (items == null)
                 return;
@@ -620,7 +623,7 @@ namespace MessageImporter
         /// <summary>
         /// Prepojenie a doplnenie nacitanych udajov
         /// </summary>
-        private void PairProducts()
+        internal void PairProducts()
         {
             foreach (var CSV in allInvoices)
             {
@@ -661,7 +664,7 @@ namespace MessageImporter
             product.PairProduct = toComplete;
         }
 
-        private StockEntity ProcessMessage(FileItem file)
+        internal StockEntity ProcessMessage(FileItem file)
         {
             StockEntity order = null;
 
@@ -680,7 +683,7 @@ namespace MessageImporter
             return order;
         }
 
-        private CSVFile ProcessCSV(string path)
+        internal CSVFile ProcessCSV(string path)
         {
             CSVFile ret = new CSVFile(path);
             try
@@ -709,7 +712,7 @@ namespace MessageImporter
             return ret;
         }
 
-        private void btnSelectAll_Click(object sender, EventArgs e)
+        internal void btnSelectAll_Click(object sender, EventArgs e)
         {
             var files = dataFiles.DataSource as List<FileItem>;
             foreach (var f in files)
@@ -721,7 +724,7 @@ namespace MessageImporter
             dataFiles.Refresh();
         }
 
-        private void btnInverse_Click(object sender, EventArgs e)
+        internal void btnInverse_Click(object sender, EventArgs e)
         {
             var files = dataFiles.DataSource as List<FileItem>;
             foreach (var f in files)
@@ -733,7 +736,7 @@ namespace MessageImporter
             dataFiles.Refresh();
         }
 
-        private void btnDeselectAll_Click(object sender, EventArgs e)
+        internal void btnDeselectAll_Click(object sender, EventArgs e)
         {
             var files = dataFiles.DataSource as List<FileItem>;
             foreach (var f in files)
@@ -750,7 +753,7 @@ namespace MessageImporter
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn2XML_Click_1(object sender, EventArgs e)
+        internal void btn2XML_Click_1(object sender, EventArgs e)
         {
             if (!Directory.Exists(txtOutDir.Text))
                 Directory.CreateDirectory(txtOutDir.Text);
@@ -796,7 +799,7 @@ namespace MessageImporter
             foreach (var inv in invDS)
             {
                 // do exportu pojdu len vybavene objednavky, nestornovane
-                if (!inv.Equipped || inv.Canceled) 
+                if (!inv.Equipped || inv.Cancelled) 
                     continue;
 
                 dataPackItemType newDatapack = new dataPackItemType();
@@ -1001,7 +1004,10 @@ namespace MessageImporter
                 stock.stockHeader.description2 = prod.ItemNameInv;
 
                 stock.stockHeader.storage = new refTypeStorage();
-                stock.stockHeader.storage.ids = Properties.Settings.Default.Storage;
+                if (prod.State == StockItemState.PermanentStorage)
+                    stock.stockHeader.storage.ids = "02";
+                else
+                    stock.stockHeader.storage.ids = Properties.Settings.Default.Storage;
                 stock.stockHeader.typePrice = new refType();
                 stock.stockHeader.typePrice.ids = Properties.Settings.Default.TypePrice;
 
@@ -1120,7 +1126,7 @@ namespace MessageImporter
             return double.Parse(new string(x.ToCharArray().Where(c => "1234567890.,".Contains(c)).ToArray()));
         }
 
-        private void InvoiceChanged(object sender, DataGridViewCellEventArgs e)
+        internal void InvoiceChanged(object sender, DataGridViewCellEventArgs e)
         {
             var items = GetInvoiceDS();
 
@@ -1131,7 +1137,7 @@ namespace MessageImporter
                 SetInvoiceItemsDS(new BindingList<InvoiceItem>());
         }
 
-        private void CheckAllEqipped()
+        internal void CheckAllEqipped()
         {
             var allInvoices = GetInvoiceDS();
             if (allInvoices == null)
@@ -1143,34 +1149,24 @@ namespace MessageImporter
                     continue;
 
                 // objednavka je vybavena ak ma vsetky produkty priradene 
-                item.Equipped = IsEquipped(item);
+                item.Equipped = Common.IsEquipped(item);
             }
         }
 
-        private void CheckEqipped(Invoice inv)
+        internal void CheckEqipped(Invoice inv)
         {
             // objednavka je vybavena ak ma vsetky produkty priradene
-            inv.Equipped = IsEquipped(inv);
+            inv.Equipped = Common.IsEquipped(inv);
         }
 
-        private bool IsEquipped(Invoice inv)
-        {
-            return inv != null && inv.InvoiceItems != null && inv.InvoiceItems.All(i => IsItemPaired(i));
-        }
-
-        private bool IsItemPaired(InvoiceItem i)
-        {
-            return i != null && i.PairProduct != null;
-        }
-
-        private void UpdateProductSet()
+        internal void UpdateProductSet()
         {
             var allProducts = GetProductsDS();
             var allInvoices = GetInvoiceDS();
             if (allProducts == null || allInvoices == null)
                 return;
             
-            var paired = allInvoices.Where(i => i.InvoiceItems != null).SelectMany(inv => inv.InvoiceItems).Where(i => IsItemPaired(i)).Select(ii => ii.PairProduct.ProductCode).ToList();
+            var paired = allInvoices.Where(i => i.InvoiceItems != null).SelectMany(inv => inv.InvoiceItems).Where(i => Common.IsItemPaired(i)).Select(ii => ii.PairProduct.ProductCode).ToList();
          
             lbNonPaired.Items.Clear();
             allProducts.Where(p => !paired.Contains(p.ProductCode) && p.ProductCode != null).ToList().ForEach(i => lbNonPaired.Items.Add(i.ProductCode));
@@ -1187,14 +1183,14 @@ namespace MessageImporter
                 if (parents != null && parents.Count() > 0)
                 {
                     foreach (var p in parents)
-                        allProducts[i].Equipped = IsEquipped(p);
+                        allProducts[i].Equipped = Common.IsEquipped(p);
                 }
                 else
                     allProducts[i].Equipped = false;
             }
         }
 
-        private void btnInvoiceAdd_Click(object sender, EventArgs e)
+        internal void btnInvoiceAdd_Click(object sender, EventArgs e)
         {
             var ds = GetInvoiceDS();
             if (ds == null)
@@ -1202,7 +1198,7 @@ namespace MessageImporter
             var added = ds.AddNew();
         }
 
-        private void btnInvoiceRemove_Click(object sender, EventArgs e)
+        internal void btnInvoiceRemove_Click(object sender, EventArgs e)
         {
             var selCell = dataCSV.SelectedCells;
             if (selCell != null && selCell.Count > 0)
@@ -1219,7 +1215,7 @@ namespace MessageImporter
             UpdateProductSet();
         }
 
-        private void btnAssignProd_Click(object sender, EventArgs e)
+        internal void btnAssignProd_Click(object sender, EventArgs e)
         {
             var selprodcode = lbNonPaired.SelectedItem as string;
             if (tabItems.SelectedIndex == 1)
@@ -1249,7 +1245,7 @@ namespace MessageImporter
             }
         }
 
-        private void btnInvoiceItemNew_Click(object sender, EventArgs e)
+        internal void btnInvoiceItemNew_Click(object sender, EventArgs e)
         {
             var allInvoices = GetInvoiceDS();
             var ds = GetInvoiceItemsDS();
@@ -1268,7 +1264,7 @@ namespace MessageImporter
             RefreshTab();
         }
 
-        private void btnInvoiceItemRemove_Click(object sender, EventArgs e)
+        internal void btnInvoiceItemRemove_Click(object sender, EventArgs e)
         {
             var selCell = dataGridInvItems.SelectedCells;
             if (selCell != null && selCell.Count > 0)
@@ -1283,7 +1279,7 @@ namespace MessageImporter
             UpdateProductSet();
         }
 
-        private void btnAddMsg_Click(object sender, EventArgs e)
+        internal void btnAddMsg_Click(object sender, EventArgs e)
         {
             var ds = GetProductsDS();
             if (ds == null)
@@ -1295,7 +1291,7 @@ namespace MessageImporter
             UpdateProductSet();
         }
 
-        private void btnRemoveMSG_Click(object sender, EventArgs e)
+        internal void btnRemoveMSG_Click(object sender, EventArgs e)
         {
             var selCell = dataGrid.SelectedCells;
             if (selCell != null && selCell.Count > 0)
@@ -1314,7 +1310,7 @@ namespace MessageImporter
             UpdateProductSet();
         }
 
-        private void Unpair(StockItem orderItem)
+        internal void Unpair(StockItem orderItem)
         {
             var allInvoices = GetInvoiceDS();
             var paired = allInvoices.Where(i => i.InvoiceItems != null).SelectMany(i => i.InvoiceItems).Where(ii => ii.PairProduct != null && ii.PairProduct.ProductCode == orderItem.ProductCode).ToList();
@@ -1324,13 +1320,13 @@ namespace MessageImporter
             }
         }
 
-        private void TabChanged(object sender, EventArgs e)
+        internal void TabChanged(object sender, EventArgs e)
         {
             UpdateProductSet();
             RefreshTab();
         }
 
-        private void btnUnpairInvoiceItem_Click(object sender, EventArgs e)
+        internal void btnUnpairInvoiceItem_Click(object sender, EventArgs e)
         {
             var selCell = dataGridInvItems.SelectedCells;
             if (selCell != null && selCell.Count > 0)
@@ -1345,7 +1341,7 @@ namespace MessageImporter
             RefreshTab();
         }
 
-        private void btnUnpairAll_Click(object sender, EventArgs e)
+        internal void btnUnpairAll_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < dataGridInvItems.RowCount; i++)
             {
@@ -1359,7 +1355,7 @@ namespace MessageImporter
             RefreshTab();
         }
 
-        private void btnUnpairProductMSG_Click(object sender, EventArgs e)
+        internal void btnUnpairProductMSG_Click(object sender, EventArgs e)
         {
             var selCell = dataGrid.SelectedCells;
             if (selCell != null && selCell.Count > 0)
@@ -1375,7 +1371,7 @@ namespace MessageImporter
             RefreshTab();
         }
 
-        private void btnUnpairAllMSG_Click(object sender, EventArgs e)
+        internal void btnUnpairAllMSG_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < dataGrid.RowCount; i++)
             {
@@ -1390,7 +1386,7 @@ namespace MessageImporter
             RefreshTab();
         }
 
-        private void btnSelectNonMSG_Click(object sender, EventArgs e)
+        internal void btnSelectNonMSG_Click(object sender, EventArgs e)
         {
             var ds = GetProductsDS();
             if (ds == null)
@@ -1404,7 +1400,7 @@ namespace MessageImporter
             RefreshTab();
         }
 
-        private void btnSetAllPairedMSG_Click(object sender, EventArgs e)
+        internal void btnSetAllPairedMSG_Click(object sender, EventArgs e)
         {
             var ds = GetProductsDS();
             if (ds == null)
@@ -1418,7 +1414,7 @@ namespace MessageImporter
             RefreshTab();
         }
 
-        private void btnExportMSG_Click(object sender, EventArgs e)
+        internal void btnExportMSG_Click(object sender, EventArgs e)
         {
             Export exporter = new Export(GetProductsDS());
             exporter.ShowDialog(this);
@@ -1453,7 +1449,7 @@ namespace MessageImporter
             UpdateProductSet();
         }
 
-        private void dataFiles_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        internal void dataFiles_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             var ds = dataFiles.DataSource as List<FileItem>;
             if (ds == null)
@@ -1568,17 +1564,17 @@ namespace MessageImporter
             RefreshTab();
         }
 
-        private void InvoiceValueChanged(object sender, DataGridViewCellEventArgs e)
+        internal void InvoiceValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             RefreshTab();
         }
 
-        private void StockValueChanged(object sender, DataGridViewCellEventArgs e)
+        internal void StockValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             RefreshTab();
         }
 
-        private void InvoiceItemSelChanged(object sender, EventArgs e)
+        internal void InvoiceItemSelChanged(object sender, EventArgs e)
         {
             var all = lbNonPaired.Items;
             var selCells = dataGridInvItems.SelectedCells;

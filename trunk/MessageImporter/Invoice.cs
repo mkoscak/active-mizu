@@ -30,8 +30,11 @@ namespace MessageImporter
         {
             get
             {
-                if (Canceled)
-                    return Icons.NonComplete;
+                if (Cancelled)
+                    return Icons.Waiting;
+                
+                if (Equipped)
+                    return Icons.Complete;
                 
                 Image ret = Icons.Complete;
                 
@@ -61,19 +64,26 @@ namespace MessageImporter
         /// </summary>
         public bool Equipped
         {
+            get;
+            set;
+        }
+
+        // stornovana?
+        public bool Cancelled 
+        { 
             get
             {
-                return InvoiceStatus == InvoiceState.Complete;
+                return InvoiceStatus == InvoiceState.Cancelled;
             }
 
             set
             {
-                InvoiceStatus = value ? InvoiceState.Complete : InvoiceState.NonComplete;
+                if (value)
+                    InvoiceStatus = InvoiceState.Cancelled;
+                else
+                    InvoiceStatus = Equipped ? InvoiceState.Complete : InvoiceState.NonComplete;
             }
         }
-
-        // stornovana?
-        public bool Canceled { get; set; }
 
         public string OrderNumber { get; set; }
         public string OrderDate { get; set; }
@@ -114,7 +124,36 @@ namespace MessageImporter
         public string BillingCountryName { get; set; }
         public string BillingPhoneNumber { get; set; }
 
-        internal InvoiceState InvoiceStatus;
+        private InvoiceState invoiceStatus;
+        internal InvoiceState InvoiceStatus
+        {
+            get
+            {
+                return invoiceStatus;
+            }
+
+            set
+            {
+                invoiceStatus = value;
+                if (invoiceStatus == InvoiceState.Cancelled)
+                {
+                    foreach (var item in InvoiceItems)
+                    {
+                        if (item.PairProduct != null)
+                            item.PairProduct.State = StockItemState.PermanentStorage;
+                    }
+                }
+                else
+                {
+                    foreach (var item in InvoiceItems)
+                    {
+                        if (item.PairProduct != null && item.PairProduct.State == StockItemState.PermanentStorage)
+                            item.PairProduct.State = item.PairProduct.PreviousState;
+                    }
+                }
+            }
+        }
+
         internal List<InvoiceItem> InvoiceItems { get; set; }
     }
 }
