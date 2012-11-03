@@ -22,7 +22,21 @@ namespace MessageImporter
 
         internal Invoice Parent { get; set; }
 
-        internal StockItem PairProduct { get; set; }
+        private StockItem pairProd;
+        internal StockItem PairProduct
+        {
+            get
+            {
+                return pairProd;
+            }
+
+            set
+            {
+                pairProd = value;
+                if (pairProd != null)
+                    pairProd.PairProduct = this;
+            }
+        }
 
         public Image Icon
         {

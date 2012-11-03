@@ -48,8 +48,8 @@ namespace MessageImporter
             
                 foreach (var msg in dataToExport)
                 {
-                    if ( (rbSelected.Checked && !msg.Equipped) ||
-                        (rbNonSelected.Checked && msg.Equipped) )
+                    if ( (rbSelected.Checked && !msg.EquippedInv) ||
+                        (rbNonSelected.Checked && msg.EquippedInv) )
                         continue;
 
                     string line = string.Format("{0};{1};{2};{3};{4};{5};{6}", msg.ProductCode, msg.Description, msg.Ord_Qty, msg.Disp_Qty, msg.Price, msg.Total, msg.Currency);

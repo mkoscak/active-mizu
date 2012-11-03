@@ -39,30 +39,32 @@ namespace MessageImporter
         {
             get
             {
-                // najvyssiu prioritu ma permanent storage
-                if (State == StockItemState.PermanentStorage)
-                    return Icons.Waiting;
+                if (pairProd == null)
+                    return Icons.NonComplete;
 
-                if (!Equipped)
-                    return Icons.NonComplete;
-                
-                if (State == StockItemState.Paired)
-                    return Icons.Complete;
-                if (State == StockItemState.NonPaired)
-                    return Icons.NonComplete;
-                if (State == StockItemState.Waiting)
+                if (pairProd != null && state == StockItemState.PermanentStorage)
                     return Icons.Waiting;
 
                 return Icons.Complete;
             }
         }
 
-        internal StockItemState PreviousState { get; set; }
+        internal StockItemState? PreviousState { get; set; }
         private StockItemState state;
         public StockItemState State
         {
             get
             {
+                // refresh stavu
+                if (pairProd == null)
+                    state = StockItemState.NonPaired;
+
+                else if (pairProd != null && pairProd.Parent.Cancelled)
+                    state = StockItemState.PermanentStorage;
+
+                else if (pairProd != null)
+                    state = StockItemState.Paired;
+                
                 return state;
             }
 
@@ -73,7 +75,16 @@ namespace MessageImporter
             }
         }
 
-        public bool Equipped { get; set; }
+        public bool EquippedInv
+        {
+            get
+            {
+                if (pairProd == null)
+                    return false;
+
+                return pairProd.Parent.Equipped;
+            }
+        }
 
         public string ProductCode { get; set; }
 

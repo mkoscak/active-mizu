@@ -130,8 +130,8 @@ namespace MessageImporter
                 {
                     foreach (var item in InvoiceItems)
                     {
-                        if (item.PairProduct != null && item.PairProduct.State == StockItemState.PermanentStorage)
-                            item.PairProduct.State = item.PairProduct.PreviousState;
+                        if (item.PairProduct != null && item.PairProduct.State == StockItemState.PermanentStorage && item.PairProduct.PreviousState.HasValue)
+                            item.PairProduct.State = item.PairProduct.PreviousState.Value;
                     }
                 }
             }

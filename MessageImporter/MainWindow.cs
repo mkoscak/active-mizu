@@ -661,7 +661,7 @@ namespace MessageImporter
                 return;
             // vzajomne prepojenie
             toComplete.PairProduct = product;
-            product.PairProduct = toComplete;
+            //product.PairProduct = toComplete; // odstranene 3.11.2012 - produkt bude sparovany automaticky v setteri invoiceitemu (predch. riadok)
         }
 
         internal StockEntity ProcessMessage(FileItem file)
@@ -937,6 +937,18 @@ namespace MessageImporter
 
         double GetPrice(string strPrice)
         {
+            // cena obsahuje aj bodku aj ciarku, napr 1,000.25.. prvy znak vyhodime
+            if (strPrice.Contains(',') && strPrice.Contains('.'))
+            {
+                int pointIndex = strPrice.LastIndexOf('.');
+                int commaIndex = strPrice.LastIndexOf(',');
+
+                if (pointIndex > commaIndex)
+                    strPrice = strPrice.Replace(",", "");   // odstranime vsetky ciarky
+                else
+                    strPrice = strPrice.Replace(".", "");   // odstranime vsetky bodky
+            }
+
             return double.Parse(strPrice.Replace('€', ' ').Trim().Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator).Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator));
         }
 
@@ -968,7 +980,7 @@ namespace MessageImporter
 
             foreach (var prod in prodDS)
             {
-                if (!prod.Equipped) // do exportu len produkty z vybavenych objednavok
+                if (!prod.EquippedInv) // do exportu len produkty z vybavenych objednavok
                     continue;
 
                 /////////////////////////////////////////////////// stock item
@@ -1171,23 +1183,6 @@ namespace MessageImporter
             lbNonPaired.Items.Clear();
             allProducts.Where(p => !paired.Contains(p.ProductCode) && p.ProductCode != null).ToList().ForEach(i => lbNonPaired.Items.Add(i.ProductCode));
             lblUnpiredCount.Text = lbNonPaired.Items.Count.ToString() + " unpaired items";
-
-            for (int i = 0; allProducts != null && i < allProducts.Count; i++)
-            {
-                var parents = allInvoices.Where(ii => ii.InvoiceItems != null)
-                    .SelectMany(ii => ii.InvoiceItems)
-                    .Where(ii => ii.PairProduct != null && ii.PairProduct.ProductCode == allProducts[i].ProductCode)
-                    .Select(ii => ii.Parent)
-                    .Distinct();
-
-                if (parents != null && parents.Count() > 0)
-                {
-                    foreach (var p in parents)
-                        allProducts[i].Equipped = Common.IsEquipped(p);
-                }
-                else
-                    allProducts[i].Equipped = false;
-            }
         }
 
         internal void btnInvoiceAdd_Click(object sender, EventArgs e)
@@ -1386,34 +1381,6 @@ namespace MessageImporter
             RefreshTab();
         }
 
-        internal void btnSelectNonMSG_Click(object sender, EventArgs e)
-        {
-            var ds = GetProductsDS();
-            if (ds == null)
-                return;
-            
-            for (int i = 0; i < ds.Count; i++)
-            {
-                ds[i].Equipped = false;
-            }
-
-            RefreshTab();
-        }
-
-        internal void btnSetAllPairedMSG_Click(object sender, EventArgs e)
-        {
-            var ds = GetProductsDS();
-            if (ds == null)
-                return;
-
-            for (int i = 0; i < ds.Count; i++)
-            {
-                ds[i].Equipped = true;
-            }
-
-            RefreshTab();
-        }
-
         internal void btnExportMSG_Click(object sender, EventArgs e)
         {
             Export exporter = new Export(GetProductsDS());
@@ -1434,8 +1401,8 @@ namespace MessageImporter
 
             while(true)
             {
-                var found = ds.Where(msg => (result == ResultRemoving.Selected && msg.Equipped) ||
-                     (result == ResultRemoving.Unselected && !msg.Equipped) ||
+                var found = ds.Where(msg => (result == ResultRemoving.Selected && msg.EquippedInv) ||
+                     (result == ResultRemoving.Unselected && !msg.EquippedInv) ||
                      (result == ResultRemoving.All)).ToList();
 
                 if (found.Count == 0)
