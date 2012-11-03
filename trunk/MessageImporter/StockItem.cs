@@ -35,6 +35,7 @@ namespace MessageImporter
             }
         }
 
+        [System.ComponentModel.DisplayName("Icon")]
         public Image Icon
         {
             get
@@ -51,6 +52,7 @@ namespace MessageImporter
 
         internal StockItemState? PreviousState { get; set; }
         private StockItemState state;
+        [System.ComponentModel.DisplayName("Stav")]
         public StockItemState State
         {
             get
@@ -75,6 +77,7 @@ namespace MessageImporter
             }
         }
 
+        [System.ComponentModel.DisplayName("Obj. vybavená")]
         public bool EquippedInv
         {
             get
@@ -86,54 +89,100 @@ namespace MessageImporter
             }
         }
 
+        [System.ComponentModel.DisplayName("SKU")]
         public string ProductCode { get; set; }
 
+        [System.ComponentModel.DisplayName("Popis")]
         public string Description { get; set; }
 
-        public string ItemNameInv
+        private string itemNameInv;
+        [System.ComponentModel.DisplayName("Popis z objednávky")]
+        internal string ItemNameInv
         {
             get
             {
-                return PairProduct == null ? string.Empty : PairProduct.ItemName;
+                if (itemNameInv == null && pairProd != null)
+                    itemNameInv = PairProduct.ItemName;
+
+                return itemNameInv;
+            }
+
+            set
+            {
+                itemNameInv = value;
             }
         }
 
+
+        private string sellPriceInv;
+        [System.ComponentModel.DisplayName("Predajná cena")]
         public string SellPriceInv
         {
             get
             {
-                return PairProduct == null ? string.Empty : PairProduct.ItemPrice;
+                if (sellPriceInv == null && pairProd != null)
+                    sellPriceInv = PairProduct.ItemPrice;
+
+                return sellPriceInv;
+            }
+
+            set
+            {
+                sellPriceInv = value;
             }
         }
 
+        [System.ComponentModel.DisplayName("Predajná cena EUR")]
+        public string SellPriceEUR
+        {
+            get;
+            set;//TODO
+        }
+
+        private string sizeInv;
+        [System.ComponentModel.DisplayName("Veľkosť")]
         public string SizeInv
         {
             get
             {
-                return PairProduct == null ? string.Empty : PairProduct.ItemOptions;
+                if (sizeInv == null && pairProd != null)
+                    sizeInv = PairProduct.ItemOptions;
+
+                return sizeInv;
+            }
+
+            set
+            {
+                sizeInv = value;
             }
         }
 
-        public double PriceEUR { get; set; }
+        [System.ComponentModel.DisplayName("Nákupná cena bez DPH")]
+        public double PriceEURnoTax { get; set; }
 
-        public double TotalEUR { get; set; }
+        [System.ComponentModel.DisplayName("Nákupná cena bez DPH EUR")]
+        public double PriceEURnoTaxEUR { get; set; }
 
-        public double PriceWithDeliveryEUR { get; set; }
+        internal double TotalEUR { get; set; }
 
-        public double PriceWithDelivery { get; set; }
+        internal double PriceWithDeliveryEUR { get; set; }
 
-        public int Ord_Qty { get; set; }
+        internal double PriceWithDelivery { get; set; }
 
-        public int Disp_Qty { get; set; }
+        internal int Ord_Qty { get; set; }
 
-        public double Price { get; set; }
+        internal int Disp_Qty { get; set; }
 
-        public double Total { get; set; }
+        internal double Price { get; set; }
 
-        public string Currency { get; set; }
+        internal double Total { get; set; }
 
+        internal string Currency { get; set; }
+
+        [System.ComponentModel.DisplayName("Dátum obj.")]
         public DateTime OrderDate { get; set; }
 
+        [System.ComponentModel.DisplayName("Číslo faktúry")]
         public FileItem FromFile { get; set; }
 
         public override string ToString()
