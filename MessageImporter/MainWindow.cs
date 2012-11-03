@@ -988,7 +988,8 @@ namespace MessageImporter
 
                 /////////////////////////////////////////////////// stock item
 
-                var code = prod.ProductCode.Replace("/", "");
+                //var code = prod.ProductCode.Replace("/", "");
+                var code = prod.ProductCode;
 
                 dataPackItemType newDatapack = new dataPackItemType();
                 newDatapack.id = code;
@@ -1469,7 +1470,7 @@ namespace MessageImporter
 
                 foreach (var item in list)
                 {
-                    item.PriceEUR = Math.Round(item.Price * kurz, 2);
+                    item.PriceEURnoTax = Math.Round(item.Price * kurz, 2);
                     item.TotalEUR = Math.Round(item.Total * kurz, 2);
                     item.PriceWithDeliveryEUR = Math.Round(item.PriceWithDelivery * kurz, 2);
                 }
@@ -1515,7 +1516,7 @@ namespace MessageImporter
 
                     foreach (var item in list)
                     {
-                        item.PriceEUR = Math.Round(item.Price * kurz, 2);
+                        item.PriceEURnoTax = Math.Round(item.Price * kurz, 2);
                         item.TotalEUR = Math.Round(item.Total * kurz, 2);
                         item.PriceWithDeliveryEUR = Math.Round(item.PriceWithDelivery * kurz, 2);
 
