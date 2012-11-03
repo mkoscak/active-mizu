@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Export));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbSelected = new System.Windows.Forms.RadioButton();
-            this.rbNonSelected = new System.Windows.Forms.RadioButton();
-            this.chbRemoveAfterExport = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtFileName = new System.Windows.Forms.TextBox();
-            this.btnExport = new System.Windows.Forms.Button();
             this.rbAll = new System.Windows.Forms.RadioButton();
+            this.txtFileName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rbNonSelected = new System.Windows.Forms.RadioButton();
+            this.rbSelected = new System.Windows.Forms.RadioButton();
+            this.chbRemoveAfterExport = new System.Windows.Forms.CheckBox();
+            this.btnExport = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,15 +56,34 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parameters";
             // 
-            // rbSelected
+            // rbAll
             // 
-            this.rbSelected.AutoSize = true;
-            this.rbSelected.Location = new System.Drawing.Point(6, 19);
-            this.rbSelected.Name = "rbSelected";
-            this.rbSelected.Size = new System.Drawing.Size(105, 17);
-            this.rbSelected.TabIndex = 0;
-            this.rbSelected.Text = "Selected (paired)";
-            this.rbSelected.UseVisualStyleBackColor = true;
+            this.rbAll.AutoSize = true;
+            this.rbAll.Location = new System.Drawing.Point(6, 65);
+            this.rbAll.Name = "rbAll";
+            this.rbAll.Size = new System.Drawing.Size(36, 17);
+            this.rbAll.TabIndex = 4;
+            this.rbAll.Text = "All";
+            this.rbAll.UseVisualStyleBackColor = true;
+            // 
+            // txtFileName
+            // 
+            this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFileName.Location = new System.Drawing.Point(64, 113);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.Size = new System.Drawing.Size(296, 20);
+            this.txtFileName.TabIndex = 3;
+            this.txtFileName.Text = "filename.csv";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 116);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "File name";
             // 
             // rbNonSelected
             // 
@@ -77,6 +97,16 @@
             this.rbNonSelected.Text = "Deselected (unpaired)";
             this.rbNonSelected.UseVisualStyleBackColor = true;
             // 
+            // rbSelected
+            // 
+            this.rbSelected.AutoSize = true;
+            this.rbSelected.Location = new System.Drawing.Point(6, 19);
+            this.rbSelected.Name = "rbSelected";
+            this.rbSelected.Size = new System.Drawing.Size(105, 17);
+            this.rbSelected.TabIndex = 0;
+            this.rbSelected.Text = "Selected (paired)";
+            this.rbSelected.UseVisualStyleBackColor = true;
+            // 
             // chbRemoveAfterExport
             // 
             this.chbRemoveAfterExport.AutoSize = true;
@@ -86,25 +116,6 @@
             this.chbRemoveAfterExport.TabIndex = 1;
             this.chbRemoveAfterExport.Text = "Remove items from list after export";
             this.chbRemoveAfterExport.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 116);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "File name";
-            // 
-            // txtFileName
-            // 
-            this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFileName.Location = new System.Drawing.Point(64, 113);
-            this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(296, 20);
-            this.txtFileName.TabIndex = 3;
-            this.txtFileName.Text = "filename.csv";
             // 
             // btnExport
             // 
@@ -117,16 +128,6 @@
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // rbAll
-            // 
-            this.rbAll.AutoSize = true;
-            this.rbAll.Location = new System.Drawing.Point(6, 65);
-            this.rbAll.Name = "rbAll";
-            this.rbAll.Size = new System.Drawing.Size(36, 17);
-            this.rbAll.TabIndex = 4;
-            this.rbAll.Text = "All";
-            this.rbAll.UseVisualStyleBackColor = true;
-            // 
             // Export
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -135,6 +136,7 @@
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.chbRemoveAfterExport);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Export";
             this.Text = "Export items";
             this.groupBox1.ResumeLayout(false);

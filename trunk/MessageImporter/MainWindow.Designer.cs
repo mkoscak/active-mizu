@@ -66,9 +66,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.dataGridInvItems = new MessageImporter.CustomDataGridView();
             this.stock = new System.Windows.Forms.TabPage();
-            this.btnSetAllPairedMSG = new System.Windows.Forms.Button();
             this.btnExportMSG = new System.Windows.Forms.Button();
-            this.btnSelectNonMSG = new System.Windows.Forms.Button();
             this.btnUnpairAllMSG = new System.Windows.Forms.Button();
             this.btnUnpairProductMSG = new System.Windows.Forms.Button();
             this.btnRemoveMSG = new System.Windows.Forms.Button();
@@ -514,9 +512,7 @@
             // 
             // stock
             // 
-            this.stock.Controls.Add(this.btnSetAllPairedMSG);
             this.stock.Controls.Add(this.btnExportMSG);
-            this.stock.Controls.Add(this.btnSelectNonMSG);
             this.stock.Controls.Add(this.btnUnpairAllMSG);
             this.stock.Controls.Add(this.btnUnpairProductMSG);
             this.stock.Controls.Add(this.btnRemoveMSG);
@@ -530,17 +526,6 @@
             this.stock.Text = "Stock";
             this.stock.UseVisualStyleBackColor = true;
             // 
-            // btnSetAllPairedMSG
-            // 
-            this.btnSetAllPairedMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSetAllPairedMSG.Location = new System.Drawing.Point(200, 576);
-            this.btnSetAllPairedMSG.Name = "btnSetAllPairedMSG";
-            this.btnSetAllPairedMSG.Size = new System.Drawing.Size(114, 23);
-            this.btnSetAllPairedMSG.TabIndex = 36;
-            this.btnSetAllPairedMSG.Text = "Set all paired";
-            this.btnSetAllPairedMSG.UseVisualStyleBackColor = true;
-            this.btnSetAllPairedMSG.Click += new System.EventHandler(this.btnSetAllPairedMSG_Click);
-            // 
             // btnExportMSG
             // 
             this.btnExportMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -551,17 +536,6 @@
             this.btnExportMSG.Text = "Export";
             this.btnExportMSG.UseVisualStyleBackColor = true;
             this.btnExportMSG.Click += new System.EventHandler(this.btnExportMSG_Click);
-            // 
-            // btnSelectNonMSG
-            // 
-            this.btnSelectNonMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSelectNonMSG.Location = new System.Drawing.Point(320, 576);
-            this.btnSelectNonMSG.Name = "btnSelectNonMSG";
-            this.btnSelectNonMSG.Size = new System.Drawing.Size(114, 23);
-            this.btnSelectNonMSG.TabIndex = 34;
-            this.btnSelectNonMSG.Text = "Set all unpaired";
-            this.btnSelectNonMSG.UseVisualStyleBackColor = true;
-            this.btnSelectNonMSG.Click += new System.EventHandler(this.btnSelectNonMSG_Click);
             // 
             // btnUnpairAllMSG
             // 
@@ -756,9 +730,7 @@
         private System.Windows.Forms.Button btnUnpairAll;
         private System.Windows.Forms.Button btnUnpairAllMSG;
         private System.Windows.Forms.Button btnUnpairProductMSG;
-        private System.Windows.Forms.Button btnSelectNonMSG;
         private System.Windows.Forms.Button btnExportMSG;
-        private System.Windows.Forms.Button btnSetAllPairedMSG;
         private System.Windows.Forms.TabControl tabFilesLog;
         private System.Windows.Forms.TabPage tabFoundFiles;
         private System.Windows.Forms.TabPage tabLog;
