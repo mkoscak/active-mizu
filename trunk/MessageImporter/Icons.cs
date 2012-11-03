@@ -10,13 +10,13 @@ namespace MessageImporter
     {
         public static Image Complete;
         public static Image NonComplete;
-        public static Image Waiting;
+        public static Image Warning;
 
         static Icons()
         {
             Complete = Image.FromFile(@"Resources\eq16.png");
             NonComplete = Image.FromFile(@"Resources\non16.png");
-            Waiting = Image.FromFile(@"Resources\warning16.png");
+            Warning = Image.FromFile(@"Resources\warning16.png");
         }
     }
 }

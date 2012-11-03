@@ -43,7 +43,7 @@ namespace MessageImporter
                     return Icons.NonComplete;
 
                 if (pairProd != null && state == StockItemState.PermanentStorage)
-                    return Icons.Waiting;
+                    return Icons.Warning;
 
                 return Icons.Complete;
             }

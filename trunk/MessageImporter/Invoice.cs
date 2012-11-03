@@ -36,7 +36,7 @@ namespace MessageImporter
 
                 // ak obsahuje nesprarovane - oranzova
                 if (!Equipped)
-                    return Icons.Waiting;
+                    return Icons.Warning;
 
                 return Icons.Complete;
             }
