@@ -66,7 +66,7 @@ namespace MessageImporter
         {
             get
             {
-                return PairProduct == null ? double.NaN : PairProduct.PriceEUR;
+                return PairProduct == null ? double.NaN : PairProduct.PriceEURnoTax;
             }
         }
 
