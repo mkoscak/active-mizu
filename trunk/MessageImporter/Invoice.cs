@@ -30,32 +30,15 @@ namespace MessageImporter
         {
             get
             {
+                // zrusena - cervenou
                 if (Cancelled)
+                    return Icons.NonComplete;
+
+                // ak obsahuje nesprarovane - oranzova
+                if (!Equipped)
                     return Icons.Waiting;
-                
-                if (Equipped)
-                    return Icons.Complete;
-                
-                Image ret = Icons.Complete;
-                
-                switch (InvoiceStatus)
-                {
-                    case InvoiceState.NonComplete:
-                        ret = Icons.NonComplete;
-                        break;
-                    case InvoiceState.Complete:
-                        ret = Icons.Complete;
-                        break;
-                    case InvoiceState.Cancelled:
-                        ret = Icons.Waiting;
-                        break;
 
-                    default:
-                        ret = Icons.Complete;
-                        break;
-                }
-
-                return ret;
+                return Icons.Complete;
             }
         }
 
