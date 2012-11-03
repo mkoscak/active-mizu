@@ -112,7 +112,7 @@ namespace MessageImporter
             {
                 pairProd = value;
                 LongSKU = pairProd.ProductCode;
-                ShoppingPrice = pairProd.PriceEUR;
+                ShoppingPrice = pairProd.PriceEURnoTax;
                 InvoiceDate = pairProd.OrderDate;
             }
         }
