@@ -45,6 +45,7 @@ namespace MessageImporter
         /// <summary>
         /// Vybavenost objednavky
         /// </summary>
+        [System.ComponentModel.DisplayName("Vybavená")]
         public bool Equipped
         {
             get;
@@ -52,6 +53,7 @@ namespace MessageImporter
         }
 
         // stornovana?
+        [System.ComponentModel.DisplayName("Zrušená")]
         public bool Cancelled 
         { 
             get
@@ -68,43 +70,84 @@ namespace MessageImporter
             }
         }
 
+        [System.ComponentModel.DisplayName("Čís.obj.")]
         public string OrderNumber { get; set; }
+        [System.ComponentModel.DisplayName("Dátum obj.")]
         public string OrderDate { get; set; }
+        [System.ComponentModel.DisplayName("Položiek")]
         public string TotQtyOrdered { get; set; }
+        [System.ComponentModel.DisplayName("Meno")]
         public string CustomerName { get; set; }
+        [System.ComponentModel.DisplayName("E-mail")]
         public string CustomerEmail { get; set; }
-        public string OrderSubtotal { get; set; }
-        public string OrderTax { get; set; }
-        public string OrderShipping { get; set; }
-        public string OrderDiscount { get; set; }
-        public string OrderGrandTotal { get; set; }
-        public string OrderPaid { get; set; }
-        public string OrderRefunded { get; set; }
-        public string OrderDue { get; set; }
 
+        internal string OrderSubtotal { get; set; }
+        internal string OrderTax { get; set; }
+
+        [System.ComponentModel.DisplayName("Cena za dopravu")]
+        public string OrderShipping { get; set; }
+
+        internal string OrderDiscount { get; set; }
+
+        [System.ComponentModel.DisplayName("Cena za obj. s DPH")]
+        public string OrderGrandTotal { get; set; }
+
+        internal string OrderPaid { get; set; }
+        internal string OrderRefunded { get; set; }
+        internal string OrderDue { get; set; }
+        
+        [System.ComponentModel.DisplayName("Status")]
         public string OrderStatus { get; set; }
-        public string OrderPurchasedFrom { get; set; }
+        
+        internal string OrderPurchasedFrom { get; set; }
+
+        [System.ComponentModel.DisplayName("Platobná metóda")]
         public string OrderPaymentMethod { get; set; }
+        [System.ComponentModel.DisplayName("Spôsob dopravy")]
         public string OrderShippingMethod { get; set; }
+        [System.ComponentModel.DisplayName("ShippingName")]
         public string ShippingName { get; set; }
-        public string ShippingCompany { get; set; }
+
+        internal string ShippingCompany { get; set; }
+
+        [System.ComponentModel.DisplayName("ShippingStreet")]
         public string ShippingStreet { get; set; }
+        [System.ComponentModel.DisplayName("ShippingZip")]
         public string ShippingZip { get; set; }
+        [System.ComponentModel.DisplayName("ShippingCity")]
         public string ShippingCity { get; set; }
-        public string ShippingState { get; set; }
-        public string ShippingStateName { get; set; }
+
+        internal string ShippingState { get; set; }
+        internal string ShippingStateName { get; set; }
+
+        [System.ComponentModel.DisplayName("ShippingCountry")]
         public string ShippingCountry { get; set; }
-        public string ShippingCountryName { get; set; }
+
+        internal string ShippingCountryName { get; set; }
+
+        [System.ComponentModel.DisplayName("ShippingPhoneNumber")]
         public string ShippingPhoneNumber { get; set; }
+        [System.ComponentModel.DisplayName("BillingName")]
         public string BillingName { get; set; }
-        public string BillingCompany { get; set; }
+        
+        internal string BillingCompany { get; set; }
+
+        [System.ComponentModel.DisplayName("BillingStreet")]
         public string BillingStreet { get; set; }
+        [System.ComponentModel.DisplayName("BillingZip")]
         public string BillingZip { get; set; }
+        [System.ComponentModel.DisplayName("BillingCity")]
         public string BillingCity { get; set; }
-        public string BillingState { get; set; }
-        public string BillingStateName { get; set; }
+
+        internal string BillingState { get; set; }
+        internal string BillingStateName { get; set; }
+        
+        [System.ComponentModel.DisplayName("BillingCountry")]
         public string BillingCountry { get; set; }
-        public string BillingCountryName { get; set; }
+        
+        internal string BillingCountryName { get; set; }
+        
+        [System.ComponentModel.DisplayName("BillingPhoneNumber")]
         public string BillingPhoneNumber { get; set; }
 
         private InvoiceState invoiceStatus;
