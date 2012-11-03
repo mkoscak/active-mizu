@@ -607,6 +607,9 @@ namespace MessageImporter
 
         string ConvertInvoiceItem(string item)
         {
+            if (item == null)
+                return null;
+
             string productCode = new string(item.ToCharArray().Where(c => "0123456789".Contains(c)).ToArray());
             // 8 mieste kody produtov treba doplnit o lomitko
             if (productCode.Length == 8)
@@ -1556,7 +1559,8 @@ namespace MessageImporter
             lbFilteredItems.Items.Clear();
             foreach (var code in all)
             {
-                if (code.ToString().Contains(ConvertInvoiceItem(selInv.ItemSKU)))
+                var conv = ConvertInvoiceItem(selInv.ItemSKU);
+                if (conv != null && code.ToString().Contains(conv))
                     lbFilteredItems.Items.Add(code.ToString());
             }
         }
