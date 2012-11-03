@@ -879,11 +879,11 @@ namespace MessageImporter
                     xmlItem.unit = "ks";
                     xmlItem.homeCurrency = new typeCurrencyHomeItem();
                     xmlItem.homeCurrency.unitPriceSpecified = true;
-                    xmlItem.homeCurrency.unitPrice = GetPrice(invItem.ItemPrice);
+                    xmlItem.homeCurrency.unitPrice = Common.GetPrice(invItem.ItemPrice);
                     xmlItem.homeCurrency.priceVATSpecified = true;
-                    xmlItem.homeCurrency.priceVAT = GetPrice(invItem.ItemTax);
+                    xmlItem.homeCurrency.priceVAT = Common.GetPrice(invItem.ItemTax);
                     xmlItem.homeCurrency.priceSpecified = true;
-                    xmlItem.homeCurrency.price = GetPrice(invItem.ItemTotal) - GetPrice(invItem.ItemDiscount) / 1.2;
+                    xmlItem.homeCurrency.price = Common.GetPrice(invItem.ItemTotal) - Common.GetPrice(invItem.ItemDiscount) / 1.2;
                     xmlItem.homeCurrency.priceSumSpecified = true;
                     xmlItem.homeCurrency.priceSum = xmlItem.homeCurrency.price;
                     xmlItem.percentVATSpecified = true;
@@ -909,7 +909,7 @@ namespace MessageImporter
                     shipping.rateVAT = vatRateType.high;
                     shipping.homeCurrency = new typeCurrencyHomeItem();
                     shipping.homeCurrency.unitPriceSpecified = true;
-                    shipping.homeCurrency.unitPrice = (Math.Ceiling(GetPrice(inv.OrderShipping) * 1.2 * 100)-1) / 100;
+                    shipping.homeCurrency.unitPrice = (Math.Ceiling(Common.GetPrice(inv.OrderShipping) * 1.2 * 100)-1) / 100;
 
                     invItems.Add(shipping);
                 }
@@ -936,23 +936,6 @@ namespace MessageImporter
             }
 
             MessageBox.Show("Invoice XML generated!", "Save XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        double GetPrice(string strPrice)
-        {
-            // cena obsahuje aj bodku aj ciarku, napr 1,000.25.. prvy znak vyhodime
-            if (strPrice.Contains(',') && strPrice.Contains('.'))
-            {
-                int pointIndex = strPrice.LastIndexOf('.');
-                int commaIndex = strPrice.LastIndexOf(',');
-
-                if (pointIndex > commaIndex)
-                    strPrice = strPrice.Replace(",", "");   // odstranime vsetky ciarky
-                else
-                    strPrice = strPrice.Replace(".", "");   // odstranime vsetky bodky
-            }
-
-            return double.Parse(strPrice.Replace('€', ' ').Trim().Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator).Replace(",", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator));
         }
 
         const string StockDir = "Stock";
@@ -1029,7 +1012,7 @@ namespace MessageImporter
 
                 stock.stockHeader.purchasingPriceSpecified = true;
                 stock.stockHeader.purchasingPrice = prod.PriceWithDeliveryEUR;
-                stock.stockHeader.sellingPrice = GetPrice(prod.SellPriceInv);
+                stock.stockHeader.sellingPrice = Common.GetPrice(prod.SellPriceInv);
                 stock.stockHeader.limitMin = 0;
                 stock.stockHeader.limitMax = 0;
                 stock.stockHeader.orderName = prod.FromFile.FileName;
