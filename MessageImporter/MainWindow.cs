@@ -336,7 +336,7 @@ namespace MessageImporter
 
         void RefreshTab()
         {
-            if (tabData.SelectedIndex == 0)
+            if (tabData.SelectedIndex == (int)Tabs.Invoices)
             {
                 dataCSV.Refresh();
                 dataGridInvItems.Refresh();
@@ -761,12 +761,12 @@ namespace MessageImporter
             switch (tabData.SelectedIndex)
 	        {
                     // invoice
-                case 0:
+                case (int)Tabs.Invoices:
                     StoreInvoice();
                     break;
 
                     // stock
-                case 1:
+                case (int)Tabs.Stocks:
                     StoreStock();
                     break;
 
@@ -1593,6 +1593,15 @@ namespace MessageImporter
                     lbFilteredItems.Items.Add(code.ToString());
             }
         }
+    }
+
+    /// <summary>
+    /// Indexy tabov
+    /// </summary>
+    enum Tabs
+    {
+        Invoices,
+        Stocks
     }
 
     class CustomDataGridView : DataGridView
