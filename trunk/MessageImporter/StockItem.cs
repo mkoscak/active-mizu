@@ -120,8 +120,15 @@ namespace MessageImporter
         {
             get
             {
-                if (string.IsNullOrEmpty(sellPriceInv) && pairProd != null)
-                    sellPriceInv = PairProduct.ItemPrice;
+                if (string.IsNullOrEmpty(sellPriceInv) && PairProduct != null)
+                {
+                    var config = new CountrySetting(PairProduct.Parent.Country);
+                    var price= Common.GetPrice(PairProduct.ItemPrice);
+                    var discount = Common.GetPrice(PairProduct.ItemDiscount);
+                    var quantity= Common.GetPrice(PairProduct.ItemQtyOrdered);
+
+                    sellPriceInv = Math.Round((price - ((discount/config.Tax)*quantity)), 2).ToString();
+                }
 
                 if (sellPriceInv != null)
                     sellPriceInv = Common.CleanPrice(sellPriceInv);
@@ -141,12 +148,14 @@ namespace MessageImporter
         {
             get
             {
-                if (!string.IsNullOrEmpty(SellPriceInv))
+                if (!string.IsNullOrEmpty(SellPriceInv) && PairProduct != null)
                 {
-                    sellPriceInvEUR = (double.Parse(SellPriceInv) / 1.2).ToString();    // TODO tax_var
+                    var config = new CountrySetting(PairProduct.Parent.Country);
+
+                    sellPriceInvEUR = Math.Round(Common.GetPrice(SellPriceInv) / config.ExchangeRate, 2).ToString();
                 }
                 else
-                    SellPriceInv = null;
+                    sellPriceInvEUR = null;
 
                 return sellPriceInvEUR;
             }

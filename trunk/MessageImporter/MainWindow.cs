@@ -97,7 +97,7 @@ namespace MessageImporter
                 var orders = new List<StockEntity>();
                 foreach (string fileName in Directory.GetFiles(txtInputPath.Text, "*.msg", SearchOption.TopDirectoryOnly))
                 {
-                    log("\t" + Functions.ExtractFileName(fileName));
+                    log("\t" + Common.ExtractFileName(fileName));
                     files.Add(new FileItem(true, fileName));
                 }
 
@@ -105,7 +105,7 @@ namespace MessageImporter
                 log("CSV files: ");
                 foreach (string fileName in Directory.GetFiles(txtInputPath.Text, "*.csv", SearchOption.TopDirectoryOnly))
                 {
-                    log("\t" + Functions.ExtractFileName(fileName));
+                    log("\t" + Common.ExtractFileName(fileName));
                     files.Add(new FileItem(true, fileName));
                 }
 
@@ -113,7 +113,7 @@ namespace MessageImporter
                 log("CSVX files: ");
                 foreach (string fileName in Directory.GetFiles(txtInputPath.Text, "*.csvx", SearchOption.TopDirectoryOnly))
                 {
-                    log("\t" + Functions.ExtractFileName(fileName));
+                    log("\t" + Common.ExtractFileName(fileName));
                     files.Add(new FileItem(true, fileName));
                 }
 
@@ -282,7 +282,7 @@ namespace MessageImporter
             if (!Directory.Exists(procDir))
                 Directory.CreateDirectory(procDir);
 
-            File.Move(fileName, procDir + @"\" + Functions.ExtractFileName(fileName));
+            File.Move(fileName, procDir + @"\" + Common.ExtractFileName(fileName));
         }
 
         /// <summary>
@@ -943,6 +943,7 @@ namespace MessageImporter
                     {
                         xmlItem.code = code;
                         xmlItem.text = code;// invItem.ItemName;
+                        xmlItem.quantitySpecified = true;
                         xmlItem.quantity = float.Parse(invItem.ItemQtyOrdered);
                         xmlItem.unit = "ks";
                         xmlItem.homeCurrency = new typeCurrencyHomeItem();
@@ -1083,10 +1084,10 @@ namespace MessageImporter
 
                 stock.stockHeader.purchasingPriceSpecified = true;
                 stock.stockHeader.purchasingPrice = prod.PriceWithDeliveryEUR;
-                stock.stockHeader.sellingPrice = Common.GetPrice(prod.SellPriceInv);
+                stock.stockHeader.sellingPrice = Common.GetPrice(prod.SellPriceEUR);
                 stock.stockHeader.limitMin = 0;
                 stock.stockHeader.limitMax = 0;
-                stock.stockHeader.orderName = prod.FromFile.FileName;
+                stock.stockHeader.orderName = prod.OrderDate.ToString("dd.MM.yyyy ") + prod.FromFile.ToString();
                 stock.stockHeader.orderQuantitySpecified = true;
                 stock.stockHeader.orderQuantity = prod.Ord_Qty;
                 stock.stockHeader.shortName = code;
@@ -1095,6 +1096,9 @@ namespace MessageImporter
                 stock.stockHeader.guarantee = "2";
 
                 stock.stockHeader.yield = "604000";
+
+                stock.stockHeader.note = prod.SellPriceInv;
+                stock.stockHeader.nameComplement = prod.SizeInv;
                 
                 newDatapack.Item = stock;
                 dataPacks.Add(newDatapack);

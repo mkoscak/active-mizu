@@ -42,7 +42,7 @@ namespace MessageImporter
             : this()
         {
             Process = process;
-            FileName = Functions.ExtractFileName(fileName);
+            FileName = Common.ExtractFileName(fileName);
             FullFileName = fileName;
         }
 
@@ -56,7 +56,7 @@ namespace MessageImporter
 
         public override string ToString()
         {
-            return FileName;
+            return Common.ToNumeric(FileName);
         }
     }
 }

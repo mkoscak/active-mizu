@@ -79,7 +79,6 @@
       <DependentUpon>Export.cs</DependentUpon>
     </Compile>
     <Compile Include="FileItem.cs" />
-    <Compile Include="Functions.cs" />
     <Compile Include="Icons.cs" />
     <Compile Include="Invoice.cs" />
     <Compile Include="InvoiceItem.cs" />

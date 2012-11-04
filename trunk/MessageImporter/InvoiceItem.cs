@@ -104,8 +104,21 @@ namespace MessageImporter
 
         internal string ItemSKU { get; set; }
 
+        public string itemOptions;
         [System.ComponentModel.DisplayName("Veľkosť")]
-        public string ItemOptions { get; set; }
+        public string ItemOptions
+        {
+            get
+            {
+                return itemOptions;
+            }
+
+            set
+            {
+                itemOptions = value.Replace("Veľkosť:", "").Replace("Veľkost:", "").Replace("Velkost:", "").Replace("Méret", "").Replace("Meret", "").Trim();
+            }
+        }
+
         public string ItemOrigPrice { get; set; }
         public string ItemPrice { get; set; }
         public string ItemTax { get; set; }
