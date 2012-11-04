@@ -1097,7 +1097,7 @@ namespace MessageImporter
 
                 stock.stockHeader.yield = "604000";
 
-                stock.stockHeader.note = prod.SellPriceInv;
+                stock.stockHeader.note = prod.FictivePrice;
                 stock.stockHeader.nameComplement = prod.SizeInv;
                 
                 newDatapack.Item = stock;

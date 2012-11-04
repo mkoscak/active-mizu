@@ -166,6 +166,26 @@ namespace MessageImporter
             }
         }
 
+        private string fictivePrice;
+        [System.ComponentModel.DisplayName("Fiktívna cena s DPH")]
+        public string FictivePrice
+        {
+            get
+            {
+                if (PairProduct != null)
+                {
+                    fictivePrice = Math.Round(Common.GetPrice(PairProduct.ItemOrigPrice) - Common.GetPrice(PairProduct.ItemDiscount), 2).ToString();
+                }
+
+                return fictivePrice;
+            }
+
+            set
+            {
+                fictivePrice = value;
+            }
+        }
+
         private string sizeInv;
         [System.ComponentModel.DisplayName("Veľkosť")]
         public string SizeInv
