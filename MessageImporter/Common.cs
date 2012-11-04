@@ -87,5 +87,14 @@ namespace MessageImporter
 
             return value.Substring(0, i - 2).Trim();
         }
+
+        
+        public static string ExtractFileName(string pathAndName)
+        {
+            if (!pathAndName.Contains('\\'))
+                return pathAndName;
+
+            return pathAndName.Substring(pathAndName.LastIndexOf('\\') + 1);
+        }
     }
 }
