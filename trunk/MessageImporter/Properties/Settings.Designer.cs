@@ -25,7 +25,7 @@ namespace MessageImporter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1234567")]
+        [global::System.Configuration.DefaultSettingValueAttribute("315 92 848")]
         public string ActiveStyle_ICO {
             get {
                 return ((string)(this["ActiveStyle_ICO"]));
@@ -152,6 +152,186 @@ namespace MessageImporter.Properties {
             }
             set {
                 this["ShippingCode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("25.232")]
+        public string ExRateCzk {
+            get {
+                return ((string)(this["ExRateCzk"]));
+            }
+            set {
+                this["ExRateCzk"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("281.42")]
+        public string ExRateHuf {
+            get {
+                return ((string)(this["ExRateHuf"]));
+            }
+            set {
+                this["ExRateHuf"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.1088")]
+        public string ExRatePln {
+            get {
+                return ((string)(this["ExRatePln"]));
+            }
+            set {
+                this["ExRatePln"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Cena za dopravu")]
+        public string ShipTextSkk {
+            get {
+                return ((string)(this["ShipTextSkk"]));
+            }
+            set {
+                this["ShipTextSkk"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Cena za dopravu")]
+        public string ShipTextCzk {
+            get {
+                return ((string)(this["ShipTextCzk"]));
+            }
+            set {
+                this["ShipTextCzk"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ár hajózás")]
+        public string ShipTextHuf {
+            get {
+                return ((string)(this["ShipTextHuf"]));
+            }
+            set {
+                this["ShipTextHuf"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Cena za wysyłkę")]
+        public string ShipTextPln {
+            get {
+                return ((string)(this["ShipTextPln"]));
+            }
+            set {
+                this["ShipTextPln"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3.99")]
+        public string ShipPriceSkk {
+            get {
+                return ((string)(this["ShipPriceSkk"]));
+            }
+            set {
+                this["ShipPriceSkk"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public string ShipPriceCzk {
+            get {
+                return ((string)(this["ShipPriceCzk"]));
+            }
+            set {
+                this["ShipPriceCzk"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public string ShipPriceHuf {
+            get {
+                return ((string)(this["ShipPriceHuf"]));
+            }
+            set {
+                this["ShipPriceHuf"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("16")]
+        public string ShipPricePln {
+            get {
+                return ((string)(this["ShipPricePln"]));
+            }
+            set {
+                this["ShipPricePln"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.2")]
+        public string TaxSkk {
+            get {
+                return ((string)(this["TaxSkk"]));
+            }
+            set {
+                this["TaxSkk"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.19")]
+        public string TaxCzk {
+            get {
+                return ((string)(this["TaxCzk"]));
+            }
+            set {
+                this["TaxCzk"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.25")]
+        public string TaxHuf {
+            get {
+                return ((string)(this["TaxHuf"]));
+            }
+            set {
+                this["TaxHuf"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.15")]
+        public string TaxPln {
+            get {
+                return ((string)(this["TaxPln"]));
+            }
+            set {
+                this["TaxPln"] = value;
             }
         }
     }
