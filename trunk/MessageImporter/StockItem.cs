@@ -120,8 +120,11 @@ namespace MessageImporter
         {
             get
             {
-                if (sellPriceInv == null && pairProd != null)
+                if (string.IsNullOrEmpty(sellPriceInv) && pairProd != null)
                     sellPriceInv = PairProduct.ItemPrice;
+
+                if (sellPriceInv != null)
+                    Common.CleanPrice(ref sellPriceInv);
 
                 return sellPriceInv;
             }
@@ -132,11 +135,26 @@ namespace MessageImporter
             }
         }
 
+        private string sellPriceInvEUR;
         [System.ComponentModel.DisplayName("Predajná cena EUR")]
         public string SellPriceEUR
         {
-            get;
-            set;//TODO
+            get
+            {
+                if (!string.IsNullOrEmpty(SellPriceInv))
+                {
+                    sellPriceInvEUR = (double.Parse(SellPriceInv) / 1.2).ToString();    // TODO tax_var
+                }
+                else
+                    SellPriceInv = null;
+
+                return sellPriceInvEUR;
+            }
+
+            set
+            {
+                sellPriceInvEUR = value;
+            }
         }
 
         private string sizeInv;

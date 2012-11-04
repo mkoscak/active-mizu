@@ -511,7 +511,19 @@ namespace MessageImporter
                         inv.OrderNumber = item.OrderNumber;
                         inv.OrderPaid = item.OrderPaid;
                         inv.OrderPaymentMethod = item.OrderPaymentMethod;
+
                         inv.OrderPurchasedFrom = item.OrderPurchasedFrom;
+                        if (inv.OrderPurchasedFrom.Contains(".sk"))
+                            inv.Country = Country.Slovakia;
+                        else if (inv.OrderPurchasedFrom.Contains(".hu"))
+                            inv.Country = Country.Hungary;
+                        else if (inv.OrderPurchasedFrom.Contains(".pl"))
+                            inv.Country = Country.Poland;
+                        else if (inv.OrderPurchasedFrom.Contains(".cz"))
+                            inv.Country = Country.CzechRepublic;
+                        else
+                            inv.Country = Country.Unknown;
+
                         inv.OrderRefunded = item.OrderRefunded;
                         inv.OrderShipping = item.OrderShipping;
                         inv.OrderShippingMethod = item.OrderShippingMethod;
@@ -843,6 +855,8 @@ namespace MessageImporter
                 newInv.invoiceHeader.partnerIdentity.address1.phone = inv.BillingPhoneNumber;
                 newInv.invoiceHeader.partnerIdentity.address1.city = inv.BillingCity;
                 newInv.invoiceHeader.partnerIdentity.address1.company = inv.BillingCompany;
+                newInv.invoiceHeader.partnerIdentity.address1.country = new refType();
+                newInv.invoiceHeader.partnerIdentity.address1.country.ids = inv.BillingCountry;
                 newInv.invoiceHeader.partnerIdentity.shipToAddress = new shipToAddressType();
                 newInv.invoiceHeader.partnerIdentity.shipToAddress.name = inv.ShippingName;
                 newInv.invoiceHeader.partnerIdentity.shipToAddress.street = inv.ShippingStreet;
