@@ -46,6 +46,7 @@ namespace MessageImporter
             }
         }
 
+        [System.ComponentModel.DisplayName("SKU")]
         public string PairCode
         {
             get
@@ -54,6 +55,7 @@ namespace MessageImporter
             }
         }
 
+        [System.ComponentModel.DisplayName("Popis")]
         public string MSG_SKU
         {
             get
@@ -82,6 +84,7 @@ namespace MessageImporter
             }
         }
 
+        [System.ComponentModel.DisplayName("Dátum")]
         public DateTime Datetime
         {
             get
@@ -96,8 +99,12 @@ namespace MessageImporter
             }
         }
 
+        [System.ComponentModel.DisplayName("Popis web")]
         public string ItemName { get; set; }
-        public string ItemSKU { get; set; }
+
+        internal string ItemSKU { get; set; }
+
+        [System.ComponentModel.DisplayName("Veľkosť")]
         public string ItemOptions { get; set; }
         public string ItemOrigPrice { get; set; }
         public string ItemPrice { get; set; }
@@ -105,11 +112,15 @@ namespace MessageImporter
         public string ItemDiscount { get; set; }
         public string ItemTotal { get; set; }
         public string ItemStatus { get; set; }
-        public string OrderItemIncrement { get; set; }
+        
+        internal string OrderItemIncrement { get; set; }
+
+        [System.ComponentModel.DisplayName("Počet ks")]
         public string ItemQtyOrdered { get; set; }
-        public string ItemQtyInvoiced { get; set; }
-        public string ItemQtyShipped { get; set; }
-        public string ItemQtyCanceled { get; set; }
-        public string ItemQtyRefunded { get; set; }
+
+        internal string ItemQtyInvoiced { get; set; }
+        internal string ItemQtyShipped { get; set; }
+        internal string ItemQtyCanceled { get; set; }
+        internal string ItemQtyRefunded { get; set; }
     }
 }
