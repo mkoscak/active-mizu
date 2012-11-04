@@ -124,7 +124,7 @@ namespace MessageImporter
                     sellPriceInv = PairProduct.ItemPrice;
 
                 if (sellPriceInv != null)
-                    Common.CleanPrice(ref sellPriceInv);
+                    sellPriceInv = Common.CleanPrice(sellPriceInv);
 
                 return sellPriceInv;
             }

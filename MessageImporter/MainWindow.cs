@@ -67,6 +67,7 @@ namespace MessageImporter
             txtOutDir.Text = System.Windows.Forms.Application.StartupPath + @"\OutData";
             chkMoveProcessed.Checked = false;   // TODO - zmenit na true!!?
 
+            btnSettingsLoad_Click(btnSettingsLoad, new EventArgs());
             btnProcess_Click(btnProcess, new EventArgs());
         }
 
@@ -349,15 +350,15 @@ namespace MessageImporter
 
                 shipping.PairProduct = shippingStock;   // previazanie poloziek
 
-                // TODO naplnenie z konfiguracnych
+                var config = new CountrySetting(inv.Country);
                 var price = inv.OrderShipping;
 
                 if (Common.GetPrice(price) == 0.0)
                     shipping.ItemPrice = price;
                 else
-                    shipping.ItemPrice = "3.99";
+                    shipping.ItemPrice = config.ShipPrice.ToString();
 
-                shippingStock.Description = "Cena za dopravu";
+                shippingStock.Description = config.ShipText;
                 shippingStock.ProductCode = Properties.Settings.Default.ShippingCode;
 
                 shipping.ItemQtyOrdered = "1";
@@ -1615,6 +1616,63 @@ namespace MessageImporter
                 if (conv != null && code.ToString().Contains(conv))
                     lbFilteredItems.Items.Add(code.ToString());
             }
+        }
+
+        private void btnSettingsLoad_Click(object sender, EventArgs e)
+        {
+            var prop = Properties.Settings.Default;
+
+            txtSettingsIco.Text = prop.ActiveStyle_ICO;
+            // exchange rates
+            txtSetCzkEx.Text = prop.ExRateCzk;
+            txtSetHufEx.Text = prop.ExRateHuf;
+            txtSetPlnEx.Text = prop.ExRatePln;
+
+            // shipping
+            txtSetSkkText.Text = prop.ShipTextSkk;
+            txtSetCzkText.Text = prop.ShipTextCzk;
+            txtSetHufText.Text = prop.ShipTextHuf;
+            txtSetPlnText.Text = prop.ShipTextPln;
+            txtSetSkkPrice.Text = prop.ShipPriceSkk;
+            txtSetCzkPrice.Text = prop.ShipPriceCzk;
+            txtSetHufPrice.Text = prop.ShipPriceHuf;
+            txtSetPlnPrice.Text = prop.ShipPricePln;
+
+            // tax
+            txtSetSkkTax.Text = prop.TaxSkk;
+            txtSetCzkTax.Text = prop.TaxCzk;
+            txtSetHufTax.Text = prop.TaxHuf;
+            txtSetPlnTax.Text = prop.TaxPln;
+        }
+
+        private void btnSettingsSave_Click(object sender, EventArgs e)
+        {
+            var prop = Properties.Settings.Default;
+
+            prop.ActiveStyle_ICO = txtSettingsIco.Text;
+
+            // exchange rates
+            prop.ExRateCzk = Common.CleanPrice(txtSetCzkEx.Text);
+            prop.ExRateHuf = Common.CleanPrice(txtSetHufEx.Text);
+            prop.ExRatePln = Common.CleanPrice(txtSetPlnEx.Text);
+
+            // shipping
+            prop.ShipTextSkk = txtSetSkkText.Text;
+            prop.ShipTextCzk = txtSetCzkText.Text;
+            prop.ShipTextHuf = txtSetHufText.Text;
+            prop.ShipTextPln = txtSetPlnText.Text;
+            prop.ShipPriceSkk = Common.CleanPrice(txtSetSkkPrice.Text);
+            prop.ShipPriceCzk = Common.CleanPrice(txtSetCzkPrice.Text);
+            prop.ShipPriceHuf = Common.CleanPrice(txtSetHufPrice.Text);
+            prop.ShipPricePln = Common.CleanPrice(txtSetPlnPrice.Text);
+
+            // tax
+            prop.TaxSkk = Common.CleanPrice(txtSetSkkTax.Text);
+            prop.TaxCzk = Common.CleanPrice(txtSetCzkTax.Text);
+            prop.TaxHuf = Common.CleanPrice(txtSetHufTax.Text);
+            prop.TaxPln = Common.CleanPrice(txtSetPlnTax.Text);
+
+            prop.Save();
         }
     }
 

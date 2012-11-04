@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ActiveStyle_ICO" Type="System.String" Scope="User">
-      <Value Profile="(Default)">1234567</Value>
+      <Value Profile="(Default)">315 92 848</Value>
     </Setting>
     <Setting Name="DueDateAdd" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">14</Value>
@@ -34,6 +34,51 @@
     </Setting>
     <Setting Name="ShippingCode" Type="System.String" Scope="User">
       <Value Profile="(Default)">shipping</Value>
+    </Setting>
+    <Setting Name="ExRateCzk" Type="System.String" Scope="User">
+      <Value Profile="(Default)">25.232</Value>
+    </Setting>
+    <Setting Name="ExRateHuf" Type="System.String" Scope="User">
+      <Value Profile="(Default)">281.42</Value>
+    </Setting>
+    <Setting Name="ExRatePln" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4.1088</Value>
+    </Setting>
+    <Setting Name="ShipTextSkk" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Cena za dopravu</Value>
+    </Setting>
+    <Setting Name="ShipTextCzk" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Cena za dopravu</Value>
+    </Setting>
+    <Setting Name="ShipTextHuf" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ár hajózás</Value>
+    </Setting>
+    <Setting Name="ShipTextPln" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Cena za wysyłkę</Value>
+    </Setting>
+    <Setting Name="ShipPriceSkk" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3.99</Value>
+    </Setting>
+    <Setting Name="ShipPriceCzk" Type="System.String" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="ShipPriceHuf" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="ShipPricePln" Type="System.String" Scope="User">
+      <Value Profile="(Default)">16</Value>
+    </Setting>
+    <Setting Name="TaxSkk" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1.2</Value>
+    </Setting>
+    <Setting Name="TaxCzk" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1.19</Value>
+    </Setting>
+    <Setting Name="TaxHuf" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1.25</Value>
+    </Setting>
+    <Setting Name="TaxPln" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1.15</Value>
     </Setting>
   </Settings>
 </SettingsFile>

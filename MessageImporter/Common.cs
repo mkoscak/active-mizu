@@ -6,18 +6,6 @@ using System.Globalization;
 
 namespace MessageImporter
 {
-    /// <summary>
-    /// Podporovane krajiny
-    /// </summary>
-    public enum Country
-    {
-        Unknown,
-        Slovakia,
-        Hungary,
-        Poland,
-        CzechRepublic
-    }
-
     class Common
     {
         public static bool IsEquipped(Invoice inv)
@@ -35,7 +23,7 @@ namespace MessageImporter
             if (strPrice == null)
                 return double.NaN;
 
-            var tmp = CleanPrice(ref strPrice);
+            var tmp = CleanPrice(strPrice);
 
             double ret = double.NaN;
             try
@@ -49,7 +37,7 @@ namespace MessageImporter
             return ret;
         }
 
-        public static string CleanPrice(ref string strPrice)
+        public static string CleanPrice(string strPrice)
         {
             // cena obsahuje aj bodku aj ciarku, napr 1,000.25.. prvy znak vyhodime
             if (strPrice.Contains(',') && strPrice.Contains('.'))

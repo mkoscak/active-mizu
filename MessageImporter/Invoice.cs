@@ -109,8 +109,7 @@ namespace MessageImporter
 
             set
             {
-                orderShipping = value;
-                Common.CleanPrice(ref orderShipping);
+                orderShipping = Common.CleanPrice(value);
             }
         }
 
@@ -127,8 +126,7 @@ namespace MessageImporter
 
             set
             {
-                orderGrandTotal = value;
-                Common.CleanPrice(ref orderGrandTotal);
+                orderGrandTotal = Common.CleanPrice(value);
             }
         }
 

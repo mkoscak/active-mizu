@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
+    <Compile Include="Country.cs" />
     <Compile Include="CSVFile.cs" />
     <Compile Include="CSVFileItem.cs" />
     <Compile Include="Export.cs">
@@ -119,7 +120,7 @@
     </Compile>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="XSD20\accountingunit.xsd" />
