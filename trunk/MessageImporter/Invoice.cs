@@ -98,13 +98,39 @@ namespace MessageImporter
         internal string OrderSubtotal { get; set; }
         internal string OrderTax { get; set; }
 
+        public string orderShipping;
         [System.ComponentModel.DisplayName("Cena za dopravu")]
-        public string OrderShipping { get; set; }
+        public string OrderShipping
+        {
+            get
+            {
+                return orderShipping;
+            }
+
+            set
+            {
+                orderShipping = value;
+                Common.CleanPrice(ref orderShipping);
+            }
+        }
 
         internal string OrderDiscount { get; set; }
 
+        public string orderGrandTotal;
         [System.ComponentModel.DisplayName("Cena za obj. s DPH")]
-        public string OrderGrandTotal { get; set; }
+        public string OrderGrandTotal
+        {
+            get
+            {
+                return orderGrandTotal;
+            }
+
+            set
+            {
+                orderGrandTotal = value;
+                Common.CleanPrice(ref orderGrandTotal);
+            }
+        }
 
         internal string OrderPaid { get; set; }
         internal string OrderRefunded { get; set; }

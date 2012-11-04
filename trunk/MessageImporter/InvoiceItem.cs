@@ -60,6 +60,12 @@ namespace MessageImporter
             {
                 return PairProduct == null ? string.Empty : PairProduct.Description;
             }
+
+            set
+            {
+                if (PairProduct != null)
+                    PairProduct.Description = value;
+            }
         }
 
         public double BuyingPrice
@@ -68,6 +74,12 @@ namespace MessageImporter
             {
                 return PairProduct == null ? double.NaN : PairProduct.PriceEURnoTax;
             }
+
+            set
+            {
+                if (PairProduct != null)
+                    PairProduct.PriceEURnoTax = value;
+            }
         }
 
         public DateTime Datetime
@@ -75,6 +87,12 @@ namespace MessageImporter
             get
             {
                 return PairProduct == null ? DateTime.Now : PairProduct.OrderDate;
+            }
+
+            set
+            {
+                if (PairProduct != null)
+                    PairProduct.OrderDate = value;
             }
         }
 

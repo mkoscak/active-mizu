@@ -304,7 +304,9 @@ namespace MessageImporter
                     return;
 
                 // naplni allInvoices a nastavi datasource
-                CreateInvoice(allOrders);                
+                CreateInvoice(allOrders);
+                // pridanie poloziek "Cena za dopravu"
+                AddShippingItems(allInvoices);
                 SetInvoiceDS(new BindingList<Invoice>(allInvoices));
                 // datasource MSG sprav 
                 SetProductsDS(new BindingList<StockItem>(allMessages.SelectMany(o => o.Items).ToList()));
@@ -331,6 +333,37 @@ namespace MessageImporter
             catch (System.Exception ex)
             {
                 MessageBox.Show(this, ex.ToString(), "Error");
+            }
+        }
+
+        /// <summary>
+        /// Fake produkt cena za dopravu
+        /// </summary>
+        /// <param name="allInvoices"></param>
+        private void AddShippingItems(List<Invoice> allInvoices)
+        {
+            foreach (var inv in allInvoices)
+            {
+                InvoiceItem shipping = new InvoiceItem(inv);
+                StockItem shippingStock = new StockItem();
+
+                shipping.PairProduct = shippingStock;   // previazanie poloziek
+
+                // TODO naplnenie z konfiguracnych
+                var price = inv.OrderShipping;
+
+                if (Common.GetPrice(price) == 0.0)
+                    shipping.ItemPrice = price;
+                else
+                    shipping.ItemPrice = "3.99";
+
+                shippingStock.Description = "Cena za dopravu";
+                shippingStock.ProductCode = Properties.Settings.Default.ShippingCode;
+
+                shipping.ItemQtyOrdered = "1";
+                shippingStock.OrderDate = DateTime.Now;
+
+                inv.InvoiceItems.Add(shipping);
             }
         }
 
@@ -645,10 +678,12 @@ namespace MessageImporter
                 foreach (var product in CSV.InvoiceItems)
                 {
                     string productCode = ConvertInvoiceItem(product.ItemSKU);
+                    if (productCode == null)
+                        continue;
 
                     foreach (var msg in allMessages)
                     {
-                        var foundItems = msg.Items.Where(orderItem => orderItem.ProductCode.Contains(productCode)).ToList();
+                        var foundItems = msg.Items.Where(orderItem => orderItem.ProductCode != null && orderItem.ProductCode.Contains(productCode)).ToList();
                         if (foundItems.Count == 1)
                         {
                             CompleteOrderItem(product, foundItems[0]);
@@ -844,7 +879,7 @@ namespace MessageImporter
                 newInv.invoiceHeader.classificationVAT = new classificationVATType();
                 newInv.invoiceHeader.classificationVAT.ids = Properties.Settings.Default.ClasifficationVAT;
                 newInv.invoiceHeader.classificationVAT.classificationVATType1 = classificationVATTypeClassificationVATType.inland;
-                newInv.invoiceHeader.text = inv.BillingName + ", " + inv.CustomerEmail;
+                newInv.invoiceHeader.text = inv.OrderGrandTotal;
 
                 // header->identity
                 newInv.invoiceHeader.partnerIdentity = new address();
@@ -886,33 +921,48 @@ namespace MessageImporter
                 {
                     var code = "";
                     if (invItem.PairCode != null)
-                        code = invItem.PairCode.Replace("/", "");
+                        code = invItem.PairCode;
 
                     invoiceItemType xmlItem = new invoiceItemType();
-                    xmlItem.code = code;
-                    xmlItem.text = code;// invItem.ItemName;
-                    xmlItem.quantity = float.Parse(invItem.ItemQtyOrdered);
-                    xmlItem.unit = "ks";
-                    xmlItem.homeCurrency = new typeCurrencyHomeItem();
-                    xmlItem.homeCurrency.unitPriceSpecified = true;
-                    xmlItem.homeCurrency.unitPrice = Common.GetPrice(invItem.ItemPrice);
-                    xmlItem.homeCurrency.priceVATSpecified = true;
-                    xmlItem.homeCurrency.priceVAT = Common.GetPrice(invItem.ItemTax);
-                    xmlItem.homeCurrency.priceSpecified = true;
-                    xmlItem.homeCurrency.price = Common.GetPrice(invItem.ItemTotal) - Common.GetPrice(invItem.ItemDiscount) / 1.2;
-                    xmlItem.homeCurrency.priceSumSpecified = true;
-                    xmlItem.homeCurrency.priceSum = xmlItem.homeCurrency.price;
-                    xmlItem.percentVATSpecified = true;
-                    xmlItem.percentVAT = Properties.Settings.Default.DPH_percent;
+                    // specialna polozka "cena za dopravu"
+                    if (code == Properties.Settings.Default.ShippingCode)
+                    {
+                        xmlItem.text = invItem.MSG_SKU;
+                        xmlItem.quantitySpecified = true;
+                        xmlItem.quantity = 1;
+                        xmlItem.rateVAT = vatRateType.high;
+                        xmlItem.homeCurrency = new typeCurrencyHomeItem();
+                        xmlItem.homeCurrency.unitPriceSpecified = true;
+                        xmlItem.homeCurrency.unitPrice = Common.GetPrice(invItem.ItemPrice);
 
-                    // stock item
-                    xmlItem.stockItem = new stockItemType();
-                    xmlItem.stockItem.stockItem = new stockRefType();
-                    xmlItem.stockItem.stockItem.ids = code;
+                    }
+                    else
+                    {
+                        xmlItem.code = code;
+                        xmlItem.text = code;// invItem.ItemName;
+                        xmlItem.quantity = float.Parse(invItem.ItemQtyOrdered);
+                        xmlItem.unit = "ks";
+                        xmlItem.homeCurrency = new typeCurrencyHomeItem();
+                        xmlItem.homeCurrency.unitPriceSpecified = true;
+                        xmlItem.homeCurrency.unitPrice = Common.GetPrice(invItem.ItemPrice);
+                        xmlItem.homeCurrency.priceVATSpecified = true;
+                        xmlItem.homeCurrency.priceVAT = Common.GetPrice(invItem.ItemTax);
+                        xmlItem.homeCurrency.priceSpecified = true;
+                        xmlItem.homeCurrency.price = Common.GetPrice(invItem.ItemTotal) - Common.GetPrice(invItem.ItemDiscount) / 1.2;
+                        xmlItem.homeCurrency.priceSumSpecified = true;
+                        xmlItem.homeCurrency.priceSum = xmlItem.homeCurrency.price;
+                        xmlItem.percentVATSpecified = true;
+                        xmlItem.percentVAT = Properties.Settings.Default.DPH_percent;
+
+                        // stock item
+                        xmlItem.stockItem = new stockItemType();
+                        xmlItem.stockItem.stockItem = new stockRefType();
+                        xmlItem.stockItem.stockItem.ids = code;
+                    }
 
                     invItems.Add(xmlItem);
                 }
-                if (inv.OrderShippingMethod.Contains("freeshipping"))
+                /*if (inv.OrderShippingMethod.Contains("freeshipping"))
                 {
                     // za dopravu sa neplati
                 }
@@ -928,7 +978,7 @@ namespace MessageImporter
                     shipping.homeCurrency.unitPrice = (Math.Ceiling(Common.GetPrice(inv.OrderShipping) * 1.2 * 100)-1) / 100;
 
                     invItems.Add(shipping);
-                }
+                }*/
 
                 newInv.invoiceDetail = invItems.ToArray();
 

@@ -32,6 +32,9 @@ namespace MessageImporter
 
         public static double GetPrice(string strPrice)
         {
+            if (strPrice == null)
+                return double.NaN;
+
             var tmp = CleanPrice(ref strPrice);
 
             double ret = double.NaN;

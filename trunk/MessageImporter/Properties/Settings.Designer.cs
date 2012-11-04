@@ -112,5 +112,14 @@ namespace MessageImporter.Properties {
                 return ((string)(this["Storage"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("shipping")]
+        public string ShippingCode {
+            get {
+                return ((string)(this["ShippingCode"]));
+            }
+        }
     }
 }
