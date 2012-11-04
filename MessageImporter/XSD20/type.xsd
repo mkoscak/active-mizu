@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="Windows-1250"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 			xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd"
+			xmlns:ftr="http://www.stormware.cz/schema/version_2/filter.xsd"
 			xmlns="http://www.stormware.cz/schema/version_2/type.xsd"
 			targetNamespace="http://www.stormware.cz/schema/version_2/type.xsd"
 			elementFormDefault="qualified"
 >
+
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/filter.xsd" schemaLocation="filter.xsd"/>
 
 <!-- **************************************************************************
 		common types
@@ -189,6 +192,15 @@
 	</xsd:restriction>
 </xsd:simpleType>
 
+<xsd:simpleType name="string98">
+	<xsd:annotation>
+		<xsd:documentation>Řetězec o délce 98 znaků.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:restriction base="xsd:string">
+		<xsd:maxLength value="98"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
 <xsd:simpleType name="string100">
 	<xsd:annotation>
 		<xsd:documentation>Řetězec o délce 100 znaků.</xsd:documentation>
@@ -316,6 +328,26 @@
   			</xsd:annotation>
   		</xsd:element>
 	</xsd:all>
+</xsd:complexType>
+
+<xsd:complexType name="actionTypeItem">
+	<xsd:choice>
+		<xsd:element name="add" type="xsd:string">
+			<xsd:annotation>
+				<xsd:documentation>Vložení nového záznamu. Výchozí hodnota.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+		<xsd:element name="update" type="ftr:requestItemType">
+			<xsd:annotation>
+				<xsd:documentation>Aktualizace záznamu.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+		<xsd:element name="delete" type="ftr:requestItemType">
+			<xsd:annotation>
+				<xsd:documentation>Odstranění záznamu.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+	</xsd:choice>
 </xsd:complexType>
 
 
@@ -529,7 +561,7 @@
 
 <!-- ****** adresa ******             -->
 <xsd:complexType name="address">
-	<xsd:all>
+	<xsd:sequence>
 		<xsd:element name="id" type="typ:idType" minOccurs="0">
 			<xsd:annotation>
 				<xsd:documentation>Odkaz na entitu. Vyšší prioritu má elemet "id".</xsd:documentation>
@@ -542,8 +574,8 @@
 			</xsd:annotation>
 		</xsd:element>
 		<xsd:element name="address" type="typ:addressType" minOccurs="0" />
-		<xsd:element name="shipToAddress" type="typ:shipToAddressType" minOccurs="0" />
-	</xsd:all>
+		<xsd:element name="shipToAddress" type="typ:shipToAddressType" minOccurs="0" maxOccurs="unbounded"/>
+	</xsd:sequence>
 </xsd:complexType>
 
 <xsd:complexType name="addressType">
@@ -571,7 +603,12 @@
 				<xsd:documentation>Podporováno pouze u objednávek a nabídek.</xsd:documentation>
 			</xsd:annotation>
 		</xsd:element>
-	</xsd:all>
+		<xsd:element name="email" type="typ:string98" minOccurs="0">
+		 <xsd:annotation>
+			 <xsd:documentation>Podporováno pouze u dokladů (Nabídka, Poptávky, Přijaté objednávky, Vydané Objednávky, Vydané Faktury, Vydané Zálohové Faktury, Ostatní Pohledávky, Výdejky).</xsd:documentation>
+		 </xsd:annotation>
+		</xsd:element>
+	 </xsd:all>
 </xsd:complexType>
 
 <xsd:complexType name="shipToAddressType">
@@ -579,13 +616,39 @@
 		<xsd:documentation>Dodací adresa.</xsd:documentation>
 	</xsd:annotation>
    <xsd:all>
+	  <xsd:element name="actionType" type="typ:actionTypeItem" minOccurs="0">
+			<xsd:annotation>
+			  <xsd:documentation>Typ práce s dodací adresou. Výchozí hodnota je přidání nového dodací adresy.</xsd:documentation>
+		  </xsd:annotation>
+		</xsd:element>
+		<xsd:element name="id" type="typ:idType" minOccurs="0">
+			<xsd:annotation>
+			  <xsd:documentation>ID dodací adresy (jen pro export).</xsd:documentation>
+		  </xsd:annotation>
+		</xsd:element>
 		<xsd:element name="company" type="typ:stringCompany" minOccurs="0"/>
 		<xsd:element name="division" type="typ:string32" minOccurs="0"/>
 		<xsd:element name="name" type="typ:string32" minOccurs="0"/>		
 		<xsd:element name="city" type="typ:string45" minOccurs="0"/>
 		<xsd:element name="street" type="typ:string64" minOccurs="0"/>
 		<xsd:element name="zip" type="typ:string15" minOccurs="0"/>
-	</xsd:all>
+		<xsd:element name="country" type="typ:refType" minOccurs="0"/>
+		<xsd:element name="phone" type="typ:string40" minOccurs="0">
+			<xsd:annotation>
+				<xsd:documentation>Podporováno pouze u objednávek a nabídek.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+		<xsd:element name="email" type="typ:string98" minOccurs="0">
+			<xsd:annotation>
+				<xsd:documentation>Podporováno pouze u dokladů (Nabídka, Poptávky, Přijaté objednávky, Vydané Objednávky, Vydané Faktury, Vydané Zálohové Faktury, Ostatní Pohledávky, Výdejky).</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+		 <xsd:element name="defaultShipAddress" type="typ:boolean" minOccurs="0" default="false">
+			 <xsd:annotation>
+				 <xsd:documentation>Výchozí dodací adresa.</xsd:documentation>
+			 </xsd:annotation>
+		 </xsd:element>
+		 </xsd:all>
 </xsd:complexType>
 
 <xsd:complexType name="myAddress">
@@ -728,6 +791,20 @@
 		<xsd:element name="ids" type="xsd:string" minOccurs="0" />
 	</xsd:all>
 </xsd:complexType>
+	
+<xsd:complexType name="responsiblePersonType">
+	<xsd:all>
+		<xsd:element name="id" type="typ:idType" minOccurs="0">
+			<xsd:annotation>
+				<xsd:documentation>ID odpovědné osoby (jen pro export).</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+		<xsd:element name="surname" type="typ:string32" minOccurs="0"/>
+		<xsd:element name="name" type="typ:string32" minOccurs="0"/>
+		<xsd:element name="degree" type="typ:string7" minOccurs="0"/>
+	</xsd:all>
+</xsd:complexType>
+
 
 <xsd:complexType name="accountingType">
 	<xsd:annotation>

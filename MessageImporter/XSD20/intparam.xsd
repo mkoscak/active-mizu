@@ -7,10 +7,9 @@
 			targetNamespace="http://www.stormware.cz/schema/version_2/intParam.xsd"
 			elementFormDefault="qualified">
 
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/type.xsd" schemaLocation="type.xsd"/>
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/documentresponse.xsd"	schemaLocation="documentresponse.xsd"/>
 
-<xsd:import namespace="http://www.stormware.cz/schema/version_2/type.xsd" 					schemaLocation="type.xsd"/>
-<xsd:import namespace="http://www.stormware.cz/schema/version_2/list.xsd" 					schemaLocation="list.xsd"/>
-<xsd:import namespace="http://www.stormware.cz/schema/version_2/documentresponse.xsd" 	schemaLocation="documentresponse.xsd"/>
 
 
 <!-- **************************************************************************
@@ -42,7 +41,7 @@
 		<xsd:documentation>Internetové parametry zásoby.</xsd:documentation>
 	</xsd:annotation>
 	<xsd:sequence>
-		<xsd:element name="id" type="typ:idType" minOccurs="1" maxOccurs="1">
+		<xsd:element name="id" type="typ:idType" minOccurs="0" maxOccurs="1">
 			<xsd:annotation>
 				<xsd:documentation>ID záznamu (jen pro export).</xsd:documentation>
 			</xsd:annotation>
@@ -150,7 +149,7 @@
 		<xsd:documentation>Verze, které jsou dostupné k tomuto dokladu. Podrobnosti k jednotlivým verzím najdete na www.stormware.cz/xml</xsd:documentation>
 	</xsd:annotation>
 	<xsd:restriction base="xsd:string">
-		<xsd:enumeration value="1.0"/>
+		<xsd:enumeration value="2.0"/>
 	</xsd:restriction>
 </xsd:simpleType>
 

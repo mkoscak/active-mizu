@@ -14,6 +14,11 @@
 			xmlns:bal="http://www.stormware.cz/schema/version_2/balance.xsd"
 			xmlns:ctg="http://www.stormware.cz/schema/version_2/category.xsd"
 			xmlns:ipm="http://www.stormware.cz/schema/version_2/intParam.xsd"
+			xmlns:int="http://www.stormware.cz/schema/version_2/intDoc.xsd"
+			xmlns:pro="http://www.stormware.cz/schema/version_2/prodejka.xsd"
+			xmlns:vch="http://www.stormware.cz/schema/version_2/voucher.xsd"
+			xmlns:vyr="http://www.stormware.cz/schema/version_2/vyroba.xsd"
+			xmlns:pre="http://www.stormware.cz/schema/version_2/prevodka.xsd"
 			xmlns="http://www.stormware.cz/schema/version_2/list.xsd"
 			targetNamespace="http://www.stormware.cz/schema/version_2/list.xsd"
 			elementFormDefault="qualified"
@@ -32,6 +37,11 @@
 <xsd:import namespace="http://www.stormware.cz/schema/version_2/balance.xsd" schemaLocation="balance.xsd"/>
 <xsd:import namespace="http://www.stormware.cz/schema/version_2/category.xsd" schemaLocation="category.xsd"/>
 <xsd:import namespace="http://www.stormware.cz/schema/version_2/intParam.xsd" schemaLocation="intParam.xsd"/>
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/intDoc.xsd" schemaLocation="intDoc.xsd"/>
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/prodejka.xsd" schemaLocation="prodejka.xsd"/>
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/voucher.xsd" schemaLocation="voucher.xsd"/>
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/vyroba.xsd" schemaLocation="vyroba.xsd"/>
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/prevodka.xsd" schemaLocation="prevodka.xsd"/>
 
 <!-- ************************************************************************** -->
 <!-- root element REQUEST - požadavek na export -->
@@ -44,6 +54,11 @@
 <xsd:element name="listNumericSeriesRequest" type="lst:listRequestAgendasType"/>
 <xsd:element name="createAccountingDoubleEntry" type="lst:createAccountingDoubleEntryType"/>
 <xsd:element name="listInvoiceRequest" type="lst:listInvoiceRequestType"/>
+<xsd:element name="listIntDocRequest" type="lst:listIntDocRequestType"/>
+<xsd:element name="listProdejkaRequest" type="lst:listProdejkaRequestType"/>
+<xsd:element name="listVyrobaRequest" type="lst:listVyrobaRequestType"/>
+<xsd:element name="listPrevodkaRequest" type="lst:listPrevodkaRequestType"/>
+<xsd:element name="listVoucherRequest" type="lst:listVoucherRequestType"/>
 <xsd:element name="listOrderRequest" type="lst:listOrderRequestType"/>
 <xsd:element name="listEnquiryRequest" type="lst:listEnquiryRequestType"/>
 <xsd:element name="listOfferRequest" type="lst:listOfferRequestType"/>
@@ -69,6 +84,11 @@
 <xsd:element name="listNumericSeries" type="lst:listNumericSeriesType"/>
 <xsd:element name="createAccountingDoubleEntryResponse" type="lst:createAccountingDoubleEntryResponseType"/>  <!--  odpovìï na vytvoøení nového záznamu  -->
 <xsd:element name="listInvoice" type="lst:listInvoiceType"/>
+<xsd:element name="listIntDoc" type="lst:listIntDocType"/>
+<xsd:element name="listProdejka" type="lst:listProdejkaType"/>
+<xsd:element name="listVyroba" type="lst:listVyrobaType"/>
+<xsd:element name="listPrevodka" type="lst:listPrevodkaType"/>
+<xsd:element name="listVoucher" type="lst:listVoucherType"/>
 <xsd:element name="listOrder" type="lst:listOrderType"/>
 <xsd:element name="listEnquiry" type="lst:listEnquiryType"/>
 <xsd:element name="listOffer" type="lst:listOfferType"/>
@@ -171,7 +191,24 @@
 	</xsd:attribute>
 </xsd:complexType>
 
-<xsd:simpleType name="listInvoiceRequestVerType">
+<xsd:complexType name="listIntDocRequestType">
+	<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+		<xsd:element name="requestIntDoc" type="ftr:requestIntDocType"/>
+	</xsd:sequence>
+	<xsd:attribute name="version" type="lst:listInvoiceRequestVerType" use="required"/>
+	<xsd:attribute name="intDocVersion" type="int:intVersionType" use="required">
+		<xsd:annotation>
+			<xsd:documentation>Požadovaná verze dokladu.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+	<xsd:attribute name="extSystem" type="typ:string64">
+		<xsd:annotation>
+			<xsd:documentation>Oznaèení externího systému, pro který se vyexportují identifikátory.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+</xsd:complexType>
+
+	<xsd:simpleType name="listInvoiceRequestVerType">
 	<xsd:annotation>
 		<xsd:documentation>Verze, které jsou dostupné k tomuto dokladu. Podrobnosti k jednotlivým verzím najdete na www.stormware.cz/xml</xsd:documentation>
 	</xsd:annotation>
@@ -200,6 +237,114 @@
 </xsd:complexType>
 
 <xsd:simpleType name="listOrderRequestVerType">
+	<xsd:annotation>
+		<xsd:documentation>Verze, které jsou dostupné k tomuto dokladu. Podrobnosti k jednotlivým verzím najdete na www.stormware.cz/xml</xsd:documentation>
+	</xsd:annotation>
+	<xsd:restriction base="xsd:string">
+		<xsd:enumeration value="2.0"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<!-- ****************************************************************************** -->
+<xsd:complexType name="listProdejkaRequestType">
+	<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+		<xsd:element name="requestProdejka" type="ftr:requestProdejkaType"/>
+	</xsd:sequence>
+	<xsd:attribute name="version" type="lst:listProdejkaRequestVerType" use="required"/>
+	<xsd:attribute name="prodejkaVersion" type="pro:proVersionType" use="required">
+		<xsd:annotation>
+			<xsd:documentation>Požadovaná verze dokladu.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+	<xsd:attribute name="extSystem" type="typ:string64">
+		<xsd:annotation>
+			<xsd:documentation>Oznaèení externího systému, pro který se vyexportují identifikátory.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+</xsd:complexType>
+
+<xsd:simpleType name="listProdejkaRequestVerType">
+	<xsd:annotation>
+		<xsd:documentation>Verze, které jsou dostupné k tomuto dokladu. Podrobnosti k jednotlivým verzím najdete na www.stormware.cz/xml</xsd:documentation>
+	</xsd:annotation>
+	<xsd:restriction base="xsd:string">
+		<xsd:enumeration value="2.0"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<!-- ****************************************************************************** -->
+<xsd:complexType name="listVyrobaRequestType">
+	<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+		<xsd:element name="requestVyroba" type="ftr:requestVyrobaType"/>
+	</xsd:sequence>
+	<xsd:attribute name="version" type="lst:listVyrobaRequestVerType" use="required"/>
+	<xsd:attribute name="vyrobaVersion" type="vyr:vyrVersionType" use="required">
+		<xsd:annotation>
+			<xsd:documentation>Požadovaná verze dokladu.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+	<xsd:attribute name="extSystem" type="typ:string64">
+		<xsd:annotation>
+			<xsd:documentation>Oznaèení externího systému, pro který se vyexportují identifikátory.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+</xsd:complexType>
+
+<xsd:simpleType name="listVyrobaRequestVerType">
+	<xsd:annotation>
+		<xsd:documentation>Verze, které jsou dostupné k tomuto dokladu. Podrobnosti k jednotlivým verzím najdete na www.stormware.cz/xml</xsd:documentation>
+	</xsd:annotation>
+	<xsd:restriction base="xsd:string">
+		<xsd:enumeration value="2.0"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<!-- ****************************************************************************** -->
+<xsd:complexType name="listPrevodkaRequestType">
+	<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+		<xsd:element name="requestPrevodka" type="ftr:requestPrevodkaType"/>
+	</xsd:sequence>
+	<xsd:attribute name="version" type="lst:listPrevodkaRequestVerType" use="required"/>
+	<xsd:attribute name="prevodkaVersion" type="pre:preVersionType" use="required">
+		<xsd:annotation>
+			<xsd:documentation>Požadovaná verze dokladu.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+	<xsd:attribute name="extSystem" type="typ:string64">
+		<xsd:annotation>
+			<xsd:documentation>Oznaèení externího systému, pro který se vyexportují identifikátory.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+</xsd:complexType>
+
+<xsd:simpleType name="listPrevodkaRequestVerType">
+	<xsd:annotation>
+		<xsd:documentation>Verze, které jsou dostupné k tomuto dokladu. Podrobnosti k jednotlivým verzím najdete na www.stormware.cz/xml</xsd:documentation>
+	</xsd:annotation>
+	<xsd:restriction base="xsd:string">
+		<xsd:enumeration value="2.0"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<!-- ****************************************************************************** -->
+<xsd:complexType name="listVoucherRequestType">
+	<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+		<xsd:element name="requestVoucher" type="ftr:requestVoucherType"/>
+	</xsd:sequence>
+	<xsd:attribute name="version" type="lst:listVoucherRequestVerType" use="required"/>
+	<xsd:attribute name="voucherVersion" type="vch:vchVersionType" use="required">
+		<xsd:annotation>
+			<xsd:documentation>Požadovaná verze dokladu.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+	<xsd:attribute name="extSystem" type="typ:string64">
+		<xsd:annotation>
+			<xsd:documentation>Oznaèení externího systému, pro který se vyexportují identifikátory.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+</xsd:complexType>
+
+<xsd:simpleType name="listVoucherRequestVerType">
 	<xsd:annotation>
 		<xsd:documentation>Verze, které jsou dostupné k tomuto dokladu. Podrobnosti k jednotlivým verzím najdete na www.stormware.cz/xml</xsd:documentation>
 	</xsd:annotation>
@@ -499,6 +644,56 @@
 	</xsd:complexContent>
 </xsd:complexType>
 
+<xsd:complexType name="listIntDocType">
+	<xsd:complexContent>
+		<xsd:extension base="lst:listVersionType">
+			<xsd:choice>
+				<xsd:element name="intDoc" type="int:intDocType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:choice>
+		</xsd:extension>
+	</xsd:complexContent>
+</xsd:complexType>
+
+<xsd:complexType name="listProdejkaType">
+	<xsd:complexContent>
+		<xsd:extension base="lst:listVersionType">
+			<xsd:choice>
+				<xsd:element name="prodejka" type="pro:prodejkaType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:choice>
+		</xsd:extension>
+	</xsd:complexContent>
+</xsd:complexType>
+
+<xsd:complexType name="listVyrobaType">
+	<xsd:complexContent>
+		<xsd:extension base="lst:listVersionType">
+			<xsd:choice>
+				<xsd:element name="vyroba" type="vyr:vyrobaType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:choice>
+		</xsd:extension>
+	</xsd:complexContent>
+</xsd:complexType>
+
+<xsd:complexType name="listPrevodkaType">
+	<xsd:complexContent>
+		<xsd:extension base="lst:listVersionType">
+			<xsd:choice>
+				<xsd:element name="prevodka" type="pre:prevodkaType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:choice>
+		</xsd:extension>
+	</xsd:complexContent>
+</xsd:complexType>
+	
+<xsd:complexType name="listVoucherType">
+	<xsd:complexContent>
+		<xsd:extension base="lst:listVersionType">
+			<xsd:choice>
+				<xsd:element name="voucher" type="vch:voucherType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:choice>
+		</xsd:extension>
+	</xsd:complexContent>
+</xsd:complexType>
+	
 <xsd:complexType name="listOrderType">
 	<xsd:complexContent>
 		<xsd:extension base="lst:listVersionType">
@@ -713,7 +908,15 @@
 					<xsd:annotation><xsd:documentation>Pøijaté zálohové faktury.</xsd:documentation></xsd:annotation></xsd:enumeration>
 		<xsd:enumeration value="commitment">
 					<xsd:annotation><xsd:documentation>Ostatní závazky.</xsd:documentation></xsd:annotation></xsd:enumeration>
-	</xsd:restriction>
+    <xsd:enumeration value="bankReceived">
+          <xsd:annotation><xsd:documentation>Banka pøíjem.</xsd:documentation></xsd:annotation></xsd:enumeration>
+    <xsd:enumeration value="bankIssued">
+          <xsd:annotation><xsd:documentation>Banka výdej.</xsd:documentation></xsd:annotation></xsd:enumeration>
+    <xsd:enumeration value="fixedAssets">
+          <xsd:annotation><xsd:documentation>Dlouhodobý majetek.</xsd:documentation></xsd:annotation></xsd:enumeration>
+    <xsd:enumeration value="leasingAssets">
+          <xsd:annotation><xsd:documentation>Leasingový majetek.</xsd:documentation></xsd:annotation></xsd:enumeration>
+  </xsd:restriction>
 </xsd:simpleType>
 
 <xsd:simpleType name="codeContractType">
