@@ -78,7 +78,7 @@
 					<xsd:documentation>Fax.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-			<xsd:element name="email" type="typ:string64" minOccurs="0">
+			<xsd:element name="email" type="typ:string98" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation>Email.</xsd:documentation>
 				</xsd:annotation>
@@ -222,6 +222,38 @@
 					<xsd:documentation>Interní poznámka.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
+
+			<xsd:element name="accountingReceivedInvoice" type="typ:accountingType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Pøedkontace pøijaté faktury. Pokud není uveden typ pøedkontace, je nastaveno 'Nevím'.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="accountingIssuedInvoice" type="typ:accountingType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Pøedkontace vydané faktury. Pokud není uveden typ pøedkontace, je nastaveno 'Nevím'.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="classificationVATReceivedInvoice" type="typ:classificationVATType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Èlenìní DPH na pøijaté faktuøe</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="classificationVATIssuedInvoice" type="typ:classificationVATType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Èlenìní DPH na vydané faktuøe.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="accountForInvoicing" type="typ:accountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Bankovní úèet nebo hotovostní pokladna, na kterou chcete nechat proplatit tuto pohledávku. (Používá se jen u pohledávek.) Pokud není úèet uveden, POHODA použije úèet uvedený v uživatelském nastavení uživatele (pod kterým je spuštìn XML import).</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="responsiblePerson" type="typ:responsiblePersonType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Odpovìdná osoba.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
 			<xsd:element name="centre" type="typ:refType" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation>Støedisko èinnosti. Od verze 1.5</xsd:documentation>
@@ -259,7 +291,12 @@
 
 	<xsd:complexType name="accountItemType">
 		<xsd:all>
-		  <xsd:element name="id" type="typ:idType" minOccurs="0">
+			<xsd:element name="actionType" type="typ:actionTypeItem" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Typ práce s bankovním úètem. Výchozí hodnota je pøidání nové bankovního úètu.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="id" type="typ:idType" minOccurs="0">
 			  <xsd:annotation>
 				  <xsd:documentation>ID položky dokladu (jen pro export).</xsd:documentation>
 			  </xsd:annotation>
@@ -289,7 +326,7 @@
 
 	<xsd:complexType name="actionTypeType">
 		<xsd:choice>
-			<xsd:element name="add" type="xsd:string">
+			<xsd:element name="add" type="ftr:requestAddressBookType">
 				<xsd:annotation>
 					<xsd:documentation>Vložení nového záznamu. Výchozí hodnota.</xsd:documentation>
 				</xsd:annotation>

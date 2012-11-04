@@ -17,7 +17,7 @@ namespace MessageImporter
     using System.Xml;
 
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/data.xsd")]
@@ -345,7 +345,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/data.xsd")]
@@ -596,7 +596,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -818,7 +818,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -1070,7 +1070,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
     public enum listIntParamRequestVerType
@@ -1081,7 +1081,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -1303,7 +1303,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -1555,7 +1555,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
     public enum listCategoryRequestVerType
@@ -1566,7 +1566,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -1803,7 +1803,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -2070,7 +2070,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
@@ -2307,7 +2307,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
@@ -2557,7 +2557,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list_contract.xsd")]
@@ -2824,7 +2824,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list_contract.xsd")]
     public enum listRequestContractVerType
@@ -2835,7 +2835,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/contract.xsd")]
     public enum conVersionType
@@ -2848,7 +2848,7 @@ namespace MessageImporter
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(listRequestStoresType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(listRequestAgendasType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -3085,7 +3085,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -3323,7 +3323,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -3603,7 +3603,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum refTypeValueType
@@ -3613,7 +3613,7 @@ namespace MessageImporter
         nullValue,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -3851,7 +3851,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
     public enum agendaType
@@ -3883,13 +3883,25 @@ namespace MessageImporter
 
         /// <remarks/>
         commitment,
+
+        /// <remarks/>
+        bankReceived,
+
+        /// <remarks/>
+        bankIssued,
+
+        /// <remarks/>
+        fixedAssets,
+
+        /// <remarks/>
+        leasingAssets,
     }
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(itemNumericSeriesType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(itemAccountingTypeSingleEntry))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(itemCashType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(itemNameType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -4141,7 +4153,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -4408,7 +4420,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -4660,7 +4672,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -4912,7 +4924,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -5149,7 +5161,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -5557,7 +5569,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum stavType2
@@ -5570,7 +5582,7 @@ namespace MessageImporter
         error,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum boolean
@@ -5585,7 +5597,7 @@ namespace MessageImporter
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(itemAccountingTypeDoubleEntry))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(createAccountingResponseType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -5883,7 +5895,7 @@ namespace MessageImporter
     }
 
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(createAccountingResponseType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -6120,7 +6132,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -6372,7 +6384,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -6624,7 +6636,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
     public enum createAccountingVerType
@@ -6639,7 +6651,7 @@ namespace MessageImporter
         Item11,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -6971,7 +6983,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
     public enum listBalancePairingType
@@ -6984,7 +6996,7 @@ namespace MessageImporter
         PairingSymbolIC,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -7266,7 +7278,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
     public enum listBalanceRequestVerType
@@ -7277,7 +7289,7 @@ namespace MessageImporter
         Item10,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/balance.xsd")]
     public enum balVersionType
@@ -7288,7 +7300,7 @@ namespace MessageImporter
         Item10,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
@@ -7538,7 +7550,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
@@ -7909,7 +7921,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -8174,7 +8186,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -8432,7 +8444,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -8714,7 +8726,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
     public enum listPrijemkaRequestVerType
@@ -8725,7 +8737,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prijemka.xsd")]
     public enum priVersionType
@@ -8736,7 +8748,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
@@ -8986,7 +8998,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -9268,7 +9280,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
     public enum listVydejkaRequestVerType
@@ -9279,7 +9291,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/vydejka.xsd")]
     public enum vydVersionType
@@ -9290,7 +9302,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -9542,7 +9554,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum parameterAgendaType
@@ -9648,7 +9660,7 @@ namespace MessageImporter
         ucetniDenik,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -9915,7 +9927,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
     public enum listParameterRequestVerType
@@ -9926,7 +9938,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/parameter.xsd")]
     public enum prmVersionType
@@ -9937,7 +9949,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list_stock.xsd")]
@@ -10204,7 +10216,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
@@ -10215,7 +10227,17 @@ namespace MessageImporter
 
         private string userFilterNameField;
 
+        private boolean updateField;
+
+        private boolean addField;
+
         private static System.Xml.Serialization.XmlSerializer serializer;
+
+        public requestStockType()
+        {
+            this.updateField = boolean.@false;
+            this.addField = boolean.@false;
+        }
 
         [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
         public filterStocksType filter
@@ -10240,6 +10262,34 @@ namespace MessageImporter
             set
             {
                 this.userFilterNameField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(boolean.@false)]
+        public boolean update
+        {
+            get
+            {
+                return this.updateField;
+            }
+            set
+            {
+                this.updateField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(boolean.@false)]
+        public boolean add
+        {
+            get
+            {
+                return this.addField;
+            }
+            set
+            {
+                this.addField = value;
             }
         }
 
@@ -10456,7 +10506,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
@@ -10836,7 +10886,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -11087,7 +11137,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list_stock.xsd")]
     public enum listRequestStockVerType
@@ -11098,7 +11148,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
     public enum stkVersionType
@@ -11109,7 +11159,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
@@ -11359,7 +11409,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -11656,7 +11706,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
     public enum listOrderRequestVerType
@@ -11667,7 +11717,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/order.xsd")]
     public enum orderTypeType
@@ -11680,7 +11730,7 @@ namespace MessageImporter
         receivedOrder,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/order.xsd")]
     public enum ordVersionType
@@ -11691,7 +11741,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
@@ -11941,7 +11991,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -12223,7 +12273,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
     public enum listOfferRequestVerType
@@ -12234,7 +12284,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/offer.xsd")]
     public enum ofrVersionType
@@ -12245,7 +12295,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
@@ -12495,7 +12545,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -12777,7 +12827,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
     public enum listEnquiryRequestVerType
@@ -12788,7 +12838,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/enquiry.xsd")]
     public enum enqVersionType
@@ -12799,7 +12849,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
@@ -13049,7 +13099,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
@@ -13346,7 +13396,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list.xsd")]
     public enum listInvoiceRequestVerType
@@ -13357,7 +13407,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/invoice.xsd")]
     public enum invoiceTypeType
@@ -13409,7 +13459,7 @@ namespace MessageImporter
         receivedCorrectiveTax,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/invoice.xsd")]
     public enum invVersionType
@@ -13420,7 +13470,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list_addBook.xsd")]
@@ -13702,7 +13752,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
@@ -13713,7 +13763,17 @@ namespace MessageImporter
 
         private string userFilterNameField;
 
+        private boolean updateField;
+
+        private boolean addField;
+
         private static System.Xml.Serialization.XmlSerializer serializer;
+
+        public requestAddressBookType()
+        {
+            this.updateField = boolean.@false;
+            this.addField = boolean.@false;
+        }
 
         public filterAdbsType filter
         {
@@ -13736,6 +13796,34 @@ namespace MessageImporter
             set
             {
                 this.userFilterNameField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(boolean.@false)]
+        public boolean update
+        {
+            get
+            {
+                return this.updateField;
+            }
+            set
+            {
+                this.updateField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(boolean.@false)]
+        public boolean add
+        {
+            get
+            {
+                return this.addField;
+            }
+            set
+            {
+                this.addField = value;
             }
         }
 
@@ -13952,7 +14040,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
@@ -14344,7 +14432,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -14608,7 +14696,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -14873,7 +14961,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -15131,7 +15219,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/list_addBook.xsd")]
     public enum listAddressBookRequestVerType
@@ -15142,7 +15230,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/addressbook.xsd")]
     public enum adbVersionType
@@ -15153,7 +15241,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -15435,7 +15523,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/parameter.xsd")]
@@ -15728,7 +15816,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum ctrlType
@@ -15765,7 +15853,7 @@ namespace MessageImporter
         list,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/parameter.xsd")]
@@ -16032,7 +16120,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum parameterAgendaFormType
@@ -16069,7 +16157,7 @@ namespace MessageImporter
         issuedOrder,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/parameter.xsd")]
@@ -16492,7 +16580,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum parameterDataType
@@ -16523,7 +16611,7 @@ namespace MessageImporter
         memo,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/parameter.xsd")]
@@ -16905,7 +16993,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/parameter.xsd")]
@@ -17264,7 +17352,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -17515,7 +17603,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -17780,7 +17868,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -18038,7 +18126,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/contract.xsd")]
@@ -18525,7 +18613,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -18538,11 +18626,11 @@ namespace MessageImporter
 
         private addressType address1Field;
 
-        private shipToAddressType shipToAddressField;
+        private shipToAddressType[] shipToAddressField;
 
         private static System.Xml.Serialization.XmlSerializer serializer;
 
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "integer")]
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "integer", Order = 0)]
         public string id
         {
             get
@@ -18555,6 +18643,7 @@ namespace MessageImporter
             }
         }
 
+        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
         public extIdType extId
         {
             get
@@ -18567,7 +18656,7 @@ namespace MessageImporter
             }
         }
 
-        [System.Xml.Serialization.XmlElementAttribute("address")]
+        [System.Xml.Serialization.XmlElementAttribute("address", Order = 2)]
         public addressType address1
         {
             get
@@ -18580,7 +18669,8 @@ namespace MessageImporter
             }
         }
 
-        public shipToAddressType shipToAddress
+        [System.Xml.Serialization.XmlElementAttribute("shipToAddress", Order = 3)]
+        public shipToAddressType[] shipToAddress
         {
             get
             {
@@ -18805,7 +18895,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -18835,6 +18925,8 @@ namespace MessageImporter
         private string phoneField;
 
         private string faxField;
+
+        private string emailField;
 
         private static System.Xml.Serialization.XmlSerializer serializer;
 
@@ -18979,6 +19071,18 @@ namespace MessageImporter
             set
             {
                 this.faxField = value;
+            }
+        }
+
+        public string email
+        {
+            get
+            {
+                return this.emailField;
+            }
+            set
+            {
+                this.emailField = value;
             }
         }
 
@@ -19195,12 +19299,16 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public partial class shipToAddressType
     {
+
+        private actionTypeItem actionTypeField;
+
+        private string idField;
 
         private string companyField;
 
@@ -19214,7 +19322,45 @@ namespace MessageImporter
 
         private string zipField;
 
+        private refType countryField;
+
+        private string phoneField;
+
+        private string emailField;
+
+        private boolean defaultShipAddressField;
+
         private static System.Xml.Serialization.XmlSerializer serializer;
+
+        public shipToAddressType()
+        {
+            this.defaultShipAddressField = boolean.@false;
+        }
+
+        public actionTypeItem actionType
+        {
+            get
+            {
+                return this.actionTypeField;
+            }
+            set
+            {
+                this.actionTypeField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "integer")]
+        public string id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
 
         public string company
         {
@@ -19285,6 +19431,55 @@ namespace MessageImporter
             set
             {
                 this.zipField = value;
+            }
+        }
+
+        public refType country
+        {
+            get
+            {
+                return this.countryField;
+            }
+            set
+            {
+                this.countryField = value;
+            }
+        }
+
+        public string phone
+        {
+            get
+            {
+                return this.phoneField;
+            }
+            set
+            {
+                this.phoneField = value;
+            }
+        }
+
+        public string email
+        {
+            get
+            {
+                return this.emailField;
+            }
+            set
+            {
+                this.emailField = value;
+            }
+        }
+
+        [System.ComponentModel.DefaultValueAttribute(boolean.@false)]
+        public boolean defaultShipAddress
+        {
+            get
+            {
+                return this.defaultShipAddressField;
+            }
+            set
+            {
+                this.defaultShipAddressField = value;
             }
         }
 
@@ -19501,7 +19696,753 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
+    public partial class actionTypeItem
+    {
+
+        private object itemField;
+
+        private ItemChoiceType1 itemElementNameField;
+
+        private static System.Xml.Serialization.XmlSerializer serializer;
+
+        [System.Xml.Serialization.XmlElementAttribute("add", typeof(string), Order = 0)]
+        [System.Xml.Serialization.XmlElementAttribute("delete", typeof(requestItemType), Order = 0)]
+        [System.Xml.Serialization.XmlElementAttribute("update", typeof(requestItemType), Order = 0)]
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+        public object Item
+        {
+            get
+            {
+                return this.itemField;
+            }
+            set
+            {
+                this.itemField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public ItemChoiceType1 ItemElementName
+        {
+            get
+            {
+                return this.itemElementNameField;
+            }
+            set
+            {
+                this.itemElementNameField = value;
+            }
+        }
+
+        private static System.Xml.Serialization.XmlSerializer Serializer
+        {
+            get
+            {
+                if ((serializer == null))
+                {
+                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(actionTypeItem));
+                }
+                return serializer;
+            }
+        }
+
+        #region Serialize/Deserialize
+        /// <summary>
+        /// Serializes current actionTypeItem object into an XML document
+        /// </summary>
+        /// <returns>string XML value</returns>
+        public virtual string Serialize(System.Text.Encoding encoding)
+        {
+            System.IO.StreamReader streamReader = null;
+            System.IO.MemoryStream memoryStream = null;
+            try
+            {
+                memoryStream = new System.IO.MemoryStream();
+                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
+                xmlWriterSettings.Encoding = encoding;
+                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                Serializer.Serialize(xmlWriter, this);
+                memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+                streamReader = new System.IO.StreamReader(memoryStream);
+                return streamReader.ReadToEnd();
+            }
+            finally
+            {
+                if ((streamReader != null))
+                {
+                    streamReader.Dispose();
+                }
+                if ((memoryStream != null))
+                {
+                    memoryStream.Dispose();
+                }
+            }
+        }
+
+        public virtual string Serialize()
+        {
+            return Serialize(Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// Deserializes workflow markup into an actionTypeItem object
+        /// </summary>
+        /// <param name="xml">string workflow markup to deserialize</param>
+        /// <param name="obj">Output actionTypeItem object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
+        public static bool Deserialize(string xml, out actionTypeItem obj, out System.Exception exception)
+        {
+            exception = null;
+            obj = default(actionTypeItem);
+            try
+            {
+                obj = Deserialize(xml);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool Deserialize(string xml, out actionTypeItem obj)
+        {
+            System.Exception exception = null;
+            return Deserialize(xml, out obj, out exception);
+        }
+
+        public static actionTypeItem Deserialize(string xml)
+        {
+            System.IO.StringReader stringReader = null;
+            try
+            {
+                stringReader = new System.IO.StringReader(xml);
+                return ((actionTypeItem)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+            }
+            finally
+            {
+                if ((stringReader != null))
+                {
+                    stringReader.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Serializes current actionTypeItem object into file
+        /// </summary>
+        /// <param name="fileName">full path of outupt xml file</param>
+        /// <param name="exception">output Exception value if failed</param>
+        /// <returns>true if can serialize and save into file; otherwise, false</returns>
+        public virtual bool SaveToFile(string fileName, System.Text.Encoding encoding, out System.Exception exception)
+        {
+            exception = null;
+            try
+            {
+                SaveToFile(fileName, encoding);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                exception = e;
+                return false;
+            }
+        }
+
+        public virtual bool SaveToFile(string fileName, out System.Exception exception)
+        {
+            return SaveToFile(fileName, Encoding.UTF8, out exception);
+        }
+
+        public virtual void SaveToFile(string fileName)
+        {
+            SaveToFile(fileName, Encoding.UTF8);
+        }
+
+        public virtual void SaveToFile(string fileName, System.Text.Encoding encoding)
+        {
+            System.IO.StreamWriter streamWriter = null;
+            try
+            {
+                string xmlString = Serialize(encoding);
+                streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.UTF8);
+                streamWriter.WriteLine(xmlString);
+                streamWriter.Close();
+            }
+            finally
+            {
+                if ((streamWriter != null))
+                {
+                    streamWriter.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes xml markup from file into an actionTypeItem object
+        /// </summary>
+        /// <param name="fileName">string xml file to load and deserialize</param>
+        /// <param name="obj">Output actionTypeItem object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
+        public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out actionTypeItem obj, out System.Exception exception)
+        {
+            exception = null;
+            obj = default(actionTypeItem);
+            try
+            {
+                obj = LoadFromFile(fileName, encoding);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool LoadFromFile(string fileName, out actionTypeItem obj, out System.Exception exception)
+        {
+            return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
+        }
+
+        public static bool LoadFromFile(string fileName, out actionTypeItem obj)
+        {
+            System.Exception exception = null;
+            return LoadFromFile(fileName, out obj, out exception);
+        }
+
+        public static actionTypeItem LoadFromFile(string fileName)
+        {
+            return LoadFromFile(fileName, Encoding.UTF8);
+        }
+
+        public static actionTypeItem LoadFromFile(string fileName, System.Text.Encoding encoding)
+        {
+            System.IO.FileStream file = null;
+            System.IO.StreamReader sr = null;
+            try
+            {
+                file = new System.IO.FileStream(fileName, FileMode.Open, FileAccess.Read);
+                sr = new System.IO.StreamReader(file, encoding);
+                string xmlString = sr.ReadToEnd();
+                sr.Close();
+                file.Close();
+                return Deserialize(xmlString);
+            }
+            finally
+            {
+                if ((file != null))
+                {
+                    file.Dispose();
+                }
+                if ((sr != null))
+                {
+                    sr.Dispose();
+                }
+            }
+        }
+        #endregion
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
+    public partial class requestItemType
+    {
+
+        private filterItemType filterField;
+
+        private static System.Xml.Serialization.XmlSerializer serializer;
+
+        [System.Xml.Serialization.XmlElementAttribute(Order = 0)]
+        public filterItemType filter
+        {
+            get
+            {
+                return this.filterField;
+            }
+            set
+            {
+                this.filterField = value;
+            }
+        }
+
+        private static System.Xml.Serialization.XmlSerializer Serializer
+        {
+            get
+            {
+                if ((serializer == null))
+                {
+                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(requestItemType));
+                }
+                return serializer;
+            }
+        }
+
+        #region Serialize/Deserialize
+        /// <summary>
+        /// Serializes current requestItemType object into an XML document
+        /// </summary>
+        /// <returns>string XML value</returns>
+        public virtual string Serialize(System.Text.Encoding encoding)
+        {
+            System.IO.StreamReader streamReader = null;
+            System.IO.MemoryStream memoryStream = null;
+            try
+            {
+                memoryStream = new System.IO.MemoryStream();
+                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
+                xmlWriterSettings.Encoding = encoding;
+                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                Serializer.Serialize(xmlWriter, this);
+                memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+                streamReader = new System.IO.StreamReader(memoryStream);
+                return streamReader.ReadToEnd();
+            }
+            finally
+            {
+                if ((streamReader != null))
+                {
+                    streamReader.Dispose();
+                }
+                if ((memoryStream != null))
+                {
+                    memoryStream.Dispose();
+                }
+            }
+        }
+
+        public virtual string Serialize()
+        {
+            return Serialize(Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// Deserializes workflow markup into an requestItemType object
+        /// </summary>
+        /// <param name="xml">string workflow markup to deserialize</param>
+        /// <param name="obj">Output requestItemType object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
+        public static bool Deserialize(string xml, out requestItemType obj, out System.Exception exception)
+        {
+            exception = null;
+            obj = default(requestItemType);
+            try
+            {
+                obj = Deserialize(xml);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool Deserialize(string xml, out requestItemType obj)
+        {
+            System.Exception exception = null;
+            return Deserialize(xml, out obj, out exception);
+        }
+
+        public static requestItemType Deserialize(string xml)
+        {
+            System.IO.StringReader stringReader = null;
+            try
+            {
+                stringReader = new System.IO.StringReader(xml);
+                return ((requestItemType)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+            }
+            finally
+            {
+                if ((stringReader != null))
+                {
+                    stringReader.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Serializes current requestItemType object into file
+        /// </summary>
+        /// <param name="fileName">full path of outupt xml file</param>
+        /// <param name="exception">output Exception value if failed</param>
+        /// <returns>true if can serialize and save into file; otherwise, false</returns>
+        public virtual bool SaveToFile(string fileName, System.Text.Encoding encoding, out System.Exception exception)
+        {
+            exception = null;
+            try
+            {
+                SaveToFile(fileName, encoding);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                exception = e;
+                return false;
+            }
+        }
+
+        public virtual bool SaveToFile(string fileName, out System.Exception exception)
+        {
+            return SaveToFile(fileName, Encoding.UTF8, out exception);
+        }
+
+        public virtual void SaveToFile(string fileName)
+        {
+            SaveToFile(fileName, Encoding.UTF8);
+        }
+
+        public virtual void SaveToFile(string fileName, System.Text.Encoding encoding)
+        {
+            System.IO.StreamWriter streamWriter = null;
+            try
+            {
+                string xmlString = Serialize(encoding);
+                streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.UTF8);
+                streamWriter.WriteLine(xmlString);
+                streamWriter.Close();
+            }
+            finally
+            {
+                if ((streamWriter != null))
+                {
+                    streamWriter.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes xml markup from file into an requestItemType object
+        /// </summary>
+        /// <param name="fileName">string xml file to load and deserialize</param>
+        /// <param name="obj">Output requestItemType object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
+        public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out requestItemType obj, out System.Exception exception)
+        {
+            exception = null;
+            obj = default(requestItemType);
+            try
+            {
+                obj = LoadFromFile(fileName, encoding);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool LoadFromFile(string fileName, out requestItemType obj, out System.Exception exception)
+        {
+            return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
+        }
+
+        public static bool LoadFromFile(string fileName, out requestItemType obj)
+        {
+            System.Exception exception = null;
+            return LoadFromFile(fileName, out obj, out exception);
+        }
+
+        public static requestItemType LoadFromFile(string fileName)
+        {
+            return LoadFromFile(fileName, Encoding.UTF8);
+        }
+
+        public static requestItemType LoadFromFile(string fileName, System.Text.Encoding encoding)
+        {
+            System.IO.FileStream file = null;
+            System.IO.StreamReader sr = null;
+            try
+            {
+                file = new System.IO.FileStream(fileName, FileMode.Open, FileAccess.Read);
+                sr = new System.IO.StreamReader(file, encoding);
+                string xmlString = sr.ReadToEnd();
+                sr.Close();
+                file.Close();
+                return Deserialize(xmlString);
+            }
+            finally
+            {
+                if ((file != null))
+                {
+                    file.Dispose();
+                }
+                if ((sr != null))
+                {
+                    sr.Dispose();
+                }
+            }
+        }
+        #endregion
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/filter.xsd")]
+    public partial class filterItemType
+    {
+
+        private string idField;
+
+        private static System.Xml.Serialization.XmlSerializer serializer;
+
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "integer")]
+        public string id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+
+        private static System.Xml.Serialization.XmlSerializer Serializer
+        {
+            get
+            {
+                if ((serializer == null))
+                {
+                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(filterItemType));
+                }
+                return serializer;
+            }
+        }
+
+        #region Serialize/Deserialize
+        /// <summary>
+        /// Serializes current filterItemType object into an XML document
+        /// </summary>
+        /// <returns>string XML value</returns>
+        public virtual string Serialize(System.Text.Encoding encoding)
+        {
+            System.IO.StreamReader streamReader = null;
+            System.IO.MemoryStream memoryStream = null;
+            try
+            {
+                memoryStream = new System.IO.MemoryStream();
+                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
+                xmlWriterSettings.Encoding = encoding;
+                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                Serializer.Serialize(xmlWriter, this);
+                memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+                streamReader = new System.IO.StreamReader(memoryStream);
+                return streamReader.ReadToEnd();
+            }
+            finally
+            {
+                if ((streamReader != null))
+                {
+                    streamReader.Dispose();
+                }
+                if ((memoryStream != null))
+                {
+                    memoryStream.Dispose();
+                }
+            }
+        }
+
+        public virtual string Serialize()
+        {
+            return Serialize(Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// Deserializes workflow markup into an filterItemType object
+        /// </summary>
+        /// <param name="xml">string workflow markup to deserialize</param>
+        /// <param name="obj">Output filterItemType object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
+        public static bool Deserialize(string xml, out filterItemType obj, out System.Exception exception)
+        {
+            exception = null;
+            obj = default(filterItemType);
+            try
+            {
+                obj = Deserialize(xml);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool Deserialize(string xml, out filterItemType obj)
+        {
+            System.Exception exception = null;
+            return Deserialize(xml, out obj, out exception);
+        }
+
+        public static filterItemType Deserialize(string xml)
+        {
+            System.IO.StringReader stringReader = null;
+            try
+            {
+                stringReader = new System.IO.StringReader(xml);
+                return ((filterItemType)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+            }
+            finally
+            {
+                if ((stringReader != null))
+                {
+                    stringReader.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Serializes current filterItemType object into file
+        /// </summary>
+        /// <param name="fileName">full path of outupt xml file</param>
+        /// <param name="exception">output Exception value if failed</param>
+        /// <returns>true if can serialize and save into file; otherwise, false</returns>
+        public virtual bool SaveToFile(string fileName, System.Text.Encoding encoding, out System.Exception exception)
+        {
+            exception = null;
+            try
+            {
+                SaveToFile(fileName, encoding);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                exception = e;
+                return false;
+            }
+        }
+
+        public virtual bool SaveToFile(string fileName, out System.Exception exception)
+        {
+            return SaveToFile(fileName, Encoding.UTF8, out exception);
+        }
+
+        public virtual void SaveToFile(string fileName)
+        {
+            SaveToFile(fileName, Encoding.UTF8);
+        }
+
+        public virtual void SaveToFile(string fileName, System.Text.Encoding encoding)
+        {
+            System.IO.StreamWriter streamWriter = null;
+            try
+            {
+                string xmlString = Serialize(encoding);
+                streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.UTF8);
+                streamWriter.WriteLine(xmlString);
+                streamWriter.Close();
+            }
+            finally
+            {
+                if ((streamWriter != null))
+                {
+                    streamWriter.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes xml markup from file into an filterItemType object
+        /// </summary>
+        /// <param name="fileName">string xml file to load and deserialize</param>
+        /// <param name="obj">Output filterItemType object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
+        public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out filterItemType obj, out System.Exception exception)
+        {
+            exception = null;
+            obj = default(filterItemType);
+            try
+            {
+                obj = LoadFromFile(fileName, encoding);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool LoadFromFile(string fileName, out filterItemType obj, out System.Exception exception)
+        {
+            return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
+        }
+
+        public static bool LoadFromFile(string fileName, out filterItemType obj)
+        {
+            System.Exception exception = null;
+            return LoadFromFile(fileName, out obj, out exception);
+        }
+
+        public static filterItemType LoadFromFile(string fileName)
+        {
+            return LoadFromFile(fileName, Encoding.UTF8);
+        }
+
+        public static filterItemType LoadFromFile(string fileName, System.Text.Encoding encoding)
+        {
+            System.IO.FileStream file = null;
+            System.IO.StreamReader sr = null;
+            try
+            {
+                file = new System.IO.FileStream(fileName, FileMode.Open, FileAccess.Read);
+                sr = new System.IO.StreamReader(file, encoding);
+                string xmlString = sr.ReadToEnd();
+                sr.Close();
+                file.Close();
+                return Deserialize(xmlString);
+            }
+            finally
+            {
+                if ((file != null))
+                {
+                    file.Dispose();
+                }
+                if ((sr != null))
+                {
+                    sr.Dispose();
+                }
+            }
+        }
+        #endregion
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd", IncludeInSchema = false)]
+    public enum ItemChoiceType1
+    {
+
+        /// <remarks/>
+        add,
+
+        /// <remarks/>
+        delete,
+
+        /// <remarks/>
+        update,
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/contract.xsd")]
     public enum contractStateType
@@ -19520,7 +20461,7 @@ namespace MessageImporter
         closed,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -19531,7 +20472,7 @@ namespace MessageImporter
 
         private object itemField;
 
-        private ItemChoiceType itemElementNameField;
+        private ItemChoiceType2 itemElementNameField;
 
         private refType listField;
 
@@ -19574,7 +20515,7 @@ namespace MessageImporter
 
         [System.Xml.Serialization.XmlElementAttribute(Order = 2)]
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemChoiceType ItemElementName
+        public ItemChoiceType2 ItemElementName
         {
             get
             {
@@ -19812,10 +20753,10 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd", IncludeInSchema = false)]
-    public enum ItemChoiceType
+    public enum ItemChoiceType2
     {
 
         /// <remarks/>
@@ -19846,7 +20787,7 @@ namespace MessageImporter
         textValue,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/contract.xsd")]
@@ -20098,7 +21039,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/vyroba.xsd")]
@@ -20363,7 +21304,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -20627,7 +21568,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -20907,7 +21848,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/vyroba.xsd")]
@@ -21359,7 +22300,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/vyroba.xsd")]
@@ -21627,7 +22568,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/vyroba.xsd")]
     public enum vyrVersionType
@@ -21638,7 +22579,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/vydejka.xsd")]
@@ -21946,7 +22887,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum typeRoundingDocument
@@ -21983,7 +22924,7 @@ namespace MessageImporter
         down2tenth,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum typeRoundingVAT
@@ -22020,7 +22961,7 @@ namespace MessageImporter
         math2intEveryRate,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -22546,7 +23487,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -22803,7 +23744,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd", IncludeInSchema = false)]
     public enum ItemsChoiceType
@@ -22822,7 +23763,7 @@ namespace MessageImporter
         rateVATround,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -23131,7 +24072,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/vydejka.xsd")]
@@ -23737,7 +24678,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum vatRateType
@@ -23765,7 +24706,7 @@ namespace MessageImporter
         historyThird,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -24103,7 +25044,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -24441,7 +25382,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum guaranteeTypeType
@@ -24466,7 +25407,7 @@ namespace MessageImporter
         life,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/vydejka.xsd")]
@@ -25018,7 +25959,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -25269,7 +26210,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/vydejka.xsd")]
@@ -25552,7 +26493,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/voucher.xsd")]
@@ -25860,7 +26801,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/voucher.xsd")]
@@ -26405,7 +27346,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -26677,7 +27618,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum classificationVATTypeClassificationVATType
@@ -26690,7 +27631,7 @@ namespace MessageImporter
         nonSubsume,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/voucher.xsd")]
@@ -27285,7 +28226,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/voucher.xsd")]
     public enum voucherTypeType
@@ -27298,7 +28239,7 @@ namespace MessageImporter
         expense,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -27579,7 +28520,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum accountingTypeAccountingType
@@ -27589,7 +28530,7 @@ namespace MessageImporter
         withoutAccounting,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -27839,7 +28780,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -28271,7 +29212,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -28549,7 +29490,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/voucher.xsd")]
@@ -28832,7 +29773,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/voucher.xsd")]
     public enum vchVersionType
@@ -28843,7 +29784,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
@@ -29167,7 +30108,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
@@ -29630,7 +30571,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -29910,7 +30851,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(TypeName = "stockItemType", Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
@@ -30283,7 +31224,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
@@ -30550,12 +31491,14 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
     public partial class intParameterType
     {
+
+        private actionTypeItem actionTypeField;
 
         private string intParameterIDField;
 
@@ -30565,11 +31508,21 @@ namespace MessageImporter
 
         private internetParameterType intParameterType1Field;
 
-        private bool intParameterType1FieldSpecified;
-
         private intParameterValueType[] intParameterValuesField;
 
         private static System.Xml.Serialization.XmlSerializer serializer;
+
+        public actionTypeItem actionType
+        {
+            get
+            {
+                return this.actionTypeField;
+            }
+            set
+            {
+                this.actionTypeField = value;
+            }
+        }
 
         [System.Xml.Serialization.XmlElementAttribute(DataType = "integer")]
         public string intParameterID
@@ -30619,19 +31572,6 @@ namespace MessageImporter
             set
             {
                 this.intParameterType1Field = value;
-            }
-        }
-
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool intParameterType1Specified
-        {
-            get
-            {
-                return this.intParameterType1FieldSpecified;
-            }
-            set
-            {
-                this.intParameterType1FieldSpecified = value;
             }
         }
 
@@ -30861,7 +31801,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum internetParameterType
@@ -30892,7 +31832,7 @@ namespace MessageImporter
         listValue,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -31143,12 +32083,16 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
     public partial class pictureType
     {
+
+        private actionTypeItem actionTypeField;
+
+        private string idField;
 
         private string filepathField;
 
@@ -31157,6 +32101,31 @@ namespace MessageImporter
         private bool defaultField;
 
         private static System.Xml.Serialization.XmlSerializer serializer;
+
+        public actionTypeItem actionType
+        {
+            get
+            {
+                return this.actionTypeField;
+            }
+            set
+            {
+                this.actionTypeField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "integer")]
+        public string id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
 
         public string filepath
         {
@@ -31408,7 +32377,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
@@ -31658,7 +32627,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
@@ -31908,7 +32877,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
@@ -32235,7 +33204,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -32472,7 +33441,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
@@ -33982,7 +34951,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
     public enum stockTypeType
@@ -34007,7 +34976,7 @@ namespace MessageImporter
         product,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
     public enum classOfStockType
@@ -34035,20 +35004,23 @@ namespace MessageImporter
         materialOfOwnProduction,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(TypeName = "actionTypeType", Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
     public partial class actionTypeType1
     {
 
-        private object itemField;
+        private requestStockType itemField;
+
+        private ItemChoiceType3 itemElementNameField;
 
         private static System.Xml.Serialization.XmlSerializer serializer;
 
-        [System.Xml.Serialization.XmlElementAttribute("add", typeof(string), Order = 0)]
+        [System.Xml.Serialization.XmlElementAttribute("add", typeof(requestStockType), Order = 0)]
         [System.Xml.Serialization.XmlElementAttribute("update", typeof(requestStockType), Order = 0)]
-        public object Item
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+        public requestStockType Item
         {
             get
             {
@@ -34057,6 +35029,20 @@ namespace MessageImporter
             set
             {
                 this.itemField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public ItemChoiceType3 ItemElementName
+        {
+            get
+            {
+                return this.itemElementNameField;
+            }
+            set
+            {
+                this.itemElementNameField = value;
             }
         }
 
@@ -34273,7 +35259,20 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd", IncludeInSchema = false)]
+    public enum ItemChoiceType3
+    {
+
+        /// <remarks/>
+        add,
+
+        /// <remarks/>
+        update,
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/stock.xsd")]
@@ -34604,7 +35603,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prevodka.xsd")]
@@ -34869,7 +35868,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prevodka.xsd")]
@@ -35335,7 +36334,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prevodka.xsd")]
@@ -35603,7 +36602,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prevodka.xsd")]
     public enum preVersionType
@@ -35614,7 +36613,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prijemka.xsd")]
@@ -35922,7 +36921,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prijemka.xsd")]
@@ -36484,7 +37483,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prijemka.xsd")]
@@ -36978,7 +37977,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prijemka.xsd")]
@@ -37261,7 +38260,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prodejka.xsd")]
@@ -37555,7 +38554,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prodejka.xsd")]
@@ -38132,7 +39131,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prodejka.xsd")]
@@ -38568,7 +39567,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -38849,7 +39848,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum paymentTypePaymentType
@@ -38883,7 +39882,7 @@ namespace MessageImporter
         compensation,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prodejka.xsd")]
@@ -39166,7 +40165,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/prodejka.xsd")]
     public enum proVersionType
@@ -39177,7 +40176,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/order.xsd")]
@@ -39485,7 +40484,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/order.xsd")]
@@ -40032,7 +41031,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/order.xsd")]
@@ -40751,7 +41750,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/order.xsd")]
@@ -41034,7 +42033,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/offer.xsd")]
@@ -41342,7 +42341,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/offer.xsd")]
@@ -41860,7 +42859,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/offer.xsd")]
@@ -42369,7 +43368,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/offer.xsd")]
@@ -42652,7 +43651,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/invoice.xsd")]
@@ -42960,7 +43959,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -43211,7 +44210,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/invoice.xsd")]
@@ -43845,7 +44844,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -44155,286 +45154,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
-    public partial class accountType
-    {
-
-        private string idField;
-
-        private string idsField;
-
-        private string accountNoField;
-
-        private string bankCodeField;
-
-        private static System.Xml.Serialization.XmlSerializer serializer;
-
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "integer")]
-        public string id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-
-        public string ids
-        {
-            get
-            {
-                return this.idsField;
-            }
-            set
-            {
-                this.idsField = value;
-            }
-        }
-
-        public string accountNo
-        {
-            get
-            {
-                return this.accountNoField;
-            }
-            set
-            {
-                this.accountNoField = value;
-            }
-        }
-
-        public string bankCode
-        {
-            get
-            {
-                return this.bankCodeField;
-            }
-            set
-            {
-                this.bankCodeField = value;
-            }
-        }
-
-        private static System.Xml.Serialization.XmlSerializer Serializer
-        {
-            get
-            {
-                if ((serializer == null))
-                {
-                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(accountType));
-                }
-                return serializer;
-            }
-        }
-
-        #region Serialize/Deserialize
-        /// <summary>
-        /// Serializes current accountType object into an XML document
-        /// </summary>
-        /// <returns>string XML value</returns>
-        public virtual string Serialize(System.Text.Encoding encoding)
-        {
-            System.IO.StreamReader streamReader = null;
-            System.IO.MemoryStream memoryStream = null;
-            try
-            {
-                memoryStream = new System.IO.MemoryStream();
-                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
-                xmlWriterSettings.Encoding = encoding;
-                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
-                Serializer.Serialize(xmlWriter, this);
-                memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
-                streamReader = new System.IO.StreamReader(memoryStream);
-                return streamReader.ReadToEnd();
-            }
-            finally
-            {
-                if ((streamReader != null))
-                {
-                    streamReader.Dispose();
-                }
-                if ((memoryStream != null))
-                {
-                    memoryStream.Dispose();
-                }
-            }
-        }
-
-        public virtual string Serialize()
-        {
-            return Serialize(Encoding.UTF8);
-        }
-
-        /// <summary>
-        /// Deserializes workflow markup into an accountType object
-        /// </summary>
-        /// <param name="xml">string workflow markup to deserialize</param>
-        /// <param name="obj">Output accountType object</param>
-        /// <param name="exception">output Exception value if deserialize failed</param>
-        /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool Deserialize(string xml, out accountType obj, out System.Exception exception)
-        {
-            exception = null;
-            obj = default(accountType);
-            try
-            {
-                obj = Deserialize(xml);
-                return true;
-            }
-            catch (System.Exception ex)
-            {
-                exception = ex;
-                return false;
-            }
-        }
-
-        public static bool Deserialize(string xml, out accountType obj)
-        {
-            System.Exception exception = null;
-            return Deserialize(xml, out obj, out exception);
-        }
-
-        public static accountType Deserialize(string xml)
-        {
-            System.IO.StringReader stringReader = null;
-            try
-            {
-                stringReader = new System.IO.StringReader(xml);
-                return ((accountType)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
-            }
-            finally
-            {
-                if ((stringReader != null))
-                {
-                    stringReader.Dispose();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Serializes current accountType object into file
-        /// </summary>
-        /// <param name="fileName">full path of outupt xml file</param>
-        /// <param name="exception">output Exception value if failed</param>
-        /// <returns>true if can serialize and save into file; otherwise, false</returns>
-        public virtual bool SaveToFile(string fileName, System.Text.Encoding encoding, out System.Exception exception)
-        {
-            exception = null;
-            try
-            {
-                SaveToFile(fileName, encoding);
-                return true;
-            }
-            catch (System.Exception e)
-            {
-                exception = e;
-                return false;
-            }
-        }
-
-        public virtual bool SaveToFile(string fileName, out System.Exception exception)
-        {
-            return SaveToFile(fileName, Encoding.UTF8, out exception);
-        }
-
-        public virtual void SaveToFile(string fileName)
-        {
-            SaveToFile(fileName, Encoding.UTF8);
-        }
-
-        public virtual void SaveToFile(string fileName, System.Text.Encoding encoding)
-        {
-            System.IO.StreamWriter streamWriter = null;
-            try
-            {
-                string xmlString = Serialize(encoding);
-                streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.UTF8);
-                streamWriter.WriteLine(xmlString);
-                streamWriter.Close();
-            }
-            finally
-            {
-                if ((streamWriter != null))
-                {
-                    streamWriter.Dispose();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Deserializes xml markup from file into an accountType object
-        /// </summary>
-        /// <param name="fileName">string xml file to load and deserialize</param>
-        /// <param name="obj">Output accountType object</param>
-        /// <param name="exception">output Exception value if deserialize failed</param>
-        /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
-        public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out accountType obj, out System.Exception exception)
-        {
-            exception = null;
-            obj = default(accountType);
-            try
-            {
-                obj = LoadFromFile(fileName, encoding);
-                return true;
-            }
-            catch (System.Exception ex)
-            {
-                exception = ex;
-                return false;
-            }
-        }
-
-        public static bool LoadFromFile(string fileName, out accountType obj, out System.Exception exception)
-        {
-            return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
-        }
-
-        public static bool LoadFromFile(string fileName, out accountType obj)
-        {
-            System.Exception exception = null;
-            return LoadFromFile(fileName, out obj, out exception);
-        }
-
-        public static accountType LoadFromFile(string fileName)
-        {
-            return LoadFromFile(fileName, Encoding.UTF8);
-        }
-
-        public static accountType LoadFromFile(string fileName, System.Text.Encoding encoding)
-        {
-            System.IO.FileStream file = null;
-            System.IO.StreamReader sr = null;
-            try
-            {
-                file = new System.IO.FileStream(fileName, FileMode.Open, FileAccess.Read);
-                sr = new System.IO.StreamReader(file, encoding);
-                string xmlString = sr.ReadToEnd();
-                sr.Close();
-                file.Close();
-                return Deserialize(xmlString);
-            }
-            finally
-            {
-                if ((file != null))
-                {
-                    file.Dispose();
-                }
-                if ((sr != null))
-                {
-                    sr.Dispose();
-                }
-            }
-        }
-        #endregion
-    }
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/invoice.xsd")]
@@ -45206,7 +45926,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/invoice.xsd")]
     public enum sphereTypeType
@@ -45237,7 +45957,286 @@ namespace MessageImporter
         labourLaw,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
+    public partial class accountType
+    {
+
+        private string idField;
+
+        private string idsField;
+
+        private string accountNoField;
+
+        private string bankCodeField;
+
+        private static System.Xml.Serialization.XmlSerializer serializer;
+
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "integer")]
+        public string id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+
+        public string ids
+        {
+            get
+            {
+                return this.idsField;
+            }
+            set
+            {
+                this.idsField = value;
+            }
+        }
+
+        public string accountNo
+        {
+            get
+            {
+                return this.accountNoField;
+            }
+            set
+            {
+                this.accountNoField = value;
+            }
+        }
+
+        public string bankCode
+        {
+            get
+            {
+                return this.bankCodeField;
+            }
+            set
+            {
+                this.bankCodeField = value;
+            }
+        }
+
+        private static System.Xml.Serialization.XmlSerializer Serializer
+        {
+            get
+            {
+                if ((serializer == null))
+                {
+                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(accountType));
+                }
+                return serializer;
+            }
+        }
+
+        #region Serialize/Deserialize
+        /// <summary>
+        /// Serializes current accountType object into an XML document
+        /// </summary>
+        /// <returns>string XML value</returns>
+        public virtual string Serialize(System.Text.Encoding encoding)
+        {
+            System.IO.StreamReader streamReader = null;
+            System.IO.MemoryStream memoryStream = null;
+            try
+            {
+                memoryStream = new System.IO.MemoryStream();
+                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
+                xmlWriterSettings.Encoding = encoding;
+                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                Serializer.Serialize(xmlWriter, this);
+                memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+                streamReader = new System.IO.StreamReader(memoryStream);
+                return streamReader.ReadToEnd();
+            }
+            finally
+            {
+                if ((streamReader != null))
+                {
+                    streamReader.Dispose();
+                }
+                if ((memoryStream != null))
+                {
+                    memoryStream.Dispose();
+                }
+            }
+        }
+
+        public virtual string Serialize()
+        {
+            return Serialize(Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// Deserializes workflow markup into an accountType object
+        /// </summary>
+        /// <param name="xml">string workflow markup to deserialize</param>
+        /// <param name="obj">Output accountType object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
+        public static bool Deserialize(string xml, out accountType obj, out System.Exception exception)
+        {
+            exception = null;
+            obj = default(accountType);
+            try
+            {
+                obj = Deserialize(xml);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool Deserialize(string xml, out accountType obj)
+        {
+            System.Exception exception = null;
+            return Deserialize(xml, out obj, out exception);
+        }
+
+        public static accountType Deserialize(string xml)
+        {
+            System.IO.StringReader stringReader = null;
+            try
+            {
+                stringReader = new System.IO.StringReader(xml);
+                return ((accountType)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+            }
+            finally
+            {
+                if ((stringReader != null))
+                {
+                    stringReader.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Serializes current accountType object into file
+        /// </summary>
+        /// <param name="fileName">full path of outupt xml file</param>
+        /// <param name="exception">output Exception value if failed</param>
+        /// <returns>true if can serialize and save into file; otherwise, false</returns>
+        public virtual bool SaveToFile(string fileName, System.Text.Encoding encoding, out System.Exception exception)
+        {
+            exception = null;
+            try
+            {
+                SaveToFile(fileName, encoding);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                exception = e;
+                return false;
+            }
+        }
+
+        public virtual bool SaveToFile(string fileName, out System.Exception exception)
+        {
+            return SaveToFile(fileName, Encoding.UTF8, out exception);
+        }
+
+        public virtual void SaveToFile(string fileName)
+        {
+            SaveToFile(fileName, Encoding.UTF8);
+        }
+
+        public virtual void SaveToFile(string fileName, System.Text.Encoding encoding)
+        {
+            System.IO.StreamWriter streamWriter = null;
+            try
+            {
+                string xmlString = Serialize(encoding);
+                streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.UTF8);
+                streamWriter.WriteLine(xmlString);
+                streamWriter.Close();
+            }
+            finally
+            {
+                if ((streamWriter != null))
+                {
+                    streamWriter.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes xml markup from file into an accountType object
+        /// </summary>
+        /// <param name="fileName">string xml file to load and deserialize</param>
+        /// <param name="obj">Output accountType object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
+        public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out accountType obj, out System.Exception exception)
+        {
+            exception = null;
+            obj = default(accountType);
+            try
+            {
+                obj = LoadFromFile(fileName, encoding);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool LoadFromFile(string fileName, out accountType obj, out System.Exception exception)
+        {
+            return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
+        }
+
+        public static bool LoadFromFile(string fileName, out accountType obj)
+        {
+            System.Exception exception = null;
+            return LoadFromFile(fileName, out obj, out exception);
+        }
+
+        public static accountType LoadFromFile(string fileName)
+        {
+            return LoadFromFile(fileName, Encoding.UTF8);
+        }
+
+        public static accountType LoadFromFile(string fileName, System.Text.Encoding encoding)
+        {
+            System.IO.FileStream file = null;
+            System.IO.StreamReader sr = null;
+            try
+            {
+                file = new System.IO.FileStream(fileName, FileMode.Open, FileAccess.Read);
+                sr = new System.IO.StreamReader(file, encoding);
+                string xmlString = sr.ReadToEnd();
+                sr.Close();
+                file.Close();
+                return Deserialize(xmlString);
+            }
+            finally
+            {
+                if ((file != null))
+                {
+                    file.Dispose();
+                }
+                if ((sr != null))
+                {
+                    sr.Dispose();
+                }
+            }
+        }
+        #endregion
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.stormware.cz/schema/version_2/invoice.xsd")]
@@ -45487,7 +46486,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -45738,7 +46737,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -45988,7 +46987,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/invoice.xsd")]
@@ -46287,7 +47286,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/intDoc.xsd")]
@@ -46595,7 +47594,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/intDoc.xsd")]
@@ -47126,7 +48125,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/intDoc.xsd")]
@@ -47684,7 +48683,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/intDoc.xsd")]
@@ -47967,7 +48966,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/intDoc.xsd")]
     public enum intVersionType
@@ -47978,7 +48977,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/enquiry.xsd")]
@@ -48286,7 +49285,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/enquiry.xsd")]
@@ -48804,7 +49803,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/enquiry.xsd")]
@@ -49269,7 +50268,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/enquiry.xsd")]
@@ -49552,12 +50551,14 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/addressbook.xsd")]
     public partial class accountItemType
     {
+
+        private actionTypeItem actionTypeField;
 
         private string idField;
 
@@ -49574,6 +50575,18 @@ namespace MessageImporter
         public accountItemType()
         {
             this.defaultAccountField = boolean.@false;
+        }
+
+        public actionTypeItem actionType
+        {
+            get
+            {
+                return this.actionTypeField;
+            }
+            set
+            {
+                this.actionTypeField = value;
+            }
         }
 
         [System.Xml.Serialization.XmlElementAttribute(DataType = "integer")]
@@ -49851,7 +50864,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
@@ -50116,7 +51129,286 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
+    public partial class responsiblePersonType
+    {
+
+        private string idField;
+
+        private string surnameField;
+
+        private string nameField;
+
+        private string degreeField;
+
+        private static System.Xml.Serialization.XmlSerializer serializer;
+
+        [System.Xml.Serialization.XmlElementAttribute(DataType = "integer")]
+        public string id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+
+        public string surname
+        {
+            get
+            {
+                return this.surnameField;
+            }
+            set
+            {
+                this.surnameField = value;
+            }
+        }
+
+        public string name
+        {
+            get
+            {
+                return this.nameField;
+            }
+            set
+            {
+                this.nameField = value;
+            }
+        }
+
+        public string degree
+        {
+            get
+            {
+                return this.degreeField;
+            }
+            set
+            {
+                this.degreeField = value;
+            }
+        }
+
+        private static System.Xml.Serialization.XmlSerializer Serializer
+        {
+            get
+            {
+                if ((serializer == null))
+                {
+                    serializer = new System.Xml.Serialization.XmlSerializer(typeof(responsiblePersonType));
+                }
+                return serializer;
+            }
+        }
+
+        #region Serialize/Deserialize
+        /// <summary>
+        /// Serializes current responsiblePersonType object into an XML document
+        /// </summary>
+        /// <returns>string XML value</returns>
+        public virtual string Serialize(System.Text.Encoding encoding)
+        {
+            System.IO.StreamReader streamReader = null;
+            System.IO.MemoryStream memoryStream = null;
+            try
+            {
+                memoryStream = new System.IO.MemoryStream();
+                System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
+                xmlWriterSettings.Encoding = encoding;
+                System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
+                Serializer.Serialize(xmlWriter, this);
+                memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+                streamReader = new System.IO.StreamReader(memoryStream);
+                return streamReader.ReadToEnd();
+            }
+            finally
+            {
+                if ((streamReader != null))
+                {
+                    streamReader.Dispose();
+                }
+                if ((memoryStream != null))
+                {
+                    memoryStream.Dispose();
+                }
+            }
+        }
+
+        public virtual string Serialize()
+        {
+            return Serialize(Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// Deserializes workflow markup into an responsiblePersonType object
+        /// </summary>
+        /// <param name="xml">string workflow markup to deserialize</param>
+        /// <param name="obj">Output responsiblePersonType object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
+        public static bool Deserialize(string xml, out responsiblePersonType obj, out System.Exception exception)
+        {
+            exception = null;
+            obj = default(responsiblePersonType);
+            try
+            {
+                obj = Deserialize(xml);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool Deserialize(string xml, out responsiblePersonType obj)
+        {
+            System.Exception exception = null;
+            return Deserialize(xml, out obj, out exception);
+        }
+
+        public static responsiblePersonType Deserialize(string xml)
+        {
+            System.IO.StringReader stringReader = null;
+            try
+            {
+                stringReader = new System.IO.StringReader(xml);
+                return ((responsiblePersonType)(Serializer.Deserialize(System.Xml.XmlReader.Create(stringReader))));
+            }
+            finally
+            {
+                if ((stringReader != null))
+                {
+                    stringReader.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Serializes current responsiblePersonType object into file
+        /// </summary>
+        /// <param name="fileName">full path of outupt xml file</param>
+        /// <param name="exception">output Exception value if failed</param>
+        /// <returns>true if can serialize and save into file; otherwise, false</returns>
+        public virtual bool SaveToFile(string fileName, System.Text.Encoding encoding, out System.Exception exception)
+        {
+            exception = null;
+            try
+            {
+                SaveToFile(fileName, encoding);
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                exception = e;
+                return false;
+            }
+        }
+
+        public virtual bool SaveToFile(string fileName, out System.Exception exception)
+        {
+            return SaveToFile(fileName, Encoding.UTF8, out exception);
+        }
+
+        public virtual void SaveToFile(string fileName)
+        {
+            SaveToFile(fileName, Encoding.UTF8);
+        }
+
+        public virtual void SaveToFile(string fileName, System.Text.Encoding encoding)
+        {
+            System.IO.StreamWriter streamWriter = null;
+            try
+            {
+                string xmlString = Serialize(encoding);
+                streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.UTF8);
+                streamWriter.WriteLine(xmlString);
+                streamWriter.Close();
+            }
+            finally
+            {
+                if ((streamWriter != null))
+                {
+                    streamWriter.Dispose();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes xml markup from file into an responsiblePersonType object
+        /// </summary>
+        /// <param name="fileName">string xml file to load and deserialize</param>
+        /// <param name="obj">Output responsiblePersonType object</param>
+        /// <param name="exception">output Exception value if deserialize failed</param>
+        /// <returns>true if this XmlSerializer can deserialize the object; otherwise, false</returns>
+        public static bool LoadFromFile(string fileName, System.Text.Encoding encoding, out responsiblePersonType obj, out System.Exception exception)
+        {
+            exception = null;
+            obj = default(responsiblePersonType);
+            try
+            {
+                obj = LoadFromFile(fileName, encoding);
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                exception = ex;
+                return false;
+            }
+        }
+
+        public static bool LoadFromFile(string fileName, out responsiblePersonType obj, out System.Exception exception)
+        {
+            return LoadFromFile(fileName, Encoding.UTF8, out obj, out exception);
+        }
+
+        public static bool LoadFromFile(string fileName, out responsiblePersonType obj)
+        {
+            System.Exception exception = null;
+            return LoadFromFile(fileName, out obj, out exception);
+        }
+
+        public static responsiblePersonType LoadFromFile(string fileName)
+        {
+            return LoadFromFile(fileName, Encoding.UTF8);
+        }
+
+        public static responsiblePersonType LoadFromFile(string fileName, System.Text.Encoding encoding)
+        {
+            System.IO.FileStream file = null;
+            System.IO.StreamReader sr = null;
+            try
+            {
+                file = new System.IO.FileStream(fileName, FileMode.Open, FileAccess.Read);
+                sr = new System.IO.StreamReader(file, encoding);
+                string xmlString = sr.ReadToEnd();
+                sr.Close();
+                file.Close();
+                return Deserialize(xmlString);
+            }
+            finally
+            {
+                if ((file != null))
+                {
+                    file.Dispose();
+                }
+                if ((sr != null))
+                {
+                    sr.Dispose();
+                }
+            }
+        }
+        #endregion
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/addressbook.xsd")]
@@ -50190,6 +51482,18 @@ namespace MessageImporter
         private string noteField;
 
         private string intNoteField;
+
+        private accountingType accountingReceivedInvoiceField;
+
+        private accountingType accountingIssuedInvoiceField;
+
+        private classificationVATType classificationVATReceivedInvoiceField;
+
+        private classificationVATType classificationVATIssuedInvoiceField;
+
+        private accountType accountForInvoicingField;
+
+        private responsiblePersonType responsiblePersonField;
 
         private refType centreField;
 
@@ -50635,6 +51939,78 @@ namespace MessageImporter
             }
         }
 
+        public accountingType accountingReceivedInvoice
+        {
+            get
+            {
+                return this.accountingReceivedInvoiceField;
+            }
+            set
+            {
+                this.accountingReceivedInvoiceField = value;
+            }
+        }
+
+        public accountingType accountingIssuedInvoice
+        {
+            get
+            {
+                return this.accountingIssuedInvoiceField;
+            }
+            set
+            {
+                this.accountingIssuedInvoiceField = value;
+            }
+        }
+
+        public classificationVATType classificationVATReceivedInvoice
+        {
+            get
+            {
+                return this.classificationVATReceivedInvoiceField;
+            }
+            set
+            {
+                this.classificationVATReceivedInvoiceField = value;
+            }
+        }
+
+        public classificationVATType classificationVATIssuedInvoice
+        {
+            get
+            {
+                return this.classificationVATIssuedInvoiceField;
+            }
+            set
+            {
+                this.classificationVATIssuedInvoiceField = value;
+            }
+        }
+
+        public accountType accountForInvoicing
+        {
+            get
+            {
+                return this.accountForInvoicingField;
+            }
+            set
+            {
+                this.accountForInvoicingField = value;
+            }
+        }
+
+        public responsiblePersonType responsiblePerson
+        {
+            get
+            {
+                return this.responsiblePersonField;
+            }
+            set
+            {
+                this.responsiblePersonField = value;
+            }
+        }
+
         public refType centre
         {
             get
@@ -50909,7 +52285,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/type.xsd")]
     public enum sexType
@@ -50925,20 +52301,23 @@ namespace MessageImporter
         unknown,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/addressbook.xsd")]
     public partial class actionTypeType
     {
 
-        private object itemField;
+        private requestAddressBookType itemField;
+
+        private ItemChoiceType itemElementNameField;
 
         private static System.Xml.Serialization.XmlSerializer serializer;
 
-        [System.Xml.Serialization.XmlElementAttribute("add", typeof(string), Order = 0)]
+        [System.Xml.Serialization.XmlElementAttribute("add", typeof(requestAddressBookType), Order = 0)]
         [System.Xml.Serialization.XmlElementAttribute("update", typeof(requestAddressBookType), Order = 0)]
-        public object Item
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+        public requestAddressBookType Item
         {
             get
             {
@@ -50947,6 +52326,20 @@ namespace MessageImporter
             set
             {
                 this.itemField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public ItemChoiceType ItemElementName
+        {
+            get
+            {
+                return this.itemElementNameField;
+            }
+            set
+            {
+                this.itemElementNameField = value;
             }
         }
 
@@ -51163,7 +52556,20 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/addressbook.xsd", IncludeInSchema = false)]
+    public enum ItemChoiceType
+    {
+
+        /// <remarks/>
+        add,
+
+        /// <remarks/>
+        update,
+    }
+
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/addressbook.xsd")]
@@ -51446,7 +52852,7 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/data.xsd")]
@@ -51456,7 +52862,7 @@ namespace MessageImporter
 
         private object itemField;
 
-        private ItemChoiceType1 itemElementNameField;
+        private ItemChoiceType4 itemElementNameField;
 
         private dataPackItemVersionType versionField;
 
@@ -51520,7 +52926,7 @@ namespace MessageImporter
 
         [System.Xml.Serialization.XmlElementAttribute(Order = 1)]
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemChoiceType1 ItemElementName
+        public ItemChoiceType4 ItemElementName
         {
             get
             {
@@ -51771,10 +53177,10 @@ namespace MessageImporter
         #endregion
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/data.xsd", IncludeInSchema = false)]
-    public enum ItemChoiceType1
+    public enum ItemChoiceType4
     {
 
         /// <remarks/>
@@ -51945,7 +53351,7 @@ namespace MessageImporter
         vyroba,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/data.xsd")]
     public enum dataPackItemVersionType
@@ -51960,7 +53366,7 @@ namespace MessageImporter
         Item20,
     }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.4927")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.stormware.cz/schema/version_2/data.xsd")]
     public enum dataPackVersionType

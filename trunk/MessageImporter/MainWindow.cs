@@ -818,7 +818,7 @@ namespace MessageImporter
                     continue;
 
                 dataPackItemType newDatapack = new dataPackItemType();
-                newDatapack.ItemElementName = ItemChoiceType1.invoice;
+                newDatapack.ItemElementName = ItemChoiceType4.invoice;
                 newDatapack.id = inv.OrderNumber;
                 newDatapack.version = dataPackItemVersionType.Item20;
                 
@@ -857,12 +857,14 @@ namespace MessageImporter
                 newInv.invoiceHeader.partnerIdentity.address1.company = inv.BillingCompany;
                 newInv.invoiceHeader.partnerIdentity.address1.country = new refType();
                 newInv.invoiceHeader.partnerIdentity.address1.country.ids = inv.BillingCountry;
-                newInv.invoiceHeader.partnerIdentity.shipToAddress = new shipToAddressType();
-                newInv.invoiceHeader.partnerIdentity.shipToAddress.name = inv.ShippingName;
-                newInv.invoiceHeader.partnerIdentity.shipToAddress.street = inv.ShippingStreet;
-                newInv.invoiceHeader.partnerIdentity.shipToAddress.city = inv.ShippingCity;
-                newInv.invoiceHeader.partnerIdentity.shipToAddress.zip = inv.ShippingZip;
-                newInv.invoiceHeader.partnerIdentity.shipToAddress.company = inv.ShippingCompany;
+                newInv.invoiceHeader.partnerIdentity.address1.email = inv.CustomerEmail;
+                newInv.invoiceHeader.partnerIdentity.shipToAddress = new shipToAddressType[1];
+                newInv.invoiceHeader.partnerIdentity.shipToAddress[0] = new shipToAddressType();
+                newInv.invoiceHeader.partnerIdentity.shipToAddress[0].name = inv.ShippingName;
+                newInv.invoiceHeader.partnerIdentity.shipToAddress[0].street = inv.ShippingStreet;
+                newInv.invoiceHeader.partnerIdentity.shipToAddress[0].city = inv.ShippingCity;
+                newInv.invoiceHeader.partnerIdentity.shipToAddress[0].zip = inv.ShippingZip;
+                newInv.invoiceHeader.partnerIdentity.shipToAddress[0].company = inv.ShippingCompany;
 
                 newInv.invoiceHeader.numberOrder = inv.OrderNumber;
                 newInv.invoiceHeader.dateSpecified = true;
@@ -990,7 +992,7 @@ namespace MessageImporter
 
                 dataPackItemType newDatapack = new dataPackItemType();
                 newDatapack.id = code;
-                newDatapack.ItemElementName = ItemChoiceType1.stock;
+                newDatapack.ItemElementName = ItemChoiceType4.stock;
                 newDatapack.version = dataPackItemVersionType.Item20;
 
                 stockType stock = new stockType();
@@ -998,7 +1000,9 @@ namespace MessageImporter
 
                 // defaultna akcia add
                 stock.actionType = new actionTypeType1();
-                stock.actionType.Item = "";
+                stock.actionType.Item = new requestStockType();
+                stock.actionType.Item.add = boolean.@true;
+                stock.actionType.ItemElementName = ItemChoiceType3.add;
 
                 // header
                 stock.stockHeader = new stockHeaderType();
@@ -1069,7 +1073,7 @@ namespace MessageImporter
             // zabalenie prijemok
             dataPackItemType prijmekaDatapack = new dataPackItemType();
             prijmekaDatapack.id = "prijemka_" + ticks;
-            prijmekaDatapack.ItemElementName = ItemChoiceType1.prijemka;
+            prijmekaDatapack.ItemElementName = ItemChoiceType4.prijemka;
             prijmekaDatapack.version = dataPackItemVersionType.Item20;
             prijemkaType prijemka = new prijemkaType();
             prijemka.version = priVersionType.Item20;
@@ -1082,7 +1086,7 @@ namespace MessageImporter
             /////////////////////////////////////////////////// invoice
             dataPackItemType invDatapack = new dataPackItemType();
             invDatapack.id = "invoice_" + ticks;
-            invDatapack.ItemElementName = ItemChoiceType1.invoice;
+            invDatapack.ItemElementName = ItemChoiceType4.invoice;
             invDatapack.version = dataPackItemVersionType.Item20;
             invoiceType newInv = new invoiceType();
             newInv.version = invVersionType.Item20;
