@@ -358,6 +358,8 @@ namespace MessageImporter
                 else
                     shipping.ItemPrice = config.ShipPrice.ToString();
 
+                inv.OrderShipping = shipping.ItemPrice;
+
                 shippingStock.Description = config.ShipText;
                 shippingStock.ProductCode = Properties.Settings.Default.ShippingCode;
 
