@@ -72,8 +72,22 @@ namespace MessageImporter
 
         [System.ComponentModel.DisplayName("Čís.obj.")]
         public string OrderNumber { get; set; }
+
+        private string orderDate;
         [System.ComponentModel.DisplayName("Dátum obj.")]
-        public string OrderDate { get; set; }
+        public string OrderDate
+        {
+            get
+            {
+                return orderDate;
+            }
+
+            set
+            {
+                orderDate = Common.GetDate(value);
+            }
+        }
+
         [System.ComponentModel.DisplayName("Položiek")]
         public string TotQtyOrdered { get; set; }
         [System.ComponentModel.DisplayName("Meno")]
@@ -98,24 +112,76 @@ namespace MessageImporter
         
         [System.ComponentModel.DisplayName("Status")]
         public string OrderStatus { get; set; }
-        
+
+        // krajina sa urci z polozky OrderPurchasedFrom pri importe
+        internal Country Country { get; set; }
         internal string OrderPurchasedFrom { get; set; }
 
         [System.ComponentModel.DisplayName("Platobná metóda")]
         public string OrderPaymentMethod { get; set; }
         [System.ComponentModel.DisplayName("Spôsob dopravy")]
         public string OrderShippingMethod { get; set; }
+        private string shippingName;
         [System.ComponentModel.DisplayName("ShippingName")]
-        public string ShippingName { get; set; }
+        public string ShippingName 
+        {
+            get
+            {
+                return shippingName;
+            }
+
+            set
+            {
+                shippingName = Common.Proper(value);
+            }
+        }
 
         internal string ShippingCompany { get; set; }
 
+        private string shippingStreet;
         [System.ComponentModel.DisplayName("ShippingStreet")]
-        public string ShippingStreet { get; set; }
+        public string ShippingStreet
+        {
+            get
+            {
+                return shippingStreet;
+            }
+
+            set
+            {
+                shippingStreet = Common.Proper(value);
+            }
+        }
+
+        private string shippingZip;
         [System.ComponentModel.DisplayName("ShippingZip")]
-        public string ShippingZip { get; set; }
+        public string ShippingZip
+        {
+            get
+            {
+                return shippingZip;
+            }
+
+            set
+            {
+                shippingZip = Common.ToNumeric(value);
+            }
+        }
+
+        private string shippingCity;
         [System.ComponentModel.DisplayName("ShippingCity")]
-        public string ShippingCity { get; set; }
+        public string ShippingCity
+        {
+            get
+            {
+                return shippingCity;
+            }
+
+            set
+            {
+                shippingCity = Common.Proper(value);
+            }
+        }
 
         internal string ShippingState { get; set; }
         internal string ShippingStateName { get; set; }
@@ -125,19 +191,85 @@ namespace MessageImporter
 
         internal string ShippingCountryName { get; set; }
 
+        private string shippingPhoneNumber;
         [System.ComponentModel.DisplayName("ShippingPhoneNumber")]
-        public string ShippingPhoneNumber { get; set; }
+        public string ShippingPhoneNumber
+        {
+            get
+            {
+                return shippingPhoneNumber;
+            }
+
+            set
+            {
+                if (Country == Country.Slovakia)
+                    shippingPhoneNumber = Common.SlovakPhone(value);
+                else
+                    shippingPhoneNumber = value;
+            }
+        }
+
+        private string billingName;
         [System.ComponentModel.DisplayName("BillingName")]
-        public string BillingName { get; set; }
-        
+        public string BillingName
+        {
+            get
+            {
+                return billingName;
+            }
+
+            set
+            {
+                billingName = Common.Proper(value);
+            }
+        }
+
         internal string BillingCompany { get; set; }
 
+        private string billingStreet;
         [System.ComponentModel.DisplayName("BillingStreet")]
-        public string BillingStreet { get; set; }
+        public string BillingStreet
+        {
+            get
+            {
+                return billingStreet;
+            }
+
+            set
+            {
+                billingStreet = Common.Proper(value);
+            }
+        }
+
+        private string billingZip;
         [System.ComponentModel.DisplayName("BillingZip")]
-        public string BillingZip { get; set; }
+        public string BillingZip
+        {
+            get
+            {
+                return billingZip;
+            }
+
+            set
+            {
+                billingZip = Common.ToNumeric(value);
+            }
+        }
+
+        private string billingCity;
         [System.ComponentModel.DisplayName("BillingCity")]
-        public string BillingCity { get; set; }
+        public string BillingCity
+        {
+            get
+            {
+                return billingCity;
+            }
+
+            set
+            {
+                billingCity = Common.Proper(value);
+            }
+        }
 
         internal string BillingState { get; set; }
         internal string BillingStateName { get; set; }
