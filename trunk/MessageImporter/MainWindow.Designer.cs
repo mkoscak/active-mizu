@@ -47,15 +47,6 @@
             this.btnDeselectAll = new System.Windows.Forms.Button();
             this.tabData = new System.Windows.Forms.TabControl();
             this.invoice = new System.Windows.Forms.TabPage();
-            this.stock = new System.Windows.Forms.TabPage();
-            this.btnExportMSG = new System.Windows.Forms.Button();
-            this.btnUnpairAllMSG = new System.Windows.Forms.Button();
-            this.btnUnpairProductMSG = new System.Windows.Forms.Button();
-            this.btnRemoveMSG = new System.Windows.Forms.Button();
-            this.btnAddMsg = new System.Windows.Forms.Button();
-            this.tabFilesLog = new System.Windows.Forms.TabControl();
-            this.tabFoundFiles = new System.Windows.Forms.TabPage();
-            this.tabLog = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnInvoiceRemove = new System.Windows.Forms.Button();
             this.btnInvoiceAdd = new System.Windows.Forms.Button();
@@ -72,42 +63,57 @@
             this.btnInvoiceItemNew = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnSettingsSave = new System.Windows.Forms.Button();
-            this.btnSettingsLoad = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtSettingsIco = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtSetCzkEx = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtSetHufEx = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtSetPlnEx = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtSetPlnText = new System.Windows.Forms.TextBox();
-            this.txtSetHufText = new System.Windows.Forms.TextBox();
-            this.txtSetCzkText = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtSetPlnPrice = new System.Windows.Forms.TextBox();
-            this.txtSetHufPrice = new System.Windows.Forms.TextBox();
-            this.txtSetCzkPrice = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtSetSkkPrice = new System.Windows.Forms.TextBox();
-            this.txtSetSkkText = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.stock = new System.Windows.Forms.TabPage();
+            this.btnExportMSG = new System.Windows.Forms.Button();
+            this.btnUnpairAllMSG = new System.Windows.Forms.Button();
+            this.btnUnpairProductMSG = new System.Windows.Forms.Button();
+            this.btnRemoveMSG = new System.Windows.Forms.Button();
+            this.btnAddMsg = new System.Windows.Forms.Button();
+            this.tabFilesLog = new System.Windows.Forms.TabControl();
+            this.tabFoundFiles = new System.Windows.Forms.TabPage();
+            this.tabSettings = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtSetSkkTax = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtSetPlnTax = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtSetHufTax = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtSetCzkTax = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.txtSetPlnTax = new System.Windows.Forms.TextBox();
+            this.txtSetCzkTax = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtSetHufTax = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtSetSkkPrice = new System.Windows.Forms.TextBox();
+            this.txtSetSkkText = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtSetPlnPrice = new System.Windows.Forms.TextBox();
+            this.txtSetHufPrice = new System.Windows.Forms.TextBox();
+            this.txtSetCzkPrice = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtSetPlnText = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtSetHufText = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtSetCzkText = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtSetPlnEx = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtSetHufEx = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtSetCzkEx = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtSettingsIco = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnSettingsLoad = new System.Windows.Forms.Button();
+            this.btnSettingsSave = new System.Windows.Forms.Button();
+            this.tabReplace = new System.Windows.Forms.TabPage();
+            this.btnReplaceReload = new System.Windows.Forms.Button();
+            this.btnReplaceSave = new System.Windows.Forms.Button();
+            this.gridReplacements = new CustomDataGridView();
+            this.tabLog = new System.Windows.Forms.TabPage();
+            this.btnReplacementRemove = new System.Windows.Forms.Button();
+            this.btnReplacementAdd = new System.Windows.Forms.Button();
             this.dataFiles = new MessageImporter.CustomDataGridView();
             this.dataCSV = new MessageImporter.CustomDataGridView();
             this.dataGridInvItems = new MessageImporter.CustomDataGridView();
@@ -115,20 +121,22 @@
             this.grpInputSettings.SuspendLayout();
             this.tabData.SuspendLayout();
             this.invoice.SuspendLayout();
-            this.stock.SuspendLayout();
-            this.tabFilesLog.SuspendLayout();
-            this.tabFoundFiles.SuspendLayout();
-            this.tabLog.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tabItems.SuspendLayout();
             this.tabAllItems.SuspendLayout();
             this.tabSelItems.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.stock.SuspendLayout();
+            this.tabFilesLog.SuspendLayout();
+            this.tabFoundFiles.SuspendLayout();
+            this.tabSettings.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tabReplace.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).BeginInit();
+            this.tabLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataCSV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvItems)).BeginInit();
@@ -329,117 +337,6 @@
             this.invoice.Text = "Invoice";
             this.invoice.UseVisualStyleBackColor = true;
             // 
-            // stock
-            // 
-            this.stock.Controls.Add(this.btnExportMSG);
-            this.stock.Controls.Add(this.btnUnpairAllMSG);
-            this.stock.Controls.Add(this.btnUnpairProductMSG);
-            this.stock.Controls.Add(this.btnRemoveMSG);
-            this.stock.Controls.Add(this.btnAddMsg);
-            this.stock.Controls.Add(this.dataGrid);
-            this.stock.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.stock.Location = new System.Drawing.Point(4, 22);
-            this.stock.Name = "stock";
-            this.stock.Padding = new System.Windows.Forms.Padding(3);
-            this.stock.Size = new System.Drawing.Size(920, 640);
-            this.stock.TabIndex = 1;
-            this.stock.Text = "Stock";
-            this.stock.UseVisualStyleBackColor = true;
-            // 
-            // btnExportMSG
-            // 
-            this.btnExportMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportMSG.Location = new System.Drawing.Point(520, 617);
-            this.btnExportMSG.Name = "btnExportMSG";
-            this.btnExportMSG.Size = new System.Drawing.Size(114, 23);
-            this.btnExportMSG.TabIndex = 35;
-            this.btnExportMSG.Text = "Export";
-            this.btnExportMSG.UseVisualStyleBackColor = true;
-            this.btnExportMSG.Click += new System.EventHandler(this.btnExportMSG_Click);
-            // 
-            // btnUnpairAllMSG
-            // 
-            this.btnUnpairAllMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUnpairAllMSG.Location = new System.Drawing.Point(800, 617);
-            this.btnUnpairAllMSG.Name = "btnUnpairAllMSG";
-            this.btnUnpairAllMSG.Size = new System.Drawing.Size(114, 23);
-            this.btnUnpairAllMSG.TabIndex = 33;
-            this.btnUnpairAllMSG.Text = "Unpair all";
-            this.btnUnpairAllMSG.UseVisualStyleBackColor = true;
-            this.btnUnpairAllMSG.Click += new System.EventHandler(this.btnUnpairAllMSG_Click);
-            // 
-            // btnUnpairProductMSG
-            // 
-            this.btnUnpairProductMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUnpairProductMSG.Location = new System.Drawing.Point(678, 617);
-            this.btnUnpairProductMSG.Name = "btnUnpairProductMSG";
-            this.btnUnpairProductMSG.Size = new System.Drawing.Size(114, 23);
-            this.btnUnpairProductMSG.TabIndex = 32;
-            this.btnUnpairProductMSG.Text = "Unpair selected";
-            this.btnUnpairProductMSG.UseVisualStyleBackColor = true;
-            this.btnUnpairProductMSG.Click += new System.EventHandler(this.btnUnpairProductMSG_Click);
-            // 
-            // btnRemoveMSG
-            // 
-            this.btnRemoveMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemoveMSG.Location = new System.Drawing.Point(87, 617);
-            this.btnRemoveMSG.Name = "btnRemoveMSG";
-            this.btnRemoveMSG.Size = new System.Drawing.Size(114, 23);
-            this.btnRemoveMSG.TabIndex = 27;
-            this.btnRemoveMSG.Text = "Remove selected";
-            this.btnRemoveMSG.UseVisualStyleBackColor = true;
-            this.btnRemoveMSG.Click += new System.EventHandler(this.btnRemoveMSG_Click);
-            // 
-            // btnAddMsg
-            // 
-            this.btnAddMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddMsg.Location = new System.Drawing.Point(6, 617);
-            this.btnAddMsg.Name = "btnAddMsg";
-            this.btnAddMsg.Size = new System.Drawing.Size(75, 23);
-            this.btnAddMsg.TabIndex = 26;
-            this.btnAddMsg.Text = "Add new";
-            this.btnAddMsg.UseVisualStyleBackColor = true;
-            this.btnAddMsg.Click += new System.EventHandler(this.btnAddMsg_Click);
-            // 
-            // tabFilesLog
-            // 
-            this.tabFilesLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this.tabFilesLog.Controls.Add(this.tabFoundFiles);
-            this.tabFilesLog.Controls.Add(this.tabPage1);
-            this.tabFilesLog.Controls.Add(this.tabLog);
-            this.tabFilesLog.Location = new System.Drawing.Point(12, 174);
-            this.tabFilesLog.Name = "tabFilesLog";
-            this.tabFilesLog.SelectedIndex = 0;
-            this.tabFilesLog.Size = new System.Drawing.Size(486, 504);
-            this.tabFilesLog.TabIndex = 29;
-            // 
-            // tabFoundFiles
-            // 
-            this.tabFoundFiles.Controls.Add(this.dataFiles);
-            this.tabFoundFiles.Controls.Add(this.btnDeselectAll);
-            this.tabFoundFiles.Controls.Add(this.btnSelectAll);
-            this.tabFoundFiles.Controls.Add(this.btnInverse);
-            this.tabFoundFiles.Location = new System.Drawing.Point(4, 22);
-            this.tabFoundFiles.Name = "tabFoundFiles";
-            this.tabFoundFiles.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFoundFiles.Size = new System.Drawing.Size(478, 478);
-            this.tabFoundFiles.TabIndex = 0;
-            this.tabFoundFiles.Text = "Found files";
-            this.tabFoundFiles.UseVisualStyleBackColor = true;
-            // 
-            // tabLog
-            // 
-            this.tabLog.Controls.Add(this.txtLog);
-            this.tabLog.Controls.Add(this.btnClear);
-            this.tabLog.Location = new System.Drawing.Point(4, 22);
-            this.tabLog.Name = "tabLog";
-            this.tabLog.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLog.Size = new System.Drawing.Size(478, 478);
-            this.tabLog.TabIndex = 1;
-            this.tabLog.Text = "Log";
-            this.tabLog.UseVisualStyleBackColor = true;
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -634,268 +531,123 @@
             this.label8.TabIndex = 27;
             this.label8.Text = "Invoice items";
             // 
-            // tabPage1
+            // stock
             // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.txtSettingsIco);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.btnSettingsLoad);
-            this.tabPage1.Controls.Add(this.btnSettingsSave);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(478, 478);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Settings";
+            this.stock.Controls.Add(this.btnExportMSG);
+            this.stock.Controls.Add(this.btnUnpairAllMSG);
+            this.stock.Controls.Add(this.btnUnpairProductMSG);
+            this.stock.Controls.Add(this.btnRemoveMSG);
+            this.stock.Controls.Add(this.btnAddMsg);
+            this.stock.Controls.Add(this.dataGrid);
+            this.stock.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.stock.Location = new System.Drawing.Point(4, 22);
+            this.stock.Name = "stock";
+            this.stock.Padding = new System.Windows.Forms.Padding(3);
+            this.stock.Size = new System.Drawing.Size(920, 640);
+            this.stock.TabIndex = 1;
+            this.stock.Text = "Stock";
+            this.stock.UseVisualStyleBackColor = true;
             // 
-            // btnSettingsSave
+            // btnExportMSG
             // 
-            this.btnSettingsSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSettingsSave.Location = new System.Drawing.Point(369, 450);
-            this.btnSettingsSave.Name = "btnSettingsSave";
-            this.btnSettingsSave.Size = new System.Drawing.Size(103, 23);
-            this.btnSettingsSave.TabIndex = 0;
-            this.btnSettingsSave.Text = "&Save";
-            this.btnSettingsSave.UseVisualStyleBackColor = true;
-            this.btnSettingsSave.Click += new System.EventHandler(this.btnSettingsSave_Click);
+            this.btnExportMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportMSG.Location = new System.Drawing.Point(520, 617);
+            this.btnExportMSG.Name = "btnExportMSG";
+            this.btnExportMSG.Size = new System.Drawing.Size(114, 23);
+            this.btnExportMSG.TabIndex = 35;
+            this.btnExportMSG.Text = "Export";
+            this.btnExportMSG.UseVisualStyleBackColor = true;
+            this.btnExportMSG.Click += new System.EventHandler(this.btnExportMSG_Click);
             // 
-            // btnSettingsLoad
+            // btnUnpairAllMSG
             // 
-            this.btnSettingsLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSettingsLoad.Location = new System.Drawing.Point(260, 450);
-            this.btnSettingsLoad.Name = "btnSettingsLoad";
-            this.btnSettingsLoad.Size = new System.Drawing.Size(103, 23);
-            this.btnSettingsLoad.TabIndex = 1;
-            this.btnSettingsLoad.Text = "&Load";
-            this.btnSettingsLoad.UseVisualStyleBackColor = true;
-            this.btnSettingsLoad.Click += new System.EventHandler(this.btnSettingsLoad_Click);
+            this.btnUnpairAllMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUnpairAllMSG.Location = new System.Drawing.Point(800, 617);
+            this.btnUnpairAllMSG.Name = "btnUnpairAllMSG";
+            this.btnUnpairAllMSG.Size = new System.Drawing.Size(114, 23);
+            this.btnUnpairAllMSG.TabIndex = 33;
+            this.btnUnpairAllMSG.Text = "Unpair all";
+            this.btnUnpairAllMSG.UseVisualStyleBackColor = true;
+            this.btnUnpairAllMSG.Click += new System.EventHandler(this.btnUnpairAllMSG_Click);
             // 
-            // label3
+            // btnUnpairProductMSG
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.Maroon;
-            this.label3.Location = new System.Drawing.Point(6, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "ActiveStyle IČO";
+            this.btnUnpairProductMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUnpairProductMSG.Location = new System.Drawing.Point(678, 617);
+            this.btnUnpairProductMSG.Name = "btnUnpairProductMSG";
+            this.btnUnpairProductMSG.Size = new System.Drawing.Size(114, 23);
+            this.btnUnpairProductMSG.TabIndex = 32;
+            this.btnUnpairProductMSG.Text = "Unpair selected";
+            this.btnUnpairProductMSG.UseVisualStyleBackColor = true;
+            this.btnUnpairProductMSG.Click += new System.EventHandler(this.btnUnpairProductMSG_Click);
             // 
-            // txtSettingsIco
+            // btnRemoveMSG
             // 
-            this.txtSettingsIco.Location = new System.Drawing.Point(93, 13);
-            this.txtSettingsIco.Name = "txtSettingsIco";
-            this.txtSettingsIco.Size = new System.Drawing.Size(122, 20);
-            this.txtSettingsIco.TabIndex = 3;
+            this.btnRemoveMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRemoveMSG.Location = new System.Drawing.Point(87, 617);
+            this.btnRemoveMSG.Name = "btnRemoveMSG";
+            this.btnRemoveMSG.Size = new System.Drawing.Size(114, 23);
+            this.btnRemoveMSG.TabIndex = 27;
+            this.btnRemoveMSG.Text = "Remove selected";
+            this.btnRemoveMSG.UseVisualStyleBackColor = true;
+            this.btnRemoveMSG.Click += new System.EventHandler(this.btnRemoveMSG_Click);
             // 
-            // groupBox1
+            // btnAddMsg
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.txtSetPlnEx);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.txtSetHufEx);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txtSetCzkEx);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(9, 39);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(452, 108);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Echange rates";
+            this.btnAddMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddMsg.Location = new System.Drawing.Point(6, 617);
+            this.btnAddMsg.Name = "btnAddMsg";
+            this.btnAddMsg.Size = new System.Drawing.Size(75, 23);
+            this.btnAddMsg.TabIndex = 26;
+            this.btnAddMsg.Text = "Add new";
+            this.btnAddMsg.UseVisualStyleBackColor = true;
+            this.btnAddMsg.Click += new System.EventHandler(this.btnAddMsg_Click);
             // 
-            // txtSetCzkEx
+            // tabFilesLog
             // 
-            this.txtSetCzkEx.Location = new System.Drawing.Point(84, 22);
-            this.txtSetCzkEx.Name = "txtSetCzkEx";
-            this.txtSetCzkEx.Size = new System.Drawing.Size(122, 20);
-            this.txtSetCzkEx.TabIndex = 6;
+            this.tabFilesLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.tabFilesLog.Controls.Add(this.tabFoundFiles);
+            this.tabFilesLog.Controls.Add(this.tabSettings);
+            this.tabFilesLog.Controls.Add(this.tabReplace);
+            this.tabFilesLog.Controls.Add(this.tabLog);
+            this.tabFilesLog.Location = new System.Drawing.Point(12, 174);
+            this.tabFilesLog.Name = "tabFilesLog";
+            this.tabFilesLog.SelectedIndex = 0;
+            this.tabFilesLog.Size = new System.Drawing.Size(486, 504);
+            this.tabFilesLog.TabIndex = 29;
             // 
-            // label4
+            // tabFoundFiles
             // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.Maroon;
-            this.label4.Location = new System.Drawing.Point(6, 25);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(28, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "CZK";
+            this.tabFoundFiles.Controls.Add(this.dataFiles);
+            this.tabFoundFiles.Controls.Add(this.btnDeselectAll);
+            this.tabFoundFiles.Controls.Add(this.btnSelectAll);
+            this.tabFoundFiles.Controls.Add(this.btnInverse);
+            this.tabFoundFiles.Location = new System.Drawing.Point(4, 22);
+            this.tabFoundFiles.Name = "tabFoundFiles";
+            this.tabFoundFiles.Padding = new System.Windows.Forms.Padding(3);
+            this.tabFoundFiles.Size = new System.Drawing.Size(478, 478);
+            this.tabFoundFiles.TabIndex = 0;
+            this.tabFoundFiles.Text = "Found files";
+            this.tabFoundFiles.UseVisualStyleBackColor = true;
             // 
-            // txtSetHufEx
+            // tabSettings
             // 
-            this.txtSetHufEx.Location = new System.Drawing.Point(84, 48);
-            this.txtSetHufEx.Name = "txtSetHufEx";
-            this.txtSetHufEx.Size = new System.Drawing.Size(122, 20);
-            this.txtSetHufEx.TabIndex = 8;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.Maroon;
-            this.label6.Location = new System.Drawing.Point(6, 51);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 13);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "HUF";
-            // 
-            // txtSetPlnEx
-            // 
-            this.txtSetPlnEx.Location = new System.Drawing.Point(84, 74);
-            this.txtSetPlnEx.Name = "txtSetPlnEx";
-            this.txtSetPlnEx.Size = new System.Drawing.Size(122, 20);
-            this.txtSetPlnEx.TabIndex = 10;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Maroon;
-            this.label7.Location = new System.Drawing.Point(6, 77);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(28, 13);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "PLN";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txtSetSkkPrice);
-            this.groupBox2.Controls.Add(this.txtSetSkkText);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.txtSetPlnPrice);
-            this.groupBox2.Controls.Add(this.txtSetHufPrice);
-            this.groupBox2.Controls.Add(this.txtSetCzkPrice);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.txtSetPlnText);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.txtSetHufText);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.txtSetCzkText);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Location = new System.Drawing.Point(9, 153);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(452, 139);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Shipping";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.Maroon;
-            this.label9.Location = new System.Drawing.Point(6, 113);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(28, 13);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "PLN";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.Maroon;
-            this.label10.Location = new System.Drawing.Point(6, 87);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(29, 13);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "HUF";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.Maroon;
-            this.label11.Location = new System.Drawing.Point(6, 61);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(28, 13);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "CZK";
-            // 
-            // txtSetPlnText
-            // 
-            this.txtSetPlnText.Location = new System.Drawing.Point(84, 110);
-            this.txtSetPlnText.Name = "txtSetPlnText";
-            this.txtSetPlnText.Size = new System.Drawing.Size(122, 20);
-            this.txtSetPlnText.TabIndex = 13;
-            // 
-            // txtSetHufText
-            // 
-            this.txtSetHufText.Location = new System.Drawing.Point(84, 84);
-            this.txtSetHufText.Name = "txtSetHufText";
-            this.txtSetHufText.Size = new System.Drawing.Size(122, 20);
-            this.txtSetHufText.TabIndex = 12;
-            // 
-            // txtSetCzkText
-            // 
-            this.txtSetCzkText.Location = new System.Drawing.Point(84, 58);
-            this.txtSetCzkText.Name = "txtSetCzkText";
-            this.txtSetCzkText.Size = new System.Drawing.Size(122, 20);
-            this.txtSetCzkText.TabIndex = 11;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.Maroon;
-            this.label12.Location = new System.Drawing.Point(81, 16);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(28, 13);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "Text";
-            // 
-            // txtSetPlnPrice
-            // 
-            this.txtSetPlnPrice.Location = new System.Drawing.Point(232, 110);
-            this.txtSetPlnPrice.Name = "txtSetPlnPrice";
-            this.txtSetPlnPrice.Size = new System.Drawing.Size(122, 20);
-            this.txtSetPlnPrice.TabIndex = 17;
-            // 
-            // txtSetHufPrice
-            // 
-            this.txtSetHufPrice.Location = new System.Drawing.Point(232, 84);
-            this.txtSetHufPrice.Name = "txtSetHufPrice";
-            this.txtSetHufPrice.Size = new System.Drawing.Size(122, 20);
-            this.txtSetHufPrice.TabIndex = 16;
-            // 
-            // txtSetCzkPrice
-            // 
-            this.txtSetCzkPrice.Location = new System.Drawing.Point(232, 58);
-            this.txtSetCzkPrice.Name = "txtSetCzkPrice";
-            this.txtSetCzkPrice.Size = new System.Drawing.Size(122, 20);
-            this.txtSetCzkPrice.TabIndex = 15;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.Maroon;
-            this.label13.Location = new System.Drawing.Point(229, 16);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(31, 13);
-            this.label13.TabIndex = 18;
-            this.label13.Text = "Price";
-            // 
-            // txtSetSkkPrice
-            // 
-            this.txtSetSkkPrice.Location = new System.Drawing.Point(232, 32);
-            this.txtSetSkkPrice.Name = "txtSetSkkPrice";
-            this.txtSetSkkPrice.Size = new System.Drawing.Size(122, 20);
-            this.txtSetSkkPrice.TabIndex = 21;
-            // 
-            // txtSetSkkText
-            // 
-            this.txtSetSkkText.Location = new System.Drawing.Point(84, 32);
-            this.txtSetSkkText.Name = "txtSetSkkText";
-            this.txtSetSkkText.Size = new System.Drawing.Size(122, 20);
-            this.txtSetSkkText.TabIndex = 20;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.Maroon;
-            this.label14.Location = new System.Drawing.Point(6, 35);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(28, 13);
-            this.label14.TabIndex = 19;
-            this.label14.Text = "SKK";
+            this.tabSettings.BackColor = System.Drawing.Color.Transparent;
+            this.tabSettings.Controls.Add(this.groupBox3);
+            this.tabSettings.Controls.Add(this.groupBox2);
+            this.tabSettings.Controls.Add(this.groupBox1);
+            this.tabSettings.Controls.Add(this.txtSettingsIco);
+            this.tabSettings.Controls.Add(this.label3);
+            this.tabSettings.Controls.Add(this.btnSettingsLoad);
+            this.tabSettings.Controls.Add(this.btnSettingsSave);
+            this.tabSettings.Location = new System.Drawing.Point(4, 22);
+            this.tabSettings.Name = "tabSettings";
+            this.tabSettings.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSettings.Size = new System.Drawing.Size(478, 478);
+            this.tabSettings.TabIndex = 2;
+            this.tabSettings.Text = "Settings";
+            this.tabSettings.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -933,12 +685,29 @@
             this.label15.TabIndex = 28;
             this.label15.Text = "SKK";
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.Maroon;
+            this.label18.Location = new System.Drawing.Point(6, 77);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(29, 13);
+            this.label18.TabIndex = 25;
+            this.label18.Text = "HUF";
+            // 
             // txtSetPlnTax
             // 
             this.txtSetPlnTax.Location = new System.Drawing.Point(84, 100);
             this.txtSetPlnTax.Name = "txtSetPlnTax";
             this.txtSetPlnTax.Size = new System.Drawing.Size(122, 20);
             this.txtSetPlnTax.TabIndex = 26;
+            // 
+            // txtSetCzkTax
+            // 
+            this.txtSetCzkTax.Location = new System.Drawing.Point(84, 48);
+            this.txtSetCzkTax.Name = "txtSetCzkTax";
+            this.txtSetCzkTax.Size = new System.Drawing.Size(122, 20);
+            this.txtSetCzkTax.TabIndex = 23;
             // 
             // label16
             // 
@@ -950,13 +719,6 @@
             this.label16.TabIndex = 27;
             this.label16.Text = "PLN";
             // 
-            // txtSetHufTax
-            // 
-            this.txtSetHufTax.Location = new System.Drawing.Point(84, 74);
-            this.txtSetHufTax.Name = "txtSetHufTax";
-            this.txtSetHufTax.Size = new System.Drawing.Size(122, 20);
-            this.txtSetHufTax.TabIndex = 24;
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -967,22 +729,339 @@
             this.label17.TabIndex = 22;
             this.label17.Text = "CZK";
             // 
-            // txtSetCzkTax
+            // txtSetHufTax
             // 
-            this.txtSetCzkTax.Location = new System.Drawing.Point(84, 48);
-            this.txtSetCzkTax.Name = "txtSetCzkTax";
-            this.txtSetCzkTax.Size = new System.Drawing.Size(122, 20);
-            this.txtSetCzkTax.TabIndex = 23;
+            this.txtSetHufTax.Location = new System.Drawing.Point(84, 74);
+            this.txtSetHufTax.Name = "txtSetHufTax";
+            this.txtSetHufTax.Size = new System.Drawing.Size(122, 20);
+            this.txtSetHufTax.TabIndex = 24;
             // 
-            // label18
+            // groupBox2
             // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.Color.Maroon;
-            this.label18.Location = new System.Drawing.Point(6, 77);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(29, 13);
-            this.label18.TabIndex = 25;
-            this.label18.Text = "HUF";
+            this.groupBox2.Controls.Add(this.txtSetSkkPrice);
+            this.groupBox2.Controls.Add(this.txtSetSkkText);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.txtSetPlnPrice);
+            this.groupBox2.Controls.Add(this.txtSetHufPrice);
+            this.groupBox2.Controls.Add(this.txtSetCzkPrice);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.txtSetPlnText);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.txtSetHufText);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.txtSetCzkText);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Location = new System.Drawing.Point(9, 153);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(452, 139);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Shipping";
+            // 
+            // txtSetSkkPrice
+            // 
+            this.txtSetSkkPrice.Location = new System.Drawing.Point(232, 32);
+            this.txtSetSkkPrice.Name = "txtSetSkkPrice";
+            this.txtSetSkkPrice.Size = new System.Drawing.Size(122, 20);
+            this.txtSetSkkPrice.TabIndex = 21;
+            // 
+            // txtSetSkkText
+            // 
+            this.txtSetSkkText.Location = new System.Drawing.Point(84, 32);
+            this.txtSetSkkText.Name = "txtSetSkkText";
+            this.txtSetSkkText.Size = new System.Drawing.Size(122, 20);
+            this.txtSetSkkText.TabIndex = 20;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.Color.Maroon;
+            this.label14.Location = new System.Drawing.Point(6, 35);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(28, 13);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "SKK";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.Maroon;
+            this.label13.Location = new System.Drawing.Point(229, 16);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(31, 13);
+            this.label13.TabIndex = 18;
+            this.label13.Text = "Price";
+            // 
+            // txtSetPlnPrice
+            // 
+            this.txtSetPlnPrice.Location = new System.Drawing.Point(232, 110);
+            this.txtSetPlnPrice.Name = "txtSetPlnPrice";
+            this.txtSetPlnPrice.Size = new System.Drawing.Size(122, 20);
+            this.txtSetPlnPrice.TabIndex = 17;
+            // 
+            // txtSetHufPrice
+            // 
+            this.txtSetHufPrice.Location = new System.Drawing.Point(232, 84);
+            this.txtSetHufPrice.Name = "txtSetHufPrice";
+            this.txtSetHufPrice.Size = new System.Drawing.Size(122, 20);
+            this.txtSetHufPrice.TabIndex = 16;
+            // 
+            // txtSetCzkPrice
+            // 
+            this.txtSetCzkPrice.Location = new System.Drawing.Point(232, 58);
+            this.txtSetCzkPrice.Name = "txtSetCzkPrice";
+            this.txtSetCzkPrice.Size = new System.Drawing.Size(122, 20);
+            this.txtSetCzkPrice.TabIndex = 15;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.Maroon;
+            this.label12.Location = new System.Drawing.Point(81, 16);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(28, 13);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "Text";
+            // 
+            // txtSetPlnText
+            // 
+            this.txtSetPlnText.Location = new System.Drawing.Point(84, 110);
+            this.txtSetPlnText.Name = "txtSetPlnText";
+            this.txtSetPlnText.Size = new System.Drawing.Size(122, 20);
+            this.txtSetPlnText.TabIndex = 13;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.Maroon;
+            this.label9.Location = new System.Drawing.Point(6, 113);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(28, 13);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "PLN";
+            // 
+            // txtSetHufText
+            // 
+            this.txtSetHufText.Location = new System.Drawing.Point(84, 84);
+            this.txtSetHufText.Name = "txtSetHufText";
+            this.txtSetHufText.Size = new System.Drawing.Size(122, 20);
+            this.txtSetHufText.TabIndex = 12;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.Maroon;
+            this.label11.Location = new System.Drawing.Point(6, 61);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(28, 13);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "CZK";
+            // 
+            // txtSetCzkText
+            // 
+            this.txtSetCzkText.Location = new System.Drawing.Point(84, 58);
+            this.txtSetCzkText.Name = "txtSetCzkText";
+            this.txtSetCzkText.Size = new System.Drawing.Size(122, 20);
+            this.txtSetCzkText.TabIndex = 11;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.Maroon;
+            this.label10.Location = new System.Drawing.Point(6, 87);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(29, 13);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "HUF";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtSetPlnEx);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.txtSetHufEx);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.txtSetCzkEx);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Location = new System.Drawing.Point(9, 39);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(452, 108);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Echange rates";
+            // 
+            // txtSetPlnEx
+            // 
+            this.txtSetPlnEx.Location = new System.Drawing.Point(84, 74);
+            this.txtSetPlnEx.Name = "txtSetPlnEx";
+            this.txtSetPlnEx.Size = new System.Drawing.Size(122, 20);
+            this.txtSetPlnEx.TabIndex = 10;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Maroon;
+            this.label7.Location = new System.Drawing.Point(6, 77);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(28, 13);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "PLN";
+            // 
+            // txtSetHufEx
+            // 
+            this.txtSetHufEx.Location = new System.Drawing.Point(84, 48);
+            this.txtSetHufEx.Name = "txtSetHufEx";
+            this.txtSetHufEx.Size = new System.Drawing.Size(122, 20);
+            this.txtSetHufEx.TabIndex = 8;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.Maroon;
+            this.label6.Location = new System.Drawing.Point(6, 51);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "HUF";
+            // 
+            // txtSetCzkEx
+            // 
+            this.txtSetCzkEx.Location = new System.Drawing.Point(84, 22);
+            this.txtSetCzkEx.Name = "txtSetCzkEx";
+            this.txtSetCzkEx.Size = new System.Drawing.Size(122, 20);
+            this.txtSetCzkEx.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.Maroon;
+            this.label4.Location = new System.Drawing.Point(6, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(28, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "CZK";
+            // 
+            // txtSettingsIco
+            // 
+            this.txtSettingsIco.Location = new System.Drawing.Point(93, 13);
+            this.txtSettingsIco.Name = "txtSettingsIco";
+            this.txtSettingsIco.Size = new System.Drawing.Size(122, 20);
+            this.txtSettingsIco.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.Maroon;
+            this.label3.Location = new System.Drawing.Point(6, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "ActiveStyle IČO";
+            // 
+            // btnSettingsLoad
+            // 
+            this.btnSettingsLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSettingsLoad.Location = new System.Drawing.Point(260, 450);
+            this.btnSettingsLoad.Name = "btnSettingsLoad";
+            this.btnSettingsLoad.Size = new System.Drawing.Size(103, 23);
+            this.btnSettingsLoad.TabIndex = 1;
+            this.btnSettingsLoad.Text = "&Load";
+            this.btnSettingsLoad.UseVisualStyleBackColor = true;
+            this.btnSettingsLoad.Click += new System.EventHandler(this.btnSettingsLoad_Click);
+            // 
+            // btnSettingsSave
+            // 
+            this.btnSettingsSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSettingsSave.Location = new System.Drawing.Point(369, 450);
+            this.btnSettingsSave.Name = "btnSettingsSave";
+            this.btnSettingsSave.Size = new System.Drawing.Size(103, 23);
+            this.btnSettingsSave.TabIndex = 0;
+            this.btnSettingsSave.Text = "&Save";
+            this.btnSettingsSave.UseVisualStyleBackColor = true;
+            this.btnSettingsSave.Click += new System.EventHandler(this.btnSettingsSave_Click);
+            // 
+            // tabReplace
+            // 
+            this.tabReplace.Controls.Add(this.btnReplacementRemove);
+            this.tabReplace.Controls.Add(this.btnReplaceReload);
+            this.tabReplace.Controls.Add(this.btnReplacementAdd);
+            this.tabReplace.Controls.Add(this.btnReplaceSave);
+            this.tabReplace.Controls.Add(this.gridReplacements);
+            this.tabReplace.Location = new System.Drawing.Point(4, 22);
+            this.tabReplace.Name = "tabReplace";
+            this.tabReplace.Size = new System.Drawing.Size(478, 478);
+            this.tabReplace.TabIndex = 3;
+            this.tabReplace.Text = "Replacements";
+            this.tabReplace.UseVisualStyleBackColor = true;
+            // 
+            // btnReplaceReload
+            // 
+            this.btnReplaceReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReplaceReload.Location = new System.Drawing.Point(251, 451);
+            this.btnReplaceReload.Name = "btnReplaceReload";
+            this.btnReplaceReload.Size = new System.Drawing.Size(109, 23);
+            this.btnReplaceReload.TabIndex = 2;
+            this.btnReplaceReload.Text = "Reload";
+            this.btnReplaceReload.UseVisualStyleBackColor = true;
+            this.btnReplaceReload.Click += new System.EventHandler(this.btnReplaceReload_Click);
+            // 
+            // btnReplaceSave
+            // 
+            this.btnReplaceSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReplaceSave.Location = new System.Drawing.Point(366, 451);
+            this.btnReplaceSave.Name = "btnReplaceSave";
+            this.btnReplaceSave.Size = new System.Drawing.Size(109, 23);
+            this.btnReplaceSave.TabIndex = 1;
+            this.btnReplaceSave.Text = "Save";
+            this.btnReplaceSave.UseVisualStyleBackColor = true;
+            this.btnReplaceSave.Click += new System.EventHandler(this.btnReplaceSave_Click);
+            // 
+            // gridReplacements
+            // 
+            this.gridReplacements.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridReplacements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridReplacements.Location = new System.Drawing.Point(0, 0);
+            this.gridReplacements.Name = "gridReplacements";
+            this.gridReplacements.Size = new System.Drawing.Size(478, 446);
+            this.gridReplacements.TabIndex = 0;
+            // 
+            // tabLog
+            // 
+            this.tabLog.Controls.Add(this.txtLog);
+            this.tabLog.Controls.Add(this.btnClear);
+            this.tabLog.Location = new System.Drawing.Point(4, 22);
+            this.tabLog.Name = "tabLog";
+            this.tabLog.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLog.Size = new System.Drawing.Size(478, 478);
+            this.tabLog.TabIndex = 1;
+            this.tabLog.Text = "Log";
+            this.tabLog.UseVisualStyleBackColor = true;
+            // 
+            // btnReplacementRemove
+            // 
+            this.btnReplacementRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnReplacementRemove.Location = new System.Drawing.Point(84, 450);
+            this.btnReplacementRemove.Name = "btnReplacementRemove";
+            this.btnReplacementRemove.Size = new System.Drawing.Size(114, 23);
+            this.btnReplacementRemove.TabIndex = 27;
+            this.btnReplacementRemove.Text = "Remove selected";
+            this.btnReplacementRemove.UseVisualStyleBackColor = true;
+            this.btnReplacementRemove.Click += new System.EventHandler(this.btnReplacementRemove_Click);
+            // 
+            // btnReplacementAdd
+            // 
+            this.btnReplacementAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnReplacementAdd.Location = new System.Drawing.Point(3, 450);
+            this.btnReplacementAdd.Name = "btnReplacementAdd";
+            this.btnReplacementAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnReplacementAdd.TabIndex = 26;
+            this.btnReplacementAdd.Text = "Add new";
+            this.btnReplacementAdd.UseVisualStyleBackColor = true;
+            this.btnReplacementAdd.Click += new System.EventHandler(this.btnReplacementAdd_Click);
             // 
             // dataFiles
             // 
@@ -1067,11 +1146,6 @@
             this.grpInputSettings.PerformLayout();
             this.tabData.ResumeLayout(false);
             this.invoice.ResumeLayout(false);
-            this.stock.ResumeLayout(false);
-            this.tabFilesLog.ResumeLayout(false);
-            this.tabFoundFiles.ResumeLayout(false);
-            this.tabLog.ResumeLayout(false);
-            this.tabLog.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
@@ -1079,14 +1153,21 @@
             this.tabItems.ResumeLayout(false);
             this.tabAllItems.ResumeLayout(false);
             this.tabSelItems.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.stock.ResumeLayout(false);
+            this.tabFilesLog.ResumeLayout(false);
+            this.tabFoundFiles.ResumeLayout(false);
+            this.tabSettings.ResumeLayout(false);
+            this.tabSettings.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.tabReplace.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).EndInit();
+            this.tabLog.ResumeLayout(false);
+            this.tabLog.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataCSV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInvItems)).EndInit();
@@ -1143,7 +1224,7 @@
         private System.Windows.Forms.TabPage tabAllItems;
         private System.Windows.Forms.TabPage tabSelItems;
         private System.Windows.Forms.ListBox lbFilteredItems;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabSettings;
         private CustomDataGridView dataFiles;
         private System.Windows.Forms.Button btnSettingsSave;
         private System.Windows.Forms.Button btnSettingsLoad;
@@ -1180,6 +1261,12 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtSetHufTax;
+        private System.Windows.Forms.TabPage tabReplace;
+        private CustomDataGridView gridReplacements;
+        private System.Windows.Forms.Button btnReplaceSave;
+        private System.Windows.Forms.Button btnReplaceReload;
+        private System.Windows.Forms.Button btnReplacementRemove;
+        private System.Windows.Forms.Button btnReplacementAdd;
     }
 }
 

@@ -68,6 +68,7 @@ namespace MessageImporter
             chkMoveProcessed.Checked = false;   // TODO - zmenit na true!!?
 
             btnSettingsLoad_Click(btnSettingsLoad, new EventArgs());
+            btnReplaceReload_Click(btnReplaceReload, new EventArgs());
             btnProcess_Click(btnProcess, new EventArgs());
         }
 
@@ -1679,6 +1680,105 @@ namespace MessageImporter
             prop.TaxPln = Common.CleanPrice(txtSetPlnTax.Text);
 
             prop.Save();
+        }
+
+        private void btnReplaceReload_Click(object sender, EventArgs e)
+        {
+            var fName = System.Windows.Forms.Application.StartupPath + "\\Resources\\replacements.txt";
+            try
+            {
+                var lines = File.ReadAllLines(fName);
+                List<ReplacementPair> ds = new List<ReplacementPair>();
+
+                foreach (var line in lines)
+                {
+                    var trimLine = line.Trim();
+
+                    if (trimLine.StartsWith("//"))
+                        continue;
+
+                    int eqIndex = trimLine.IndexOf('=');
+                    if (eqIndex == -1)
+                        continue;
+
+                    var str1 = trimLine.Substring(0, eqIndex);
+                    var str2 = trimLine.Substring(eqIndex + 1);
+
+                    ds.Add(new ReplacementPair(str1, str2));
+                }
+
+                gridReplacements.DataSource = new BindingList<ReplacementPair>(ds);
+
+                // nastavenie glovalneho objektu do StockItem triedy
+                StockItem.Replacements = gridReplacements.DataSource as BindingList<ReplacementPair>;
+                dataGrid.Refresh();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, ex.ToString(), "Error while reading replacements.txt from resources directory!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnReplaceSave_Click(object sender, EventArgs e)
+        {
+            var ds = gridReplacements.DataSource as BindingList<ReplacementPair>;
+            if (ds == null)
+                return;
+            List<string> lines = new List<string>();
+
+            foreach (var item in ds)
+            {
+                lines.Add(item.ValueToFind + "=" + item.ValueToReplace);
+            }
+
+            try
+            {
+                var fName = System.Windows.Forms.Application.StartupPath + "\\Resources\\replacements.txt";
+                File.WriteAllLines(fName, lines.ToArray());
+                
+                btnReplaceReload.PerformClick();
+
+                MessageBox.Show(this, "Replacements.txt successfully saved in Resources directory.", "Write replacements", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, ex.ToString(), "Error while writing replacements.txt to resources directory!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnReplacementAdd_Click(object sender, EventArgs e)
+        {
+            var ds = gridReplacements.DataSource as BindingList<ReplacementPair>;
+            if (ds == null)
+                return;
+
+            ds.Add(new ReplacementPair("", ""));
+        }
+
+        private void btnReplacementRemove_Click(object sender, EventArgs e)
+        {
+            var selCell = gridReplacements.SelectedCells;
+            if (selCell != null && selCell.Count > 0)
+            {
+                var selItem = gridReplacements.Rows[selCell[0].RowIndex].DataBoundItem as ReplacementPair;
+
+                var ds = gridReplacements.DataSource as BindingList<ReplacementPair>;
+                if (ds == null)
+                    return;
+                ds.Remove(selItem);
+            }
+        }
+    }
+
+    class ReplacementPair
+    {
+        public string ValueToFind { get; set; }
+        public string ValueToReplace { get; set; }
+
+        public ReplacementPair(string s1, string s2)
+        {
+            ValueToFind = s1;
+            ValueToReplace = s2;
         }
     }
 
