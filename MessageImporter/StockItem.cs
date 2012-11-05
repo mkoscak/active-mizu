@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace MessageImporter
 {
@@ -92,8 +93,36 @@ namespace MessageImporter
         [System.ComponentModel.DisplayName("SKU")]
         public string ProductCode { get; set; }
 
+        /// <summary>
+        /// Zoznam stringov na nahradenie budu sa plnit z main okna
+        /// </summary>
+        internal static BindingList<ReplacementPair> Replacements { get; set; }
+
+        private string description;
         [System.ComponentModel.DisplayName("Popis")]
-        public string Description { get; set; }
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+
+            set
+            {
+                description = value;
+
+                if (Replacements != null)
+                {
+                    foreach (var rep in Replacements)
+                    {
+                        if (description.Contains(rep.ValueToFind))
+                        {
+                            description = description.Replace(rep.ValueToFind, rep.ValueToReplace == "<empty>" ? "" : rep.ValueToReplace);
+                        }
+                    }
+                }
+            }
+        }
 
         private string itemNameInv;
         [System.ComponentModel.DisplayName("Popis z objednávky")]
