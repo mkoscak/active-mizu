@@ -55,6 +55,8 @@ namespace MessageImporter
             }
         }
 
+        public string invSKU { get; set; }
+
         [System.ComponentModel.DisplayName("Popis")]
         public string MSG_SKU
         {
@@ -101,8 +103,6 @@ namespace MessageImporter
 
         [System.ComponentModel.DisplayName("Popis web")]
         public string ItemName { get; set; }
-
-        internal string ItemSKU { get; set; }
 
         public string itemOptions;
         [System.ComponentModel.DisplayName("Veľkosť")]
