@@ -612,7 +612,7 @@ namespace MessageImporter
                         newItem.ItemQtyOrdered = item.ItemQtyOrdered;
                         newItem.ItemQtyRefunded = item.ItemQtyRefunded;
                         newItem.ItemQtyShipped = item.ItemQtyShipped;
-                        newItem.ItemSKU = item.ItemSKU;
+                        newItem.invSKU = item.ItemSKU;
                         newItem.ItemStatus = item.ItemStatus;
                         newItem.ItemTax = item.ItemTax;
                         newItem.ItemTotal = item.ItemTotal;
@@ -698,7 +698,7 @@ namespace MessageImporter
             {
                 foreach (var product in CSV.InvoiceItems)
                 {
-                    string productCode = ConvertInvoiceItem(product.ItemSKU);
+                    string productCode = ConvertInvoiceItem(product.invSKU);
                     if (productCode == null)
                         continue;
 
@@ -955,7 +955,8 @@ namespace MessageImporter
                         xmlItem.homeCurrency = new typeCurrencyHomeItem();
                         xmlItem.homeCurrency.unitPriceSpecified = true;
                         xmlItem.homeCurrency.unitPrice = Common.GetPrice(invItem.ItemPrice);
-
+                        xmlItem.accounting = new refType();
+                        xmlItem.accounting.ids = "2";
                     }
                     else
                     {
@@ -1117,6 +1118,8 @@ namespace MessageImporter
 
                 stock.stockHeader.note = prod.FictivePrice;
                 stock.stockHeader.nameComplement = prod.SizeInv;
+
+                stock.stockHeader.sellingRateVAT = vatRateType.high;
                 
                 newDatapack.Item = stock;
                 dataPacks.Add(newDatapack);
@@ -1196,7 +1199,7 @@ namespace MessageImporter
             invoices.Add(invDatapack);
 
             // polozky do xml
-            dataPacks.AddRange(prijemky);
+            //dataPacks.AddRange(prijemky); // 6.11.2012 prijemky nejdu do exportu
             dataPacks.AddRange(invoices);
             dp.dataPackItem = dataPacks.ToArray();
 
@@ -1635,7 +1638,7 @@ namespace MessageImporter
             lbFilteredItems.Items.Clear();
             foreach (var code in all)
             {
-                var conv = ConvertInvoiceItem(selInv.ItemSKU);
+                var conv = ConvertInvoiceItem(selInv.invSKU);
                 if (conv != null && code.ToString().Contains(conv))
                     lbFilteredItems.Items.Add(code.ToString());
             }
