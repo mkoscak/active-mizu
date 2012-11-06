@@ -144,6 +144,7 @@ namespace MessageImporter
                 var order = new StockEntity();
                 List<StockItem> items = new List<StockItem>();
 
+                file.ProdCount = 0;
                 for (int i = 0; i < lines.Length; i++)
                 {
                     string line = lines[i];
@@ -169,6 +170,7 @@ namespace MessageImporter
                         item.Currency = line.Substring(0, 1);
 
                         item.FromFile = file;
+                        file.ProdCount++;
 
                         items.Add(item);
                     }
@@ -191,7 +193,7 @@ namespace MessageImporter
                         item.FromFile = file;
 
                         file.Delivery += item.Price;
-                        file.ProdCount++;
+                        //file.ProdCount++;
                         //items.Add(item);  // doprava nebude polozka ale spojena so suborom
                     }
 
