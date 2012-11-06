@@ -233,11 +233,66 @@ namespace MessageImporter
             }
         }
 
-        [System.ComponentModel.DisplayName("Nákupná cena bez DPH")]
-        public double PriceEURnoTax { get; set; }
+        internal bool ChangeColor;
+        /// <summary>
+        /// Zoznam stringov na nahradenie budu sa plnit z main okna
+        /// </summary>
+        internal static BindingList<ChildItem> ChildItems { get; set; }
 
+        private double priceEURnoTax;
+        [System.ComponentModel.DisplayName("Nákupná cena bez DPH")]
+        public double PriceEURnoTax
+        {
+            get
+            {
+                if (FromFile != null)
+                    priceEURnoTax = Price * FromFile.ExchRate;
+
+                double tax = 1.2;
+
+                if (ChildItems != null)
+                {
+                    var found = ChildItems.Where(ci => description.Contains(ci.ItemText));
+                    if (found != null && found.Count() > 0)
+                    {
+                        tax = 1.0;
+                        ChangeColor = true;
+                    }
+                }
+
+                priceEURnoTax /= tax;
+
+                return Math.Round(priceEURnoTax, 2);
+            }
+
+            set
+            {
+                priceEURnoTax = value;
+            }
+        }
+
+        private double priceEURnoTaxEUR;
         [System.ComponentModel.DisplayName("Nákupná cena bez DPH EUR")]
-        public double PriceEURnoTaxEUR { get; set; }
+        public double PriceEURnoTaxEUR
+        {
+            get
+            {
+                if (!double.IsNaN(PriceEURnoTax))
+                {
+                    //var config = new CountrySetting(PairProduct.Parent.Country);
+                    priceEURnoTaxEUR = Math.Round((PriceEURnoTax * FromFile.ExchRate) + (FromFile.Delivery * FromFile.ExchRate / FromFile.ProdCount), 2);
+                }
+                else
+                    priceEURnoTaxEUR = double.NaN;
+
+                return priceEURnoTaxEUR;
+            }
+
+            set
+            {
+                priceEURnoTaxEUR = value;
+            }
+        }
 
         internal double TotalEUR { get; set; }
 

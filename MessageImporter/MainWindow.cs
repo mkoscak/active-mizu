@@ -69,6 +69,8 @@ namespace MessageImporter
 
             btnSettingsLoad_Click(btnSettingsLoad, new EventArgs());
             btnReplaceReload_Click(btnReplaceReload, new EventArgs());
+            btnChildReload_Click(btnChildReload, new EventArgs());
+
             btnProcess_Click(btnProcess, new EventArgs());
         }
 
@@ -189,6 +191,7 @@ namespace MessageImporter
                         item.FromFile = file;
 
                         file.Delivery += item.Price;
+                        file.ProdCount++;
                         //items.Add(item);  // doprava nebude polozka ale spojena so suborom
                     }
 
@@ -381,6 +384,20 @@ namespace MessageImporter
             else
             {
                 dataGrid.Refresh();
+
+                var ds = GetProductsDS();
+                if (ds == null)
+                    return;
+
+                // nastavenie farieb
+                for (int i = 0; i < ds.Count; i++)
+                {
+                    if (ds[i].ChangeColor)
+                    {
+                        dataGrid["PriceEURnoTaxEUR", i].Style.BackColor = Color.Green;
+                        dataGrid["PriceEURnoTaxEUR", i].Style.ForeColor = Color.White;
+                    }
+                }
             }
 
             dataFiles.Refresh();
@@ -1084,7 +1101,7 @@ namespace MessageImporter
                 stock.stockHeader.typePrice.ids = Properties.Settings.Default.TypePrice;
 
                 stock.stockHeader.purchasingPriceSpecified = true;
-                stock.stockHeader.purchasingPrice = prod.PriceWithDeliveryEUR;
+                stock.stockHeader.purchasingPrice = prod.PriceEURnoTaxEUR;
                 stock.stockHeader.sellingPrice = Common.GetPrice(prod.SellPriceEUR);
                 stock.stockHeader.limitMin = 0;
                 stock.stockHeader.limitMax = 0;
@@ -1578,7 +1595,6 @@ namespace MessageImporter
                         item.PriceEURnoTax = Math.Round(item.Price * kurz, 2);
                         item.TotalEUR = Math.Round(item.Total * kurz, 2);
                         item.PriceWithDeliveryEUR = Math.Round(item.PriceWithDelivery * kurz, 2);
-
                         item.OrderDate = file.OrderDate;
                     }
                 }
@@ -1767,6 +1783,95 @@ namespace MessageImporter
                     return;
                 ds.Remove(selItem);
             }
+        }
+
+        private void btnChildAdd_Click(object sender, EventArgs e)
+        {
+            var ds = gridChilds.DataSource as BindingList<ChildItem>;
+            if (ds == null)
+                return;
+
+            ds.Add(new ChildItem(""));
+        }
+
+        private void btnChildRemove_Click(object sender, EventArgs e)
+        {
+            var selCell = gridChilds.SelectedCells;
+            if (selCell != null && selCell.Count > 0)
+            {
+                var selItem = gridChilds.Rows[selCell[0].RowIndex].DataBoundItem as ChildItem;
+
+                var ds = gridChilds.DataSource as BindingList<ChildItem>;
+                if (ds == null)
+                    return;
+                ds.Remove(selItem);
+            }
+        }
+
+        private void btnChildReload_Click(object sender, EventArgs e)
+        {
+            var fName = System.Windows.Forms.Application.StartupPath + "\\Resources\\childItems.txt";
+            try
+            {
+                var lines = File.ReadAllLines(fName);
+                List<ChildItem> ds = new List<ChildItem>();
+                foreach (var line in lines)
+                {
+                    if (line.Trim().Length == 0)
+                        continue;
+
+                    ds.Add(new ChildItem(line));
+                }
+                gridChilds.DataSource = new BindingList<ChildItem>(ds);
+
+                // nastavenie glovalneho objektu do StockItem triedy
+                StockItem.ChildItems = gridChilds.DataSource as BindingList<ChildItem>;
+                dataGrid.Refresh();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, ex.ToString(), "Error while reading childitems.txt from resources directory!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnChildSave_Click(object sender, EventArgs e)
+        {
+            var ds = gridChilds.DataSource as BindingList<ChildItem>;
+            if (ds == null)
+                return;
+            List<string> lines = new List<string>();
+
+            foreach (var item in ds)
+            {
+                if (string.IsNullOrEmpty(item.ItemText))
+                    continue;
+
+                lines.Add(item.ItemText);
+            }
+
+            try
+            {
+                var fName = System.Windows.Forms.Application.StartupPath + "\\Resources\\childItems.txt";
+                File.WriteAllLines(fName, lines.ToArray());
+
+                btnReplaceReload.PerformClick();
+
+                MessageBox.Show(this, "childItems.txt successfully saved in Resources directory.", "Write childItems", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, ex.ToString(), "Error while writing childItems.txt to resources directory!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    }
+
+    class ChildItem
+    {
+        public string ItemText { get; set; }
+
+        public ChildItem(string name)
+        {
+            ItemText = name;
         }
     }
 
