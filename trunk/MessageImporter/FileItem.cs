@@ -30,6 +30,8 @@ namespace MessageImporter
 
         public double Delivery { get; set; }
 
+        internal int ProdCount { get; set; }
+
         internal string FullFileName { get; set; }
 
         public FileItem()
