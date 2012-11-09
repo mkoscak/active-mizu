@@ -124,6 +124,7 @@
             this.btnChildSave = new System.Windows.Forms.Button();
             this.gridChilds = new System.Windows.Forms.DataGridView();
             this.tabLog = new System.Windows.Forms.TabPage();
+            this.btnDbHelper = new System.Windows.Forms.Button();
             this.grpInputSettings.SuspendLayout();
             this.tabData.SuspendLayout();
             this.invoice.SuspendLayout();
@@ -1194,6 +1195,7 @@
             // 
             // tabLog
             // 
+            this.tabLog.Controls.Add(this.btnDbHelper);
             this.tabLog.Controls.Add(this.txtLog);
             this.tabLog.Controls.Add(this.btnClear);
             this.tabLog.Location = new System.Drawing.Point(4, 22);
@@ -1203,6 +1205,17 @@
             this.tabLog.TabIndex = 1;
             this.tabLog.Text = "Log";
             this.tabLog.UseVisualStyleBackColor = true;
+            // 
+            // btnDbHelper
+            // 
+            this.btnDbHelper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDbHelper.Location = new System.Drawing.Point(403, 455);
+            this.btnDbHelper.Name = "btnDbHelper";
+            this.btnDbHelper.Size = new System.Drawing.Size(75, 23);
+            this.btnDbHelper.TabIndex = 13;
+            this.btnDbHelper.Text = "DB helper";
+            this.btnDbHelper.UseVisualStyleBackColor = true;
+            this.btnDbHelper.Click += new System.EventHandler(this.btnDbHelper_Click);
             // 
             // FrmActiveStyle
             // 
@@ -1353,6 +1366,7 @@
         private System.Windows.Forms.Button btnChildReload;
         private System.Windows.Forms.Button btnChildAdd;
         private System.Windows.Forms.Button btnChildSave;
+        private System.Windows.Forms.Button btnDbHelper;
     }
 }
 

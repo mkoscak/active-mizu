@@ -1868,6 +1868,11 @@ namespace MessageImporter
                 MessageBox.Show(this, ex.ToString(), "Error while writing childItems.txt to resources directory!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnDbHelper_Click(object sender, EventArgs e)
+        {
+            new DBHelper().ShowDialog();
+        }
     }
 
     class ChildItem
