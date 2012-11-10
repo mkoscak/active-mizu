@@ -9,7 +9,7 @@ namespace MessageImporter
     public class DBProvider
     {
         private static SQLiteDataAdapter DB;
-        private static string DataSource = @".\activestyle.db";
+        internal static string DataSource = @".\activestyle.db";
 
         static DBProvider()
         {

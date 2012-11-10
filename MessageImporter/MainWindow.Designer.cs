@@ -77,6 +77,7 @@
             this.tabFoundFiles = new System.Windows.Forms.TabPage();
             this.dataFiles = new MessageImporter.CustomDataGridView();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.btnDbHelper = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtSetSkkTax = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -125,7 +126,6 @@
             this.btnChildSave = new System.Windows.Forms.Button();
             this.gridChilds = new System.Windows.Forms.DataGridView();
             this.tabLog = new System.Windows.Forms.TabPage();
-            this.btnDbHelper = new System.Windows.Forms.Button();
             this.grpInputSettings.SuspendLayout();
             this.tabData.SuspendLayout();
             this.invoice.SuspendLayout();
@@ -720,6 +720,7 @@
             // tabSettings
             // 
             this.tabSettings.BackColor = System.Drawing.Color.Transparent;
+            this.tabSettings.Controls.Add(this.btnDbHelper);
             this.tabSettings.Controls.Add(this.groupBox3);
             this.tabSettings.Controls.Add(this.groupBox2);
             this.tabSettings.Controls.Add(this.groupBox1);
@@ -734,6 +735,17 @@
             this.tabSettings.TabIndex = 2;
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
+            // 
+            // btnDbHelper
+            // 
+            this.btnDbHelper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDbHelper.Location = new System.Drawing.Point(11, 450);
+            this.btnDbHelper.Name = "btnDbHelper";
+            this.btnDbHelper.Size = new System.Drawing.Size(107, 23);
+            this.btnDbHelper.TabIndex = 14;
+            this.btnDbHelper.Text = "DB helper";
+            this.btnDbHelper.UseVisualStyleBackColor = true;
+            this.btnDbHelper.Click += new System.EventHandler(this.btnDbHelper_Click);
             // 
             // groupBox3
             // 
@@ -1053,7 +1065,7 @@
             this.btnSettingsLoad.Name = "btnSettingsLoad";
             this.btnSettingsLoad.Size = new System.Drawing.Size(103, 23);
             this.btnSettingsLoad.TabIndex = 1;
-            this.btnSettingsLoad.Text = "&Load";
+            this.btnSettingsLoad.Text = "Re&Load";
             this.btnSettingsLoad.UseVisualStyleBackColor = true;
             this.btnSettingsLoad.Click += new System.EventHandler(this.btnSettingsLoad_Click);
             // 
@@ -1208,7 +1220,6 @@
             // 
             // tabLog
             // 
-            this.tabLog.Controls.Add(this.btnDbHelper);
             this.tabLog.Controls.Add(this.txtLog);
             this.tabLog.Controls.Add(this.btnClear);
             this.tabLog.Location = new System.Drawing.Point(4, 22);
@@ -1218,17 +1229,6 @@
             this.tabLog.TabIndex = 1;
             this.tabLog.Text = "Log";
             this.tabLog.UseVisualStyleBackColor = true;
-            // 
-            // btnDbHelper
-            // 
-            this.btnDbHelper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDbHelper.Location = new System.Drawing.Point(403, 455);
-            this.btnDbHelper.Name = "btnDbHelper";
-            this.btnDbHelper.Size = new System.Drawing.Size(75, 23);
-            this.btnDbHelper.TabIndex = 13;
-            this.btnDbHelper.Text = "DB helper";
-            this.btnDbHelper.UseVisualStyleBackColor = true;
-            this.btnDbHelper.Click += new System.EventHandler(this.btnDbHelper_Click);
             // 
             // FrmActiveStyle
             // 
@@ -1379,8 +1379,8 @@
         private System.Windows.Forms.Button btnChildReload;
         private System.Windows.Forms.Button btnChildAdd;
         private System.Windows.Forms.Button btnChildSave;
-        private System.Windows.Forms.Button btnDbHelper;
         private System.Windows.Forms.Button btnSetWaiting;
+        private System.Windows.Forms.Button btnDbHelper;
     }
 }
 

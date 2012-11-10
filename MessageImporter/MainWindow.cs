@@ -1060,7 +1060,7 @@ namespace MessageImporter
 
             foreach (var prod in prodDS)
             {
-                if (!prod.EquippedInv) // do exportu len produkty z vybavenych objednavok
+                if (!prod.EquippedInv && prod.State != StockItemState.Waiting) // do exportu len produkty z vybavenych objednavok
                     continue;
 
                 /////////////////////////////////////////////////// stock item
@@ -1101,8 +1101,27 @@ namespace MessageImporter
                 stock.stockHeader.storage = new refTypeStorage();
                 if (prod.State == StockItemState.PermanentStorage)
                     stock.stockHeader.storage.ids = "02";
+                else if (prod.State == StockItemState.Waiting)
+                {
+                    stock.stockHeader.storage.ids = Properties.Settings.Default.Storage;   // expedicny sklad je rovnaky ako standardny
+
+                    // ulozenie produktu do DB
+                    var insert = string.Format("INSERT INTO WAITING_PRODS VALUES ({0},\"{1}\",\"{2}\",\"{3}\")", "null", prod.PairProduct.Parent.OrderNumber, prod.ProductCode, prod.Description);
+                    log(insert);
+
+                    try
+                    {
+                        DBProvider.ExecuteNonQuery(insert);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(this, "Exception during inserting waiting product into database: " + ex.ToString(), "Execute insert", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
                 else
                     stock.stockHeader.storage.ids = Properties.Settings.Default.Storage;
+
                 stock.stockHeader.typePrice = new refType();
                 stock.stockHeader.typePrice.ids = Properties.Settings.Default.TypePrice;
 
@@ -1874,7 +1893,7 @@ namespace MessageImporter
 
         private void btnDbHelper_Click(object sender, EventArgs e)
         {
-            new DBHelper().ShowDialog();
+            new DBHelper().Show(this);
         }
 
         private void btnSetWaiting_Click(object sender, EventArgs e)
