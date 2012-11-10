@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MessageImporter
@@ -14,15 +8,23 @@ namespace MessageImporter
         public DBHelper()
         {
             InitializeComponent();
+            this.Text += " - " + DBProvider.DataSource;
         }
 
         private void btnExecQuery_Click(object sender, EventArgs e)
         {
             var q = txtQuery.SelectedText;
 
-            var ds = DBProvider.ExecuteQuery(q);
-            if (ds != null)
-                gridDBres.DataSource = ds;
+            try
+            {
+                var ds = DBProvider.ExecuteQuery(q);
+                if (ds != null)
+                    gridDBres.DataSource = ds.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                txtNonQueryRes.AppendText(Environment.NewLine + ex.ToString());
+            }
         }
 
         private void btnExecNonQuery_Click(object sender, EventArgs e)
@@ -39,7 +41,12 @@ namespace MessageImporter
             {
                 txtNonQueryRes.AppendText(Environment.NewLine + ex.ToString());
             }
-            
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtNonQueryRes.Clear();
+            txtQuery.Clear();
         }
     }
 }
