@@ -67,6 +67,9 @@ namespace MessageImporter
             txtOutDir.Text = System.Windows.Forms.Application.StartupPath + @"\OutData";
             chkMoveProcessed.Checked = false;   // TODO - zmenit na true!!?
 
+            btnSetWaiting.Image = Icons.Waiting;
+            btnSetWaiting.TextImageRelation = TextImageRelation.ImageBeforeText;
+
             btnSettingsLoad_Click(btnSettingsLoad, new EventArgs());
             btnReplaceReload_Click(btnReplaceReload, new EventArgs());
             btnChildReload_Click(btnChildReload, new EventArgs());
@@ -1872,6 +1875,28 @@ namespace MessageImporter
         private void btnDbHelper_Click(object sender, EventArgs e)
         {
             new DBHelper().ShowDialog();
+        }
+
+        private void btnSetWaiting_Click(object sender, EventArgs e)
+        {
+            var items = GetInvoiceItemsDS();
+            if (items == null || items.Count == 0)
+            {
+                MessageBox.Show(this, "No items to set!", "Waiting for products", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int count = 0;
+            foreach (var item in items)
+            {
+                if (item.PairProduct == null || (item.PairCode != null && item.PairCode == "shipping"))
+                    continue;
+
+                // produkty oznacime ako cakajuce na dalsie, pri exporte sa ulozia do DB..
+                item.PairProduct.State = StockItemState.Waiting;
+                count++;
+            }
+
+            MessageBox.Show(this, string.Format("{0} products set as waiting.", count), "Waiting for products", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 

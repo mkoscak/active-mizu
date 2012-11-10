@@ -10,7 +10,7 @@ namespace MessageImporter
     public enum StockItemState
     {
         Paired,
-        NonPaired,
+        Unpaired,
         Waiting,
         PermanentStorage
     }
@@ -47,6 +47,9 @@ namespace MessageImporter
                 if (pairProd != null && state == StockItemState.PermanentStorage)
                     return Icons.Warning;
 
+                if (state == StockItemState.Waiting)
+                    return Icons.Waiting;
+
                 return Icons.Complete;
             }
         }
@@ -60,12 +63,12 @@ namespace MessageImporter
             {
                 // refresh stavu
                 if (pairProd == null)
-                    state = StockItemState.NonPaired;
+                    state = StockItemState.Unpaired;
 
                 else if (pairProd != null && pairProd.Parent.Cancelled)
                     state = StockItemState.PermanentStorage;
 
-                else if (pairProd != null)
+                else if (pairProd != null && state != StockItemState.Waiting)
                     state = StockItemState.Paired;
                 
                 return state;
