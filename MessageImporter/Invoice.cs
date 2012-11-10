@@ -11,7 +11,7 @@ namespace MessageImporter
     /// </summary>
     public enum InvoiceState
     {
-        NonComplete,
+        Incomplete,
         Complete,
         Cancelled
     }
@@ -66,7 +66,7 @@ namespace MessageImporter
                 if (value)
                     InvoiceStatus = InvoiceState.Cancelled;
                 else
-                    InvoiceStatus = Equipped ? InvoiceState.Complete : InvoiceState.NonComplete;
+                    InvoiceStatus = Equipped ? InvoiceState.Complete : InvoiceState.Incomplete;
             }
         }
 

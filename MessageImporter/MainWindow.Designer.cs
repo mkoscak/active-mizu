@@ -48,6 +48,7 @@
             this.tabData = new System.Windows.Forms.TabControl();
             this.invoice = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnSetWaiting = new System.Windows.Forms.Button();
             this.btnInvoiceRemove = new System.Windows.Forms.Button();
             this.btnInvoiceAdd = new System.Windows.Forms.Button();
             this.dataCSV = new MessageImporter.CustomDataGridView();
@@ -358,6 +359,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnSetWaiting);
             this.splitContainer1.Panel1.Controls.Add(this.btnInvoiceRemove);
             this.splitContainer1.Panel1.Controls.Add(this.btnInvoiceAdd);
             this.splitContainer1.Panel1.Controls.Add(this.dataCSV);
@@ -377,6 +379,17 @@
             this.splitContainer1.Size = new System.Drawing.Size(921, 636);
             this.splitContainer1.SplitterDistance = 409;
             this.splitContainer1.TabIndex = 27;
+            // 
+            // btnSetWaiting
+            // 
+            this.btnSetWaiting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSetWaiting.Location = new System.Drawing.Point(726, 379);
+            this.btnSetWaiting.Name = "btnSetWaiting";
+            this.btnSetWaiting.Size = new System.Drawing.Size(186, 23);
+            this.btnSetWaiting.TabIndex = 26;
+            this.btnSetWaiting.Text = "Waiting for other products";
+            this.btnSetWaiting.UseVisualStyleBackColor = true;
+            this.btnSetWaiting.Click += new System.EventHandler(this.btnSetWaiting_Click);
             // 
             // btnInvoiceRemove
             // 
@@ -1367,6 +1380,7 @@
         private System.Windows.Forms.Button btnChildAdd;
         private System.Windows.Forms.Button btnChildSave;
         private System.Windows.Forms.Button btnDbHelper;
+        private System.Windows.Forms.Button btnSetWaiting;
     }
 }
 
