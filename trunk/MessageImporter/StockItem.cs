@@ -251,12 +251,12 @@ namespace MessageImporter
         {
             get
             {
-                if (FromFile != null)
+                if (FromFile != null && FromFile != null)
                     priceEURnoTax = Price * FromFile.ExchRate;
 
                 double tax = 1.2;
 
-                if (ChildItems != null)
+                if (ChildItems != null && description != null)
                 {
                     var found = ChildItems.Where(ci => description.Contains(ci.ItemText));
                     if (found != null && found.Count() > 0)
@@ -284,7 +284,7 @@ namespace MessageImporter
         {
             get
             {
-                if (!double.IsNaN(PriceEURnoTax) && !double.IsNaN(FromFile.ExchRate) && !double.IsNaN(FromFile.Delivery) && FromFile.ProdCount > 0 && computePriceEURnoTaxEUR)
+                if (!double.IsNaN(PriceEURnoTax) && FromFile != null && !double.IsNaN(FromFile.ExchRate) && !double.IsNaN(FromFile.Delivery) && FromFile.ProdCount > 0 && computePriceEURnoTaxEUR)
                 {
                     //var config = new CountrySetting(PairProduct.Parent.Country);
                     priceEURnoTaxEUR = Math.Round((PriceEURnoTax * FromFile.ExchRate) + (FromFile.Delivery * FromFile.ExchRate / FromFile.ProdCount), 2);
