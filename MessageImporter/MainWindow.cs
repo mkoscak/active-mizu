@@ -989,6 +989,9 @@ namespace MessageImporter
                         xmlItem.homeCurrency.unitPrice = Common.GetPrice(invItem.ItemPrice);
                         xmlItem.accounting = new refType();
                         xmlItem.accounting.ids = "2";
+
+                        xmlItem.percentVATSpecified = true;
+                        xmlItem.percentVAT = 20;
                     }
                     else
                     {
@@ -997,7 +1000,7 @@ namespace MessageImporter
                         xmlItem.quantitySpecified = true;
                         xmlItem.quantity = float.Parse(invItem.ItemQtyOrdered);
                         xmlItem.unit = "ks";
-                        xmlItem.homeCurrency = new typeCurrencyHomeItem();
+                        /*xmlItem.homeCurrency = new typeCurrencyHomeItem();
                         xmlItem.homeCurrency.unitPriceSpecified = true;
                         xmlItem.homeCurrency.unitPrice = Common.GetPrice(invItem.ItemPrice);
                         xmlItem.homeCurrency.priceVATSpecified = true;
@@ -1005,7 +1008,7 @@ namespace MessageImporter
                         xmlItem.homeCurrency.priceSpecified = true;
                         xmlItem.homeCurrency.price = Common.GetPrice(invItem.ItemTotal) - Common.GetPrice(invItem.ItemDiscount) / 1.2;
                         xmlItem.homeCurrency.priceSumSpecified = true;
-                        xmlItem.homeCurrency.priceSum = xmlItem.homeCurrency.price;
+                        xmlItem.homeCurrency.priceSum = xmlItem.homeCurrency.price;*/
                         xmlItem.percentVATSpecified = true;
                         xmlItem.percentVAT = Properties.Settings.Default.DPH_percent;
 
@@ -1036,6 +1039,15 @@ namespace MessageImporter
                 }*/
 
                 newInv.invoiceDetail = invItems.ToArray();
+
+                // specialita pre madarsko
+                if (inv.Country == Country.Hungary)
+                {
+                    newInv.invoiceSummary = new invoiceSummaryType();
+                    newInv.invoiceSummary.foreignCurrency = new typeCurrencyForeign();
+                    newInv.invoiceSummary.foreignCurrency.currency = new refType();
+                    newInv.invoiceSummary.foreignCurrency.currency.ids = "HU";
+                }
 
                 // invoice do datapacku a datapack do vysledneho pola
                 newDatapack.Item = newInv;
@@ -1167,7 +1179,9 @@ namespace MessageImporter
 
                 stock.stockHeader.yield = "604000";
 
-                stock.stockHeader.note = prod.FictivePrice;
+                //stock.stockHeader.note = prod.FictivePrice;
+                stock.stockHeader.sellingPrice = Common.GetPrice(prod.FictivePrice);
+                
                 stock.stockHeader.nameComplement = prod.SizeInv;
 
                 stock.stockHeader.sellingRateVAT = vatRateType.high;
