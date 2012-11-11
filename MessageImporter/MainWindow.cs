@@ -319,8 +319,8 @@ namespace MessageImporter
                 AddShippingItems(AllInvoices);
                 SetInvoiceDS(new BindingList<Invoice>(AllInvoices));
                 // datasource MSG sprav 
-                AllStocks = allMessages.SelectMany(o => o.Items).ToList();
-                SetProductsDS(new BindingList<StockItem>(AllStocks));
+                //AllStocks = allMessages.SelectMany(o => o.Items).ToList();
+                SetProductsDS(new BindingList<StockItem>(allMessages.SelectMany(o => o.Items).ToList()));
                                 
                 // dopocitanie cien s dopravou
                 CalcBuyingPrice(GetProductsDS());
@@ -984,11 +984,22 @@ namespace MessageImporter
                         xmlItem.quantitySpecified = true;
                         xmlItem.quantity = 1;
                         xmlItem.rateVAT = vatRateType.high;
-                        xmlItem.homeCurrency = new typeCurrencyHomeItem();
-                        xmlItem.homeCurrency.unitPriceSpecified = true;
-                        xmlItem.homeCurrency.unitPrice = Common.GetPrice(invItem.ItemPrice);
+                        if (inv.Country == Country.Slovakia)
+                        {
+                            xmlItem.homeCurrency = new typeCurrencyHomeItem();
+                            xmlItem.homeCurrency.unitPriceSpecified = true;
+                            xmlItem.homeCurrency.unitPrice = Common.GetPrice(invItem.ItemPrice);
+                        }
+                        else
+                        {
+                            xmlItem.foreignCurrency = new typeCurrencyForeignItem();
+                            xmlItem.foreignCurrency.unitPriceSpecified = true;
+                            xmlItem.foreignCurrency.unitPrice = Common.GetPrice(invItem.ItemPrice);
+                        }
                         xmlItem.accounting = new refType();
                         xmlItem.accounting.ids = "2";
+
+                        xmlItem.payVAT = boolean.@true;
 
                         xmlItem.percentVATSpecified = true;
                         xmlItem.percentVAT = 20;
@@ -1011,6 +1022,8 @@ namespace MessageImporter
                         xmlItem.homeCurrency.priceSum = xmlItem.homeCurrency.price;*/
                         xmlItem.percentVATSpecified = true;
                         xmlItem.percentVAT = Properties.Settings.Default.DPH_percent;
+
+                        xmlItem.payVAT = boolean.@true;
 
                         // stock item
                         xmlItem.stockItem = new stockItemType();
@@ -1047,6 +1060,20 @@ namespace MessageImporter
                     newInv.invoiceSummary.foreignCurrency = new typeCurrencyForeign();
                     newInv.invoiceSummary.foreignCurrency.currency = new refType();
                     newInv.invoiceSummary.foreignCurrency.currency.ids = "HU";
+                }
+                if (inv.Country == Country.CzechRepublic)
+                {
+                    newInv.invoiceSummary = new invoiceSummaryType();
+                    newInv.invoiceSummary.foreignCurrency = new typeCurrencyForeign();
+                    newInv.invoiceSummary.foreignCurrency.currency = new refType();
+                    newInv.invoiceSummary.foreignCurrency.currency.ids = "CZ";
+                }
+                if (inv.Country == Country.Poland)
+                {
+                    newInv.invoiceSummary = new invoiceSummaryType();
+                    newInv.invoiceSummary.foreignCurrency = new typeCurrencyForeign();
+                    newInv.invoiceSummary.foreignCurrency.currency = new refType();
+                    newInv.invoiceSummary.foreignCurrency.currency.ids = "PL";
                 }
 
                 // invoice do datapacku a datapack do vysledneho pola
@@ -1428,6 +1455,9 @@ namespace MessageImporter
             if (ds == null)
                 return;
             var added = ds.AddNew();
+            ds.EndNew(ds.IndexOf(added));
+            if (added == null)
+                return;
             AllStocks.Add(added);
 
             CheckAllEqipped();
