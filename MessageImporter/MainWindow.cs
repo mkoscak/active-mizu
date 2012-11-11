@@ -27,8 +27,8 @@ namespace MessageImporter
         List<StockEntity> allMessages = new List<StockEntity>();
         
         // data sources
-        List<Invoice> allInvoices = new List<Invoice>();
-        List<StockItem> allProducts = new List<StockItem>();
+        List<Invoice> AllInvoices = new List<Invoice>();
+        List<StockItem> AllStocks = new List<StockItem>();
 
         //////////////////////////////////////////////////////////////////////////////////////////
         BindingList<Invoice> GetInvoiceDS()
@@ -316,10 +316,11 @@ namespace MessageImporter
                 // naplni allInvoices a nastavi datasource
                 CreateInvoice(allOrders);
                 // pridanie poloziek "Cena za dopravu"
-                AddShippingItems(allInvoices);
-                SetInvoiceDS(new BindingList<Invoice>(allInvoices));
+                AddShippingItems(AllInvoices);
+                SetInvoiceDS(new BindingList<Invoice>(AllInvoices));
                 // datasource MSG sprav 
-                SetProductsDS(new BindingList<StockItem>(allMessages.SelectMany(o => o.Items).ToList()));
+                AllStocks = allMessages.SelectMany(o => o.Items).ToList();
+                SetProductsDS(new BindingList<StockItem>(AllStocks));
                                 
                 // dopocitanie cien s dopravou
                 CalcBuyingPrice(GetProductsDS());
@@ -532,7 +533,7 @@ namespace MessageImporter
 
         internal void CreateInvoice(List<CSVFile> allOrders)
         {
-            allInvoices = new List<Invoice>();
+            AllInvoices = new List<Invoice>();
             Invoice inv = null;
 
             foreach (var order in allOrders)
@@ -546,7 +547,7 @@ namespace MessageImporter
                         actualOrderNumber = item.OrderNumber;
 
                         if (inv != null)
-                            allInvoices.Add(inv);
+                            AllInvoices.Add(inv);
 
                         inv = new Invoice();
 
@@ -630,7 +631,7 @@ namespace MessageImporter
                 }
 
                 if (inv != null)
-                    allInvoices.Add(inv);
+                    AllInvoices.Add(inv);
                 inv = null;
             }
         }
@@ -699,7 +700,7 @@ namespace MessageImporter
         /// </summary>
         internal void PairProducts()
         {
-            foreach (var CSV in allInvoices)
+            foreach (var CSV in AllInvoices)
             {
                 foreach (var product in CSV.InvoiceItems)
                 {
@@ -725,6 +726,32 @@ namespace MessageImporter
                             pc.ShowDialog(this);
                             
                             CompleteOrderItem(pc.Selected, product);*/
+                        }
+                    }
+
+                    if (product.PairProduct == null)
+                    {
+                        var req = string.Format("SELECT * FROM WAITING_PRODS WHERE ORDER_NUMBER = \"{0}\" AND INV_SKU = \"{1}\" AND VALID = 1", CSV.OrderNumber, product.invSKU);
+                        var res = DBProvider.ExecuteQuery(req);
+                        if (res != null && res.Tables != null && res.Tables.Count > 0)
+                        {
+                            var tab = res.Tables[0];
+                            if (tab.Rows.Count == 1)
+                            {
+                                DataRow row = tab.Rows[0];
+
+                                var SKU = (string)row["SKU"];
+                                var INV_SKU = (string)row["INV_SKU"];
+                                var DESC= (string)row["DESCRIPTION"];
+
+                                StockItem newitem = new StockItem();
+                                newitem.State = StockItemState.Paired;
+                                newitem.ProductCode = SKU;
+                                newitem.Description = DESC;
+                                newitem.IsFromDB = true;
+
+                                product.PairProduct = newitem;
+                            }
                         }
                     }
                 }
@@ -1106,7 +1133,7 @@ namespace MessageImporter
                     stock.stockHeader.storage.ids = Properties.Settings.Default.Storage;   // expedicny sklad je rovnaky ako standardny
 
                     // ulozenie produktu do DB
-                    var insert = string.Format("INSERT INTO WAITING_PRODS VALUES ({0},\"{1}\",\"{2}\",\"{3}\")", "null", prod.PairProduct.Parent.OrderNumber, prod.ProductCode, prod.Description);
+                    var insert = string.Format("INSERT INTO WAITING_PRODS VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", prod.PairProduct.Parent.OrderNumber, prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
                     log(insert);
 
                     try
@@ -1387,7 +1414,7 @@ namespace MessageImporter
             if (ds == null)
                 return;
             var added = ds.AddNew();
-            allProducts.Add(added);
+            AllStocks.Add(added);
 
             CheckAllEqipped();
             UpdateProductSet();

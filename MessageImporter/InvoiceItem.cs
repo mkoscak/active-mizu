@@ -46,6 +46,18 @@ namespace MessageImporter
             }
         }
 
+        [System.ComponentModel.DisplayName("Z DB?")]
+        public bool FromDB
+        {
+            get
+            {
+                if (PairProduct != null)
+                    return PairProduct.IsFromDB;
+
+                return false;
+            }
+        }
+
         [System.ComponentModel.DisplayName("SKU")]
         public string PairCode
         {
