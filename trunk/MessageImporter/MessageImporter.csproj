@@ -85,6 +85,7 @@
       <DependentUpon>DBHelper.cs</DependentUpon>
     </Compile>
     <Compile Include="DBProvider.cs" />
+    <Compile Include="DPDShipper.cs" />
     <Compile Include="Export.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1988,6 +1988,172 @@ namespace MessageImporter
 
             MessageBox.Show(this, string.Format("{0} products set as waiting.", count), "Waiting for products", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        const string DPDShipperDirName = "DPDShipper";
+        private void btnExportToShipper_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DoShipperExport();
+
+                MessageBox.Show(this, "Export completed!", "DPD shipper export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, string.Format("Error while export: {0}", ex.ToString()), "DPD shipper export", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DoShipperExport()
+        {
+            var ds = GetInvoiceDS();
+            if (ds == null)
+                return;
+
+            List<DPDShipper> outdata = new List<DPDShipper>();
+            List<DPDShipper> outdataHU = new List<DPDShipper>();
+            foreach (var item in ds)
+            {
+                if (!item.Equipped)
+                    continue;
+
+                var shipper = new DPDShipper();
+                shipper.AdressId = "1";//A
+                shipper.ParcelWeight = "1";//B
+                shipper.ParcelType = "D";//C
+                shipper.NrOfTotal = "1 z 1";//D
+                if (item.OrderPaymentMethod.ToLower().Contains("cashondelivery"))
+                {
+                    shipper.ParcelCOD = "Y";//E
+                    shipper.ParcelCODAmount = item.OrderGrandTotal;//F
+                    shipper.ParcelCODCurrency = "EUR";//G
+                    shipper.ParcelCODvarSym = item.OrderNumber;//H
+                    shipper.ParcelCODCardPay = "N";//I
+                }
+                else //if (item.OrderPaymentMethod.ToLower().Contains("checkmo"))
+                {
+                    shipper.ParcelCOD = "N";//E
+                    shipper.ParcelCODAmount = "";//F
+                    shipper.ParcelCODCurrency = "";//G
+                    shipper.ParcelCODvarSym = "";//H
+                    shipper.ParcelCODCardPay = "N";//I
+                }
+                shipper.ParcelOrderNumber = item.OrderNumber;//J
+                shipper.CustRef = item.OrderNumber;//K
+                shipper.CustName = item.ShippingName;//L
+                shipper.CustStreet = item.ShippingStreet;//M
+                shipper.CustZip = item.ShippingZip;//N
+                shipper.CustCity = item.ShippingCity;//O
+                shipper.CustCountry = "703";//P
+                shipper.CustPhone = item.ShippingPhoneNumber;//Q
+                shipper.CustEmail = item.CustomerEmail;//R
+                shipper.SMSPreAdvice = "Y";//S
+                shipper.PhoneNumber = item.ShippingPhoneNumber;//T
+                shipper.ParcelNote = "ActiveStyle.sk";//U
+
+                if (item.Country == Country.Hungary)
+                {
+                    if (item.OrderPaymentMethod.ToLower().Contains("cashondelivery"))
+                    {
+                        shipper.AdressId = "D_COD";
+                        shipper.ParcelType = item.OrderGrandTotal;
+                    }
+                    else
+                    {
+                        shipper.AdressId = "COD";
+                        shipper.ParcelType = "";
+                    }
+                    shipper.NrOfTotal = item.OrderNumber;//D
+                    shipper.ParcelCOD = item.OrderNumber;//E
+                    shipper.ParcelCODCurrency = item.ShippingName;//G
+                    shipper.ParcelCODCardPay = item.ShippingStreet;//I
+                    shipper.CustRef = "H";//K
+                    shipper.CustName = item.ShippingCity;//L
+                    shipper.CustStreet = item.ShippingZip;//M
+                    shipper.CustZip = item.ShippingPhoneNumber;//N
+                    shipper.CustCountry = item.CustomerEmail;//P
+                    shipper.CustPhone = "Hívás!! Hívás!! Hívás!! Hívás!!";//Q
+                }
+
+                if (item.Country == Country.Hungary)
+                    outdataHU.Add(shipper);
+                else
+                    outdata.Add(shipper);
+            }
+
+            if (outdata.Count > 0)
+                SaveShipper(false, outdata);
+            if (outdataHU.Count > 0)
+                SaveShipper(true, outdataHU);
+        }
+
+        private void SaveShipper(bool HU, List<DPDShipper> outdata)
+        {
+            // vystup pojde sem
+            StringBuilder sb = new StringBuilder();
+
+            // formatovanie hlavicky
+            if (!HU)
+            {
+                sb.Append("address_ID;");
+                sb.Append("parcel_weight;");
+                sb.Append("parcel_type;");
+                sb.Append("nr_of_total;");
+                sb.Append("parcel_COD;");
+                sb.Append("parcel_COD_amount;");
+                sb.Append("parcel_COD_currency;");
+                sb.Append("parcel_COD_variable_symbol;");
+                sb.Append("parcel_COD_cardpay;");
+                sb.Append("parcel_order_number;");
+                sb.Append("customer_reference;");
+                sb.Append("customer_name;");
+                sb.Append("customer_street;");
+                sb.Append("customer_zipcode;");
+                sb.Append("customer_city;");
+                sb.Append("customer_country_ID;");
+                sb.Append("customer_phone;");
+                sb.Append("customer_email;");
+                sb.Append("sms_preadvice;");
+                sb.Append("phone_number;");
+                sb.Append("parcel_note");
+            }
+
+            // formatovanie dat
+            foreach (var shipper in outdata)
+            {
+                sb.Append(Environment.NewLine);
+                sb.Append(shipper.AdressId + ";");
+                sb.Append(shipper.ParcelWeight + ";");
+                sb.Append(shipper.ParcelType + ";");
+                sb.Append(shipper.NrOfTotal + ";");
+                sb.Append(shipper.ParcelCOD + ";");
+                sb.Append(shipper.ParcelCODAmount + ";");
+                sb.Append(shipper.ParcelCODCurrency + ";");
+                sb.Append(shipper.ParcelCODvarSym + ";");
+                sb.Append(shipper.ParcelCODCardPay + ";");
+                sb.Append(shipper.ParcelOrderNumber + ";");
+                sb.Append(shipper.CustRef + ";");
+                sb.Append(shipper.CustName + ";");
+                sb.Append(shipper.CustStreet + ";");
+                sb.Append(shipper.CustZip + ";");
+                sb.Append(shipper.CustCity + ";");
+                sb.Append(shipper.CustCountry + ";");
+                sb.Append(shipper.CustPhone + ";");
+                sb.Append(shipper.CustEmail + ";");
+                sb.Append(shipper.SMSPreAdvice + ";");
+                sb.Append(shipper.PhoneNumber + ";");
+                sb.Append(shipper.ParcelNote);
+            }
+
+            // zapis do suboru
+            var outDir = txtOutDir.Text + "/" + DPDShipperDirName + "/";
+            if (!Directory.Exists(outDir))
+                Directory.CreateDirectory(outDir);
+            var fname = HU ? "HU" : "SK";
+            fname += "_shipper_" + DateTime.Now.Ticks + ".csv";
+
+            File.WriteAllText(outDir + fname, sb.ToString());
+        }
     }
 
     class ChildItem

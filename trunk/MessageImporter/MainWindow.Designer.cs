@@ -51,7 +51,6 @@
             this.btnSetWaiting = new System.Windows.Forms.Button();
             this.btnInvoiceRemove = new System.Windows.Forms.Button();
             this.btnInvoiceAdd = new System.Windows.Forms.Button();
-            this.dataCSV = new MessageImporter.CustomDataGridView();
             this.tabItems = new System.Windows.Forms.TabControl();
             this.tabAllItems = new System.Windows.Forms.TabPage();
             this.lbNonPaired = new System.Windows.Forms.ListBox();
@@ -65,17 +64,14 @@
             this.btnInvoiceItemNew = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.dataGridInvItems = new MessageImporter.CustomDataGridView();
             this.stock = new System.Windows.Forms.TabPage();
             this.btnExportMSG = new System.Windows.Forms.Button();
             this.btnUnpairAllMSG = new System.Windows.Forms.Button();
             this.btnUnpairProductMSG = new System.Windows.Forms.Button();
             this.btnRemoveMSG = new System.Windows.Forms.Button();
             this.btnAddMsg = new System.Windows.Forms.Button();
-            this.dataGrid = new MessageImporter.CustomDataGridView();
             this.tabFilesLog = new System.Windows.Forms.TabControl();
             this.tabFoundFiles = new System.Windows.Forms.TabPage();
-            this.dataFiles = new MessageImporter.CustomDataGridView();
             this.tabSettings = new System.Windows.Forms.TabPage();
             this.btnDbHelper = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -118,7 +114,6 @@
             this.btnReplaceReload = new System.Windows.Forms.Button();
             this.btnReplacementAdd = new System.Windows.Forms.Button();
             this.btnReplaceSave = new System.Windows.Forms.Button();
-            this.gridReplacements = new MessageImporter.CustomDataGridView();
             this.tabChild = new System.Windows.Forms.TabPage();
             this.btnChildRemove = new System.Windows.Forms.Button();
             this.btnChildReload = new System.Windows.Forms.Button();
@@ -126,31 +121,37 @@
             this.btnChildSave = new System.Windows.Forms.Button();
             this.gridChilds = new System.Windows.Forms.DataGridView();
             this.tabLog = new System.Windows.Forms.TabPage();
+            this.dataFiles = new MessageImporter.CustomDataGridView();
+            this.gridReplacements = new MessageImporter.CustomDataGridView();
+            this.dataCSV = new MessageImporter.CustomDataGridView();
+            this.dataGridInvItems = new MessageImporter.CustomDataGridView();
+            this.dataGrid = new MessageImporter.CustomDataGridView();
+            this.btnExportToShipper = new System.Windows.Forms.Button();
             this.grpInputSettings.SuspendLayout();
             this.tabData.SuspendLayout();
             this.invoice.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataCSV)).BeginInit();
             this.tabItems.SuspendLayout();
             this.tabAllItems.SuspendLayout();
             this.tabSelItems.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridInvItems)).BeginInit();
             this.stock.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.tabFilesLog.SuspendLayout();
             this.tabFoundFiles.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).BeginInit();
             this.tabSettings.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabReplace.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).BeginInit();
             this.tabChild.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridChilds)).BeginInit();
             this.tabLog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataCSV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInvItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRead
@@ -359,6 +360,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnExportToShipper);
             this.splitContainer1.Panel1.Controls.Add(this.btnSetWaiting);
             this.splitContainer1.Panel1.Controls.Add(this.btnInvoiceRemove);
             this.splitContainer1.Panel1.Controls.Add(this.btnInvoiceAdd);
@@ -412,23 +414,6 @@
             this.btnInvoiceAdd.Text = "Add new";
             this.btnInvoiceAdd.UseVisualStyleBackColor = true;
             this.btnInvoiceAdd.Click += new System.EventHandler(this.btnInvoiceAdd_Click);
-            // 
-            // dataCSV
-            // 
-            this.dataCSV.AllowUserToAddRows = false;
-            this.dataCSV.AllowUserToDeleteRows = false;
-            this.dataCSV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataCSV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataCSV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataCSV.Location = new System.Drawing.Point(5, 4);
-            this.dataCSV.MultiSelect = false;
-            this.dataCSV.Name = "dataCSV";
-            this.dataCSV.Size = new System.Drawing.Size(907, 369);
-            this.dataCSV.TabIndex = 23;
-            this.dataCSV.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceValueChanged);
-            this.dataCSV.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceChanged);
             // 
             // tabItems
             // 
@@ -570,21 +555,6 @@
             this.label8.TabIndex = 27;
             this.label8.Text = "Invoice items";
             // 
-            // dataGridInvItems
-            // 
-            this.dataGridInvItems.AllowUserToAddRows = false;
-            this.dataGridInvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridInvItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridInvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridInvItems.Location = new System.Drawing.Point(134, 21);
-            this.dataGridInvItems.MultiSelect = false;
-            this.dataGridInvItems.Name = "dataGridInvItems";
-            this.dataGridInvItems.Size = new System.Drawing.Size(778, 172);
-            this.dataGridInvItems.TabIndex = 0;
-            this.dataGridInvItems.SelectionChanged += new System.EventHandler(this.InvoiceItemSelChanged);
-            // 
             // stock
             // 
             this.stock.Controls.Add(this.btnExportMSG);
@@ -657,22 +627,6 @@
             this.btnAddMsg.UseVisualStyleBackColor = true;
             this.btnAddMsg.Click += new System.EventHandler(this.btnAddMsg_Click);
             // 
-            // dataGrid
-            // 
-            this.dataGrid.AllowUserToAddRows = false;
-            this.dataGrid.AllowUserToOrderColumns = true;
-            this.dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid.Location = new System.Drawing.Point(6, 6);
-            this.dataGrid.MultiSelect = false;
-            this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(908, 605);
-            this.dataGrid.TabIndex = 3;
-            this.dataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.StockValueChanged);
-            // 
             // tabFilesLog
             // 
             this.tabFilesLog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -701,21 +655,6 @@
             this.tabFoundFiles.TabIndex = 0;
             this.tabFoundFiles.Text = "Found files";
             this.tabFoundFiles.UseVisualStyleBackColor = true;
-            // 
-            // dataFiles
-            // 
-            this.dataFiles.AllowUserToOrderColumns = true;
-            this.dataFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataFiles.Location = new System.Drawing.Point(0, 0);
-            this.dataFiles.MultiSelect = false;
-            this.dataFiles.Name = "dataFiles";
-            this.dataFiles.Size = new System.Drawing.Size(478, 446);
-            this.dataFiles.TabIndex = 18;
-            this.dataFiles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataFiles_CellValueChanged);
             // 
             // tabSettings
             // 
@@ -1138,17 +1077,6 @@
             this.btnReplaceSave.UseVisualStyleBackColor = true;
             this.btnReplaceSave.Click += new System.EventHandler(this.btnReplaceSave_Click);
             // 
-            // gridReplacements
-            // 
-            this.gridReplacements.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridReplacements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridReplacements.Location = new System.Drawing.Point(0, 0);
-            this.gridReplacements.Name = "gridReplacements";
-            this.gridReplacements.Size = new System.Drawing.Size(478, 446);
-            this.gridReplacements.TabIndex = 0;
-            // 
             // tabChild
             // 
             this.tabChild.Controls.Add(this.btnChildRemove);
@@ -1230,6 +1158,91 @@
             this.tabLog.Text = "Log";
             this.tabLog.UseVisualStyleBackColor = true;
             // 
+            // dataFiles
+            // 
+            this.dataFiles.AllowUserToOrderColumns = true;
+            this.dataFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataFiles.Location = new System.Drawing.Point(0, 0);
+            this.dataFiles.MultiSelect = false;
+            this.dataFiles.Name = "dataFiles";
+            this.dataFiles.Size = new System.Drawing.Size(478, 446);
+            this.dataFiles.TabIndex = 18;
+            this.dataFiles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataFiles_CellValueChanged);
+            // 
+            // gridReplacements
+            // 
+            this.gridReplacements.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridReplacements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridReplacements.Location = new System.Drawing.Point(0, 0);
+            this.gridReplacements.Name = "gridReplacements";
+            this.gridReplacements.Size = new System.Drawing.Size(478, 446);
+            this.gridReplacements.TabIndex = 0;
+            // 
+            // dataCSV
+            // 
+            this.dataCSV.AllowUserToAddRows = false;
+            this.dataCSV.AllowUserToDeleteRows = false;
+            this.dataCSV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataCSV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataCSV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataCSV.Location = new System.Drawing.Point(5, 4);
+            this.dataCSV.MultiSelect = false;
+            this.dataCSV.Name = "dataCSV";
+            this.dataCSV.Size = new System.Drawing.Size(907, 369);
+            this.dataCSV.TabIndex = 23;
+            this.dataCSV.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceValueChanged);
+            this.dataCSV.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceChanged);
+            // 
+            // dataGridInvItems
+            // 
+            this.dataGridInvItems.AllowUserToAddRows = false;
+            this.dataGridInvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridInvItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridInvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridInvItems.Location = new System.Drawing.Point(134, 21);
+            this.dataGridInvItems.MultiSelect = false;
+            this.dataGridInvItems.Name = "dataGridInvItems";
+            this.dataGridInvItems.Size = new System.Drawing.Size(778, 172);
+            this.dataGridInvItems.TabIndex = 0;
+            this.dataGridInvItems.SelectionChanged += new System.EventHandler(this.InvoiceItemSelChanged);
+            // 
+            // dataGrid
+            // 
+            this.dataGrid.AllowUserToAddRows = false;
+            this.dataGrid.AllowUserToOrderColumns = true;
+            this.dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid.Location = new System.Drawing.Point(6, 6);
+            this.dataGrid.MultiSelect = false;
+            this.dataGrid.Name = "dataGrid";
+            this.dataGrid.Size = new System.Drawing.Size(908, 605);
+            this.dataGrid.TabIndex = 3;
+            this.dataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.StockValueChanged);
+            // 
+            // btnExportToShipper
+            // 
+            this.btnExportToShipper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnExportToShipper.Location = new System.Drawing.Point(268, 379);
+            this.btnExportToShipper.Name = "btnExportToShipper";
+            this.btnExportToShipper.Size = new System.Drawing.Size(151, 23);
+            this.btnExportToShipper.TabIndex = 27;
+            this.btnExportToShipper.Text = "DPD Shipper export";
+            this.btnExportToShipper.UseVisualStyleBackColor = true;
+            this.btnExportToShipper.Click += new System.EventHandler(this.btnExportToShipper_Click);
+            // 
             // FrmActiveStyle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1254,16 +1267,12 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataCSV)).EndInit();
             this.tabItems.ResumeLayout(false);
             this.tabAllItems.ResumeLayout(false);
             this.tabSelItems.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridInvItems)).EndInit();
             this.stock.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.tabFilesLog.ResumeLayout(false);
             this.tabFoundFiles.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).EndInit();
             this.tabSettings.ResumeLayout(false);
             this.tabSettings.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1273,11 +1282,15 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabReplace.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).EndInit();
             this.tabChild.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridChilds)).EndInit();
             this.tabLog.ResumeLayout(false);
             this.tabLog.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataCSV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInvItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1381,6 +1394,7 @@
         private System.Windows.Forms.Button btnChildSave;
         private System.Windows.Forms.Button btnSetWaiting;
         private System.Windows.Forms.Button btnDbHelper;
+        private System.Windows.Forms.Button btnExportToShipper;
     }
 }
 
