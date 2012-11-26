@@ -69,11 +69,19 @@ namespace MessageImporter
                     state = StockItemState.Unpaired;
 
                 else if (pairProd != null && pairProd.Parent.Cancelled)
+                {
                     state = StockItemState.PermanentStorage;
-
+                    if (string.IsNullOrEmpty(Sklad))
+                        Sklad = "02";
+                }
                 else if (pairProd != null && state != StockItemState.Waiting)
+                {
                     state = StockItemState.Paired;
-                
+
+                    if (string.IsNullOrEmpty(Sklad))
+                        Sklad = "01";
+                }
+
                 return state;
             }
 
@@ -209,7 +217,7 @@ namespace MessageImporter
             {
                 if (PairProduct != null)
                 {
-                    fictivePrice = Math.Round(Common.GetPrice(PairProduct.ItemOrigPrice) - Common.GetPrice(PairProduct.ItemDiscount), 2).ToString();
+                    fictivePrice = PairProduct.PredajnaCena.ToString(); //Math.Round(Common.GetPrice(PairProduct.ItemOrigPrice) - Common.GetPrice(PairProduct.ItemDiscount), 2).ToString();
                 }
 
                 return fictivePrice;
@@ -266,7 +274,7 @@ namespace MessageImporter
                     }
                 }
 
-                if (FromFile.FileName.Contains("refund"))
+                if (FromFile != null && FromFile.FileName.Contains("refund"))
                     tax = 1.0;
 
                 priceEURnoTax /= tax;
@@ -318,6 +326,20 @@ namespace MessageImporter
         internal double Total { get; set; }
 
         internal string Currency { get; set; }
+
+        private string sklad;
+        public string Sklad
+        {
+            get
+            {
+                return sklad;
+            }
+
+            set
+            {
+                sklad = value;
+            }
+        }
 
         [System.ComponentModel.DisplayName("Dátum obj.")]
         public DateTime OrderDate { get; set; }

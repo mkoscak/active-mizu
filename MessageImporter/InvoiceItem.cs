@@ -116,6 +116,24 @@ namespace MessageImporter
         [System.ComponentModel.DisplayName("Popis web")]
         public string ItemName { get; set; }
 
+        public double predajnaCena;
+        [System.ComponentModel.DisplayName("Predajná cena")]
+        public double PredajnaCena
+        {
+            get
+            {
+                predajnaCena = Common.GetPrice(ItemOrigPrice) - (Common.GetPrice(ItemDiscount) / Common.GetPrice(ItemQtyOrdered));
+                predajnaCena = Math.Round(predajnaCena, 2);
+
+                return predajnaCena;
+            }
+
+            set
+            {
+                predajnaCena = value;
+            }
+        }
+
         public string itemOptions;
         [System.ComponentModel.DisplayName("Veľkosť")]
         public string ItemOptions

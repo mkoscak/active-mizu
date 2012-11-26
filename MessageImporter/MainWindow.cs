@@ -175,6 +175,11 @@ namespace MessageImporter
                         item.FromFile = file;
                         file.ProdCount++;
 
+                        if (item.State == StockItemState.PermanentStorage)
+                            item.Sklad = "02";
+                        else if (item.State == StockItemState.Waiting)
+                            item.Sklad = Properties.Settings.Default.Storage;
+
                         items.Add(item);
                     }
 
@@ -1165,12 +1170,10 @@ namespace MessageImporter
                 stock.stockHeader.description2 = prod.ItemNameInv;
 
                 stock.stockHeader.storage = new refTypeStorage();
-                if (prod.State == StockItemState.PermanentStorage)
-                    stock.stockHeader.storage.ids = "02";
-                else if (prod.State == StockItemState.Waiting)
-                {
-                    stock.stockHeader.storage.ids = Properties.Settings.Default.Storage;   // expedicny sklad je rovnaky ako standardny
+                stock.stockHeader.storage.ids = prod.Sklad;
 
+                if (prod.State == StockItemState.Waiting)
+                {
                     // ulozenie produktu do DB
                     var insert = string.Format("INSERT INTO WAITING_PRODS VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", prod.PairProduct.Parent.OrderNumber, prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
                     log(insert);
@@ -1185,8 +1188,6 @@ namespace MessageImporter
                         return;
                     }
                 }
-                else
-                    stock.stockHeader.storage.ids = Properties.Settings.Default.Storage;
 
                 stock.stockHeader.typePrice = new refType();
                 stock.stockHeader.typePrice.ids = Properties.Settings.Default.TypePrice;
