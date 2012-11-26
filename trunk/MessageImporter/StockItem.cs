@@ -266,6 +266,9 @@ namespace MessageImporter
                     }
                 }
 
+                if (FromFile.FileName.Contains("refund"))
+                    tax = 1.0;
+
                 priceEURnoTax /= tax;
 
                 return Math.Round(priceEURnoTax, 2);

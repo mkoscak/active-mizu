@@ -921,7 +921,7 @@ namespace MessageImporter
                 newInv.invoiceHeader.invoiceType = invoiceTypeType.issuedInvoice;
                 newInv.invoiceHeader.dateAccounting = DateTime.Now;
                 newInv.invoiceHeader.dateAccountingSpecified = true;
-                newInv.invoiceHeader.dateOrder = DateTime.Now;
+                newInv.invoiceHeader.dateOrder = DateTime.Parse(inv.OrderDate);
                 newInv.invoiceHeader.dateOrderSpecified = true;
                 newInv.invoiceHeader.dateTax = DateTime.Now;
                 newInv.invoiceHeader.dateTaxSpecified = true;
@@ -956,7 +956,7 @@ namespace MessageImporter
 
                 newInv.invoiceHeader.numberOrder = inv.OrderNumber;
                 newInv.invoiceHeader.dateSpecified = true;
-                newInv.invoiceHeader.date = DateTime.Parse(inv.OrderDate);
+                newInv.invoiceHeader.date = DateTime.Now;
                 newInv.invoiceHeader.symConst = Properties.Settings.Default.ConstSym;
                 newInv.invoiceHeader.note = inv.CustomerEmail;
                 newInv.invoiceHeader.intNote = inv.ShippingPhoneNumber;
@@ -1059,7 +1059,7 @@ namespace MessageImporter
                     newInv.invoiceSummary = new invoiceSummaryType();
                     newInv.invoiceSummary.foreignCurrency = new typeCurrencyForeign();
                     newInv.invoiceSummary.foreignCurrency.currency = new refType();
-                    newInv.invoiceSummary.foreignCurrency.currency.ids = "HU";
+                    newInv.invoiceSummary.foreignCurrency.currency.ids = "HUF";
                 }
                 if (inv.Country == Country.CzechRepublic)
                 {
