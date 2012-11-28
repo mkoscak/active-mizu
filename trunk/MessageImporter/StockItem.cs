@@ -18,7 +18,7 @@ namespace MessageImporter
     /// <summary>
     /// Polozka objednavky
     /// </summary>
-    public class StockItem
+    public class StockItem : ICloneable
     {
         private InvoiceItem pairProd;
         internal InvoiceItem PairProduct 
@@ -351,5 +351,45 @@ namespace MessageImporter
         {
             return ProductCode + " - " + Description;
         }
+
+        #region ICloneable Members
+
+        public object Clone()
+        {
+            StockItem newObj = new StockItem();
+
+            newObj.ChangeColor = ChangeColor;
+            newObj.Currency = Currency;
+            newObj.Description = Description;
+            newObj.Disp_Qty = Disp_Qty;
+            //newObj.EquippedInv = EquippedInv;
+            newObj.FictivePrice = FictivePrice;
+            newObj.FromFile = FromFile;
+            //newObj.Icon = Icon;
+            newObj.IsFromDB = IsFromDB;
+            newObj.ItemNameInv = ItemNameInv;
+            newObj.Ord_Qty = Ord_Qty;
+            newObj.OrderDate = OrderDate;
+            if (PairProduct != null)
+                newObj.PairProduct = PairProduct;
+            newObj.PreviousState = PreviousState;
+            newObj.Price = Price;
+            newObj.PriceEURnoTax = PriceEURnoTax;
+            newObj.PriceEURnoTaxEUR = PriceEURnoTaxEUR;
+            newObj.PriceWithDelivery = PriceWithDelivery;
+            newObj.PriceWithDeliveryEUR = PriceWithDeliveryEUR;
+            newObj.ProductCode = ProductCode;
+            newObj.SellPriceEUR = SellPriceEUR;
+            newObj.SellPriceInv = SellPriceInv;
+            newObj.SizeInv = SizeInv;
+            newObj.Sklad = Sklad;
+            newObj.State = State;
+            newObj.Total = Total;
+            newObj.TotalEUR = TotalEUR;
+
+            return newObj;
+        }
+
+        #endregion
     }
 }
