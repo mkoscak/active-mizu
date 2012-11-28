@@ -218,6 +218,21 @@ namespace MessageImporter
                     }
                 }
 
+                // viacpoctove produkty sa rozkuskuju
+                for (int i = 0; i < items.Count; i++)
+                {
+                    if (items[i].Disp_Qty > 1)
+                    {
+                        var count = items[i].Disp_Qty;
+                        items[i].Disp_Qty = 1;
+
+                        for (int j = 0; j < count-1; j++)
+                            items.Insert(i, items[i].Clone() as StockItem);
+
+                        i += count;
+                    }
+                }
+
                 order.Items = items.ToArray();
 
                 return order;
@@ -715,7 +730,7 @@ namespace MessageImporter
 
                     foreach (var msg in allMessages)
                     {
-                        var foundItems = msg.Items.Where(orderItem => orderItem.ProductCode != null && orderItem.ProductCode.Contains(productCode)).ToList();
+                        var foundItems = msg.Items.Where(orderItem => orderItem.ProductCode != null && orderItem.ProductCode.Contains(productCode) && orderItem.PairProduct == null).ToList();
                         if (foundItems.Count == 1)
                         {
                             CompleteOrderItem(product, foundItems[0]);
@@ -723,14 +738,18 @@ namespace MessageImporter
                         else if (foundItems.Count == 0) // vsetko v pohode
                         {
                         }
-                        else
+                        else //viacnasobne produkty
                         {
-                            /*ProductChooser pc = new ProductChooser();
-                            pc.SetOrderItems(foundItems, product);
+                            var count = int.Parse(product.ItemQtyOrdered);
 
-                            pc.ShowDialog(this);
-                            
-                            CompleteOrderItem(pc.Selected, product);*/
+                            for (int i = 0; i < count; i++)
+                            {
+                                if (i == 0 && count <= foundItems.Count)
+                                    product.PairProduct = foundItems[i];
+
+                                if (i < foundItems.Count)
+                                    foundItems[i].PairProduct = product;    // n produktov zo stock sa naviaze na jeden produkt z CSV (n pocet objednanych v CSV)
+                            }
                         }
                     }
 
@@ -1213,6 +1232,8 @@ namespace MessageImporter
                 stock.stockHeader.nameComplement = prod.SizeInv;
 
                 stock.stockHeader.sellingRateVAT = vatRateType.high;
+
+                stock.stockHeader.acc = "132100";
                 
                 newDatapack.Item = stock;
                 dataPacks.Add(newDatapack);
@@ -1357,7 +1378,8 @@ namespace MessageImporter
             var paired = allInvoices.Where(i => i.InvoiceItems != null).SelectMany(inv => inv.InvoiceItems).Where(i => Common.IsItemPaired(i)).Select(ii => ii.PairProduct.ProductCode).ToList();
          
             lbNonPaired.Items.Clear();
-            allProducts.Where(p => !paired.Contains(p.ProductCode) && p.ProductCode != null).ToList().ForEach(i => lbNonPaired.Items.Add(i.ProductCode));
+            //allProducts.Where(p => !paired.Contains(p.ProductCode) && p.ProductCode != null).ToList().ForEach(i => lbNonPaired.Items.Add(i.ProductCode));
+            allProducts.Where(p => p.PairProduct == null).ToList().ForEach(i => lbNonPaired.Items.Add(i.ProductCode));
             lblUnpiredCount.Text = lbNonPaired.Items.Count.ToString() + " unpaired items";
         }
 
