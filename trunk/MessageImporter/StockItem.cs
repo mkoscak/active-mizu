@@ -274,7 +274,7 @@ namespace MessageImporter
                     }
                 }
 
-                if (FromFile != null && FromFile.FileName.Contains("refund"))
+                if (IsRefund)
                     tax = 1.0;
 
                 priceEURnoTax /= tax;
@@ -344,8 +344,26 @@ namespace MessageImporter
         [System.ComponentModel.DisplayName("Dátum obj.")]
         public DateTime OrderDate { get; set; }
 
+        // nazov obsahuje refund?
+        private bool IsRefund { get; set; }
+
+        private FileItem fromFile;
         [System.ComponentModel.DisplayName("Číslo faktúry")]
-        public FileItem FromFile { get; set; }
+        public FileItem FromFile 
+        { 
+            get
+            {
+                return fromFile;
+            }
+
+            set
+            {
+                fromFile = value;
+
+                if (fromFile != null && fromFile.FileName.ToLower().Contains("refund"))
+                    IsRefund = true;
+            }
+        }
 
         public override string ToString()
         {
