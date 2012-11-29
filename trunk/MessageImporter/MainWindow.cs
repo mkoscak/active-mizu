@@ -407,7 +407,7 @@ namespace MessageImporter
                 dataCSV.Refresh();
                 dataGridInvItems.Refresh();
             }
-            else
+            else if (tabData.SelectedIndex == (int)Tabs.Stocks)
             {
                 dataGrid.Refresh();
 
@@ -425,8 +425,32 @@ namespace MessageImporter
                     }
                 }
             }
+            else if (tabData.SelectedIndex == (int)Tabs.Reader)
+            {
+                RefreshReader();
+            }
 
             dataFiles.Refresh();
+        }
+
+        private void RefreshReader()
+        {
+            string cond = "VALID = 1";
+            if (!chkOnlyValid.Checked)
+                cond = "1 = 1";
+
+            if (!string.IsNullOrEmpty(txtFilOrderNr.Text))
+                cond += string.Format(" AND ORDER_NUMBER like \"%{0}%\" ", txtFilOrderNr.Text.Trim());
+            if (!string.IsNullOrEmpty(txtFilSKU.Text))
+                cond += string.Format(" AND SKU like \"%{0}%\" ", txtFilSKU.Text.Trim());
+            if (!string.IsNullOrEmpty(txtFilStoreNr.Text))
+                cond += string.Format(" AND STORE_NR like \"%{0}%\" ", txtFilStoreNr.Text.Trim());
+
+            string query = string.Format("SELECT * FROM {0} WHERE {1}", DBProvider.T_READER, cond);
+
+            var res = DBProvider.ExecuteQuery(query);
+            if (res != null && res.Tables != null && res.Tables.Count > 0)
+                gridReader.DataSource = res.Tables[0];
         }
 
         internal bool ProcessSelectedFiles()
@@ -755,7 +779,7 @@ namespace MessageImporter
 
                     if (product.PairProduct == null)
                     {
-                        var req = string.Format("SELECT * FROM WAITING_PRODS WHERE ORDER_NUMBER = \"{0}\" AND INV_SKU = \"{1}\" AND VALID = 1", CSV.OrderNumber, product.invSKU);
+                        var req = string.Format("SELECT * FROM "+DBProvider.T_WAIT_PRODS+" WHERE ORDER_NUMBER = \"{0}\" AND INV_SKU = \"{1}\" AND VALID = 1", CSV.OrderNumber, product.invSKU);
                         var res = DBProvider.ExecuteQuery(req);
                         if (res != null && res.Tables != null && res.Tables.Count > 0)
                         {
@@ -923,6 +947,7 @@ namespace MessageImporter
             dp.application = "MessageImporter";
 
             List<dataPackItemType> items = new List<dataPackItemType>();
+            int storeNr = 1;
             foreach (var inv in invDS)
             {
                 // do exportu pojdu len vybavene objednavky, nestornovane
@@ -1053,6 +1078,22 @@ namespace MessageImporter
                         xmlItem.stockItem = new stockItemType();
                         xmlItem.stockItem.stockItem = new stockRefType();
                         xmlItem.stockItem.stockItem.ids = code;
+
+                        // ulozenie zaznamu pre citacku
+                        {
+                            ReaderItem readerItem = new ReaderItem();
+                            readerItem.OrderNr = inv.OrderNumber;
+                            
+                            if (!string.IsNullOrEmpty(invItem.PairCode))
+                                readerItem.SKU = invItem.PairCode.Replace("/", "");
+                            else
+                                readerItem.SKU = null;
+
+                            readerItem.StoreNr = storeNr.ToString();
+                            readerItem.Valid = 1;
+
+                            DBProvider.InsertReaderItem(readerItem);
+                        }
                     }
 
                     invItems.Add(xmlItem);
@@ -1103,6 +1144,8 @@ namespace MessageImporter
                 // invoice do datapacku a datapack do vysledneho pola
                 newDatapack.Item = newInv;
                 items.Add(newDatapack);
+
+                storeNr++;  // dalsia faktura pojde do dalsieho policka
             }
 
             // polozky do xml
@@ -1194,7 +1237,7 @@ namespace MessageImporter
                 if (prod.State == StockItemState.Waiting)
                 {
                     // ulozenie produktu do DB
-                    var insert = string.Format("INSERT INTO WAITING_PRODS VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", prod.PairProduct.Parent.OrderNumber, prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
+                    var insert = string.Format("INSERT INTO " + DBProvider.T_WAIT_PRODS + " VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", prod.PairProduct.Parent.OrderNumber, prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
                     log(insert);
 
                     try
@@ -1234,7 +1277,7 @@ namespace MessageImporter
                 stock.stockHeader.sellingRateVAT = vatRateType.high;
 
                 stock.stockHeader.acc = "132100";
-                
+
                 newDatapack.Item = stock;
                 dataPacks.Add(newDatapack);
 
@@ -2177,6 +2220,39 @@ namespace MessageImporter
 
             File.WriteAllText(outDir + fname, sb.ToString());
         }
+
+        private void FilterChanged(object sender, EventArgs e)
+        {
+            RefreshReader();
+        }
+
+        private void btnFilClear_Click(object sender, EventArgs e)
+        {
+            txtFilStoreNr.Text = txtFilSKU.Text = txtFilOrderNr.Text = string.Empty;
+        }
+
+        private void txtFilSKU_Click(object sender, EventArgs e)
+        {
+            if (!(sender is TextBox))
+                return;
+            var txt = sender as TextBox;
+
+            txt.SelectAll();
+        }
+
+        private void btnOrderEquipped_Click(object sender, EventArgs e)
+        {
+            // TODO - nastavit zaznamov v reader s vybranym kodom objednavky valid na 0
+        }
+
+        private void btnDeleteAllReader_Click(object sender, EventArgs e)
+        {
+            var query = string.Format("UPDATE {0} SET VALID = 0", DBProvider.T_READER);
+
+            DBProvider.ExecuteNonQuery(query);
+
+            RefreshReader();
+        }
     }
 
     class ChildItem
@@ -2207,7 +2283,8 @@ namespace MessageImporter
     enum Tabs
     {
         Invoices,
-        Stocks
+        Stocks,
+        Reader
     }
 
     class CustomDataGridView : DataGridView

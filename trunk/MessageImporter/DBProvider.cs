@@ -11,6 +11,9 @@ namespace MessageImporter
         private static SQLiteDataAdapter DB;
         internal static string DataSource = @".\activestyle.db";
 
+        internal static string T_WAIT_PRODS = "WAITING_PRODS";
+        internal static string T_READER = "READER";
+
         static DBProvider()
         {
             // vytvorenie DB suboru
@@ -75,6 +78,59 @@ namespace MessageImporter
             sql_con.Close();
 
             return DS;
+        }
+
+        public static bool ExistsReaderItem(ReaderItem item)
+        {
+            string query = string.Format("select * from {0} where ORDER_NUMBER = {1} AND SKU = {2} AND VALID = 1", T_READER, item.OrderNr, item.SKU);
+            try
+            {
+                var res = ExecuteQuery(query);
+
+                if (res != null && res.Tables != null && res.Tables.Count > 0 && res.Tables[0].Rows.Count > 0)
+                    return true;    // zaznam existuje
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return false;
+        }
+
+        public static bool InsertReaderItem(ReaderItem item)
+        {
+            if (ExistsReaderItem(item))
+                return UpdateReaderItem(item);
+
+            string query = string.Format("insert into {0} values ( {1}, \"{2}\", \"{3}\", \"{4}\", {5} )", T_READER, "null", item.OrderNr, item.SKU, item.StoreNr, item.Valid);
+
+            try
+            {
+                ExecuteNonQuery(query);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool UpdateReaderItem(ReaderItem item)
+        {
+            string query = string.Format("update {0} set STORE_NR = {1} where ORDER_NUMBER = \"{2}\" AND SKU = \"{3}\" AND VALID = 1", T_READER, item.StoreNr, item.OrderNr, item.SKU);
+
+            try
+            {
+                ExecuteNonQuery(query);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
