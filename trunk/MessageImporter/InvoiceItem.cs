@@ -15,6 +15,37 @@ namespace MessageImporter
         {
         }
 
+        public InvoiceItem(InvoiceItem copy, Invoice parent)
+        {
+            this.BuyingPrice = copy.BuyingPrice;
+            this.Datetime = copy.Datetime;
+            //this.FromDB = copy.FromDB;
+            this.invSKU = copy.invSKU;
+            this.ItemDiscount = copy.ItemDiscount;
+            this.ItemName = copy.ItemName;
+            this.ItemOptions = copy.ItemOptions;
+            this.ItemOrigPrice = copy.ItemOrigPrice;
+            this.ItemPrice = copy.ItemPrice;
+            this.ItemQtyCanceled = copy.ItemQtyCanceled;
+            this.ItemQtyInvoiced = copy.ItemQtyInvoiced;
+            this.ItemQtyOrdered = copy.ItemQtyOrdered;
+            this.ItemQtyRefunded = copy.ItemQtyRefunded;
+            this.ItemQtyShipped = copy.ItemQtyShipped;
+            this.ItemStatus = copy.ItemStatus;
+            this.ItemTax = copy.ItemTax;
+            this.ItemTotal = copy.ItemTotal;
+            this.MSG_SKU = copy.MSG_SKU;
+            this.OrderItemIncrement = copy.OrderItemIncrement;
+            // dopravu parujeme
+            if (copy.PairCode != null && copy.PairCode == Properties.Settings.Default.ShippingCode)
+            {
+                //this.PairCode = copy.PairCode;
+                this.PairProduct = copy.PairProduct.Clone() as StockItem;
+            }
+            this.Parent = parent;
+            this.PredajnaCena = copy.PredajnaCena;
+        }
+
         public InvoiceItem(Invoice parent)
         {
             Parent = parent;
@@ -145,7 +176,8 @@ namespace MessageImporter
 
             set
             {
-                itemOptions = value.Replace("Veľkosť:", "").Replace("Veľkost:", "").Replace("Velkost:", "").Replace("Méret", "").Replace("Meret", "").Trim();
+                if (value != null)
+                    itemOptions = value.Replace("Veľkosť:", "").Replace("Veľkost:", "").Replace("Velkost:", "").Replace("Méret", "").Replace("Meret", "").Trim();
             }
         }
 

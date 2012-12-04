@@ -31,7 +31,7 @@ namespace MessageImporter
             set
             {
                 pairProd = value;
-                if (pairProd.Parent.Cancelled)
+                if (pairProd != null && pairProd.Parent != null && pairProd.Parent.Cancelled)
                     State = StockItemState.PermanentStorage;    // ak je objednavka zrusena produkt ide na permanent storage
             }
         }
@@ -124,6 +124,8 @@ namespace MessageImporter
             set
             {
                 description = value;
+                if (description == null)
+                    return;
 
                 if (Replacements != null)
                 {

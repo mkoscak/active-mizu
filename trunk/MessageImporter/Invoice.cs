@@ -26,6 +26,56 @@ namespace MessageImporter
             InvoiceItems = new List<InvoiceItem>();
         }
 
+        public Invoice(Invoice copy)
+            : this()
+        {
+            this.BillingCity = copy.BillingCity;
+            this.BillingCompany = copy.BillingCompany;
+            this.BillingCountry = copy.BillingCountry;
+            this.BillingCountryName = copy.BillingCountryName;
+            this.BillingName = copy.BillingName;
+            this.BillingPhoneNumber = copy.BillingPhoneNumber;
+            this.BillingState = copy.BillingState;
+            this.BillingStateName = copy.BillingStateName;
+            this.BillingStreet = copy.BillingStreet;
+            this.BillingZip = copy.BillingZip;
+            this.Cancelled = copy.Cancelled;
+            this.Country = copy.Country;
+            this.CustomerEmail = copy.CustomerEmail;
+            this.CustomerName = copy.CustomerName;
+            this.Equipped = copy.Equipped;
+            //this.Icon = copy.Icon;
+            //this.InvoiceItems = copy.InvoiceItems;
+            foreach (var item in copy.InvoiceItems)
+                this.InvoiceItems.Add(new InvoiceItem(item, this)); // nakopirovanie poloziek bez parovania
+            this.InvoiceStatus = copy.InvoiceStatus;
+            this.OrderDate = copy.OrderDate;
+            this.OrderDiscount = copy.OrderDiscount;
+            this.OrderDue = copy.OrderDue;
+            this.OrderGrandTotal = copy.OrderGrandTotal;
+            this.OrderNumber = copy.OrderNumber;
+            this.OrderPaid = copy.OrderPaid;
+            this.OrderPaymentMethod = copy.OrderPaymentMethod;
+            this.OrderPurchasedFrom = copy.OrderPurchasedFrom;
+            this.OrderRefunded = copy.OrderRefunded;
+            this.OrderShipping = copy.OrderShipping;
+            this.OrderShippingMethod = copy.OrderShippingMethod;
+            this.OrderStatus = copy.OrderStatus;
+            this.OrderSubtotal = copy.OrderSubtotal;
+            this.OrderTax = copy.OrderTax;
+            this.ShippingCity = copy.ShippingCity;
+            this.ShippingCompany = copy.ShippingCompany;
+            this.ShippingCountry = copy.ShippingCountry;
+            this.ShippingCountryName = copy.ShippingCountryName;
+            this.ShippingName = copy.ShippingName;
+            this.ShippingPhoneNumber = copy.ShippingPhoneNumber;
+            this.ShippingState = copy.ShippingState;
+            this.ShippingStateName = copy.ShippingStateName;
+            this.ShippingStreet = copy.ShippingStreet;
+            this.ShippingZip = copy.ShippingZip;
+            this.TotQtyOrdered = copy.TotQtyOrdered;
+        }
+
         public Image Icon
         {
             get
