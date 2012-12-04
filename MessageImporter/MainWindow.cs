@@ -1422,7 +1422,7 @@ namespace MessageImporter
          
             lbNonPaired.Items.Clear();
             //allProducts.Where(p => !paired.Contains(p.ProductCode) && p.ProductCode != null).ToList().ForEach(i => lbNonPaired.Items.Add(i.ProductCode));
-            allProducts.Where(p => p.PairProduct == null).ToList().ForEach(i => lbNonPaired.Items.Add(i.ProductCode));
+            allProducts.Where(p => p.PairProduct == null && p.ProductCode != null).ToList().ForEach(i => lbNonPaired.Items.Add(i.ProductCode));
             lblUnpiredCount.Text = lbNonPaired.Items.Count.ToString() + " unpaired items";
         }
 
@@ -2268,6 +2268,34 @@ namespace MessageImporter
             DBProvider.ExecuteNonQuery(query);
 
             RefreshReader();
+        }
+
+        private void btnInvCopy_Click(object sender, EventArgs e)
+        {
+            var selCells = dataCSV.SelectedCells;
+            if (selCells == null || selCells.Count == 0)
+                return;
+
+            var toCopy = dataCSV.Rows[selCells[0].RowIndex].DataBoundItem as Invoice;
+
+            var ds = GetInvoiceDS();
+            if (ds == null)
+                return;
+            ds.Add(new Invoice(toCopy));
+        }
+
+        private void btnStockCopy_Click(object sender, EventArgs e)
+        {
+            var selCells = dataGrid.SelectedCells;
+            if (selCells == null || selCells.Count == 0)
+                return;
+
+            var toCopy = dataGrid.Rows[selCells[0].RowIndex].DataBoundItem as StockItem;
+
+            var ds = GetProductsDS();
+            if (ds == null)
+                return;
+            ds.Add(toCopy.Clone() as StockItem);
         }
     }
 

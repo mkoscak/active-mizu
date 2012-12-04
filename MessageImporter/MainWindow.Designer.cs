@@ -48,6 +48,7 @@
             this.tabData = new System.Windows.Forms.TabControl();
             this.invoice = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnInvCopy = new System.Windows.Forms.Button();
             this.btnExportToShipper = new System.Windows.Forms.Button();
             this.btnSetWaiting = new System.Windows.Forms.Button();
             this.btnInvoiceRemove = new System.Windows.Forms.Button();
@@ -140,6 +141,7 @@
             this.btnChildSave = new System.Windows.Forms.Button();
             this.gridChilds = new MessageImporter.CustomDataGridView();
             this.tabLog = new System.Windows.Forms.TabPage();
+            this.btnStockCopy = new System.Windows.Forms.Button();
             this.grpInputSettings.SuspendLayout();
             this.tabData.SuspendLayout();
             this.invoice.SuspendLayout();
@@ -377,6 +379,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnInvCopy);
             this.splitContainer1.Panel1.Controls.Add(this.btnExportToShipper);
             this.splitContainer1.Panel1.Controls.Add(this.btnSetWaiting);
             this.splitContainer1.Panel1.Controls.Add(this.btnInvoiceRemove);
@@ -399,10 +402,21 @@
             this.splitContainer1.SplitterDistance = 409;
             this.splitContainer1.TabIndex = 27;
             // 
+            // btnInvCopy
+            // 
+            this.btnInvCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnInvCopy.Location = new System.Drawing.Point(86, 379);
+            this.btnInvCopy.Name = "btnInvCopy";
+            this.btnInvCopy.Size = new System.Drawing.Size(88, 23);
+            this.btnInvCopy.TabIndex = 28;
+            this.btnInvCopy.Text = "Copy selected";
+            this.btnInvCopy.UseVisualStyleBackColor = true;
+            this.btnInvCopy.Click += new System.EventHandler(this.btnInvCopy_Click);
+            // 
             // btnExportToShipper
             // 
             this.btnExportToShipper.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnExportToShipper.Location = new System.Drawing.Point(268, 379);
+            this.btnExportToShipper.Location = new System.Drawing.Point(362, 379);
             this.btnExportToShipper.Name = "btnExportToShipper";
             this.btnExportToShipper.Size = new System.Drawing.Size(151, 23);
             this.btnExportToShipper.TabIndex = 27;
@@ -424,7 +438,7 @@
             // btnInvoiceRemove
             // 
             this.btnInvoiceRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnInvoiceRemove.Location = new System.Drawing.Point(86, 379);
+            this.btnInvoiceRemove.Location = new System.Drawing.Point(180, 379);
             this.btnInvoiceRemove.Name = "btnInvoiceRemove";
             this.btnInvoiceRemove.Size = new System.Drawing.Size(114, 23);
             this.btnInvoiceRemove.TabIndex = 25;
@@ -617,6 +631,7 @@
             // 
             // stock
             // 
+            this.stock.Controls.Add(this.btnStockCopy);
             this.stock.Controls.Add(this.btnExportMSG);
             this.stock.Controls.Add(this.btnUnpairAllMSG);
             this.stock.Controls.Add(this.btnUnpairProductMSG);
@@ -668,7 +683,7 @@
             // btnRemoveMSG
             // 
             this.btnRemoveMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemoveMSG.Location = new System.Drawing.Point(87, 617);
+            this.btnRemoveMSG.Location = new System.Drawing.Point(194, 617);
             this.btnRemoveMSG.Name = "btnRemoveMSG";
             this.btnRemoveMSG.Size = new System.Drawing.Size(114, 23);
             this.btnRemoveMSG.TabIndex = 27;
@@ -1409,6 +1424,17 @@
             this.tabLog.Text = "Log";
             this.tabLog.UseVisualStyleBackColor = true;
             // 
+            // btnStockCopy
+            // 
+            this.btnStockCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnStockCopy.Location = new System.Drawing.Point(87, 617);
+            this.btnStockCopy.Name = "btnStockCopy";
+            this.btnStockCopy.Size = new System.Drawing.Size(101, 23);
+            this.btnStockCopy.TabIndex = 36;
+            this.btnStockCopy.Text = "Copy selected";
+            this.btnStockCopy.UseVisualStyleBackColor = true;
+            this.btnStockCopy.Click += new System.EventHandler(this.btnStockCopy_Click);
+            // 
             // FrmActiveStyle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1578,6 +1604,8 @@
         private System.Windows.Forms.Button btnOrderEquipped;
         private System.Windows.Forms.Button btnDeleteAllReader;
         private System.Windows.Forms.CheckBox chkOnlyValid;
+        private System.Windows.Forms.Button btnInvCopy;
+        private System.Windows.Forms.Button btnStockCopy;
     }
 }
 
