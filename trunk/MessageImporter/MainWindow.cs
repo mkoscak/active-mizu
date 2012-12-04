@@ -2121,7 +2121,7 @@ namespace MessageImporter
                 {
                     if (item.OrderPaymentMethod.ToLower().Contains("cashondelivery"))
                     {
-                        shipper.AdressId = "D_COD";
+                        shipper.AdressId = "D-COD";
                         shipper.ParcelType = item.OrderGrandTotal;
                     }
                     else
@@ -2129,16 +2129,25 @@ namespace MessageImporter
                         shipper.AdressId = "COD";
                         shipper.ParcelType = "";
                     }
+                    shipper.ParcelWeight = "";
                     shipper.NrOfTotal = item.OrderNumber;//D
                     shipper.ParcelCOD = item.OrderNumber;//E
+                    shipper.ParcelCODAmount = "";//F
                     shipper.ParcelCODCurrency = item.ShippingName;//G
+                    shipper.ParcelCODvarSym = "";//H
                     shipper.ParcelCODCardPay = item.ShippingStreet;//I
+                    shipper.ParcelOrderNumber = "";//J
                     shipper.CustRef = "H";//K
-                    shipper.CustName = item.ShippingCity;//L
-                    shipper.CustStreet = item.ShippingZip;//M
+                    shipper.CustName = item.ShippingZip;//L
+                    shipper.CustStreet = item.ShippingCity;//M
                     shipper.CustZip = item.ShippingPhoneNumber;//N
+                    shipper.CustCity = "";//O
                     shipper.CustCountry = item.CustomerEmail;//P
                     shipper.CustPhone = "Hívás!! Hívás!! Hívás!! Hívás!!";//Q
+                    shipper.CustEmail = "";
+                    shipper.SMSPreAdvice = "";
+                    shipper.PhoneNumber = "";
+                    shipper.ParcelNote = "";
                 }
 
                 if (item.Country == Country.Hungary)
@@ -2204,11 +2213,15 @@ namespace MessageImporter
                 sb.Append(shipper.CustZip + ";");
                 sb.Append(shipper.CustCity + ";");
                 sb.Append(shipper.CustCountry + ";");
-                sb.Append(shipper.CustPhone + ";");
-                sb.Append(shipper.CustEmail + ";");
-                sb.Append(shipper.SMSPreAdvice + ";");
-                sb.Append(shipper.PhoneNumber + ";");
-                sb.Append(shipper.ParcelNote);
+                sb.Append(shipper.CustPhone);
+                if (!HU)
+                {
+                    sb.Append(";");
+                    sb.Append(shipper.CustEmail + ";");
+                    sb.Append(shipper.SMSPreAdvice + ";");
+                    sb.Append(shipper.PhoneNumber + ";");
+                    sb.Append(shipper.ParcelNote);
+                }
             }
 
             // zapis do suboru
@@ -2218,7 +2231,10 @@ namespace MessageImporter
             var fname = HU ? "HU" : "SK";
             fname += "_shipper_" + DateTime.Now.Ticks + ".csv";
 
-            File.WriteAllText(outDir + fname, sb.ToString());
+            if (!HU)
+                File.WriteAllText(outDir + fname, sb.ToString(), Encoding.GetEncoding(1252));
+            else
+                File.WriteAllText(outDir + fname, sb.ToString());
         }
 
         private void FilterChanged(object sender, EventArgs e)
