@@ -1255,7 +1255,8 @@ namespace MessageImporter
                 stock.stockHeader.typePrice.ids = Properties.Settings.Default.TypePrice;
 
                 stock.stockHeader.purchasingPriceSpecified = true;
-                stock.stockHeader.purchasingPrice = prod.PriceEURnoTaxEUR;
+                //stock.stockHeader.purchasingPrice = prod.PriceEURnoTaxEUR;
+                stock.stockHeader.purchasingPrice = prod.exportPriceEurNoTax;
                 stock.stockHeader.sellingPrice = Common.GetPrice(prod.SellPriceEUR);
                 stock.stockHeader.limitMin = 0;
                 stock.stockHeader.limitMax = 0;
