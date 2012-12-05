@@ -290,6 +290,7 @@ namespace MessageImporter
             }
         }
 
+        internal double exportPriceEurNoTax;
         private double priceEURnoTaxEUR;
         private bool computePriceEURnoTaxEUR = true;
         [System.ComponentModel.DisplayName("Nákupná cena bez DPH EUR")]
@@ -300,6 +301,7 @@ namespace MessageImporter
                 if (!double.IsNaN(PriceEURnoTax) && FromFile != null && !double.IsNaN(FromFile.ExchRate) && !double.IsNaN(FromFile.Delivery) && FromFile.ProdCount > 0 && computePriceEURnoTaxEUR)
                 {
                     //var config = new CountrySetting(PairProduct.Parent.Country);
+                    exportPriceEurNoTax = Math.Round(PriceEURnoTax * FromFile.ExchRate, 2);
                     priceEURnoTaxEUR = Math.Round((PriceEURnoTax * FromFile.ExchRate) + (FromFile.Delivery * FromFile.ExchRate / FromFile.ProdCount), 2);
                     computePriceEURnoTaxEUR = false;    // tato hodnota sa bude pocitat len raz
                 }
