@@ -92,6 +92,7 @@
     <Compile Include="Export.Designer.cs">
       <DependentUpon>Export.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExRateItem.cs" />
     <Compile Include="FileItem.cs" />
     <Compile Include="Icons.cs" />
     <Compile Include="Invoice.cs" />

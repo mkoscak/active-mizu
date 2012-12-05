@@ -13,6 +13,7 @@ namespace MessageImporter
 
         internal static string T_WAIT_PRODS = "WAITING_PRODS";
         internal static string T_READER = "READER";
+        internal static string T_EXCH_RATE = "EXCH_RATE";
 
         static DBProvider()
         {
@@ -131,6 +132,106 @@ namespace MessageImporter
             }
 
             return true;
+        }
+
+        public static bool ExistsExRate(ExRateItem item)
+        {
+            string query = string.Format("select * from {0} where DATE = \"{1}\"", T_EXCH_RATE, item.Date);
+            try
+            {
+                var res = ExecuteQuery(query);
+
+                if (res != null && res.Tables != null && res.Tables.Count > 0 && res.Tables[0].Rows.Count > 0)
+                    return true;    // zaznam existuje
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return false;
+        }
+
+        private static string GetReal(double number)
+        {
+            var str = number.ToString();
+
+            return str.Replace(',', '.');
+        }
+
+        public static bool UpdateExRate(ExRateItem item)
+        {
+
+            string query = string.Format("update {0} set RATE_CZK = {2}, RATE_PLN = {3}, RATE_HUF = {4} where DATE = \"{1}\"", T_EXCH_RATE, item.Date, GetReal(item.RateCZK), GetReal(item.RatePLN), GetReal(item.RateHUF));
+
+            try
+            {
+                ExecuteNonQuery(query);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool InsertExRate(ExRateItem item)
+        {
+            if (ExistsExRate(item))
+                return UpdateExRate(item);
+
+            string query = string.Format("insert into {0} values ( {1}, \"{2}\", {3}, {4}, {5} )", T_EXCH_RATE, "null", item.Date, GetReal(item.RateCZK), GetReal(item.RatePLN), GetReal(item.RateHUF));
+
+            try
+            {
+                ExecuteNonQuery(query);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static ExRateItem GetExRate(string date)
+        {
+            string query = string.Format("select ID,DATE,RATE_CZK,RATE_PLN,RATE_HUF from {0} where DATE = \"{1}\"", T_EXCH_RATE, date);
+            try
+            {
+                var res = ExecuteQuery(query);
+
+                if (res != null && res.Tables != null && res.Tables.Count > 0 && res.Tables[0].Rows.Count > 0)
+                {
+                    ExRateItem ret = new ExRateItem();
+                    ret.Id = int.Parse(res.Tables[0].Rows[0].ItemArray[0].ToString());
+                    ret.Date = res.Tables[0].Rows[0][1] as string;
+                    ret.RateCZK = (double)res.Tables[0].Rows[0][2];
+                    ret.RatePLN = (double)res.Tables[0].Rows[0][3];
+                    ret.RateHUF = (double)res.Tables[0].Rows[0][4];
+
+                    return ret;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+            return null;
+        }
+
+        public static ExRateItem GetExRateDayBefore(DateTime date)
+        {
+            DateTime dt = date.AddDays(-1);
+            if (dt.DayOfWeek == DayOfWeek.Saturday || dt.DayOfWeek == DayOfWeek.Sunday)
+                dt = dt.AddDays(-1);
+            if (dt.DayOfWeek == DayOfWeek.Saturday || dt.DayOfWeek == DayOfWeek.Sunday)
+                dt = dt.AddDays(-1);
+
+            // dt je predchadzajuci pracovny den
+            return GetExRate(dt.ToString("yyyy-MM-dd"));
         }
     }
 }

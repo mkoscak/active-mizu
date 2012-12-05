@@ -10,6 +10,8 @@ using Microsoft.Office.Interop.Outlook;
 using System.IO;
 using System.Globalization;
 using System.Xml.Serialization;
+using System.Net;
+using System.Xml;
 
 namespace MessageImporter
 {
@@ -73,6 +75,20 @@ namespace MessageImporter
             btnSettingsLoad_Click(btnSettingsLoad, new EventArgs());
             btnReplaceReload_Click(btnReplaceReload, new EventArgs());
             btnChildReload_Click(btnChildReload, new EventArgs());
+
+            // stiahnutie a import kurzoveho listka
+            try
+            {
+                log("");
+                log("Downloading exchange rates from "+Properties.Settings.Default.ExchRateXMLAddress);
+                DownloadExchangeRateXML();
+                log("done.");
+            }
+            catch (System.Exception ex)
+            {
+                log("failed!");
+                MessageBox.Show(this, "Failed to load exchange rates from "+Properties.Settings.Default.ExchRateXMLAddress+"! Exception: "+ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             btnProcess_Click(btnProcess, new EventArgs());
         }
@@ -1255,8 +1271,7 @@ namespace MessageImporter
                 stock.stockHeader.typePrice.ids = Properties.Settings.Default.TypePrice;
 
                 stock.stockHeader.purchasingPriceSpecified = true;
-                //stock.stockHeader.purchasingPrice = prod.PriceEURnoTaxEUR;
-                stock.stockHeader.purchasingPrice = prod.exportPriceEurNoTax;
+                stock.stockHeader.purchasingPrice = prod.PriceEURnoTaxEUR;
                 stock.stockHeader.sellingPrice = Common.GetPrice(prod.SellPriceEUR);
                 stock.stockHeader.limitMin = 0;
                 stock.stockHeader.limitMax = 0;
@@ -1815,6 +1830,7 @@ namespace MessageImporter
             txtSetCzkEx.Text = prop.ExRateCzk;
             txtSetHufEx.Text = prop.ExRateHuf;
             txtSetPlnEx.Text = prop.ExRatePln;
+            txtSetExRatePath.Text = prop.ExchRateXMLAddress;
 
             // shipping
             txtSetSkkText.Text = prop.ShipTextSkk;
@@ -1843,6 +1859,7 @@ namespace MessageImporter
             prop.ExRateCzk = Common.CleanPrice(txtSetCzkEx.Text);
             prop.ExRateHuf = Common.CleanPrice(txtSetHufEx.Text);
             prop.ExRatePln = Common.CleanPrice(txtSetPlnEx.Text);
+            prop.ExchRateXMLAddress = txtSetExRatePath.Text;
 
             // shipping
             prop.ShipTextSkk = txtSetSkkText.Text;
@@ -2297,6 +2314,50 @@ namespace MessageImporter
             if (ds == null)
                 return;
             ds.Add(toCopy.Clone() as StockItem);
+        }
+
+        void DownloadExchangeRateXML()
+        {
+            var address = Properties.Settings.Default.ExchRateXMLAddress;
+            XmlTextReader reader = new XmlTextReader(address);
+            string currName = "currency";
+            string rateName = "rate";
+            string timeName = "time";
+            ExRateItem newRate = new ExRateItem();
+            newRate.Date = DateTime.Now.ToString("yyyy-MM-dd");
+
+            while (reader.Read())
+            {
+                switch (reader.NodeType)
+                {
+                    case XmlNodeType.Element: // The node is an element.
+                        {
+                            string curr = null;
+                            string rate = null;
+
+                            while (reader.MoveToNextAttribute())
+                            {
+                                if (reader.Name.ToLower() == timeName)  // datum
+                                    newRate.Date = reader.Value;
+
+                                if (reader.Name.ToLower() == currName)  // mena
+                                    curr = reader.Value;
+                                if (reader.Name.ToLower() == rateName)  // kurz
+                                    rate = reader.Value;
+                            }
+
+                            if (curr == "CZK")
+                                newRate.RateCZK = Common.GetPrice(rate);
+                            if (curr == "PLN")
+                                newRate.RatePLN = Common.GetPrice(rate);
+                            if (curr == "HUF")
+                                newRate.RateHUF = Common.GetPrice(rate);
+                        }
+                        break;
+                }
+            }
+
+            DBProvider.InsertExRate(newRate);
         }
     }
 
