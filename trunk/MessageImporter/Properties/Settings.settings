@@ -80,5 +80,8 @@
     <Setting Name="TaxPln" Type="System.String" Scope="User">
       <Value Profile="(Default)">1.15</Value>
     </Setting>
+    <Setting Name="ExchRateXMLAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
