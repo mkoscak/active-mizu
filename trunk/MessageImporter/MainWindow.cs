@@ -1482,7 +1482,7 @@ namespace MessageImporter
                 var dsMSG = GetProductsDS();
                 if (dsMSG == null)
                     return;
-                var selProd = dsMSG.Where(o => o.ProductCode == selprodcode).ToArray()[0];
+                var selProd = dsMSG.Where(o => o.ProductCode == selprodcode && o.PairProduct == null).ToArray()[0];
 
                 var ds = GetInvoiceItemsDS();
                 if (ds == null)
