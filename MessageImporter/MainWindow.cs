@@ -2098,7 +2098,7 @@ namespace MessageImporter
             List<DPDShipper> outdataHU = new List<DPDShipper>();
             foreach (var item in ds)
             {
-                if (!item.Equipped)
+                if (!item.Equipped || item.Cancelled)
                     continue;
 
                 var shipper = new DPDShipper();

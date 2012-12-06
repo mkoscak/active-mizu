@@ -228,7 +228,7 @@ namespace MessageImporter
                             predajna /= exrate.RateHUF;
                     }
 
-                    fictivePrice = predajna.ToString(); //Math.Round(Common.GetPrice(PairProduct.ItemOrigPrice) - Common.GetPrice(PairProduct.ItemDiscount), 2).ToString();
+                    fictivePrice = Math.Round(predajna, 2).ToString(); //Math.Round(Common.GetPrice(PairProduct.ItemOrigPrice) - Common.GetPrice(PairProduct.ItemDiscount), 2).ToString();
                 }
 
                 return fictivePrice;
