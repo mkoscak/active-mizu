@@ -63,6 +63,10 @@ namespace MessageImporter
 
             set
             {
+                // pripadne odparovanie povodneho
+                if (pairProd != null)
+                    pairProd.PairProduct = null;
+
                 pairProd = value;
                 if (pairProd != null)
                     pairProd.PairProduct = this;
