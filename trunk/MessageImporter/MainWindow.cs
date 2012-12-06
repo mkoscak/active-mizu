@@ -462,7 +462,7 @@ namespace MessageImporter
             if (!string.IsNullOrEmpty(txtFilStoreNr.Text))
                 cond += string.Format(" AND STORE_NR like \"%{0}%\" ", txtFilStoreNr.Text.Trim());
 
-            string query = string.Format("SELECT * FROM {0} WHERE {1}", DBProvider.T_READER, cond);
+            string query = string.Format("SELECT * FROM {0} WHERE {1} ORDER BY ORDER_NUMBER", DBProvider.T_READER, cond);
 
             var res = DBProvider.ExecuteQuery(query);
             if (res != null && res.Tables != null && res.Tables.Count > 0)
@@ -2276,7 +2276,29 @@ namespace MessageImporter
 
         private void btnOrderEquipped_Click(object sender, EventArgs e)
         {
-            // TODO - nastavit zaznamov v reader s vybranym kodom objednavky valid na 0
+            if (gridReader.SelectedCells.Count == 0)
+                return;
+
+            var row = gridReader.Rows[gridReader.SelectedCells[0].RowIndex];
+            if (row == null)
+                return;
+
+            var orderNumber = row.Cells["ORDER_NUMBER"].Value.ToString();
+            if (string.IsNullOrEmpty(orderNumber))
+                return;
+
+            var cmd = string.Format("update {0} set VALID = 0 where ORDER_NUMBER = \"{1}\"", DBProvider.T_READER, orderNumber);
+
+            try
+            {
+                DBProvider.ExecuteNonQuery(cmd);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, "Error while updating READER table! Exception: " + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            RefreshReader();
         }
 
         private void btnDeleteAllReader_Click(object sender, EventArgs e)
