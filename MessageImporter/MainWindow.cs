@@ -955,6 +955,8 @@ namespace MessageImporter
             if (!Directory.Exists(outDir))
                 Directory.CreateDirectory(outDir);
 
+            var readerItems = new List<ReaderItem>();
+
             dataPackType dp = new dataPackType();
             dp.version = dataPackVersionType.Item20;
             dp.note = "Export ActiveStyle";
@@ -1109,6 +1111,8 @@ namespace MessageImporter
                             readerItem.Valid = 1;
 
                             DBProvider.InsertReaderItem(readerItem);
+
+                            readerItems.Add(readerItem);
                         }
                     }
 
@@ -1177,6 +1181,14 @@ namespace MessageImporter
                 MessageBox.Show(ex.ToString());
                 return;
             }
+
+            StringBuilder readerStrings = new StringBuilder();
+            readerStrings.AppendFormat("Store number;Order number;SKU{0}", Environment.NewLine);
+            foreach (var item in readerItems)
+            {
+                readerStrings.AppendFormat("{0};{1};{2}{3}", item.StoreNr, item.OrderNr, item.SKU, Environment.NewLine);
+            }
+            File.WriteAllText(outDir + "reader_"+DateTime.Now.ToString("yyyyMMdd_hhmmss")+".csv", readerStrings.ToString());
 
             MessageBox.Show("Invoice XML generated!", "Save XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
