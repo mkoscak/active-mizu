@@ -346,5 +346,17 @@ namespace MessageImporter.Properties {
                 this["ExchRateXMLAddress"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public int SubProductLength {
+            get {
+                return ((int)(this["SubProductLength"]));
+            }
+            set {
+                this["SubProductLength"] = value;
+            }
+        }
     }
 }

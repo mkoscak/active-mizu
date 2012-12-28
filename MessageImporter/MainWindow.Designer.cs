@@ -144,6 +144,8 @@
             this.btnChildSave = new System.Windows.Forms.Button();
             this.gridChilds = new MessageImporter.CustomDataGridView();
             this.tabLog = new System.Windows.Forms.TabPage();
+            this.txtSettingsProdLength = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.grpInputSettings.SuspendLayout();
             this.tabData.SuspendLayout();
             this.invoice.SuspendLayout();
@@ -927,6 +929,8 @@
             // tabSettings
             // 
             this.tabSettings.BackColor = System.Drawing.Color.Transparent;
+            this.tabSettings.Controls.Add(this.txtSettingsProdLength);
+            this.tabSettings.Controls.Add(this.label23);
             this.tabSettings.Controls.Add(this.btnDbHelper);
             this.tabSettings.Controls.Add(this.groupBox3);
             this.tabSettings.Controls.Add(this.groupBox2);
@@ -1458,6 +1462,23 @@
             this.tabLog.Text = "Log";
             this.tabLog.UseVisualStyleBackColor = true;
             // 
+            // txtSettingsProdLength
+            // 
+            this.txtSettingsProdLength.Location = new System.Drawing.Point(392, 13);
+            this.txtSettingsProdLength.Name = "txtSettingsProdLength";
+            this.txtSettingsProdLength.Size = new System.Drawing.Size(69, 20);
+            this.txtSettingsProdLength.TabIndex = 16;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.ForeColor = System.Drawing.Color.Maroon;
+            this.label23.Location = new System.Drawing.Point(267, 16);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(119, 13);
+            this.label23.TabIndex = 15;
+            this.label23.Text = "Dĺžka kódov produktov";
+            // 
             // FrmActiveStyle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1631,6 +1652,8 @@
         private System.Windows.Forms.Button btnStockCopy;
         private System.Windows.Forms.TextBox txtSetExRatePath;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtSettingsProdLength;
+        private System.Windows.Forms.Label label23;
     }
 }
 
