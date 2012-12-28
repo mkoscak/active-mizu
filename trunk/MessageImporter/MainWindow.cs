@@ -354,9 +354,11 @@ namespace MessageImporter
                 // pridanie poloziek "Cena za dopravu"
                 AddShippingItems(AllInvoices);
                 SetInvoiceDS(new BindingList<Invoice>(AllInvoices));
-                // datasource MSG sprav 
+                // kontrola na nejasnosti v kodoch produktov
+                CheckPairByHand(allMessages.SelectMany(o => o.Items).ToList());
                 //AllStocks = allMessages.SelectMany(o => o.Items).ToList();
                 SetProductsDS(new BindingList<StockItem>(allMessages.SelectMany(o => o.Items).ToList()));
+                
                                 
                 // dopocitanie cien s dopravou
                 CalcBuyingPrice(GetProductsDS());
@@ -380,6 +382,26 @@ namespace MessageImporter
             catch (System.Exception ex)
             {
                 MessageBox.Show(this, ex.ToString(), "Error");
+            }
+        }
+
+        private void CheckPairByHand(List<StockItem> bindingList)
+        {
+            var checkLength = Properties.Settings.Default.SubProductLength;
+
+            foreach (var stock in bindingList)
+            {
+                if (stock.PairByHand)
+                    continue;
+
+                var toCheck = stock.ProductCode.Substring(0, checkLength);
+                // vsetky polozky ktore zacinaju na N rovnakych cisel ale celkovy kod je rozny
+                var found = bindingList.Where(it => it != stock && it.ProductCode.Substring(0,checkLength) == toCheck && it.ProductCode != stock.ProductCode).ToList();
+                if(found != null && found.Count > 0)
+                {
+                    stock.PairByHand = true;
+                    found.ForEach(it => it.PairByHand = true);
+                }
             }
         }
 
@@ -438,6 +460,12 @@ namespace MessageImporter
                     {
                         dataGrid["PriceEURnoTaxEUR", i].Style.BackColor = Color.Green;
                         dataGrid["PriceEURnoTaxEUR", i].Style.ForeColor = Color.White;
+                    }
+
+                    if (ds[i].PairByHand && ds[i].PairProduct == null)
+                    {
+                        dataGrid["ProductCode", i].Style.BackColor = Color.Blue;
+                        dataGrid["ProductCode", i].Style.ForeColor = Color.White;
                     }
                 }
             }
@@ -768,9 +796,10 @@ namespace MessageImporter
                     if (productCode == null)
                         continue;
 
-                    foreach (var msg in allMessages)
+                    var prodDS = GetProductsDS();
+                    //foreach (var msg in allMessages)
                     {
-                        var foundItems = msg.Items.Where(orderItem => orderItem.ProductCode != null && orderItem.ProductCode.Contains(productCode) && orderItem.PairProduct == null).ToList();
+                        var foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null && orderItem.ProductCode.Contains(productCode) && orderItem.PairProduct == null).ToList();
                         if (foundItems.Count == 1)
                         {
                             CompleteOrderItem(product, foundItems[0]);
@@ -784,6 +813,9 @@ namespace MessageImporter
 
                             for (int i = 0; i < count; i++)
                             {
+                                if (foundItems[i].PairByHand)
+                                    continue;
+
                                 if (i == 0 && count <= foundItems.Count)
                                     product.PairProduct = foundItems[i];
 
@@ -1838,6 +1870,8 @@ namespace MessageImporter
             var prop = Properties.Settings.Default;
 
             txtSettingsIco.Text = prop.ActiveStyle_ICO;
+            txtSettingsProdLength.Text = prop.SubProductLength.ToString();
+
             // exchange rates
             txtSetCzkEx.Text = prop.ExRateCzk;
             txtSetHufEx.Text = prop.ExRateHuf;
@@ -1866,6 +1900,7 @@ namespace MessageImporter
             var prop = Properties.Settings.Default;
 
             prop.ActiveStyle_ICO = txtSettingsIco.Text;
+            prop.SubProductLength = int.Parse(txtSettingsProdLength.Text);
 
             // exchange rates
             prop.ExRateCzk = Common.CleanPrice(txtSetCzkEx.Text);

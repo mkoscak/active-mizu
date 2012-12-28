@@ -376,6 +376,9 @@ namespace MessageImporter
             }
         }
 
+        // len rucne parovanie, existuje viacero druhov/velkosti tohto produktu - nevieme parovat
+        internal bool PairByHand { get; set; }
+
         public override string ToString()
         {
             return ProductCode + " - " + Description;
@@ -415,6 +418,7 @@ namespace MessageImporter
             newObj.State = State;
             newObj.Total = Total;
             newObj.TotalEUR = TotalEUR;
+            newObj.PairByHand = PairByHand;
 
             return newObj;
         }
