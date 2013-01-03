@@ -15,7 +15,7 @@
     <ManifestCertificateThumbprint>2DDF9EE53FEAC6B84D8575B76E2B77ED79D1CE32</ManifestCertificateThumbprint>
     <ManifestKeyFile>MessageImporter_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>D:\Programming\MessageImporter\publish\</PublishUrl>
     <Install>true</Install>

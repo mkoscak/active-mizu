@@ -1183,14 +1183,14 @@ namespace MessageImporter
                     newInv.invoiceSummary = new invoiceSummaryType();
                     newInv.invoiceSummary.foreignCurrency = new typeCurrencyForeign();
                     newInv.invoiceSummary.foreignCurrency.currency = new refType();
-                    newInv.invoiceSummary.foreignCurrency.currency.ids = "CZ";
+                    newInv.invoiceSummary.foreignCurrency.currency.ids = "CZK";
                 }
                 if (inv.Country == Country.Poland)
                 {
                     newInv.invoiceSummary = new invoiceSummaryType();
                     newInv.invoiceSummary.foreignCurrency = new typeCurrencyForeign();
                     newInv.invoiceSummary.foreignCurrency.currency = new refType();
-                    newInv.invoiceSummary.foreignCurrency.currency.ids = "PL";
+                    newInv.invoiceSummary.foreignCurrency.currency.ids = "PLN";
                 }
 
                 // invoice do datapacku a datapack do vysledneho pola
@@ -1260,6 +1260,12 @@ namespace MessageImporter
 
                 //var code = prod.ProductCode.Replace("/", "");
                 var code = prod.ProductCode;
+
+                if (string.IsNullOrEmpty(prod.Sklad) || string.IsNullOrEmpty(prod.FictivePrice))
+                {
+                    MessageBox.Show(this, "Not all 'Sklad' and/or 'Fiktívna cena' are filled! Missing in product with code: "+code, "Missing fields", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 dataPackItemType newDatapack = new dataPackItemType();
                 newDatapack.id = code;

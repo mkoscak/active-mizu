@@ -221,11 +221,30 @@ namespace MessageImporter
                 {
                     double predajna = PairProduct.PredajnaCena;
 
-                    if (PairProduct.Parent != null && PairProduct.Parent.Country == Country.Hungary)
+                    if (PairProduct.Parent != null && PairProduct.Parent.Country != Country.Slovakia && PairProduct.Parent.Country != Country.Unknown)
                     {
                         var exrate = DBProvider.GetExRateDayBefore(DateTime.Now);
                         if (exrate != null)
-                            predajna /= exrate.RateHUF;
+                        {
+                            switch (PairProduct.Parent.Country)
+                            {
+                                case Country.Unknown:
+                                    break;
+                                case Country.Slovakia:
+                                    break;
+                                case Country.Hungary:
+                                    predajna /= exrate.RateHUF;
+                                    break;
+                                case Country.Poland:
+                                    predajna /= exrate.RatePLN;
+                                    break;
+                                case Country.CzechRepublic:
+                                    predajna /= exrate.RateCZK;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
                     }
 
                     fictivePrice = Math.Round(predajna, 2).ToString(); //Math.Round(Common.GetPrice(PairProduct.ItemOrigPrice) - Common.GetPrice(PairProduct.ItemDiscount), 2).ToString();
