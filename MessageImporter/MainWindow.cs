@@ -1406,7 +1406,7 @@ namespace MessageImporter
             newInv.invoiceHeader.classificationVAT = new classificationVATType();
             newInv.invoiceHeader.classificationVAT.ids = Properties.Settings.Default.ClasifficationVAT;
             newInv.invoiceHeader.classificationVAT.classificationVATType1 = classificationVATTypeClassificationVATType.inland;
-            newInv.invoiceHeader.text = "SportsDirect_" + DateTime.Now.ToString("ddMMyyyy");
+            newInv.invoiceHeader.text = "SportsDirect_" + (allMessages.Count > 0 ? allMessages[0].OrderReference : "<err>");
 
             // polozky z faktury.. zatial fiktivne
             newInv.invoiceHeader.symVar = "symVar";
