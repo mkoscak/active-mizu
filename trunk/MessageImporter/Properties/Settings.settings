@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ActiveStyle_ICO" Type="System.String" Scope="User">
-      <Value Profile="(Default)">315 92 848</Value>
+      <Value Profile="(Default)">46589457</Value>
     </Setting>
     <Setting Name="DueDateAdd" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">14</Value>
@@ -51,10 +51,10 @@
       <Value Profile="(Default)">Cena za dopravu</Value>
     </Setting>
     <Setting Name="ShipTextHuf" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Ár hajózás</Value>
+      <Value Profile="(Default)">Szállítási és csomaglási költség</Value>
     </Setting>
     <Setting Name="ShipTextPln" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Cena za wysyłkę</Value>
+      <Value Profile="(Default)">Koszt dostawy</Value>
     </Setting>
     <Setting Name="ShipPriceSkk" Type="System.String" Scope="User">
       <Value Profile="(Default)">3.99</Value>
@@ -63,10 +63,10 @@
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="ShipPriceHuf" Type="System.String" Scope="User">
-      <Value Profile="(Default)">1000</Value>
+      <Value Profile="(Default)">990</Value>
     </Setting>
     <Setting Name="ShipPricePln" Type="System.String" Scope="User">
-      <Value Profile="(Default)">16</Value>
+      <Value Profile="(Default)">17</Value>
     </Setting>
     <Setting Name="TaxSkk" Type="System.String" Scope="User">
       <Value Profile="(Default)">1.2</Value>

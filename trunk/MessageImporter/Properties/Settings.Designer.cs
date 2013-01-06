@@ -25,7 +25,7 @@ namespace MessageImporter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("315 92 848")]
+        [global::System.Configuration.DefaultSettingValueAttribute("46589457")]
         public string ActiveStyle_ICO {
             get {
                 return ((string)(this["ActiveStyle_ICO"]));
@@ -217,7 +217,7 @@ namespace MessageImporter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Ár hajózás")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Szállítási és csomaglási költség")]
         public string ShipTextHuf {
             get {
                 return ((string)(this["ShipTextHuf"]));
@@ -229,7 +229,7 @@ namespace MessageImporter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Cena za wysyłkę")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Koszt dostawy")]
         public string ShipTextPln {
             get {
                 return ((string)(this["ShipTextPln"]));
@@ -265,7 +265,7 @@ namespace MessageImporter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("990")]
         public string ShipPriceHuf {
             get {
                 return ((string)(this["ShipPriceHuf"]));
@@ -277,7 +277,7 @@ namespace MessageImporter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("16")]
+        [global::System.Configuration.DefaultSettingValueAttribute("17")]
         public string ShipPricePln {
             get {
                 return ((string)(this["ShipPricePln"]));
