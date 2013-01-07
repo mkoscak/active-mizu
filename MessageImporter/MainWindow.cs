@@ -645,7 +645,7 @@ namespace MessageImporter
                         inv.BillingCountry = item.BillingCountry;
                         inv.BillingCountryName = item.BillingCountryName;
                         inv.BillingName = item.BillingName;
-                        inv.BillingPhoneNumber = item.BillingPhoneNumber;
+                        inv.BillingPhoneNumber = Common.ModifyPhoneNr(item.BillingPhoneNumber);
                         inv.BillingState = item.BillingState;
                         inv.BillingStateName = item.BillingStateName;
                         inv.BillingStreet = item.BillingStreet;
@@ -686,7 +686,7 @@ namespace MessageImporter
                         inv.ShippingCountry = item.ShippingCountry;
                         inv.ShippingCountryName = item.ShippingCountryName;
                         inv.ShippingName = item.ShippingName;
-                        inv.ShippingPhoneNumber = item.ShippingPhoneNumber;
+                        inv.ShippingPhoneNumber = Common.ModifyPhoneNr(item.ShippingPhoneNumber);
                         inv.ShippingState = item.ShippingState;
                         inv.ShippingStateName = item.ShippingStateName;
                         inv.ShippingStreet = item.ShippingStreet;
@@ -827,7 +827,7 @@ namespace MessageImporter
 
                     if (product.PairProduct == null)
                     {
-                        var req = string.Format("SELECT * FROM "+DBProvider.T_WAIT_PRODS+" WHERE ORDER_NUMBER = \"{0}\" AND INV_SKU = \"{1}\" AND VALID = 1", CSV.OrderNumber, product.invSKU);
+                        var req = string.Format("SELECT * FROM "+DBProvider.T_WAIT_PRODS+" WHERE ORDER_NUMBER = \"{0}\" AND INV_SKU = \"{1}\" AND VALID = 1", Common.ModifyOrderNumber2(CSV.OrderNumber), product.invSKU);
                         var res = DBProvider.ExecuteQuery(req);
                         if (res != null && res.Tables != null && res.Tables.Count > 0)
                         {
@@ -1305,7 +1305,7 @@ namespace MessageImporter
                 if (prod.State == StockItemState.Waiting)
                 {
                     // ulozenie produktu do DB
-                    var insert = string.Format("INSERT INTO " + DBProvider.T_WAIT_PRODS + " VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", prod.PairProduct.Parent.OrderNumber, prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
+                    var insert = string.Format("INSERT INTO " + DBProvider.T_WAIT_PRODS + " VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", Common.ModifyOrderNumber2(prod.PairProduct.Parent.OrderNumber), prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
                     log(insert);
 
                     try
