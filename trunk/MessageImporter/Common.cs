@@ -101,5 +101,29 @@ namespace MessageImporter
         {
             return orderNumber.Replace("-", "");
         }
+
+        /// <summary>
+        /// Odstrani vsetko za pomlckou, ak existuje..
+        /// </summary>
+        /// <param name="orderNumber"></param>
+        /// <returns></returns>
+        public static string ModifyOrderNumber2(string orderNumber)
+        {
+            var pos = orderNumber.IndexOf('-');
+            if (pos == -1)
+                return orderNumber;
+
+            return orderNumber.Remove(pos);
+        }
+
+        public static string ModifyPhoneNr(string phone)
+        {
+            if (string.IsNullOrEmpty(phone))
+                return string.Empty;
+
+            var ret = new string(phone.ToCharArray().Where(c => c != ' ' && c != '/').ToArray());
+
+            return ret;
+        }
     }
 }
