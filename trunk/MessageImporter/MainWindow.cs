@@ -1004,9 +1004,11 @@ namespace MessageImporter
                 if (!inv.Equipped || inv.Cancelled) 
                     continue;
 
+                var orderNr = Common.ModifyOrderNumber(inv.OrderNumber);
+
                 dataPackItemType newDatapack = new dataPackItemType();
                 newDatapack.ItemElementName = ItemChoiceType4.invoice;
-                newDatapack.id = inv.OrderNumber;
+                newDatapack.id = orderNr;
                 newDatapack.version = dataPackItemVersionType.Item20;
                 
                 // faktura
@@ -1015,8 +1017,8 @@ namespace MessageImporter
 
                 // header
                 newInv.invoiceHeader = new invoiceHeaderType();
-                newInv.invoiceHeader.symVar = inv.OrderNumber;
-                newInv.invoiceHeader.symPar = inv.OrderNumber;
+                newInv.invoiceHeader.symVar = orderNr;
+                newInv.invoiceHeader.symPar = orderNr;
                 newInv.invoiceHeader.invoiceType = invoiceTypeType.issuedInvoice;
                 newInv.invoiceHeader.dateAccounting = DateTime.Now;
                 newInv.invoiceHeader.dateAccountingSpecified = true;
@@ -1053,7 +1055,7 @@ namespace MessageImporter
                 newInv.invoiceHeader.partnerIdentity.shipToAddress[0].zip = inv.ShippingZip;
                 newInv.invoiceHeader.partnerIdentity.shipToAddress[0].company = inv.ShippingCompany;
 
-                newInv.invoiceHeader.numberOrder = inv.OrderNumber;
+                newInv.invoiceHeader.numberOrder = orderNr;
                 newInv.invoiceHeader.dateSpecified = true;
                 newInv.invoiceHeader.date = DateTime.Now;
                 newInv.invoiceHeader.symConst = Properties.Settings.Default.ConstSym;
@@ -1132,7 +1134,7 @@ namespace MessageImporter
                         // ulozenie zaznamu pre citacku
                         {
                             ReaderItem readerItem = new ReaderItem();
-                            readerItem.OrderNr = inv.OrderNumber;
+                            readerItem.OrderNr = orderNr;
                             
                             if (!string.IsNullOrEmpty(invItem.PairCode))
                                 readerItem.SKU = invItem.PairCode.Replace("/", "");
@@ -2154,6 +2156,8 @@ namespace MessageImporter
                 if (!item.Equipped || item.Cancelled)
                     continue;
 
+                var orderNr = Common.ModifyOrderNumber(item.OrderNumber);
+
                 var shipper = new DPDShipper();
                 shipper.AdressId = "1";//A
                 shipper.ParcelWeight = "1";//B
@@ -2164,7 +2168,7 @@ namespace MessageImporter
                     shipper.ParcelCOD = "Y";//E
                     shipper.ParcelCODAmount = item.OrderGrandTotal;//F
                     shipper.ParcelCODCurrency = "EUR";//G
-                    shipper.ParcelCODvarSym = item.OrderNumber;//H
+                    shipper.ParcelCODvarSym = orderNr;//H
                     shipper.ParcelCODCardPay = "N";//I
                 }
                 else //if (item.OrderPaymentMethod.ToLower().Contains("checkmo"))
@@ -2175,8 +2179,8 @@ namespace MessageImporter
                     shipper.ParcelCODvarSym = "";//H
                     shipper.ParcelCODCardPay = "N";//I
                 }
-                shipper.ParcelOrderNumber = item.OrderNumber;//J
-                shipper.CustRef = item.OrderNumber;//K
+                shipper.ParcelOrderNumber = orderNr;//J
+                shipper.CustRef = orderNr;//K
                 shipper.CustName = item.ShippingName;//L
                 shipper.CustStreet = item.ShippingStreet;//M
                 shipper.CustZip = item.ShippingZip;//N
@@ -2201,8 +2205,8 @@ namespace MessageImporter
                         shipper.ParcelType = "";
                     }
                     shipper.ParcelWeight = "";
-                    shipper.NrOfTotal = item.OrderNumber;//D
-                    shipper.ParcelCOD = item.OrderNumber;//E
+                    shipper.NrOfTotal = orderNr;//D
+                    shipper.ParcelCOD = orderNr;//E
                     shipper.ParcelCODAmount = "";//F
                     shipper.ParcelCODCurrency = item.ShippingName;//G
                     shipper.ParcelCODvarSym = "";//H

@@ -96,5 +96,10 @@ namespace MessageImporter
 
             return pathAndName.Substring(pathAndName.LastIndexOf('\\') + 1);
         }
+
+        public static string ModifyOrderNumber(string orderNumber)
+        {
+            return orderNumber.Replace("-", "");
+        }
     }
 }
