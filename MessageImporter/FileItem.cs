@@ -34,6 +34,8 @@ namespace MessageImporter
 
         internal string FullFileName { get; set; }
 
+        internal string OrderNumber { get; set; }
+
         public FileItem()
         {
             ExchRate = double.Parse("1.28".Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator));
@@ -58,7 +60,7 @@ namespace MessageImporter
 
         public override string ToString()
         {
-            return Common.ToNumeric(FileName);
+            return OrderNumber;
         }
     }
 }
