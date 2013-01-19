@@ -22,6 +22,7 @@ namespace MessageImporter
         internal const string deliveryText = "Delivery";
         internal const string orderRef = "Order Reference:";
         internal const string ourRef = "Our Reference:";
+        internal const string SportsDirect = "sportsdirect";    // na identifikaciu faktur zo sportsdirect
 
         _Application outlook = new ApplicationClass();
 
@@ -394,6 +395,9 @@ namespace MessageImporter
                 if (stock.PairByHand)
                     continue;
 
+                if (stock.ProductCode.Length <= checkLength)
+                    continue;
+                
                 var toCheck = stock.ProductCode.Substring(0, checkLength);
                 // vsetky polozky ktore zacinaju na N rovnakych cisel ale celkovy kod je rozny
                 var found = bindingList.Where(it => it != stock && it.ProductCode.Substring(0,checkLength) == toCheck && it.ProductCode != stock.ProductCode).ToList();
@@ -800,6 +804,11 @@ namespace MessageImporter
                     //foreach (var msg in allMessages)
                     {
                         var foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null && orderItem.ProductCode.Contains(productCode) && orderItem.PairProduct == null).ToList();
+                        
+                        // ak nic nenajdeme skusime opacne parovanie
+                        if (foundItems.Count == 0)
+                            foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null && productCode.Contains(orderItem.ProductCode) && orderItem.PairProduct == null).ToList();
+
                         if (foundItems.Count == 1)
                         {
                             CompleteOrderItem(product, foundItems[0]);
@@ -871,7 +880,12 @@ namespace MessageImporter
             {
                 MailItem item = (MailItem)outlook.CreateItemFromTemplate(file.FullFileName, Type.Missing);
 
-                order = decodeMessage(item.Body, file);
+                if (file.FileName.ToLower().Contains(SportsDirect.ToLower()))
+                    order = decodeMessage(item.Body, file);
+                else
+                    order = decodeMandMMessage(item.Body, file);
+
+                file.OrderNumber = order.OrderReference;
             }
             catch (System.Exception ex)
             {
@@ -880,6 +894,82 @@ namespace MessageImporter
             }
             
             return order;
+        }
+
+        private StockEntity decodeMandMMessage(string messageBody, FileItem file)
+        {
+            try
+            {
+                var order = new StockEntity();
+                List<StockItem> items = new List<StockItem>();
+
+                var lines = messageBody.Split(Environment.NewLine.ToCharArray()).Where(s => s != null && s.Trim().Length > 0).ToArray();
+                
+                // cislo objednavky
+                var orderNum = lines.Where(s => s.Contains("order confirmation number")).FirstOrDefault();
+                if (!string.IsNullOrEmpty(orderNum))
+                {
+                    var from = orderNum.IndexOf(':') + 1;
+
+                    order.OrderReference = orderNum.Substring(from).Trim();
+                    order.OurReference = order.OrderReference;
+                }
+
+                var relevant = lines.Where(s => s.ToCharArray().Count(c => c == '\t') == 5).ToList();
+                file.ProdCount = 0;
+                for (int i = 0; i < relevant.Count; i++)
+                {
+                    string line = relevant[i];
+                    if (line.ToLower().StartsWith("item"))
+                        continue;
+
+                    var cols = line.Split('\t');
+
+                    StockItem item = new StockItem();
+                    item.Description = cols[0];
+                    item.ProductCode = item.Description.Split(' ')[0].Trim();
+                    item.Ord_Qty = int.Parse(cols[2].Trim());
+                    item.Disp_Qty = item.Ord_Qty;
+                    item.Price = Common.GetPrice(cols[3]);
+                    item.Total = Common.GetPrice(cols[4]);
+                    item.Currency = cols[3].Substring(0, 1);
+                    item.FromFile = file;
+                    
+                    file.ProdCount++;
+
+                    if (item.State == StockItemState.PermanentStorage)
+                        item.Sklad = "02";
+                    else if (item.State == StockItemState.Waiting)
+                        item.Sklad = Properties.Settings.Default.Storage;
+
+                    items.Add(item);
+                }
+
+                // viacpoctove produkty sa rozkuskuju
+                for (int i = 0; i < items.Count; i++)
+                {
+                    if (items[i].Disp_Qty > 1)
+                    {
+                        var count = items[i].Disp_Qty;
+                        items[i].Disp_Qty = 1;
+
+                        for (int j = 0; j < count - 1; j++)
+                            items.Insert(i, items[i].Clone() as StockItem);
+
+                        i += count;
+                    }
+                }
+
+                order.Items = items.ToArray();
+
+                return order;
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, ex.ToString(), "Error");
+            }
+
+            return null;
         }
 
         internal CSVFile ProcessCSV(string path)
