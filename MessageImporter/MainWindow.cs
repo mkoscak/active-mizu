@@ -807,7 +807,7 @@ namespace MessageImporter
                         
                         // ak nic nenajdeme skusime opacne parovanie
                         if (foundItems.Count == 0)
-                            foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null && productCode.Contains(orderItem.ProductCode) && orderItem.PairProduct == null).ToList();
+                            foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null && product.invSKU.Contains(orderItem.ProductCode) && orderItem.PairProduct == null).ToList();
 
                         if (foundItems.Count == 1)
                         {
