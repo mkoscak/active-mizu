@@ -1346,6 +1346,8 @@ namespace MessageImporter
             List<prijemkaItemType> prijItems = new List<prijemkaItemType>();
             List<invoiceItemType> invItems = new List<invoiceItemType>();
 
+            bool GBP_part = false;
+
             foreach (var prod in prodDS)
             {
                 if (!prod.EquippedInv && prod.State != StockItemState.Waiting) // do exportu len produkty z vybavenych objednavok
@@ -1462,6 +1464,10 @@ namespace MessageImporter
                 xmlItem.stockItem.stockItem.ids = code;
 
                 invItems.Add(xmlItem);
+
+                // GBP cast pojde ak existuje subor MSG s kurzom inym ako 1
+                if (!GBP_part && prod.FromFile.ExchRate != 1.0)
+                    GBP_part = true;
             }
 
             var ticks = DateTime.Now.Ticks;
@@ -1497,15 +1503,24 @@ namespace MessageImporter
             newInv.invoiceHeader.dateDue = DateTime.Now.AddDays(Properties.Settings.Default.DueDateAdd);
             newInv.invoiceHeader.dateDueSpecified = true;
             newInv.invoiceHeader.accounting = new accountingType();
-            newInv.invoiceHeader.accounting.ids = "1";
+            newInv.invoiceHeader.accounting.ids = "1 GBP";
             newInv.invoiceHeader.classificationVAT = new classificationVATType();
-            newInv.invoiceHeader.classificationVAT.ids = Properties.Settings.Default.ClasifficationVAT;
+            newInv.invoiceHeader.classificationVAT.ids = "PDnadEU";
             newInv.invoiceHeader.classificationVAT.classificationVATType1 = classificationVATTypeClassificationVATType.inland;
             newInv.invoiceHeader.text = "SportsDirect_" + (allMessages.Count > 0 ? allMessages[0].OrderReference : "<err>");
+            newInv.invoiceHeader.partnerIdentity = new address();
+            newInv.invoiceHeader.partnerIdentity.id = "24";
 
             // polozky z faktury.. zatial fiktivne
-            newInv.invoiceHeader.symVar = "symVar";
-            newInv.invoiceHeader.symPar = "symPar";
+            if (prodDS.Count > 0)
+            {
+                var prod = prodDS[0];
+                if (prod.FromFile != null)
+                {
+                    newInv.invoiceHeader.symVar = prod.FromFile.OrderNumber;
+                    newInv.invoiceHeader.symPar = prod.FromFile.OrderNumber;
+                }
+            }
             newInv.invoiceHeader.numberOrder = "numOrder";
             newInv.invoiceHeader.dateSpecified = true;
             newInv.invoiceHeader.date = DateTime.Now;
@@ -1513,6 +1528,15 @@ namespace MessageImporter
             newInv.invoiceHeader.paymentType.ids = "cashondelivery";
                         
             newInv.invoiceDetail = invItems.ToArray();
+
+            if (GBP_part)
+            {
+                newInv.invoiceSummary = new invoiceSummaryType();
+                newInv.invoiceSummary.foreignCurrency = new typeCurrencyForeign();
+                newInv.invoiceSummary.foreignCurrency.currency = new refType();
+                newInv.invoiceSummary.foreignCurrency.currency.ids = "GBP";
+            }
+
             invDatapack.Item = newInv;
             invoices.Add(invDatapack);
 
