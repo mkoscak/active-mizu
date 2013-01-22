@@ -2239,6 +2239,8 @@ namespace MessageImporter
             if (ds == null)
                 return;
 
+            Country country = Country.Unknown;
+
             List<DPDShipper> outdata = new List<DPDShipper>();
             List<DPDShipper> outdataHU = new List<DPDShipper>();
             foreach (var item in ds)
@@ -2319,21 +2321,25 @@ namespace MessageImporter
                     outdataHU.Add(shipper);
                 else
                     outdata.Add(shipper);
+
+                // krajina podla prvej polozky
+                if (country == Country.Unknown)
+                    country = item.Country;
             }
 
             if (outdata.Count > 0)
-                SaveShipper(false, outdata);
+                SaveShipper(outdata, country);
             if (outdataHU.Count > 0)
-                SaveShipper(true, outdataHU);
+                SaveShipper(outdataHU, country);
         }
 
-        private void SaveShipper(bool HU, List<DPDShipper> outdata)
+        private void SaveShipper(List<DPDShipper> outdata, Country country)
         {
             // vystup pojde sem
             StringBuilder sb = new StringBuilder();
 
             // formatovanie hlavicky
-            if (!HU)
+            if (country != Country.Hungary)
             {
                 sb.Append("address_ID;");
                 sb.Append("parcel_weight;");
@@ -2379,7 +2385,7 @@ namespace MessageImporter
                 sb.Append(shipper.CustCity + ";");
                 sb.Append(shipper.CustCountry + ";");
                 sb.Append(shipper.CustPhone);
-                if (!HU)
+                if (country != Country.Hungary)
                 {
                     sb.Append(";");
                     sb.Append(shipper.CustEmail + ";");
@@ -2393,10 +2399,30 @@ namespace MessageImporter
             var outDir = txtOutDir.Text + "/" + DPDShipperDirName + "/";
             if (!Directory.Exists(outDir))
                 Directory.CreateDirectory(outDir);
-            var fname = HU ? "HU" : "SK";
+            var fname = "SK";
+            switch (country)
+            {
+                case Country.Unknown:
+                    fname = "UNKNOWN";
+                    break;
+                case Country.Slovakia:
+                    fname = "SK";
+                    break;
+                case Country.Hungary:
+                    fname = "HU";
+                    break;
+                case Country.Poland:
+                    fname = "PL";
+                    break;
+                case Country.CzechRepublic:
+                    fname = "CZ";
+                    break;
+                default:
+                    break;
+            }
             fname += "_shipper_" + DateTime.Now.Ticks + ".csv";
 
-            if (!HU)
+            if (country != Country.Hungary)
                 File.WriteAllText(outDir + fname, sb.ToString(), Encoding.GetEncoding(1252));
             else
                 File.WriteAllText(outDir + fname, sb.ToString());
