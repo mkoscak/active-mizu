@@ -1347,11 +1347,17 @@ namespace MessageImporter
             List<invoiceItemType> invItems = new List<invoiceItemType>();
 
             bool GBP_part = false;
+            // referencna polozka
+            StockItem refProd = null;
 
             foreach (var prod in prodDS)
             {
                 if (!prod.EquippedInv && prod.State != StockItemState.Waiting) // do exportu len produkty z vybavenych objednavok
                     continue;
+
+                // referencny produkt bude prvy korektny
+                if (refProd == null)
+                    refProd = prod;
 
                 /////////////////////////////////////////////////// stock item
 
@@ -1512,14 +1518,10 @@ namespace MessageImporter
             newInv.invoiceHeader.partnerIdentity.id = "24";
 
             // polozky z faktury.. zatial fiktivne
-            if (prodDS.Count > 0)
+            if (refProd.FromFile != null)
             {
-                var prod = prodDS[0];
-                if (prod.FromFile != null)
-                {
-                    newInv.invoiceHeader.symVar = prod.FromFile.OrderNumber;
-                    newInv.invoiceHeader.symPar = prod.FromFile.OrderNumber;
-                }
+                newInv.invoiceHeader.symVar = refProd.FromFile.OrderNumber;
+                newInv.invoiceHeader.symPar = refProd.FromFile.OrderNumber;
             }
             newInv.invoiceHeader.numberOrder = "numOrder";
             newInv.invoiceHeader.dateSpecified = true;
@@ -1543,6 +1545,65 @@ namespace MessageImporter
             // polozky do xml
             //dataPacks.AddRange(prijemky); // 6.11.2012 prijemky nejdu do exportu
             dataPacks.AddRange(invoices);
+
+            // datapack doprava pre faktury zo sportsdirect
+            dataPackItemType shippingDatapack = null;
+            if (refProd.FromFile.Type == MSG_TYPE.SPORTS_DIRECT)
+            {
+                shippingDatapack = new dataPackItemType();
+                shippingDatapack.id = "shipping_" + ticks;
+                shippingDatapack.ItemElementName = ItemChoiceType4.invoice;
+                shippingDatapack.version = dataPackItemVersionType.Item20;
+                newInv = new invoiceType();
+                newInv.version = invVersionType.Item20;
+                newInv.invoiceHeader = new invoiceHeaderType();
+                newInv.invoiceHeader.invoiceType = invoiceTypeType.receivedInvoice;
+                newInv.invoiceHeader.dateAccounting = DateTime.Now;
+                newInv.invoiceHeader.dateAccountingSpecified = true;
+                newInv.invoiceHeader.dateOrder = DateTime.Now;
+                newInv.invoiceHeader.dateOrderSpecified = true;
+                newInv.invoiceHeader.dateTax = DateTime.Now;
+                newInv.invoiceHeader.dateTaxSpecified = true;
+                newInv.invoiceHeader.dateDue = DateTime.Now.AddDays(Properties.Settings.Default.DueDateAdd);
+                newInv.invoiceHeader.dateDueSpecified = true;
+                newInv.invoiceHeader.accounting = new accountingType();
+                newInv.invoiceHeader.accounting.ids = "1 GBP";
+                newInv.invoiceHeader.classificationVAT = new classificationVATType();
+                newInv.invoiceHeader.classificationVAT.ids = "PD";
+                newInv.invoiceHeader.classificationVAT.classificationVATType1 = classificationVATTypeClassificationVATType.inland;
+                newInv.invoiceHeader.text = "SportsDirect_doprava_" + (allMessages.Count > 0 ? allMessages[0].OrderReference : "<err>");
+                newInv.invoiceHeader.partnerIdentity = new address();
+                newInv.invoiceHeader.partnerIdentity.id = "23";
+
+                // polozky z faktury.. zatial fiktivne
+                if (refProd.FromFile != null)
+                {
+                    newInv.invoiceHeader.symVar = refProd.FromFile.OrderNumber;
+                    newInv.invoiceHeader.symPar = refProd.FromFile.OrderNumber;
+                }
+                newInv.invoiceHeader.numberOrder = "numOrder";
+                newInv.invoiceHeader.dateSpecified = true;
+                newInv.invoiceHeader.date = DateTime.Now;
+                newInv.invoiceHeader.paymentType = new paymentType();
+                newInv.invoiceHeader.paymentType.ids = "cashondelivery";
+                // detail
+                List<invoiceItemType> details = new List<invoiceItemType>();
+                invoiceItemType xmlItem = new invoiceItemType();
+                xmlItem.text = "doprava";
+                xmlItem.quantity = 1;
+                xmlItem.quantitySpecified = true;
+                xmlItem.homeCurrency = new typeCurrencyHomeItem();
+                xmlItem.homeCurrency.unitPriceSpecified = true;
+                xmlItem.homeCurrency.unitPrice = refProd.FromFile.Delivery;
+                details.Add(xmlItem);
+                newInv.invoiceDetail = details.ToArray();
+
+                shippingDatapack.Item = newInv;
+            }
+            if (shippingDatapack != null)
+                dataPacks.Add(shippingDatapack);
+            // datapack doprava
+
             dp.dataPackItem = dataPacks.ToArray();
 
             try
