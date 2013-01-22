@@ -289,10 +289,13 @@ namespace MessageImporter
         {
             get
             {
-                if (FromFile != null && FromFile != null)
-                    priceEURnoTax = Price * FromFile.ExchRate;
-
                 double tax = 1.2;
+
+                if (FromFile != null)
+                {
+                    priceEURnoTax = Price * FromFile.ExchRate;
+                    tax = FromFile.Tax;
+                }
 
                 if (ChildItems != null && description != null)
                 {
@@ -304,8 +307,9 @@ namespace MessageImporter
                     }
                 }
 
-                if (IsRefund)
-                    tax = 1.0;
+                // refund sa urcuje pri nacitani suboru: FromFile.Tax
+                /*if (IsRefund)
+                    tax = 1.0;*/
 
                 priceEURnoTax /= tax;
 

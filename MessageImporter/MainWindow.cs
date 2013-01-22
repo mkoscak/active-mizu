@@ -22,7 +22,6 @@ namespace MessageImporter
         internal const string deliveryText = "Delivery";
         internal const string orderRef = "Order Reference:";
         internal const string ourRef = "Our Reference:";
-        internal const string SportsDirect = "sportsdirect";    // na identifikaciu faktur zo sportsdirect
 
         _Application outlook = new ApplicationClass();
 
@@ -400,7 +399,11 @@ namespace MessageImporter
                 
                 var toCheck = stock.ProductCode.Substring(0, checkLength);
                 // vsetky polozky ktore zacinaju na N rovnakych cisel ale celkovy kod je rozny
-                var found = bindingList.Where(it => it != stock && it.ProductCode.Substring(0,checkLength) == toCheck && it.ProductCode != stock.ProductCode).ToList();
+                var found = bindingList.Where(it => it != stock && 
+                    it.ProductCode.Length > checkLength && 
+                    it.ProductCode.Substring(0,checkLength) == toCheck && 
+                    it.ProductCode != stock.ProductCode).ToList();
+
                 if(found != null && found.Count > 0)
                 {
                     stock.PairByHand = true;
@@ -880,9 +883,9 @@ namespace MessageImporter
             {
                 MailItem item = (MailItem)outlook.CreateItemFromTemplate(file.FullFileName, Type.Missing);
 
-                if (file.FileName.ToLower().Contains(SportsDirect.ToLower()))
+                if (file.Type == MSG_TYPE.SPORTS_DIRECT)
                     order = decodeMessage(item.Body, file);
-                else
+                else if (file.Type == MSG_TYPE.MANDM_DIRECT)
                     order = decodeMandMMessage(item.Body, file);
 
                 file.OrderNumber = order.OrderReference;
