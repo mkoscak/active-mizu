@@ -2327,10 +2327,10 @@ namespace MessageImporter
             if (ds == null)
                 return;
 
-            Country country = Country.Unknown;
-
-            List<DPDShipper> outdata = new List<DPDShipper>();
+            List<DPDShipper> outdataSK = new List<DPDShipper>();
             List<DPDShipper> outdataHU = new List<DPDShipper>();
+            List<DPDShipper> outdataPL = new List<DPDShipper>();
+            List<DPDShipper> outdataCZ = new List<DPDShipper>();
             foreach (var item in ds)
             {
                 if (!item.Equipped || item.Cancelled)
@@ -2407,18 +2407,22 @@ namespace MessageImporter
 
                 if (item.Country == Country.Hungary)
                     outdataHU.Add(shipper);
+                else if (item.Country == Country.Poland)
+                    outdataPL.Add(shipper);
+                else if (item.Country == Country.CzechRepublic)
+                    outdataCZ.Add(shipper);
                 else
-                    outdata.Add(shipper);
-
-                // krajina podla prvej polozky
-                if (country == Country.Unknown)
-                    country = item.Country;
+                    outdataSK.Add(shipper);
             }
 
-            if (outdata.Count > 0)
-                SaveShipper(outdata, country);
+            if (outdataSK.Count > 0)
+                SaveShipper(outdataSK, Country.Slovakia);
             if (outdataHU.Count > 0)
-                SaveShipper(outdataHU, country);
+                SaveShipper(outdataHU, Country.Hungary);
+            if (outdataPL.Count > 0)
+                SaveShipper(outdataPL, Country.Poland);
+            if (outdataCZ.Count > 0)
+                SaveShipper(outdataCZ, Country.CzechRepublic);
         }
 
         private void SaveShipper(List<DPDShipper> outdata, Country country)
