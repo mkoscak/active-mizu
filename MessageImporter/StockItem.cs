@@ -57,6 +57,8 @@ namespace MessageImporter
         // polozka bola nacitana z DB
         internal bool IsFromDB { get; set; }
 
+        internal string WaitingOrderNum { get; set; }
+
         internal StockItemState? PreviousState { get; set; }
         private StockItemState state;
         [System.ComponentModel.DisplayName("Stav")]
