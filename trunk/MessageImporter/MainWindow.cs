@@ -1406,7 +1406,7 @@ namespace MessageImporter
                 if (prod.State == StockItemState.Waiting)
                 {
                     // ulozenie produktu do DB
-                    var insert = string.Format("INSERT INTO " + DBProvider.T_WAIT_PRODS + " VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", Common.ModifyOrderNumber2(prod.PairProduct.Parent.OrderNumber), prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
+                    var insert = string.Format("INSERT INTO " + DBProvider.T_WAIT_PRODS + " VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", (string.IsNullOrEmpty(prod.WaitingOrderNum) ? Common.ModifyOrderNumber2(prod.PairProduct.Parent.OrderNumber) : prod.WaitingOrderNum), prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
                     log(insert);
 
                     try
@@ -2292,6 +2292,15 @@ namespace MessageImporter
                 MessageBox.Show(this, "No items to set!", "Waiting for products", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            string inittext = string.Empty;
+            if (items[0].Parent != null)
+                inittext = items[0].Parent.OrderNumber;
+            TextInputForm orderNum = new TextInputForm("Enter an order number", inittext);
+            orderNum.ShowDialog(this);
+            if (orderNum.ReturnText == null)
+                return;
+
             int count = 0;
             foreach (var item in items)
             {
@@ -2300,6 +2309,7 @@ namespace MessageImporter
 
                 // produkty oznacime ako cakajuce na dalsie, pri exporte sa ulozia do DB..
                 item.PairProduct.State = StockItemState.Waiting;
+                item.PairProduct.WaitingOrderNum = orderNum.ReturnText;
                 count++;
             }
 
