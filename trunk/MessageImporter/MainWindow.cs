@@ -1080,7 +1080,6 @@ namespace MessageImporter
             if (!Directory.Exists(outDir))
                 Directory.CreateDirectory(outDir);
 
-            var readerItems = new List<ReaderItem>();
 
             dataPackType dp = new dataPackType();
             dp.version = dataPackVersionType.Item20;
@@ -1090,7 +1089,6 @@ namespace MessageImporter
             dp.application = "MessageImporter";
 
             List<dataPackItemType> items = new List<dataPackItemType>();
-            int storeNr = 1;
             foreach (var inv in invDS)
             {
                 // do exportu pojdu len vybavene objednavky, nestornovane
@@ -1223,24 +1221,6 @@ namespace MessageImporter
                         xmlItem.stockItem = new stockItemType();
                         xmlItem.stockItem.stockItem = new stockRefType();
                         xmlItem.stockItem.stockItem.ids = code;
-
-                        // ulozenie zaznamu pre citacku
-                        {
-                            ReaderItem readerItem = new ReaderItem();
-                            readerItem.OrderNr = orderNr;
-                            
-                            if (!string.IsNullOrEmpty(invItem.PairCode))
-                                readerItem.SKU = invItem.PairCode.Replace("/", "");
-                            else
-                                readerItem.SKU = null;
-
-                            readerItem.StoreNr = storeNr.ToString();
-                            readerItem.Valid = 1;
-
-                            DBProvider.InsertReaderItem(readerItem);
-
-                            readerItems.Add(readerItem);
-                        }
                     }
 
                     invItems.Add(xmlItem);
@@ -1291,8 +1271,6 @@ namespace MessageImporter
                 // invoice do datapacku a datapack do vysledneho pola
                 newDatapack.Item = newInv;
                 items.Add(newDatapack);
-
-                storeNr++;  // dalsia faktura pojde do dalsieho policka
             }
 
             // polozky do xml
@@ -1309,6 +1287,60 @@ namespace MessageImporter
                 return;
             }
 
+            ///////////////////////////////////////////////////////////////////////////////////////////
+            // export pre citacku
+            var readerItems = new List<ReaderItem>();
+            int storeNr = 1;
+            foreach (var inv in invDS)
+            {
+                bool nextStore = true;
+                string strStore = storeNr.ToString();
+                var orderNr = Common.ModifyOrderNumber(inv.OrderNumber);
+                
+                if (inv.Cancelled)
+                {
+                    strStore = "Cancelled";
+                    nextStore = false;
+                }
+
+                foreach (var invItem in inv.InvoiceItems)
+                {
+                    if (invItem.PairCode == "shipping")
+                        continue;
+
+                    // ulozenie zaznamu pre citacku
+                    ReaderItem readerItem = new ReaderItem();
+                    readerItem.OrderNr = orderNr;
+
+                    if (!string.IsNullOrEmpty(invItem.PairCode))
+                        readerItem.SKU = invItem.PairCode.Replace("/", "");
+                    else
+                        readerItem.SKU = invItem.invSKU;
+
+
+                    if (!inv.Cancelled && invItem.PairProduct != null && invItem.PairProduct.State == StockItemState.Waiting)
+                    {
+                        strStore = "Waiting";
+                        nextStore = false;
+                        if (!string.IsNullOrEmpty(invItem.PairProduct.WaitingOrderNum))
+                            readerItem.OrderNr = invItem.PairProduct.WaitingOrderNum;
+                    }
+                    else if (!inv.Cancelled && !inv.Equipped && invItem.PairProduct == null)
+                    {
+                        strStore = "Non paired";
+                        nextStore = false;
+                    }
+                        
+                    readerItem.StoreNr = strStore;
+                    readerItem.Valid = 1;
+
+                    DBProvider.InsertReaderItem(readerItem);
+                    readerItems.Add(readerItem);
+                }
+
+                if (nextStore)
+                    storeNr++;  // dalsia faktura pojde do dalsieho policka
+            }
             StringBuilder readerStrings = new StringBuilder();
             readerStrings.AppendFormat("Store number;Order number;SKU{0}", Environment.NewLine);
             foreach (var item in readerItems)
