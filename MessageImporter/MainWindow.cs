@@ -825,6 +825,9 @@ namespace MessageImporter
 
                             for (int i = 0; i < count; i++)
                             {
+                                if (foundItems.Count == i)
+                                    break;
+
                                 if (foundItems[i].PairByHand)
                                     continue;
 
