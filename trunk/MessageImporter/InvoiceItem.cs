@@ -100,6 +100,19 @@ namespace MessageImporter
             {
                 return PairProduct == null ? string.Empty : PairProduct.ProductCode;
             }
+
+            set
+            {
+                if (PairProduct == null)
+                {
+                    PairProduct = new StockItem();
+                    if (string.IsNullOrEmpty(ItemQtyOrdered))
+                        ItemQtyOrdered = (-1).ToString();
+                }
+
+                PairProduct.ProductCode = value;
+                PairProduct.PairProduct = this;
+            }
         }
 
         public string invSKU { get; set; }

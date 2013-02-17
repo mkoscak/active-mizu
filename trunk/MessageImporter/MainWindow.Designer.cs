@@ -1484,6 +1484,7 @@
             this.dataGridInvItems.Name = "dataGridInvItems";
             this.dataGridInvItems.Size = new System.Drawing.Size(797, 180);
             this.dataGridInvItems.TabIndex = 0;
+            this.dataGridInvItems.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInvItems_CellEndEdit);
             this.dataGridInvItems.SelectionChanged += new System.EventHandler(this.InvoiceItemSelChanged);
             // 
             // dataGrid

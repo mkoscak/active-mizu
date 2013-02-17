@@ -1204,7 +1204,10 @@ namespace MessageImporter
                         xmlItem.code = code;
                         xmlItem.text = code;// invItem.ItemName;
                         xmlItem.quantitySpecified = true;
-                        xmlItem.quantity = float.Parse(invItem.ItemQtyOrdered);
+                        float qty = 1;
+                        if (!float.TryParse(invItem.ItemQtyOrdered, out qty))
+                            qty = 1;
+                        xmlItem.quantity = qty;
                         xmlItem.unit = "ks";
                         /*xmlItem.homeCurrency = new typeCurrencyHomeItem();
                         xmlItem.homeCurrency.unitPriceSpecified = true;
@@ -1688,6 +1691,9 @@ namespace MessageImporter
 
         internal void CheckEqipped(Invoice inv)
         {
+            if (inv == null)
+                return;
+
             // objednavka je vybavena ak ma vsetky produkty priradene
             inv.Equipped = Common.IsEquipped(inv);
         }
@@ -2690,6 +2696,28 @@ namespace MessageImporter
             }
 
             DBProvider.InsertExRate(newRate);
+        }
+
+        private void dataGridInvItems_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != 2) // SKU pre invoice item dotahovane zo stock
+                return;
+
+            dataGridInvItems.InvalidateRow(e.RowIndex);
+            
+            var selCells = dataGridInvItems.SelectedCells;
+            if (selCells != null && selCells.Count > 0)
+            {
+                var selItem = selCells[0];
+                var ds = GetInvoiceItemsDS();
+                if (ds == null)
+                    return;
+                var selInv = ds[selItem.RowIndex];
+
+                if (selInv != null)
+                    CheckEqipped(selInv.Parent);
+                dataCSV.InvalidateRow(dataCSV.SelectedCells[0].RowIndex);
+            }
         }
     }
 
