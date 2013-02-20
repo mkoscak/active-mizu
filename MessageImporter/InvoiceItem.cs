@@ -214,5 +214,7 @@ namespace MessageImporter
         internal string ItemQtyShipped { get; set; }
         internal string ItemQtyCanceled { get; set; }
         internal string ItemQtyRefunded { get; set; }
+
+        internal string OrderNumber { get; set; }
     }
 }
