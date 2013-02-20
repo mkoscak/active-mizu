@@ -247,9 +247,14 @@ namespace MessageImporter
                 return;
 
             var insert = string.Format("insert into WAITING_INV_ITEMS values ({0},{1},{2},\"{3}\",\"{4}\",{5},\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",{13},{14})",
-                "null", int.Parse(strMaxCode), inv.BuyingPrice, inv.Datetime, inv.ItemName, inv.PredajnaCena, inv.ItemOptions, inv.ItemOrigPrice, inv.ItemPrice, inv.ItemTax, inv.ItemDiscount, inv.ItemTotal, inv.ItemStatus, inv.ItemQtyOrdered, 1);
+                "null", int.Parse(strMaxCode), DBPrice(inv.BuyingPrice), inv.Datetime, inv.ItemName, DBPrice(inv.PredajnaCena), inv.ItemOptions, inv.ItemOrigPrice, inv.ItemPrice, inv.ItemTax, inv.ItemDiscount, inv.ItemTotal, inv.ItemStatus, inv.ItemQtyOrdered, 1);
 
             ExecuteNonQuery(insert);
+        }
+
+        static string DBPrice(double price)
+        {
+            return price.ToString().Replace(',','.');
         }
 
         internal static List<InvoiceItem> ReadWaitingInvoices(string orderNumber)
