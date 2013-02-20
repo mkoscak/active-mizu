@@ -729,6 +729,16 @@ namespace MessageImporter
                     AllInvoices.Add(inv);
                 inv = null;
             }
+
+            foreach (var item in AllInvoices)
+            {
+                var toAdd = DBProvider.ReadWaitingInvoices(item.OrderNumber);
+                foreach (var n in toAdd)
+                {
+                    n.Parent = item;
+                }
+                item.InvoiceItems.AddRange(toAdd);
+            }
         }
 
         /// <summary>
@@ -1450,6 +1460,8 @@ namespace MessageImporter
                     try
                     {
                         DBProvider.ExecuteNonQuery(insert);
+                        if (prod.PairProduct != null)
+                            DBProvider.InsertWaitingInvoice(prod.PairProduct);
                     }
                     catch (System.Exception ex)
                     {

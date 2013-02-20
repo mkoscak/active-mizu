@@ -3,6 +3,7 @@ using System.Data.SQLite;
 using System.Data;
 using System.Windows.Forms;
 using System.IO;
+using System.Collections.Generic;
 
 namespace MessageImporter
 {
@@ -232,6 +233,64 @@ namespace MessageImporter
 
             // dt je predchadzajuci pracovny den
             return GetExRate(dt.ToString("yyyy-MM-dd"));
+        }
+
+        internal static void InsertWaitingInvoice(InvoiceItem inv)
+        {
+            string strMaxCode = string.Empty;
+
+            var maxCodeSel = "select * from WAITING_PRODS where Id = (select max(id) from WAITING_PRODS)";
+            var maxCode = ExecuteQuery(maxCodeSel);
+            if (maxCode != null && maxCode.Tables != null && maxCode.Tables.Count > 0)
+                strMaxCode = maxCode.Tables[0].Rows[0]["ID"].ToString();
+            if (string.IsNullOrEmpty(strMaxCode))
+                return;
+
+            var insert = string.Format("insert into WAITING_INV_ITEMS values ({0},{1},{2},\"{3}\",\"{4}\",{5},\"{6}\",\"{7}\",\"{8}\",\"{9}\",\"{10}\",\"{11}\",\"{12}\",{13},{14})",
+                "null", int.Parse(strMaxCode), inv.BuyingPrice, inv.Datetime, inv.ItemName, inv.PredajnaCena, inv.ItemOptions, inv.ItemOrigPrice, inv.ItemPrice, inv.ItemTax, inv.ItemDiscount, inv.ItemTotal, inv.ItemStatus, inv.ItemQtyOrdered, 1);
+
+            ExecuteNonQuery(insert);
+        }
+
+        internal static List<InvoiceItem> ReadWaitingInvoices(string orderNumber)
+        {
+            var ret = new List<InvoiceItem>();
+
+            var query = string.Format("select * from WAITING_INV_ITEMS inv join WAITING_PRODS stock on stock.ID = inv.WAITING_PRODS_ID where stock.ORDER_NUMBER = \"{0}\" and inv.valid = 1 and stock.valid = 1", orderNumber);
+            var data = ExecuteQuery(query);
+            if (data != null && data.Tables != null && data.Tables.Count > 0)
+            {
+                for (int i = 0; i < data.Tables[0].Rows.Count; i++)
+			    {
+                    var inv = new InvoiceItem();
+                    var stock = new StockItem();
+                    inv.PairProduct = stock;
+                    stock.PairProduct = inv;
+
+                    inv.MSG_SKU = data.Tables[0].Rows[i]["DESCRIPTION"].ToString();
+                    inv.invSKU = data.Tables[0].Rows[i]["INV_SKU"].ToString();
+                    inv.PairCode = data.Tables[0].Rows[i]["SKU"].ToString();
+                    inv.OrderNumber = data.Tables[0].Rows[i]["ORDER_NUMBER"].ToString();
+                    //inv.BuyingPrice = Common.GetPrice(data.Tables[0].Rows[i]["BUYING_PRICE"].ToString());
+                    inv.BuyingPrice = double.NaN;
+                    inv.Datetime = DateTime.Parse(data.Tables[0].Rows[i]["DATE"].ToString());
+                    inv.ItemName = data.Tables[0].Rows[i]["DESC_WEB"].ToString();
+                    inv.PredajnaCena = Common.GetPrice(data.Tables[0].Rows[i]["SELL_PRICE"].ToString());
+                    inv.ItemOptions = data.Tables[0].Rows[i]["SIZE"].ToString();
+                    inv.ItemOrigPrice = data.Tables[0].Rows[i]["ITEM_ORIG_PRICE"].ToString();
+                    inv.ItemPrice = data.Tables[0].Rows[i]["ITEM_PRICE"].ToString();
+                    inv.ItemTax = data.Tables[0].Rows[i]["ITEM_TAX"].ToString();
+                    inv.ItemDiscount = data.Tables[0].Rows[i]["ITEM_DISCOUNT"].ToString();
+                    inv.ItemTotal = data.Tables[0].Rows[i]["ITEM_TOTAL"].ToString();
+                    inv.ItemStatus = data.Tables[0].Rows[i]["ITEM_STATUS"].ToString();
+                    inv.ItemQtyOrdered = data.Tables[0].Rows[i]["ORD_COUNT"].ToString();
+                    stock.IsFromDB = true;
+
+                    ret.Add(inv);
+			    }
+            }
+
+            return ret;
         }
     }
 }
