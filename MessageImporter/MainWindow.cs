@@ -358,7 +358,7 @@ namespace MessageImporter
                 CheckPairByHand(allMessages.SelectMany(o => o.Items).ToList());
                 //AllStocks = allMessages.SelectMany(o => o.Items).ToList();
                 SetProductsDS(new BindingList<StockItem>(allMessages.SelectMany(o => o.Items).ToList()));
-                
+                UniqueStocks();
                                 
                 // dopocitanie cien s dopravou
                 CalcBuyingPrice(GetProductsDS());
@@ -383,6 +383,32 @@ namespace MessageImporter
             {
                 MessageBox.Show(this, ex.ToString(), "Error");
             }
+        }
+
+        private void UniqueStocks()
+        {
+            var ds = GetProductsDS();
+            if (ds == null)
+                return;
+
+            BindingList<StockItem> newDs = new BindingList<StockItem>();
+            foreach (var item in ds)
+            {
+                var c = ds.Count(s => s.ProductCode == item.ProductCode);
+                if (c == 1)
+                {
+                    newDs.Add(item);
+                    continue;
+                }
+
+                if (newDs.Count(s => s.ProductCode == item.ProductCode) > 0)    // uz existuje
+                    continue;
+
+                item.Disp_Qty = c;  // nastavime celkovy pocet
+                newDs.Add(item);
+            }
+
+            SetProductsDS(newDs);
         }
 
         private void CheckPairByHand(List<StockItem> bindingList)
@@ -2462,10 +2488,10 @@ namespace MessageImporter
                     shipper.CustCity = "";//O
                     shipper.CustCountry = item.CustomerEmail;//P
                     shipper.CustPhone = "Hívás!! Hívás!! Hívás!! Hívás!!";//Q
-                    shipper.CustEmail = "";
-                    shipper.SMSPreAdvice = "";
-                    shipper.PhoneNumber = "";
-                    shipper.ParcelNote = "";
+                    shipper.CustEmail = item.ShippingPhoneNumber.Replace(" ", "").Replace("-", "");//R
+                    shipper.SMSPreAdvice = "";//S
+                    shipper.PhoneNumber = "";//T
+                    shipper.ParcelNote = "";//U
                 }
 
                 if (item.Country == Country.Hungary)
@@ -2539,11 +2565,11 @@ namespace MessageImporter
                 sb.Append(shipper.CustZip + ";");
                 sb.Append(shipper.CustCity + ";");
                 sb.Append(shipper.CustCountry + ";");
-                sb.Append(shipper.CustPhone);
+                sb.Append(shipper.CustPhone + ";");
+                sb.Append(shipper.CustEmail);
                 if (country != Country.Hungary)
                 {
                     sb.Append(";");
-                    sb.Append(shipper.CustEmail + ";");
                     sb.Append(shipper.SMSPreAdvice + ";");
                     sb.Append(shipper.PhoneNumber + ";");
                     sb.Append(shipper.ParcelNote);
