@@ -1459,6 +1459,12 @@ namespace MessageImporter
                 stock.stockHeader.isInternetSpecified = true;
                 stock.stockHeader.isInternet = boolean.@true;
                 stock.stockHeader.sellingRateVAT = vatRateType.high;
+                stock.stockHeader.stockTypeSpecified = true;
+                stock.stockHeader.stockType = stockTypeType.card;
+                stock.stockHeader.typePrice = new refType();
+                stock.stockHeader.typePrice.ids = Properties.Settings.Default.TypePrice;
+                stock.stockHeader.storage = new refTypeStorage();
+                stock.stockHeader.storage.ids = prod.Sklad;
 
                 // action type - update
                 stock.actionType = new actionTypeType1();
