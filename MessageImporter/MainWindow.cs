@@ -1424,6 +1424,56 @@ namespace MessageImporter
             // referencna polozka
             StockItem refProd = null;
 
+            /////////////////////////////////////////////// UPDATE POLOZIEK
+            foreach (var prod in prodDS)
+            {
+                if (!prod.EquippedInv && prod.State != StockItemState.Waiting) // do exportu len produkty z vybavenych objednavok
+                    continue;
+
+                var code = prod.ProductCode;
+
+                if (string.IsNullOrEmpty(prod.Sklad) || string.IsNullOrEmpty(prod.FictivePrice))
+                {
+                    MessageBox.Show(this, "Not all 'Sklad' and/or 'Fiktívna cena' are filled! Missing in product with code: " + code, "Missing fields", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                dataPackItemType newDatapack = new dataPackItemType();
+                newDatapack.id = code+"_update";
+                newDatapack.ItemElementName = ItemChoiceType4.stock;
+                newDatapack.version = dataPackItemVersionType.Item20;
+
+                stockType stock = new stockType();
+                stock.version = stkVersionType.Item20;
+
+                // header
+                stock.stockHeader = new stockHeaderType();
+                stock.stockHeader.purchasingPriceSpecified = true;
+                stock.stockHeader.purchasingPrice = prod.PriceEURnoTaxEUR;
+                stock.stockHeader.sellingPrice = Common.GetPrice(prod.FictivePrice);
+                stock.stockHeader.name = prod.Description;
+                stock.stockHeader.nameComplement = prod.SizeInv;
+                stock.stockHeader.isSalesSpecified = true;
+                stock.stockHeader.isSales = boolean.@true;
+                stock.stockHeader.orderName = prod.OrderDate.ToString("dd.MM.yyyy ") + prod.FromFile.ToString();
+                stock.stockHeader.isInternetSpecified = true;
+                stock.stockHeader.isInternet = boolean.@true;
+                stock.stockHeader.sellingRateVAT = vatRateType.high;
+
+                // action type - update
+                stock.actionType = new actionTypeType1();
+                stock.actionType.Item = new requestStockType();
+                stock.actionType.Item.add = boolean.@false;
+                stock.actionType.ItemElementName = ItemChoiceType3.update;
+                stock.actionType.Item.update = boolean.@true;
+                stock.actionType.Item.filter = new filterStocksType();
+                stock.actionType.Item.filter.code = code;
+
+                newDatapack.Item = stock;
+                dataPacks.Add(newDatapack);
+            }
+            /////////////////////////////////////////////// UPDATE POLOZIEK
+
             foreach (var prod in prodDS)
             {
                 if (!prod.EquippedInv && prod.State != StockItemState.Waiting) // do exportu len produkty z vybavenych objednavok
