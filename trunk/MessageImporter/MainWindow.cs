@@ -1466,7 +1466,7 @@ namespace MessageImporter
                 stock.stockHeader.typePrice = new refType();
                 stock.stockHeader.typePrice.ids = Properties.Settings.Default.TypePrice;
                 stock.stockHeader.storage = new refTypeStorage();
-                stock.stockHeader.storage.ids = "03";
+                stock.stockHeader.storage.ids = prod.Sklad;
 
                 // action type - update
                 stock.actionType = new actionTypeType1();
@@ -1820,6 +1820,9 @@ namespace MessageImporter
             var selCell = dataCSV.SelectedCells;
             if (selCell != null && selCell.Count > 0)
             {
+                if (MessageBox.Show(this, "Really delete?", "Remove items", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+
                 var selItem = dataCSV.Rows[selCell[0].RowIndex].DataBoundItem as Invoice;
 
                 var ds = GetInvoiceDS();
@@ -1886,6 +1889,9 @@ namespace MessageImporter
             var selCell = dataGridInvItems.SelectedCells;
             if (selCell != null && selCell.Count > 0)
             {
+                if (MessageBox.Show(this, "Really delete?", "Remove items", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+
                 var selItem = dataGridInvItems.Rows[selCell[0].RowIndex].DataBoundItem as InvoiceItem;
 
                 var ds = GetInvoiceItemsDS();
@@ -1916,6 +1922,9 @@ namespace MessageImporter
             var selCell = dataGrid.SelectedCells;
             if (selCell != null && selCell.Count > 0)
             {
+                if (MessageBox.Show(this, "Really delete?", "Remove items", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+
                 var selItem = dataGrid.Rows[selCell[0].RowIndex].DataBoundItem as StockItem;
 
                 Unpair(selItem);
@@ -2214,6 +2223,8 @@ namespace MessageImporter
             txtSetCzkTax.Text = prop.TaxCzk;
             txtSetHufTax.Text = prop.TaxHuf;
             txtSetPlnTax.Text = prop.TaxPln;
+
+            txtSetDefStorage.Text = prop.Storage;
         }
 
         private void btnSettingsSave_Click(object sender, EventArgs e)
@@ -2244,6 +2255,8 @@ namespace MessageImporter
             prop.TaxCzk = Common.CleanPrice(txtSetCzkTax.Text);
             prop.TaxHuf = Common.CleanPrice(txtSetHufTax.Text);
             prop.TaxPln = Common.CleanPrice(txtSetPlnTax.Text);
+
+            prop.Storage = txtSetDefStorage.Text;
 
             prop.Save();
         }
@@ -2444,6 +2457,7 @@ namespace MessageImporter
 
                 // produkty oznacime ako cakajuce na dalsie, pri exporte sa ulozia do DB..
                 item.PairProduct.State = StockItemState.Waiting;
+                item.PairProduct.Sklad = Properties.Settings.Default.Storage;
                 item.PairProduct.WaitingOrderNum = orderNum.ReturnText;
                 count++;
             }

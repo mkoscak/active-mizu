@@ -133,7 +133,7 @@ namespace MessageImporter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("01")]
+        [global::System.Configuration.DefaultSettingValueAttribute("03")]
         public string Storage {
             get {
                 return ((string)(this["Storage"]));
