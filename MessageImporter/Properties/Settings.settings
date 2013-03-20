@@ -30,7 +30,7 @@
       <Value Profile="(Default)">SK</Value>
     </Setting>
     <Setting Name="Storage" Type="System.String" Scope="User">
-      <Value Profile="(Default)">01</Value>
+      <Value Profile="(Default)">03</Value>
     </Setting>
     <Setting Name="ShippingCode" Type="System.String" Scope="User">
       <Value Profile="(Default)">shipping</Value>

@@ -81,7 +81,7 @@ namespace MessageImporter
                     state = StockItemState.Paired;
 
                     if (string.IsNullOrEmpty(Sklad))
-                        Sklad = "01";
+                        Sklad = Properties.Settings.Default.Storage;
                 }
 
                 return state;
