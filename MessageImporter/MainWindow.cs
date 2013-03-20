@@ -1195,6 +1195,11 @@ namespace MessageImporter
                 newInv.invoiceHeader.paymentType = new paymentType();
                 newInv.invoiceHeader.paymentType.ids = inv.OrderPaymentMethod;
 
+                if (inv.Country == Country.Hungary)
+                {
+                    newInv.invoiceHeader.regVATinEU = new refTypeRegVATinEU();
+                    newInv.invoiceHeader.regVATinEU.ids = "HU26912248251";
+                }
                 newInv.invoiceHeader.account = new accountType();
                 newInv.invoiceHeader.account.bankCode = Properties.Settings.Default.BankCode;
                 newInv.invoiceHeader.account.ids = Properties.Settings.Default.Bank;
@@ -1214,7 +1219,6 @@ namespace MessageImporter
                         xmlItem.text = invItem.MSG_SKU;
                         xmlItem.quantitySpecified = true;
                         xmlItem.quantity = 1;
-                        xmlItem.rateVAT = vatRateType.high;
                         if (inv.Country == Country.Slovakia)
                         {
                             xmlItem.homeCurrency = new typeCurrencyHomeItem();
@@ -1231,9 +1235,18 @@ namespace MessageImporter
                         xmlItem.accounting.ids = "2";
 
                         xmlItem.payVAT = boolean.@true;
-
-                        xmlItem.percentVATSpecified = true;
-                        xmlItem.percentVAT = 20;
+                        if (inv.Country == Country.Hungary)
+                        {
+                            xmlItem.rateVAT = vatRateType.historyHigh;
+                            xmlItem.percentVATSpecified = true;
+                            xmlItem.percentVAT = 27;
+                        }
+                        else
+                        {
+                            xmlItem.rateVAT = vatRateType.high;
+                            xmlItem.percentVATSpecified = true;
+                            xmlItem.percentVAT = 20;
+                        }
                     }
                     else
                     {
@@ -1258,6 +1271,12 @@ namespace MessageImporter
                         xmlItem.percentVAT = Properties.Settings.Default.DPH_percent;
 
                         xmlItem.payVAT = boolean.@true;
+                        if (inv.Country == Country.Hungary)
+                        {
+                            xmlItem.rateVAT = vatRateType.historyHigh;
+                            xmlItem.percentVATSpecified = true;
+                            xmlItem.percentVAT = 27;
+                        }
 
                         // stock item
                         xmlItem.stockItem = new stockItemType();
