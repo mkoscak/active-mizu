@@ -358,7 +358,7 @@ namespace MessageImporter
                 CheckPairByHand(allMessages.SelectMany(o => o.Items).ToList());
                 //AllStocks = allMessages.SelectMany(o => o.Items).ToList();
                 SetProductsDS(new BindingList<StockItem>(allMessages.SelectMany(o => o.Items).ToList()));
-                UniqueStocks();
+                //UniqueStocks();
                                 
                 // dopocitanie cien s dopravou
                 CalcBuyingPrice(GetProductsDS());
@@ -385,11 +385,11 @@ namespace MessageImporter
             }
         }
 
-        private void UniqueStocks()
+        private BindingList<StockItem> UniqueStocks()
         {
             var ds = GetProductsDS();
             if (ds == null)
-                return;
+                return null;
 
             BindingList<StockItem> newDs = new BindingList<StockItem>();
             foreach (var item in ds)
@@ -408,7 +408,7 @@ namespace MessageImporter
                 newDs.Add(item);
             }
 
-            SetProductsDS(newDs);
+            return newDs;
         }
 
         private void CheckPairByHand(List<StockItem> bindingList)
@@ -1397,7 +1397,8 @@ namespace MessageImporter
         const string StockDir = "Stock";
         void StoreStock()
         {
-            var prodDS = GetProductsDS();
+            //var prodDS = GetProductsDS();
+            var prodDS = UniqueStocks();
 
             if (prodDS == null)
                 return;
