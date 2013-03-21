@@ -11,6 +11,7 @@ namespace MessageImporter
         public string OrderNr { get; set; }
         public string SKU { get; set; }
         public string StoreNr { get; set; }
+        public string Name { get; set; }
         public int Valid { get; set; }
     }
 }

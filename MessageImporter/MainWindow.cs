@@ -1453,8 +1453,9 @@ namespace MessageImporter
                         strStore = "Non paired";
                         nextStore = false;
                     }
-                        
+
                     readerItem.StoreNr = strStore;
+                    readerItem.Name = invItem.Parent.CustomerName;
                     readerItem.Valid = 1;
 
                     DBProvider.InsertReaderItem(readerItem);
@@ -1465,10 +1466,10 @@ namespace MessageImporter
                     storeNr++;  // dalsia faktura pojde do dalsieho policka
             }
             StringBuilder readerStrings = new StringBuilder();
-            readerStrings.AppendFormat("Store number;Order number;SKU{0}", Environment.NewLine);
+            readerStrings.AppendFormat("Store number;Order number;SKU;Customer name{0}", Environment.NewLine);
             foreach (var item in readerItems)
             {
-                readerStrings.AppendFormat("{0};{1};{2}{3}", item.StoreNr, item.OrderNr, item.SKU, Environment.NewLine);
+                readerStrings.AppendFormat("{0};{1};{2};{3}{4}", item.StoreNr, item.OrderNr, item.SKU, item.Name, Environment.NewLine);
             }
             File.WriteAllText(outDir + "reader_"+DateTime.Now.ToString("yyyyMMdd_hhmmss")+".csv", readerStrings.ToString());
 
