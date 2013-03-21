@@ -1619,6 +1619,8 @@ namespace MessageImporter
                 xmlItem.stockItem = new stockItemType();
                 xmlItem.stockItem.stockItem = new stockRefType();
                 xmlItem.stockItem.stockItem.ids = code;
+                xmlItem.quantitySpecified = true;
+                xmlItem.quantity = prod.Disp_Qty;
 
                 invItems.Add(xmlItem);
 
