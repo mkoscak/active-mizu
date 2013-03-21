@@ -70,6 +70,9 @@ namespace MessageImporter
                 pairProd = value;
                 if (pairProd != null)
                     pairProd.PairProduct = this;
+
+                if (pairProd.Description != null && pairProd.Description == pairProd.ProductCode)
+                    pairProd.ProductCode = invSKU + ItemOptions.Trim().Replace(" ", "");
             }
         }
 

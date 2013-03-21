@@ -234,20 +234,7 @@ namespace MessageImporter
                     }
                 }
 
-                // viacpoctove produkty sa rozkuskuju
-                for (int i = 0; i < items.Count; i++)
-                {
-                    if (items[i].Disp_Qty > 1)
-                    {
-                        var count = items[i].Disp_Qty;
-                        items[i].Disp_Qty = 1;
-
-                        for (int j = 0; j < count-1; j++)
-                            items.Insert(i, items[i].Clone() as StockItem);
-
-                        i += count;
-                    }
-                }
+                DecomposeMultipleItems(items);
 
                 order.Items = items.ToArray();
 
@@ -259,6 +246,24 @@ namespace MessageImporter
             }
 
             return null;
+        }
+
+        private static void DecomposeMultipleItems(List<StockItem> items)
+        {
+            // viacpoctove produkty sa rozkuskuju
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Disp_Qty > 1)
+                {
+                    var count = items[i].Disp_Qty;
+                    items[i].Disp_Qty = 1;
+
+                    for (int j = 0; j < count - 1; j++)
+                        items.Insert(i, items[i].Clone() as StockItem);
+
+                    i += count;
+                }
+            }
         }
    
         internal void log(string message)
@@ -848,6 +853,10 @@ namespace MessageImporter
                         if (foundItems.Count == 0)
                             foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null && product.invSKU.Contains(orderItem.ProductCode) && orderItem.PairProduct == null).ToList();
 
+                        // GetTheLabel produkty nemaju kody, treba skusit parovanie cez nazov
+                        if (foundItems.Count == 0)
+                            foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null && product.ItemName.Contains(orderItem.ProductCode) && orderItem.PairProduct == null && product.ItemOptions != null && orderItem.Size != null && orderItem.Size.Trim() == product.ItemOptions.Trim()).ToList();
+
                         if (foundItems.Count == 1)
                         {
                             CompleteOrderItem(product, foundItems[0]);
@@ -926,6 +935,8 @@ namespace MessageImporter
                     order = decodeMessage(item.Body, file);
                 else if (file.Type == MSG_TYPE.MANDM_DIRECT)
                     order = decodeMandMMessage(item.Body, file);
+                else if (file.Type == MSG_TYPE.GETTHELABEL)
+                    order = decodeGTLMessage(item.Body, file);
 
                 file.OrderNumber = order.OrderReference;
             }
@@ -936,6 +947,70 @@ namespace MessageImporter
             }
             
             return order;
+        }
+
+        private StockEntity decodeGTLMessage(string messageBody, FileItem file)
+        {
+            try
+            {
+                var order = new StockEntity();
+                List<StockItem> items = new List<StockItem>();
+
+                var lines = messageBody.Split(Environment.NewLine.ToCharArray()).Where(s => s != null && s.Trim().Length > 0).ToArray();
+                
+                // cislo objednavky
+                var orderNum = lines.Where(s => s.ToUpper().Contains("ORDER NUMBER:")).FirstOrDefault();
+                if (!string.IsNullOrEmpty(orderNum))
+                {
+                    var from = orderNum.IndexOf(':') + 1;
+
+                    order.OrderReference = orderNum.Substring(from).Trim();
+                    order.OurReference = order.OrderReference;
+                }
+
+                var relevant = lines.Where(s => s.ToCharArray().Count(c => c == '\t') == 5).ToList();
+                file.ProdCount = 0;
+                for (int i = 0; i < relevant.Count; i++)
+                {
+                    string line = relevant[i];
+                    if (line.ToLower().StartsWith("item"))
+                        continue;
+
+                    var cols = line.Split('\t');
+
+                    StockItem item = new StockItem();
+                    item.Description = cols[0];
+                    item.ProductCode = item.Description;
+                    item.Ord_Qty = int.Parse(cols[1].Trim());
+                    item.Disp_Qty = item.Ord_Qty;
+                    item.Price = Common.GetPrice(cols[4]);
+                    item.Total = Common.GetPrice(cols[4]) / item.Ord_Qty;   // suma deleno pocet = jednotkova cena
+                    item.Currency = "EUR";
+                    item.FromFile = file;
+                    item.Size = cols[2];
+                    
+                    file.ProdCount++;
+
+                    if (item.State == StockItemState.PermanentStorage)
+                        item.Sklad = "02";
+                    else if (item.State == StockItemState.Waiting)
+                        item.Sklad = Properties.Settings.Default.Storage;
+
+                    items.Add(item);
+                }
+
+                DecomposeMultipleItems(items);
+
+                order.Items = items.ToArray();
+
+                return order;
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, ex.ToString(), "Error");
+            }
+
+            return null;
         }
 
         private StockEntity decodeMandMMessage(string messageBody, FileItem file)
@@ -987,20 +1062,7 @@ namespace MessageImporter
                     items.Add(item);
                 }
 
-                // viacpoctove produkty sa rozkuskuju
-                for (int i = 0; i < items.Count; i++)
-                {
-                    if (items[i].Disp_Qty > 1)
-                    {
-                        var count = items[i].Disp_Qty;
-                        items[i].Disp_Qty = 1;
-
-                        for (int j = 0; j < count - 1; j++)
-                            items.Insert(i, items[i].Clone() as StockItem);
-
-                        i += count;
-                    }
-                }
+                DecomposeMultipleItems(items);
 
                 order.Items = items.ToArray();
 
