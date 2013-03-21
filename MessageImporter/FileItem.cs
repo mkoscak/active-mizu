@@ -13,7 +13,8 @@ namespace MessageImporter
         SPORTS_DIRECT,
         MANDM_DIRECT,
         CSV,
-        CSVX
+        CSVX,
+        GETTHELABEL
     }
 
     /// <summary>
@@ -57,7 +58,7 @@ namespace MessageImporter
                     else if (fileName.ToLower().Contains(MandMDirect.ToLower()))
                         Type = MSG_TYPE.MANDM_DIRECT;
                     else
-                        Type = MSG_TYPE.UNKNOWN;
+                        Type = MSG_TYPE.GETTHELABEL;
                 }
                 else if (fileName.ToLower().EndsWith(".csv"))
                     Type = MSG_TYPE.CSV;

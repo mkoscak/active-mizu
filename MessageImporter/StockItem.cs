@@ -261,6 +261,8 @@ namespace MessageImporter
             }
         }
 
+        internal string Size { get; set; }
+
         private string sizeInv;
         [System.ComponentModel.DisplayName("Veľkosť")]
         public string SizeInv
