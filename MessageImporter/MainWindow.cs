@@ -1221,7 +1221,7 @@ namespace MessageImporter
                 newInv.invoiceHeader.dateDue = DateTime.Now.AddDays(Properties.Settings.Default.DueDateAdd);
                 newInv.invoiceHeader.dateDueSpecified = true;
                 newInv.invoiceHeader.accounting = new accountingType();
-                newInv.invoiceHeader.accounting.ids = Properties.Settings.Default.Accounting;
+                newInv.invoiceHeader.accounting.ids = Properties.Settings.Default.Accounting + GetAccountingSuffix(inv.Country);
                 newInv.invoiceHeader.classificationVAT = new classificationVATType();
                 newInv.invoiceHeader.classificationVAT.ids = Properties.Settings.Default.ClasifficationVAT;
                 newInv.invoiceHeader.classificationVAT.classificationVATType1 = classificationVATTypeClassificationVATType.inland;
@@ -1294,7 +1294,7 @@ namespace MessageImporter
                             xmlItem.foreignCurrency.unitPrice = Common.GetPrice(invItem.ItemPrice);
                         }
                         xmlItem.accounting = new refType();
-                        xmlItem.accounting.ids = "2";
+                        xmlItem.accounting.ids = "2" + GetAccountingSuffix(inv.Country);
 
                         xmlItem.payVAT = boolean.@true;
                         if (inv.Country == Country.Hungary)
@@ -1474,6 +1474,32 @@ namespace MessageImporter
             File.WriteAllText(outDir + "reader_"+DateTime.Now.ToString("yyyyMMdd_hhmmss")+".csv", readerStrings.ToString());
 
             MessageBox.Show("Invoice XML generated!", "Save XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private string GetAccountingSuffix(Country country)
+        {
+            string ret = string.Empty;
+
+            switch (country)
+            {
+                case Country.Unknown:
+                    break;
+                case Country.Slovakia:
+                    break;
+                case Country.Hungary:
+                    ret = "_HU";
+                    break;
+                case Country.Poland:
+                    ret = "_PL";
+                    break;
+                case Country.CzechRepublic:
+                    ret = "_CZ";
+                    break;
+                default:
+                    break;
+            }
+
+            return ret;
         }
 
         const string StockDir = "Stock";
