@@ -575,7 +575,7 @@ namespace MessageImporter
                     }
                     else if (file.FileName.EndsWith(".csv"))
                     {
-                        var ret = ProcessCSV(file.FullFileName);
+                        var ret = ProcessCSV(file);
                         if (ret != null)
                         {
                             allOrders.Add(ret);
@@ -677,6 +677,7 @@ namespace MessageImporter
 
                         inv = new Invoice();
 
+                        inv.fromFile = order.File;
                         inv.TotQtyOrdered = item.TotQtyOrdered;
                         inv.BillingCity = item.BillingCity;
                         inv.BillingCompany = item.BillingCompany;
@@ -1076,12 +1077,12 @@ namespace MessageImporter
             return null;
         }
 
-        internal CSVFile ProcessCSV(string path)
+        internal CSVFile ProcessCSV(FileItem fromFile)
         {
-            CSVFile ret = new CSVFile(path);
+            CSVFile ret = new CSVFile(fromFile);
             try
             {
-                string fileContent = File.ReadAllText(path);
+                string fileContent = File.ReadAllText(fromFile.FullFileName);
 
                 var lines = fileContent.Split(Environment.NewLine.ToCharArray());
 
@@ -1456,6 +1457,10 @@ namespace MessageImporter
 
                     readerItem.StoreNr = strStore;
                     readerItem.Name = invItem.Parent.CustomerName;
+                    readerItem.ProdName = invItem.MSG_SKU;
+                    if (invItem.Parent.fromFile.PopisWEB)
+                        readerItem.ProdName = invItem.ItemName;
+                    readerItem.Size = invItem.ItemOptions;
                     readerItem.Valid = 1;
 
                     DBProvider.InsertReaderItem(readerItem);
@@ -1469,7 +1474,7 @@ namespace MessageImporter
             readerStrings.AppendFormat("Store number;Order number;SKU;Customer name{0}", Environment.NewLine);
             foreach (var item in readerItems)
             {
-                readerStrings.AppendFormat("{0};{1};{2};{3}{4}", item.StoreNr, item.OrderNr, item.SKU, item.Name, Environment.NewLine);
+                readerStrings.AppendFormat("{0};{1};{2};{3};{4};{5}{6}", item.StoreNr, item.OrderNr, item.SKU, item.Name, item.ProdName, item.Size, Environment.NewLine);
             }
             File.WriteAllText(outDir + "reader_"+DateTime.Now.ToString("yyyyMMdd_hhmmss")+".csv", readerStrings.ToString());
 

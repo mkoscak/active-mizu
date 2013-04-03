@@ -105,6 +105,8 @@ namespace MessageImporter
 
         public double Delivery { get; set; }
 
+        public bool PopisWEB { get; set; }
+
         internal int ProdCount { get; set; }
 
         internal string FullFileName { get; set; }
