@@ -2645,8 +2645,9 @@ namespace MessageImporter
                 shipper.SMSPreAdvice = "Y";//S
                 shipper.PhoneNumber = item.ShippingPhoneNumber;//T
                 shipper.ParcelNote = "ActiveStyle.sk";//U
+                shipper.Suma = item.OrderGrandTotal;
 
-                if (item.Country == Country.Hungary)
+                /*if (item.Country == Country.Hungary)
                 {
                     if (item.OrderPaymentMethod.ToLower().Contains("cashondelivery"))
                     {
@@ -2677,7 +2678,7 @@ namespace MessageImporter
                     shipper.SMSPreAdvice = "";//S
                     shipper.PhoneNumber = "";//T
                     shipper.ParcelNote = "";//U
-                }
+                }*/
 
                 if (item.Country == Country.Hungary)
                     outdataHU.Add(shipper);
@@ -2729,35 +2730,110 @@ namespace MessageImporter
                 sb.Append("phone_number;");
                 sb.Append("parcel_note");
             }
+            else
+            {
+                sb.Append("c_nev;");
+                sb.Append("c_szemely;");
+                sb.Append("c_irsz;");
+                sb.Append("c_helyseg;");
+                sb.Append("c_utca;");
+                sb.Append("c_telefon;");
+                sb.Append("c_email;");
+                sb.Append("c_vevokod;");
+                sb.Append("szamlaszam;");
+                sb.Append("aruertek;");
+                sb.Append("utanvetel;");
+                sb.Append("fuvardij;");
+                sb.Append("darab;");
+                sb.Append("egyseg;");
+                sb.Append("suly;");
+                sb.Append("tartalom;");
+                sb.Append("termekneve;");
+                sb.Append("szallido;");
+                sb.Append("okmany;");
+                sb.Append("szombati;");
+                sb.Append("kezbemil;");
+                sb.Append("kezbsms;");
+                sb.Append("szlafizhat;");
+                sb.Append("azon_kelle;");
+                sb.Append("felado_osztaly;");
+                sb.Append("fizetofel;");
+                sb.Append("instrukcio;");
+                sb.Append("kezbesites;");
+                sb.Append("visszaru;");
+                sb.Append("feladobetujel");
+            }
 
             // formatovanie dat
             foreach (var shipper in outdata)
             {
                 sb.Append(Environment.NewLine);
-                sb.Append(shipper.AdressId + ";");
-                sb.Append(shipper.ParcelWeight + ";");
-                sb.Append(shipper.ParcelType + ";");
-                sb.Append(shipper.NrOfTotal + ";");
-                sb.Append(shipper.ParcelCOD + ";");
-                sb.Append(shipper.ParcelCODAmount + ";");
-                sb.Append(shipper.ParcelCODCurrency + ";");
-                sb.Append(shipper.ParcelCODvarSym + ";");
-                sb.Append(shipper.ParcelCODCardPay + ";");
-                sb.Append(shipper.ParcelOrderNumber + ";");
-                sb.Append(shipper.CustRef + ";");
-                sb.Append(shipper.CustName + ";");
-                sb.Append(shipper.CustStreet + ";");
-                sb.Append(shipper.CustZip + ";");
-                sb.Append(shipper.CustCity + ";");
-                sb.Append(shipper.CustCountry + ";");
-                sb.Append(shipper.CustPhone + ";");
-                sb.Append(shipper.CustEmail);
+
                 if (country != Country.Hungary)
                 {
-                    sb.Append(";");
+                    sb.Append(shipper.AdressId + ";");
+                    sb.Append(shipper.ParcelWeight + ";");
+                    sb.Append(shipper.ParcelType + ";");
+                    sb.Append(shipper.NrOfTotal + ";");
+                    sb.Append(shipper.ParcelCOD + ";");
+                    sb.Append(shipper.ParcelCODAmount + ";");
+                    sb.Append(shipper.ParcelCODCurrency + ";");
+                    sb.Append(shipper.ParcelCODvarSym + ";");
+                    sb.Append(shipper.ParcelCODCardPay + ";");
+                    sb.Append(shipper.ParcelOrderNumber + ";");
+                    sb.Append(shipper.CustRef + ";");
+                    sb.Append(shipper.CustName + ";");
+                    sb.Append(shipper.CustStreet + ";");
+                    sb.Append(shipper.CustZip + ";");
+                    sb.Append(shipper.CustCity + ";");
+                    sb.Append(shipper.CustCountry + ";");
+                    sb.Append(shipper.CustPhone + ";");
+                    sb.Append(shipper.CustEmail + ";");
                     sb.Append(shipper.SMSPreAdvice + ";");
                     sb.Append(shipper.PhoneNumber + ";");
                     sb.Append(shipper.ParcelNote);
+                }
+                else // madarske
+                {
+                    sb.Append(";");
+                    sb.Append(shipper.CustName + ";");
+                    sb.Append(shipper.CustZip + ";");
+                    sb.Append(shipper.CustCity + ";");
+                    sb.Append(shipper.CustStreet + ";");
+                    var phone = shipper.PhoneNumber;
+                    if (phone.StartsWith("06"))
+                        phone = "+36" + phone.Substring(2);
+                    if (phone.StartsWith("36"))
+                        phone = "+" + phone;
+                    if (!phone.StartsWith("+36"))
+                        phone = "+36" + phone;
+                    phone = phone.Replace(" ", "").Replace("-", "").Replace("/","").Replace("\\", "");
+
+                    sb.Append(phone + ";");//todo upravit
+                    sb.Append(shipper.CustEmail + ";");
+                    sb.Append("Activestyle.hu;");
+                    sb.Append(shipper.ParcelOrderNumber + ";");
+                    sb.Append(shipper.Suma+ ";");
+                    sb.Append(shipper.Suma + ";");
+                    sb.Append(";");
+                    sb.Append("1;");
+                    sb.Append(";");
+                    sb.Append("1;");
+                    sb.Append(";");
+                    sb.Append("ruházat;");
+                    sb.Append("1 munkanapos;");
+                    sb.Append(";");
+                    sb.Append(";");
+                    sb.Append(shipper.CustEmail + ";");
+                    sb.Append(phone + ";");
+                    sb.Append(";");
+                    sb.Append(";");
+                    sb.Append(";");
+                    sb.Append(";");
+                    sb.Append("Hívás!! Hívás!! Hívás!!;");
+                    sb.Append("1;");
+                    sb.Append("0;");
+                    sb.Append("MMR");
                 }
             }
 

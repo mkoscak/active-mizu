@@ -28,5 +28,7 @@ namespace MessageImporter
         public string SMSPreAdvice = "";
         public string PhoneNumber = "";
         public string ParcelNote = "";
+
+        public string Suma = "";
     }
 }
