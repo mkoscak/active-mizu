@@ -387,5 +387,7 @@ namespace MessageImporter
         }
 
         internal List<InvoiceItem> InvoiceItems { get; set; }
+
+        internal FileItem fromFile;
     }
 }

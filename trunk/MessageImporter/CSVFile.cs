@@ -10,13 +10,13 @@ namespace MessageImporter
     /// </summary>
     public class CSVFile
     {
-        public string FileName { get; set; }
+        public FileItem File { get; set; }
 
         public CSVFileItem[] Items { get; set; }
 
-        public CSVFile(string fileName)
+        public CSVFile(FileItem file)
         {
-            FileName = fileName;
+            File = file;
         }
     }
 }
