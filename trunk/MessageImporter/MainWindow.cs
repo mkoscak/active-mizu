@@ -1457,10 +1457,10 @@ namespace MessageImporter
 
                     readerItem.StoreNr = strStore;
                     readerItem.Name = invItem.Parent.CustomerName;
-                    readerItem.ProdName = invItem.MSG_SKU;
+                    readerItem.ProdName = invItem.MSG_SKU.Trim();
                     if (invItem.Parent.fromFile.PopisWEB)
-                        readerItem.ProdName = invItem.ItemName;
-                    readerItem.Size = invItem.ItemOptions;
+                        readerItem.ProdName = invItem.ItemName.Trim();
+                    readerItem.Size = invItem.ItemOptions.Replace(";", ",").Trim();
                     readerItem.Valid = 1;
 
                     DBProvider.InsertReaderItem(readerItem);
@@ -1471,7 +1471,7 @@ namespace MessageImporter
                     storeNr++;  // dalsia faktura pojde do dalsieho policka
             }
             StringBuilder readerStrings = new StringBuilder();
-            readerStrings.AppendFormat("Store number;Order number;SKU;Customer name{0}", Environment.NewLine);
+            readerStrings.AppendFormat("Store number;Order number;SKU;Customer name;Product name;Size{0}", Environment.NewLine);
             foreach (var item in readerItems)
             {
                 readerStrings.AppendFormat("{0};{1};{2};{3};{4};{5}{6}", item.StoreNr, item.OrderNr, item.SKU, item.Name, item.ProdName, item.Size, Environment.NewLine);
