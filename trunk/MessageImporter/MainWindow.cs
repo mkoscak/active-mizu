@@ -1457,10 +1457,17 @@ namespace MessageImporter
 
                     readerItem.StoreNr = strStore;
                     readerItem.Name = invItem.Parent.CustomerName;
-                    readerItem.ProdName = invItem.MSG_SKU.Trim();
+                    if (invItem.MSG_SKU != null)
+                        readerItem.ProdName = invItem.MSG_SKU.Trim();
                     if (invItem.Parent.fromFile.PopisWEB)
-                        readerItem.ProdName = invItem.ItemName.Trim();
-                    readerItem.Size = invItem.ItemOptions.Replace(";", ",").Trim();
+                    {
+                        readerItem.ProdName = string.Empty;
+
+                        if (invItem.ItemName != null)
+                            readerItem.ProdName = invItem.ItemName.Trim();
+                    }
+                    if (invItem.itemOptions != null)
+                        readerItem.Size = invItem.ItemOptions.Replace(";", ",").Trim();
                     readerItem.Valid = 1;
 
                     DBProvider.InsertReaderItem(readerItem);
@@ -2795,7 +2802,7 @@ namespace MessageImporter
                 }
                 else // madarske
                 {
-                    sb.Append(";");
+                    sb.Append(shipper.CustName + ";");
                     sb.Append(shipper.CustName + ";");
                     sb.Append(shipper.CustZip + ";");
                     sb.Append(shipper.CustCity + ";");
