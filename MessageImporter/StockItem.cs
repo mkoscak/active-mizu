@@ -299,6 +299,13 @@ namespace MessageImporter
                 {
                     priceEURnoTax = Price * FromFile.ExchRate;
                     tax = FromFile.Tax;
+                    if (pairProd != null)
+                    {
+                        if (pairProd.Parent.Country == Country.Hungary)
+                            tax = Math.Round(tax, 2);
+                        if (pairProd.Parent.Country == Country.Poland)
+                            tax = Math.Round(tax, 4);
+                    }
                 }
 
                 if (ChildItems != null && description != null)
