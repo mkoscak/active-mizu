@@ -354,15 +354,17 @@ namespace MessageImporter
                 if (!ProcessSelectedFiles())
                     return;
 
+                var stocks = allMessages.SelectMany(o => o.Items).ToList();
+
                 // naplni allInvoices a nastavi datasource
                 CreateInvoice(allOrders);
                 // pridanie poloziek "Cena za dopravu"
                 AddShippingItems(AllInvoices);
                 SetInvoiceDS(new BindingList<Invoice>(AllInvoices));
                 // kontrola na nejasnosti v kodoch produktov
-                CheckPairByHand(allMessages.SelectMany(o => o.Items).ToList());
+                CheckPairByHand(stocks);
                 //AllStocks = allMessages.SelectMany(o => o.Items).ToList();
-                SetProductsDS(new BindingList<StockItem>(allMessages.SelectMany(o => o.Items).ToList()));
+                SetProductsDS(new BindingList<StockItem>(stocks));
                 //UniqueStocks();
                                 
                 // dopocitanie cien s dopravou
@@ -376,6 +378,9 @@ namespace MessageImporter
                 // kurzovy prepocet a nastavenie datumu objednavky
                 CalcRateOrderdate(dataFiles.DataSource as List<FileItem>);
 
+                // postprocessing pre MandMdirect
+                PostProcessMandM(stocks);
+
                 dataGrid.Columns["OrderDate"].DefaultCellStyle.Format = "dd.MM.yyyy";
                 dataGridInvItems.Columns["Datetime"].DefaultCellStyle.Format = "dd.MM.yyyy";
                 
@@ -387,6 +392,17 @@ namespace MessageImporter
             catch (System.Exception ex)
             {
                 MessageBox.Show(this, ex.ToString(), "Error");
+            }
+        }
+
+        private void PostProcessMandM(List<StockItem> stocks)
+        {
+            foreach (var stock in stocks)
+            {
+                if (stock.FromFile.Type == MSG_TYPE.MANDM_DIRECT)
+                {
+                    stock.ProductCode = "AM_" + stock.ProductCode;
+                }
             }
         }
 
@@ -1046,6 +1062,7 @@ namespace MessageImporter
                     StockItem item = new StockItem();
                     item.Description = cols[0];
                     item.ProductCode = item.Description.Split(' ')[0].Trim();
+                    item.Size = cols[1].Trim();
                     item.Ord_Qty = int.Parse(cols[2].Trim());
                     item.Disp_Qty = item.Ord_Qty;
                     item.Price = Common.GetPrice(cols[3]);

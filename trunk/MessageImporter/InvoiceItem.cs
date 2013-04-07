@@ -71,6 +71,17 @@ namespace MessageImporter
                 if (pairProd != null)
                     pairProd.PairProduct = this;
 
+                if (pairProd != null && pairProd.FromFile != null && pairProd.FromFile.Type == MSG_TYPE.MANDM_DIRECT)
+                {
+                    ItemOptions = pairProd.Size;    // velkost sa bude preberat z MM faktur
+
+                    var postfix = ItemOptions.Trim().Replace(" ", "");
+                    if (postfix.Length > 4)
+                        postfix = postfix.Substring(0, 4);
+
+                    pairProd.ProductCode = pairProd.ProductCode + "_" + postfix;
+                }
+
                 // ak nema produkt z MSG kod produktu
                 if (pairProd.Description != null && pairProd.Description == pairProd.ProductCode && itemOptions != null)
                 {
