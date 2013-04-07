@@ -84,7 +84,7 @@ namespace MessageImporter
 
         public static bool ExistsReaderItem(ReaderItem item)
         {
-            string query = string.Format("select * from {0} where ORDER_NUMBER = {1} AND SKU = {2} AND VALID = 1", T_READER, item.OrderNr, item.SKU);
+            string query = string.Format("select * from {0} where ORDER_NUMBER = {1} AND SKU = \"{2}\" AND VALID = 1", T_READER, item.OrderNr, item.SKU);
             try
             {
                 var res = ExecuteQuery(query);
@@ -121,7 +121,7 @@ namespace MessageImporter
 
         public static bool UpdateReaderItem(ReaderItem item)
         {
-            string query = string.Format("update {0} set STORE_NR = {1} where ORDER_NUMBER = \"{2}\" AND SKU = \"{3}\" AND VALID = 1", T_READER, item.StoreNr, item.OrderNr, item.SKU);
+            string query = string.Format("update {0} set STORE_NR = \"{1}\" where ORDER_NUMBER = \"{2}\" AND SKU = \"{3}\" AND VALID = 1", T_READER, item.StoreNr, item.OrderNr, item.SKU);
 
             try
             {

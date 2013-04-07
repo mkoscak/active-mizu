@@ -228,6 +228,7 @@ namespace MessageImporter
         public string ItemPrice { get; set; }
         public string ItemTax { get; set; }
         public string ItemDiscount { get; set; }
+        public string Zlava_Pohoda { get; set; }
         public string ItemTotal { get; set; }
         public string ItemStatus { get; set; }
         
