@@ -1290,11 +1290,18 @@ namespace MessageImporter
                 var invItems = new List<invoiceItemType>();
                 foreach (var invItem in inv.InvoiceItems)
                 {
+                    invoiceItemType xmlItem = new invoiceItemType();
+
                     var code = "";
                     if (invItem.PairCode != null)
                         code = invItem.PairCode;
 
-                    invoiceItemType xmlItem = new invoiceItemType();
+                    // zlava
+                    var zlava = Common.GetPrice(invItem.Zlava_Pohoda);
+                    if (double.IsNaN(zlava))
+                        zlava = 0;
+                    xmlItem.discountPercentage = (float)zlava;
+
                     // specialna polozka "cena za dopravu"
                     if (code == Properties.Settings.Default.ShippingCode)
                     {
