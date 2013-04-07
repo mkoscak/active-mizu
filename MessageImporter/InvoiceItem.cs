@@ -83,7 +83,7 @@ namespace MessageImporter
                 }
 
                 // ak nema produkt z MSG kod produktu
-                if (pairProd.Description != null && pairProd.Description == pairProd.ProductCode && itemOptions != null)
+                if (pairProd != null && pairProd.Description != null && pairProd.Description == pairProd.ProductCode && itemOptions != null)
                 {
                     var prefix = invSKU;
                     if (!prefix.ToUpper().StartsWith("AG"))

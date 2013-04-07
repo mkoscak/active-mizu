@@ -74,6 +74,7 @@ namespace MessageImporter
             this.ShippingStreet = copy.ShippingStreet;
             this.ShippingZip = copy.ShippingZip;
             this.TotQtyOrdered = copy.TotQtyOrdered;
+            this.fromFile = copy.fromFile;
         }
 
         public Image Icon

@@ -405,7 +405,7 @@ namespace MessageImporter
             {
                 fromFile = value;
 
-                if (fromFile != null && fromFile.FileName.ToLower().Contains("refund"))
+                if (fromFile != null && fromFile.FileName != null && fromFile.FileName.ToLower().Contains("refund"))
                     IsRefund = true;
             }
         }
@@ -453,6 +453,7 @@ namespace MessageImporter
             newObj.Total = Total;
             newObj.TotalEUR = TotalEUR;
             newObj.PairByHand = PairByHand;
+            newObj.FromFile = FromFile;
 
             return newObj;
         }

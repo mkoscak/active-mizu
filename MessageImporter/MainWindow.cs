@@ -31,6 +31,7 @@ namespace MessageImporter
         // data sources
         List<Invoice> AllInvoices = new List<Invoice>();
         List<StockItem> AllStocks = new List<StockItem>();
+        List<StockItem> WaitingToUpdate = new List<StockItem>();
 
         //////////////////////////////////////////////////////////////////////////////////////////
         BindingList<Invoice> GetInvoiceDS()
@@ -778,9 +779,10 @@ namespace MessageImporter
                 inv = null;
             }
 
+            WaitingToUpdate = new List<StockItem>();
             foreach (var item in AllInvoices)
             {
-                var toAdd = DBProvider.ReadWaitingInvoices(item.OrderNumber);
+                var toAdd = DBProvider.ReadWaitingInvoices(item.OrderNumber, ref WaitingToUpdate);
                 foreach (var n in toAdd)
                 {
                     n.Parent = item;
@@ -1476,7 +1478,7 @@ namespace MessageImporter
                     readerItem.Name = invItem.Parent.CustomerName;
                     if (invItem.MSG_SKU != null)
                         readerItem.ProdName = invItem.MSG_SKU.Trim();
-                    if (invItem.Parent.fromFile.PopisWEB)
+                    if (invItem.Parent.fromFile != null && invItem.Parent.fromFile.PopisWEB)
                     {
                         readerItem.ProdName = string.Empty;
 
@@ -1562,8 +1564,12 @@ namespace MessageImporter
             // referencna polozka
             StockItem refProd = null;
 
+            var toUpdate = new List<StockItem>();
+            toUpdate.AddRange(WaitingToUpdate);
+            toUpdate.AddRange(prodDS);
+
             /////////////////////////////////////////////// UPDATE POLOZIEK
-            foreach (var prod in prodDS)
+            foreach (var prod in toUpdate)
             {
                 if (!prod.EquippedInv && prod.State != StockItemState.Waiting) // do exportu len produkty z vybavenych objednavok
                     continue;
@@ -1615,7 +1621,7 @@ namespace MessageImporter
                 newDatapack.Item = stock;
                 dataPacks.Add(newDatapack);
             }
-            /////////////////////////////////////////////// UPDATE POLOZIEK
+            /////////////////////////////////////////////// STORE POLOZIEK
 
             foreach (var prod in prodDS)
             {

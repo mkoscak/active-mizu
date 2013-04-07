@@ -257,7 +257,7 @@ namespace MessageImporter
             return price.ToString().Replace(',','.');
         }
 
-        internal static List<InvoiceItem> ReadWaitingInvoices(string orderNumber)
+        internal static List<InvoiceItem> ReadWaitingInvoices(string orderNumber, ref List<StockItem> stocksToUpdate)
         {
             var ret = new List<InvoiceItem>();
 
@@ -269,6 +269,10 @@ namespace MessageImporter
 			    {
                     var inv = new InvoiceItem();
                     var stock = new StockItem();
+                    stock.Sklad = Properties.Settings.Default.Storage;
+                    stock.FromFile = new FileItem();
+                    stocksToUpdate.Add(stock);
+
                     inv.PairProduct = stock;
                     stock.PairProduct = inv;
 
@@ -276,6 +280,7 @@ namespace MessageImporter
                     inv.invSKU = data.Tables[0].Rows[i]["INV_SKU"].ToString();
                     inv.PairCode = data.Tables[0].Rows[i]["SKU"].ToString();
                     inv.OrderNumber = data.Tables[0].Rows[i]["ORDER_NUMBER"].ToString();
+                    stock.FromFile.OrderNumber = inv.OrderNumber;
                     //inv.BuyingPrice = Common.GetPrice(data.Tables[0].Rows[i]["BUYING_PRICE"].ToString());
                     inv.BuyingPrice = double.NaN;
                     inv.Datetime = DateTime.Parse(data.Tables[0].Rows[i]["DATE"].ToString());
