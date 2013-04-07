@@ -405,6 +405,8 @@ namespace MessageImporter
                     stock.ProductCode = "AM_" + stock.ProductCode;
                 }
             }
+
+            TabChanged(tabData, new EventArgs());
         }
 
         private BindingList<StockItem> UniqueStocks()
@@ -1006,7 +1008,7 @@ namespace MessageImporter
                     item.Total = Common.GetPrice(cols[4]) / item.Ord_Qty;   // suma deleno pocet = jednotkova cena
                     item.Currency = "EUR";
                     item.FromFile = file;
-                    item.Size = cols[2];
+                    item.Size = cols[2].Trim();
                     
                     file.ProdCount++;
 

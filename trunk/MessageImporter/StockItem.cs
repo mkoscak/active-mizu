@@ -272,6 +272,9 @@ namespace MessageImporter
                 if (sizeInv == null && pairProd != null)
                     sizeInv = PairProduct.ItemOptions;
 
+                if (sizeInv == null)
+                    return Size;
+
                 return sizeInv;
             }
 
@@ -454,6 +457,7 @@ namespace MessageImporter
             newObj.TotalEUR = TotalEUR;
             newObj.PairByHand = PairByHand;
             newObj.FromFile = FromFile;
+            newObj.Size = Size;
 
             return newObj;
         }
