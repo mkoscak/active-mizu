@@ -71,8 +71,20 @@ namespace MessageImporter
                 if (pairProd != null)
                     pairProd.PairProduct = this;
 
-                if (pairProd.Description != null && pairProd.Description == pairProd.ProductCode)
-                    pairProd.ProductCode = invSKU + ItemOptions.Trim().Replace(" ", "");
+                // ak nema produkt z MSG kod produktu
+                if (pairProd.Description != null && pairProd.Description == pairProd.ProductCode && itemOptions != null)
+                {
+                    var prefix = invSKU;
+                    if (!prefix.ToUpper().StartsWith("AG"))
+                        prefix = "AG" + prefix;
+                    prefix = prefix.Insert(2, "_");
+
+                    var postfix = ItemOptions.Trim().Replace(" ", "");
+                    if (postfix.Length > 4)
+                        postfix = postfix.Substring(0, 4);
+
+                    pairProd.ProductCode = prefix + "_" + postfix;
+                }
             }
         }
 

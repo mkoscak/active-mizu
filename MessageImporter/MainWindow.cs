@@ -2872,9 +2872,7 @@ namespace MessageImporter
             fname += "_shipper_" + DateTime.Now.Ticks + ".csv";
 
             if (country != Country.Hungary)
-                File.WriteAllText(outDir + fname, sb.ToString(), Encoding.GetEncoding(1252));
-            else
-                File.WriteAllText(outDir + fname, sb.ToString());
+                File.WriteAllText(outDir + fname, sb.ToString(), Encoding.UTF8);
         }
 
         private void FilterChanged(object sender, EventArgs e)
