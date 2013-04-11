@@ -12,6 +12,7 @@ using System.Globalization;
 using System.Xml.Serialization;
 using System.Net;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace MessageImporter
 {
@@ -73,7 +74,6 @@ namespace MessageImporter
             btnSetWaiting.Image = Icons.Waiting;
             btnSetWaiting.TextImageRelation = TextImageRelation.ImageBeforeText;
 
-            btnSettingsLoad_Click(btnSettingsLoad, new EventArgs());
             btnReplaceReload_Click(btnReplaceReload, new EventArgs());
             btnChildReload_Click(btnChildReload, new EventArgs());
 
@@ -84,6 +84,9 @@ namespace MessageImporter
                 log("Downloading exchange rates from "+Properties.Settings.Default.ExchRateXMLAddress);
                 DownloadExchangeRateXML();
                 log("done.");
+                log("Updating ex. rates in settings..");
+                UpdateExRates();
+                log("done.");
             }
             catch (System.Exception ex)
             {
@@ -91,7 +94,31 @@ namespace MessageImporter
                 MessageBox.Show(this, "Failed to load exchange rates from "+Properties.Settings.Default.ExchRateXMLAddress+"! Exception: "+ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            // aktualizacia nastaveni v GUI - hlavne exchange rates
+            btnSettingsLoad_Click(btnSettingsLoad, new EventArgs());
+
             btnProcess_Click(btnProcess, new EventArgs());
+        }
+
+        private void UpdateExRates()
+        {
+            var exr = DBProvider.GetExRateDayBefore(DateTime.Now);
+            if(exr == null)
+                exr = DBProvider.GetExRate(DateTime.Now.ToString("yyyy-MM-dd"));
+
+            if (exr == null)
+            {
+                log("   Failed to load exchange rates for yesterday!");
+                return;
+            }
+
+            var prop = Properties.Settings.Default;
+
+            prop.ExRateCzk = Math.Round(exr.RateCZK, 3).ToString();
+            prop.ExRatePln = Math.Round(exr.RatePLN, 4).ToString();
+            prop.ExRateHuf = Math.Round(exr.RateHUF, 2).ToString();
+
+            prop.Save();
         }
 
         internal void btnRead_Click(object sender, EventArgs e)
@@ -321,7 +348,7 @@ namespace MessageImporter
 
         internal void btnClear_Click_1(object sender, EventArgs e)
         {
-            txtLog.Text = string.Empty;
+           txtLog.Text = string.Empty;
         }
 
         internal const string processedDirectoryName = "processed";
@@ -2646,7 +2673,7 @@ namespace MessageImporter
             List<DPDShipper> outdataCZ = new List<DPDShipper>();
             foreach (var item in ds)
             {
-                if (!item.Equipped || item.Cancelled)
+                if (!item.Equipped || item.Cancelled || IsPostaShipping(item))
                     continue;
 
                 var orderNr = Common.ModifyOrderNumber(item.OrderNumber);
@@ -2903,8 +2930,26 @@ namespace MessageImporter
             }
             fname += "_shipper_" + DateTime.Now.Ticks + ".csv";
 
-            if (country != Country.Hungary)
-                File.WriteAllText(outDir + fname, sb.ToString(), Encoding.UTF8);
+            switch (country)
+            {
+                case Country.Slovakia:
+                    File.WriteAllText(outDir + fname, sb.ToString(), Encoding.UTF8);
+                    break;
+                case Country.Hungary:
+                    File.WriteAllText(outDir + fname, sb.ToString(), Encoding.UTF8);
+                    break;
+                case Country.Poland:
+                    File.WriteAllText(outDir + fname, sb.ToString(), Encoding.GetEncoding(1252));
+                    break;
+                case Country.CzechRepublic:
+                    File.WriteAllText(outDir + fname, sb.ToString(), Encoding.UTF8);
+                    break;
+
+                case Country.Unknown:
+                default:
+                    File.WriteAllText(outDir + fname, sb.ToString(), Encoding.UTF8);
+                    break;
+            }
         }
 
         private void FilterChanged(object sender, EventArgs e)
@@ -3054,6 +3099,131 @@ namespace MessageImporter
                     CheckEqipped(selInv.Parent);
                 dataCSV.InvalidateRow(dataCSV.SelectedCells[0].RowIndex);
             }
+        }
+
+        private void btnRefreshTotalInvSum_Click(object sender, EventArgs e)
+        {
+            RefreshTab();
+        }
+
+        private void btnPostaExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DoPostaExport();
+
+                MessageBox.Show(this, "Export completed!", "DPD shipper export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, string.Format("Error while export: {0}", ex.ToString()), "DPD shipper export", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DoPostaExport()
+        {
+            var ds = GetInvoiceDS();
+            if (ds == null)
+                return;
+
+            var datum = DateTime.Now.ToString("yyyyMMdd");
+
+            var xml = new ephType();
+            xml.verzia = "3";
+
+            // zasielky
+            xml.Zasielky = new List<ephTypeZasielka>();
+            foreach (var invoice in ds)
+            {
+                if (!invoice.Equipped || invoice.Cancelled)
+                    continue;
+
+                SpracujZasielku(xml, invoice);
+            }
+
+            xml.InfoEPH = new ephTypeInfoEPH();
+            xml.InfoEPH.Datum = datum;
+            xml.InfoEPH.DruhPPP = "";
+            xml.InfoEPH.DruhZasielky = "1";
+            xml.InfoEPH.EPHID = "";
+            xml.InfoEPH.Mena = "EUR";
+            xml.InfoEPH.PocetZasielok = xml.Zasielky.Count.ToString();
+            xml.InfoEPH.SposobSpracovania = "";
+            xml.InfoEPH.TypEPH = "1";
+            xml.InfoEPH.Uhrada = new List<ephTypeInfoEPHUhrada>();
+            xml.InfoEPH.Uhrada.Add(new ephTypeInfoEPHUhrada());
+            xml.InfoEPH.Uhrada[0].SposobUhrady = "5";
+            xml.InfoEPH.Uhrada[0].SumaUhrady = "0.00";
+            xml.InfoEPH.Odosielatel = new ephTypeInfoEPHOdosielatel();
+            //xml.InfoEPH.Odosielatel.CisloUctu = "info@activstyle.sk";
+            xml.InfoEPH.Odosielatel.Email = "info@activstyle.sk";
+            xml.InfoEPH.Odosielatel.Krajina = "";
+            xml.InfoEPH.Odosielatel.Meno = "Activestyle.sk";
+            xml.InfoEPH.Odosielatel.Mesto = "Rimavská Sobota 1";
+            xml.InfoEPH.Odosielatel.OdosielatelID = "";
+            xml.InfoEPH.Odosielatel.Organizacia = "MM Retail s.r.o.";
+            xml.InfoEPH.Odosielatel.PSC = "979 01";
+            xml.InfoEPH.Odosielatel.Telefon = "0948544211";
+            xml.InfoEPH.Odosielatel.Ulica = "B.Bartóka 1048/24";
+
+            var dir = txtOutDir.Text;
+            if (!dir.EndsWith(@"\"))
+                dir += @"\";
+            dir += @"Posta\";
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            xml.SaveToFile(dir + "export_"+DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")+".xml");
+        }
+
+        private void SpracujZasielku(ephType xml, Invoice invoice)
+        {
+            if (!IsPostaShipping(invoice))
+                return;
+
+            var zasielka = new ephTypeZasielka();
+
+            zasielka.Adresat = new ephTypeZasielkaAdresat();
+            zasielka.Adresat.Email = invoice.CustomerEmail;
+            zasielka.Adresat.Krajina = invoice.ShippingCountryName;
+            zasielka.Adresat.Meno = invoice.ShippingName;
+            zasielka.Adresat.Mesto = invoice.ShippingCity;
+            zasielka.Adresat.Organizacia = "";
+            zasielka.Adresat.PSC = invoice.ShippingZip;
+            zasielka.Adresat.Telefon = invoice.ShippingPhoneNumber;
+            zasielka.Adresat.Ulica = invoice.ShippingStreet;
+            
+            zasielka.Info = new ephTypeZasielkaInfo();
+            zasielka.Info.ZasielkaID = invoice.OrderNumber;
+            zasielka.Info.Hmotnost = "0.000";
+            zasielka.Info.CenaDobierky = VratCenuDopravy(invoice.InvoiceItems);
+            zasielka.Info.Trieda = "1";
+            zasielka.Info.CisloUctu = "2800328484/8330";
+            zasielka.Info.SymbolPrevodu = zasielka.Info.ZasielkaID; // TODO?
+            zasielka.Info.Poznamka = zasielka.Info.SymbolPrevodu + " Activestyle.sk";
+            zasielka.Info.DruhPPP = "5";
+
+            zasielka.PouziteSluzby = new List<string>();
+            zasielka.PouziteSluzby.Add("");
+
+            zasielka.Spat = null;
+            zasielka.DalsieUdaje = null;
+
+            xml.Zasielky.Add(zasielka);
+        }
+
+        bool IsPostaShipping(Invoice inv)
+        {
+            return inv.OrderShippingMethod.ToLower().Contains("flatrate3");
+        }
+
+        private string VratCenuDopravy(List<InvoiceItem> list)
+        {
+            var price = list.Where(ii => ii.PairCode == "shipping").LastOrDefault();
+            if (price == null || string.IsNullOrEmpty(price.ItemPrice))
+                return "0.00";
+
+            return price.ItemPrice.Replace(",", ".");
         }
     }
 

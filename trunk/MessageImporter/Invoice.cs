@@ -357,6 +357,36 @@ namespace MessageImporter
         [System.ComponentModel.DisplayName("BillingPhoneNumber")]
         public string BillingPhoneNumber { get; set; }
 
+        [System.ComponentModel.DisplayName("Celk. suma")]
+        public double InvoicePrice
+        {
+            get
+            {
+                return CalcInvoiceSum();
+            }
+        }
+
+        private double CalcInvoiceSum()
+        {
+            double ret = 0;
+            foreach (var item in InvoiceItems)
+            {
+                var discount = Common.GetPrice(item.Zlava_Pohoda);
+                if (double.IsNaN(discount))
+                    discount = 0;
+                discount /= 100;    // na perc. podiel
+                var count = Common.GetPrice(item.ItemQtyOrdered);
+                if (double.IsNaN(count))
+                    count = 1;
+
+                var next = (item.PredajnaCena - (item.PredajnaCena * discount)) * count;
+                if (!double.IsNaN(next))
+                    ret += next;
+            }
+
+            return Math.Round(ret, 2);
+        }
+
         private InvoiceState invoiceStatus;
         internal InvoiceState InvoiceStatus
         {
