@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://ekp.posta.sk/LOGIS/Formulare/Podaj_v03" 
+elementFormDefault="qualified"> 
+
+	<xs:element xmlns:eph="http://ekp.posta.sk/LOGIS/Formulare/Podaj_v03" name="EPH" type="eph:ephType" /> 
+
+	<xs:complexType name="ephType"> 
+		<xs:sequence> 
+			<xs:element minOccurs="1" maxOccurs="1" name="InfoEPH"> 
+				<xs:complexType> 
+					<xs:sequence> 
+						<xs:element minOccurs="1" maxOccurs="1" name="Mena" type="xs:string" /> 
+						<xs:element minOccurs="1" maxOccurs="1" name="TypEPH" type="xs:integer" /> 
+						<xs:element minOccurs="1" maxOccurs="1" name="EPHID" type="xs:string" /> 
+						<xs:element minOccurs="1" maxOccurs="1" name="Datum" type="xs:string" /> 
+						<xs:element minOccurs="1" maxOccurs="1" name="PocetZasielok" type="xs:string" /> 
+						<xs:element minOccurs="0" maxOccurs="unbounded" name="Uhrada"> 
+							<xs:complexType> 
+								<xs:sequence> 
+									<xs:element minOccurs="1" maxOccurs="1" name="SposobUhrady" type="xs:integer" /> 
+									<xs:element minOccurs="1" maxOccurs="1" name="SumaUhrady" type="xs:string" /> 
+									<!--Uhrada--> 
+								</xs:sequence> 
+							</xs:complexType> 
+						</xs:element> 
+						<xs:element minOccurs="0" maxOccurs="1" name="DruhPPP" type="xs:integer" /> 
+						<xs:element minOccurs="1" maxOccurs="1" name="DruhZasielky" type="xs:integer" /> 
+						<xs:element minOccurs="1" maxOccurs="1" name="SposobSpracovania" type="xs:integer" />
+						<!-- Kto spracuje EPH: 1 - HP, 2 - ES, 
+3 - APO --> 
+						<xs:element minOccurs="1" maxOccurs="1" name="Odosielatel"> 
+							<xs:complexType> 
+								<xs:sequence> 
+									<xs:element minOccurs="1" maxOccurs="1" name="OdosielatelID" type="xs:string" /> 
+									<xs:element minOccurs="1" maxOccurs="1" name="Meno" type="xs:string" /> 
+									<xs:element minOccurs="1" maxOccurs="1" name="Organizacia" type="xs:string" /> 
+									<xs:element minOccurs="1" maxOccurs="1" name="Ulica" type="xs:string" /> 
+									<xs:element minOccurs="1" maxOccurs="1" name="Mesto" type="xs:string" /> 
+									<xs:element minOccurs="1" maxOccurs="1" name="PSC" type="xs:string" /> 
+									<xs:element minOccurs="0" maxOccurs="1" name="Krajina" type="xs:string" /> 
+									<xs:element minOccurs="0" maxOccurs="1" name="Telefon" type="xs:string" /> 
+									<xs:element minOccurs="0" maxOccurs="1" name="Email" type="xs:string" /> 
+									<xs:element minOccurs="0" maxOccurs="1" name="CisloUctu" type="xs:string" /> 
+									<!--Odosielatel--> 
+								</xs:sequence> 
+							</xs:complexType> 
+						</xs:element> 
+						<!--InfoEPH--> 
+					</xs:sequence> 
+				</xs:complexType> 
+			</xs:element> 
+			<xs:element minOccurs="1" maxOccurs="1" name="Zasielky"> 
+				<xs:complexType> 
+					<xs:sequence> 
+						<xs:element minOccurs="1" maxOccurs="unbounded" name="Zasielka"> 
+							<xs:complexType> 
+								<xs:sequence> 
+									<xs:element minOccurs="1" maxOccurs="1" name="Adresat"> 
+										<xs:complexType> 
+											<xs:sequence> 
+												<xs:element minOccurs="1" maxOccurs="1" name="Meno" type="xs:string" /> 
+												<xs:element minOccurs="1" maxOccurs="1" name="Organizacia" type="xs:string" /> 
+												<xs:element minOccurs="1" maxOccurs="1" name="Ulica" type="xs:string" /> 
+												<xs:element minOccurs="1" maxOccurs="1" name="Mesto" type="xs:string" /> 
+												<xs:element minOccurs="1" maxOccurs="1" name="PSC" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="Krajina" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="Telefon" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="Email" type="xs:string" /> 
+												<!--Koniec Adresat--> 
+											</xs:sequence> 
+										</xs:complexType> 
+									</xs:element> 
+									<xs:element minOccurs="0" maxOccurs="1" name="Spat"> 
+										<xs:complexType> 
+											<xs:sequence> 
+												<xs:element minOccurs="1" maxOccurs="1" name="Meno" type="xs:string" /> 
+												<xs:element minOccurs="1" maxOccurs="1" name="Organizacia" type="xs:string" /> 
+												<xs:element minOccurs="1" maxOccurs="1" name="Ulica" type="xs:string" /> 
+												<xs:element minOccurs="1" maxOccurs="1" name="Mesto" type="xs:string" /> 
+												<xs:element minOccurs="1" maxOccurs="1" name="PSC" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="Krajina" type="xs:string" /> 
+												<!--Spat--> 
+											</xs:sequence> 
+										</xs:complexType> 
+									</xs:element> 
+									<xs:element name="Info"> 
+										<xs:complexType> 
+											<xs:sequence> 
+												<xs:element minOccurs="0" maxOccurs="1" name="CiarovyKod" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="ZasielkaID" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="Hmotnost" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="CenaDobierky" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="CenaPoistneho" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="CenaVyplatneho" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="Trieda" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="CisloUctu" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="SymbolPrevodu" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="Poznamka" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="DruhPPP" type="xs:integer" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="DruhZasielky" type="xs:integer" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="DatumPrijatia" type="xs:string" />
+												<!--Datum prijatia zasielky? Format: 
+YYYYMMDD, ak je prazdne, NEBOLA prijata --> 
+												<xs:element minOccurs="0" maxOccurs="1" name="Objem" type="xs:string" /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="PocetKusov" type="xs:integer " /> 
+												<xs:element minOccurs="0" maxOccurs="1" name="ObsahZasielky" type="xs:string" /> 
+												<!--Koniec Info--> 
+											</xs:sequence> 
+										</xs:complexType> 
+									</xs:element> 
+									<xs:element minOccurs="0" maxOccurs="1" name="PouziteSluzby"> 
+										<xs:complexType> 
+											<xs:sequence> 
+												<xs:element minOccurs="0" maxOccurs="unbounded" name="Sluzba" type="xs:string" /> 
+												<!--PouziteSluzby--> 
+											</xs:sequence> 
+										</xs:complexType> 
+									</xs:element> 
+									<xs:element minOccurs="0" maxOccurs="1" name="DalsieUdaje"> 
+										<xs:complexType> 
+											<xs:sequence> 
+												<xs:element minOccurs="1" maxOccurs="unbounded" name="Udaj"> 
+													<xs:complexType> 
+														<xs:sequence> 
+															<xs:element minOccurs="1" maxOccurs="1" name="Nazov" type="xs:string" /> 
+															<xs:element minOccurs="1" maxOccurs="1" name="Hodnota" type="xs:string" /> 
+															<!--Udaje--> 
+														</xs:sequence> 
+													</xs:complexType> 
+												</xs:element> 
+												<!--Dalsie udaje--> 
+											</xs:sequence> 
+										</xs:complexType> 
+									</xs:element> 
+									<!--Zasielka--> 
+								</xs:sequence> 
+							</xs:complexType> 
+						</xs:element> 
+						<!--Zasielky--> 
+					</xs:sequence> 
+				</xs:complexType> 
+			</xs:element> 
+			<!--EPH--> 
+		</xs:sequence> 
+		<xs:attribute name="verzia" type="xs:string" /> 
+	</xs:complexType> 
+</xs:schema> 
