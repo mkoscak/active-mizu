@@ -146,6 +146,15 @@ namespace MessageImporter
         [System.ComponentModel.DisplayName("E-mail")]
         public string CustomerEmail { get; set; }
 
+        [System.ComponentModel.DisplayName("Celk. suma")]
+        public double InvoicePrice
+        {
+            get
+            {
+                return CalcInvoiceSum();
+            }
+        }
+
         internal string OrderSubtotal { get; set; }
         internal string OrderTax { get; set; }
 
@@ -357,15 +366,6 @@ namespace MessageImporter
         [System.ComponentModel.DisplayName("BillingPhoneNumber")]
         public string BillingPhoneNumber { get; set; }
 
-        [System.ComponentModel.DisplayName("Celk. suma")]
-        public double InvoicePrice
-        {
-            get
-            {
-                return CalcInvoiceSum();
-            }
-        }
-
         private double CalcInvoiceSum()
         {
             double ret = 0;
@@ -379,7 +379,11 @@ namespace MessageImporter
                 if (double.IsNaN(count))
                     count = 1;
 
-                var next = (item.PredajnaCena - (item.PredajnaCena * discount)) * count;
+                double price = item.PredajnaCena;
+                if (double.IsNaN(price))
+                    price = Common.GetPrice(item.ItemPrice);
+
+                var next = (price - (price * discount)) * count;
                 if (!double.IsNaN(next))
                     ret += next;
             }
