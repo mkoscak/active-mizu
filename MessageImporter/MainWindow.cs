@@ -1826,7 +1826,7 @@ namespace MessageImporter
             newInv.invoiceHeader.classificationVAT = new classificationVATType();
             newInv.invoiceHeader.classificationVAT.ids = "PDnadEU";
             newInv.invoiceHeader.classificationVAT.classificationVATType1 = classificationVATTypeClassificationVATType.inland;
-            newInv.invoiceHeader.text = "SportsDirect_" + (allMessages.Count > 0 ? allMessages[0].OrderReference : "<err>");
+            newInv.invoiceHeader.text = refProd.FromFile.Type.ToString() + "_" + (allMessages.Count > 0 ? allMessages[0].OrderReference : "<err>");
             newInv.invoiceHeader.partnerIdentity = new address();
             newInv.invoiceHeader.partnerIdentity.id = "24";
 
@@ -3185,7 +3185,7 @@ namespace MessageImporter
 
             zasielka.Adresat = new ephTypeZasielkaAdresat();
             zasielka.Adresat.Email = invoice.CustomerEmail;
-            zasielka.Adresat.Krajina = invoice.ShippingCountryName;
+            zasielka.Adresat.Krajina = invoice.ShippingCountry;
             zasielka.Adresat.Meno = invoice.ShippingName;
             zasielka.Adresat.Mesto = invoice.ShippingCity;
             zasielka.Adresat.Organizacia = "";
@@ -3196,7 +3196,7 @@ namespace MessageImporter
             zasielka.Info = new ephTypeZasielkaInfo();
             zasielka.Info.ZasielkaID = invoice.OrderNumber;
             zasielka.Info.Hmotnost = "0.000";
-            zasielka.Info.CenaDobierky = VratCenuDopravy(invoice.InvoiceItems);
+            zasielka.Info.CenaDobierky = invoice.OrderGrandTotal;//VratCenuDopravy(invoice.InvoiceItems);
             zasielka.Info.Trieda = "1";
             zasielka.Info.CisloUctu = "2800328484/8330";
             zasielka.Info.SymbolPrevodu = zasielka.Info.ZasielkaID; // TODO?
