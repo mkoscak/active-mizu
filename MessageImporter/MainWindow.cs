@@ -723,6 +723,18 @@ namespace MessageImporter
 
                         inv = new Invoice();
 
+                        inv.OrderPurchasedFrom = item.OrderPurchasedFrom;
+                        if (inv.OrderPurchasedFrom.Contains(".sk"))
+                            inv.Country = Country.Slovakia;
+                        else if (inv.OrderPurchasedFrom.Contains(".hu"))
+                            inv.Country = Country.Hungary;
+                        else if (inv.OrderPurchasedFrom.Contains(".pl"))
+                            inv.Country = Country.Poland;
+                        else if (inv.OrderPurchasedFrom.Contains(".cz"))
+                            inv.Country = Country.CzechRepublic;
+                        else
+                            inv.Country = Country.Unknown;
+
                         inv.fromFile = order.File;
                         inv.TotQtyOrdered = item.TotQtyOrdered;
                         inv.BillingCity = item.BillingCity;
@@ -730,7 +742,7 @@ namespace MessageImporter
                         inv.BillingCountry = item.BillingCountry;
                         inv.BillingCountryName = item.BillingCountryName;
                         inv.BillingName = item.BillingName;
-                        inv.BillingPhoneNumber = Common.ModifyPhoneNr(item.BillingPhoneNumber);
+                        inv.BillingPhoneNumber = Common.ModifyPhoneNr(item.BillingPhoneNumber, inv.Country);
                         inv.BillingState = item.BillingState;
                         inv.BillingStateName = item.BillingStateName;
                         inv.BillingStreet = item.BillingStreet;
@@ -744,18 +756,6 @@ namespace MessageImporter
                         inv.OrderNumber = item.OrderNumber;
                         inv.OrderPaid = item.OrderPaid;
                         inv.OrderPaymentMethod = item.OrderPaymentMethod;
-
-                        inv.OrderPurchasedFrom = item.OrderPurchasedFrom;
-                        if (inv.OrderPurchasedFrom.Contains(".sk"))
-                            inv.Country = Country.Slovakia;
-                        else if (inv.OrderPurchasedFrom.Contains(".hu"))
-                            inv.Country = Country.Hungary;
-                        else if (inv.OrderPurchasedFrom.Contains(".pl"))
-                            inv.Country = Country.Poland;
-                        else if (inv.OrderPurchasedFrom.Contains(".cz"))
-                            inv.Country = Country.CzechRepublic;
-                        else
-                            inv.Country = Country.Unknown;
 
                         inv.OrderRefunded = item.OrderRefunded;
                         inv.OrderShipping = item.OrderShipping;
@@ -771,7 +771,7 @@ namespace MessageImporter
                         inv.ShippingCountry = item.ShippingCountry;
                         inv.ShippingCountryName = item.ShippingCountryName;
                         inv.ShippingName = item.ShippingName;
-                        inv.ShippingPhoneNumber = Common.ModifyPhoneNr(item.ShippingPhoneNumber);
+                        inv.ShippingPhoneNumber = Common.ModifyPhoneNr(item.ShippingPhoneNumber, inv.Country);
                         inv.ShippingState = item.ShippingState;
                         inv.ShippingStateName = item.ShippingStateName;
                         inv.ShippingStreet = item.ShippingStreet;
