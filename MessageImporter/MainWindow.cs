@@ -123,6 +123,8 @@ namespace MessageImporter
 
         internal void btnRead_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             // validacia
             if (txtInputPath.Text.Trim() == string.Empty)
             {
@@ -178,8 +180,11 @@ namespace MessageImporter
             }
             catch (System.Exception ex)
             {
+                Cursor.Current = Cursors.Default;
                 MessageBox.Show(this, ex.ToString(), "Error");
             }
+
+            Cursor.Current = Cursors.Default;
         }
 
         internal StockEntity decodeMessage(string messageBody, FileItem file)
@@ -370,6 +375,8 @@ namespace MessageImporter
         /// <param name="e"></param>
         internal void btnProcess_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+            
             logNewSection("Begin processing..");
             
             try
@@ -419,8 +426,11 @@ namespace MessageImporter
             }
             catch (System.Exception ex)
             {
+                Cursor.Current = Cursors.Default;
                 MessageBox.Show(this, ex.ToString(), "Error");
             }
+
+            Cursor.Current = Cursors.Default;
         }
 
         private void PostProcessMandM(List<StockItem> stocks)
@@ -1197,6 +1207,8 @@ namespace MessageImporter
         /// <param name="e"></param>
         internal void btn2XML_Click_1(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+            
             if (!Directory.Exists(txtOutDir.Text))
                 Directory.CreateDirectory(txtOutDir.Text);
 
@@ -1215,6 +1227,7 @@ namespace MessageImporter
 		        default:
                     break;
 	        }
+            Cursor.Current = Cursors.Default;
         }
 
         const string InvoiceDir = "Invoice";
@@ -1400,6 +1413,14 @@ namespace MessageImporter
                         xmlItem.stockItem = new stockItemType();
                         xmlItem.stockItem.stockItem = new stockRefType();
                         xmlItem.stockItem.stockItem.ids = code;
+                    }
+
+                    // ak su ine krajiny ako SK, vyplnime predajnu cenu do foreignCurrency
+                    if (inv.Country != Country.Slovakia && !double.IsNaN(invItem.PredajnaCena))
+                    {
+                        xmlItem.foreignCurrency = new typeCurrencyForeignItem();
+                        xmlItem.foreignCurrency.unitPriceSpecified = true;
+                        xmlItem.foreignCurrency.unitPrice = invItem.PredajnaCena;
                     }
 
                     invItems.Add(xmlItem);
