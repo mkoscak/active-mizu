@@ -116,12 +116,21 @@ namespace MessageImporter
             return orderNumber.Remove(pos);
         }
 
-        public static string ModifyPhoneNr(string phone)
+        public static string ModifyPhoneNr(string phone, Country from)
         {
             if (string.IsNullOrEmpty(phone))
                 return string.Empty;
 
             var ret = new string(phone.ToCharArray().Where(c => c != ' ' && c != '/').ToArray());
+
+            // pre cesko
+            if (from == Country.CzechRepublic)
+            {
+                if (ret.StartsWith("420"))
+                    ret = "+" + ret;
+                else if (!ret.StartsWith("+420"))
+                    ret = "+420" + ret;
+            }
 
             return ret;
         }
