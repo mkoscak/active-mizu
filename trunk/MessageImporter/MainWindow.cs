@@ -1416,11 +1416,20 @@ namespace MessageImporter
                     }
 
                     // ak su ine krajiny ako SK, vyplnime predajnu cenu do foreignCurrency
-                    if (inv.Country != Country.Slovakia && !double.IsNaN(invItem.PredajnaCena))
+                    if (!double.IsNaN(invItem.PredajnaCena))
                     {
-                        xmlItem.foreignCurrency = new typeCurrencyForeignItem();
-                        xmlItem.foreignCurrency.unitPriceSpecified = true;
-                        xmlItem.foreignCurrency.unitPrice = invItem.PredajnaCena;
+                        if (inv.Country != Country.Slovakia)
+                        {
+                            xmlItem.foreignCurrency = new typeCurrencyForeignItem();
+                            xmlItem.foreignCurrency.unitPriceSpecified = true;
+                            xmlItem.foreignCurrency.unitPrice = invItem.PredajnaCena;
+                        }
+                        else
+                        {
+                            xmlItem.homeCurrency = new typeCurrencyHomeItem();
+                            xmlItem.homeCurrency.unitPriceSpecified = true;
+                            xmlItem.homeCurrency.unitPrice = invItem.PredajnaCena;
+                        }
                     }
 
                     invItems.Add(xmlItem);
