@@ -2743,45 +2743,27 @@ namespace MessageImporter
                 shipper.ParcelNote = "ActiveStyle.sk";//U
                 shipper.Suma = item.OrderGrandTotal;
 
-                /*if (item.Country == Country.Hungary)
-                {
-                    if (item.OrderPaymentMethod.ToLower().Contains("cashondelivery"))
-                    {
-                        shipper.AdressId = "D-COD";
-                        shipper.ParcelType = item.OrderGrandTotal;
-                    }
-                    else
-                    {
-                        shipper.AdressId = "COD";
-                        shipper.ParcelType = "";
-                    }
-                    shipper.ParcelWeight = "";
-                    shipper.NrOfTotal = orderNr;//D
-                    shipper.ParcelCOD = orderNr;//E
-                    shipper.ParcelCODAmount = "";//F
-                    shipper.ParcelCODCurrency = item.ShippingName;//G
-                    shipper.ParcelCODvarSym = "";//H
-                    shipper.ParcelCODCardPay = item.ShippingStreet;//I
-                    shipper.ParcelOrderNumber = "";//J
-                    shipper.CustRef = "H";//K
-                    shipper.CustName = item.ShippingZip;//L
-                    shipper.CustStreet = item.ShippingCity;//M
-                    shipper.CustZip = item.ShippingPhoneNumber;//N
-                    shipper.CustCity = "";//O
-                    shipper.CustCountry = item.CustomerEmail;//P
-                    shipper.CustPhone = "Hívás!! Hívás!! Hívás!! Hívás!!";//Q
-                    shipper.CustEmail = item.ShippingPhoneNumber.Replace(" ", "").Replace("-", "");//R
-                    shipper.SMSPreAdvice = "";//S
-                    shipper.PhoneNumber = "";//T
-                    shipper.ParcelNote = "";//U
-                }*/
-
                 if (item.Country == Country.Hungary)
                     outdataHU.Add(shipper);
                 else if (item.Country == Country.Poland)
                     outdataPL.Add(shipper);
                 else if (item.Country == Country.CzechRepublic)
+                {
+                    shipper.ParcelType = "NCP,NN,PRO";//C
+                    shipper.NrOfTotal = "Cash";//D
+                    shipper.ParcelCODCurrency = "CZK";//G
+                    shipper.CustCountry = "203";//P
+                    shipper.SMSPreAdvice = "S";//S
+                    shipper.PhoneNumber = item.ShippingPhoneNumber.Replace("+420", "+420#");//T
+                    shipper.ParcelNote = "1";//U
+                    shipper.V = "CZ";//V
+                    shipper.W = "E";//W
+                    shipper.X = "uzik@activestyle.sk";//X
+                    shipper.Y = "2";//Y
+                    shipper.Z = "CZ";//Z
+
                     outdataCZ.Add(shipper);
+                }
                 else
                     outdataSK.Add(shipper);
             }
@@ -2888,6 +2870,16 @@ namespace MessageImporter
                     sb.Append(shipper.SMSPreAdvice + ";");
                     sb.Append(shipper.PhoneNumber + ";");
                     sb.Append(shipper.ParcelNote);
+
+                    if (country == Country.CzechRepublic)
+                    {
+                        sb.Append(";");
+                        sb.Append(shipper.V + ";");
+                        sb.Append(shipper.W + ";");
+                        sb.Append(shipper.X + ";");
+                        sb.Append(shipper.Y + ";");
+                        sb.Append(shipper.Z);
+                    }
                 }
                 else // madarske
                 {
