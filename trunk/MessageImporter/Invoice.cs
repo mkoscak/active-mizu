@@ -141,6 +141,10 @@ namespace MessageImporter
 
         [System.ComponentModel.DisplayName("Položiek")]
         public string TotQtyOrdered { get; set; }
+        
+        [System.ComponentModel.DisplayName("Poznámka")]
+        public string Note { get; set; }
+
         [System.ComponentModel.DisplayName("Meno")]
         public string CustomerName { get; set; }
         [System.ComponentModel.DisplayName("E-mail")]

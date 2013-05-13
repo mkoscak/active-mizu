@@ -15,5 +15,6 @@ namespace MessageImporter
         public string ProdName { get; set; }
         public string Size { get; set; }
         public int Valid { get; set; }
+        public string Note { get; set; }
     }
 }
