@@ -1554,6 +1554,7 @@ namespace MessageImporter
                     if (invItem.itemOptions != null)
                         readerItem.Size = invItem.ItemOptions.Replace(";", ",").Trim();
                     readerItem.Valid = 1;
+                    readerItem.Note = inv.Note;
 
                     DBProvider.InsertReaderItem(readerItem);
                     readerItems.Add(readerItem);
@@ -1563,10 +1564,10 @@ namespace MessageImporter
                     storeNr++;  // dalsia faktura pojde do dalsieho policka
             }
             StringBuilder readerStrings = new StringBuilder();
-            readerStrings.AppendFormat("Store number;Order number;SKU;Customer name;Product name;Size{0}", Environment.NewLine);
+            readerStrings.AppendFormat("Store number;Order number;SKU;Customer name;Product name;Size;Note{0}", Environment.NewLine);
             foreach (var item in readerItems)
             {
-                readerStrings.AppendFormat("{0};{1};{2};{3};{4};{5}{6}", item.StoreNr, item.OrderNr, item.SKU, item.Name, item.ProdName, item.Size, Environment.NewLine);
+                readerStrings.AppendFormat("{0};{1};{2};{3};{4};{5};{6}{7}", item.StoreNr, item.OrderNr, item.SKU, item.Name, item.ProdName, item.Size, item.Note, Environment.NewLine);
             }
             File.WriteAllText(outDir + "reader_"+DateTime.Now.ToString("yyyyMMdd_hhmmss")+".csv", readerStrings.ToString());
 
