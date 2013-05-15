@@ -2965,7 +2965,7 @@ namespace MessageImporter
                     File.WriteAllText(outDir + fname, sb.ToString(), Encoding.GetEncoding(1252));
                     break;
                 case Country.CzechRepublic:
-                    File.WriteAllText(outDir + fname, sb.ToString(), Encoding.UTF8);
+                    File.WriteAllText(outDir + fname, sb.ToString(), Encoding.GetEncoding(1252));
                     break;
 
                 case Country.Unknown:
