@@ -1745,12 +1745,14 @@ namespace MessageImporter
 
                 if (prod.State == StockItemState.Waiting)
                 {
-                    // ulozenie produktu do DB
-                    var insert = string.Format("INSERT INTO " + DBProvider.T_WAIT_PRODS + " VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", (string.IsNullOrEmpty(prod.WaitingOrderNum) ? Common.ModifyOrderNumber2(prod.PairProduct.Parent.OrderNumber) : prod.WaitingOrderNum), prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
-                    log(insert);
-
                     try
                     {
+                        /*var update = string.Format("UPDATE {0} SET VALID = 0 WHERE SKU=\"{1}\"", DBProvider.T_WAIT_PRODS, prod.ProductCode);
+                        DBProvider.ExecuteNonQuery(update);*/
+
+                        // ulozenie produktu do DB
+                        var insert = string.Format("INSERT INTO " + DBProvider.T_WAIT_PRODS + " VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", (string.IsNullOrEmpty(prod.WaitingOrderNum) ? Common.ModifyOrderNumber2(prod.PairProduct.Parent.OrderNumber) : prod.WaitingOrderNum), prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
+                        log(insert);
                         DBProvider.ExecuteNonQuery(insert);
                         if (prod.PairProduct != null)
                             DBProvider.InsertWaitingInvoice(prod.PairProduct);
@@ -2759,7 +2761,7 @@ namespace MessageImporter
                     shipper.ParcelNote = "1";//U
                     shipper.V = "CZ";//V
                     shipper.W = "E";//W
-                    shipper.X = "uzik@activestyle.sk";//X
+                    shipper.X = item.CustomerEmail;//X
                     shipper.Y = "2";//Y
                     shipper.Z = "CZ";//Z
 
@@ -3237,7 +3239,8 @@ namespace MessageImporter
 
         bool IsPostaShipping(Invoice inv)
         {
-            return inv.OrderShippingMethod.ToLower().Contains("flatrate3");
+            var method = inv.OrderShippingMethod.ToLower();
+            return method.Contains("flatrate3") || method.Contains("flatrate4");
         }
 
         private string VratCenuDopravy(List<InvoiceItem> list)
