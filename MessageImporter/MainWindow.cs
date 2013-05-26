@@ -3180,8 +3180,8 @@ namespace MessageImporter
             xml.InfoEPH.Uhrada[0].SposobUhrady = "5";
             xml.InfoEPH.Uhrada[0].SumaUhrady = "0.00";
             xml.InfoEPH.Odosielatel = new ephTypeInfoEPHOdosielatel();
-            //xml.InfoEPH.Odosielatel.CisloUctu = "info@activstyle.sk";
-            xml.InfoEPH.Odosielatel.Email = "info@activstyle.sk";
+            //xml.InfoEPH.Odosielatel.CisloUctu = "info@activestyle.sk";
+            xml.InfoEPH.Odosielatel.Email = "info@activestyle.sk";
             xml.InfoEPH.Odosielatel.Krajina = "";
             xml.InfoEPH.Odosielatel.Meno = "Activestyle.sk";
             xml.InfoEPH.Odosielatel.Mesto = "Rimavská Sobota 1";
