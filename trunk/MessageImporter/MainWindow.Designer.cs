@@ -48,12 +48,14 @@
             this.tabData = new System.Windows.Forms.TabControl();
             this.invoice = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnPostaExport = new System.Windows.Forms.Button();
             this.btnRefreshTotalInvSum = new System.Windows.Forms.Button();
             this.btnInvCopy = new System.Windows.Forms.Button();
             this.btnExportToShipper = new System.Windows.Forms.Button();
             this.btnSetWaiting = new System.Windows.Forms.Button();
             this.btnInvoiceRemove = new System.Windows.Forms.Button();
             this.btnInvoiceAdd = new System.Windows.Forms.Button();
+            this.dataCSV = new MessageImporter.CustomDataGridView();
             this.tabItems = new System.Windows.Forms.TabControl();
             this.tabAllItems = new System.Windows.Forms.TabPage();
             this.lbNonPaired = new System.Windows.Forms.ListBox();
@@ -67,6 +69,7 @@
             this.btnInvoiceItemNew = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.dataGridInvItems = new MessageImporter.CustomDataGridView();
             this.stock = new System.Windows.Forms.TabPage();
             this.btnStockCopy = new System.Windows.Forms.Button();
             this.btnExportMSG = new System.Windows.Forms.Button();
@@ -74,6 +77,7 @@
             this.btnUnpairProductMSG = new System.Windows.Forms.Button();
             this.btnRemoveMSG = new System.Windows.Forms.Button();
             this.btnAddMsg = new System.Windows.Forms.Button();
+            this.dataGrid = new MessageImporter.CustomDataGridView();
             this.reader = new System.Windows.Forms.TabPage();
             this.btnDeleteAllReader = new System.Windows.Forms.Button();
             this.btnOrderEquipped = new System.Windows.Forms.Button();
@@ -86,8 +90,10 @@
             this.label20 = new System.Windows.Forms.Label();
             this.txtFilOrderNr = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.gridReader = new MessageImporter.CustomDataGridView();
             this.tabFilesLog = new System.Windows.Forms.TabControl();
             this.tabFoundFiles = new System.Windows.Forms.TabPage();
+            this.dataFiles = new MessageImporter.CustomDataGridView();
             this.tabSettings = new System.Windows.Forms.TabPage();
             this.txtSetDefStorage = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
@@ -136,52 +142,54 @@
             this.btnReplaceReload = new System.Windows.Forms.Button();
             this.btnReplacementAdd = new System.Windows.Forms.Button();
             this.btnReplaceSave = new System.Windows.Forms.Button();
+            this.gridReplacements = new MessageImporter.CustomDataGridView();
             this.tabChild = new System.Windows.Forms.TabPage();
             this.btnChildRemove = new System.Windows.Forms.Button();
             this.btnChildReload = new System.Windows.Forms.Button();
             this.btnChildAdd = new System.Windows.Forms.Button();
             this.btnChildSave = new System.Windows.Forms.Button();
+            this.gridChilds = new MessageImporter.CustomDataGridView();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.splitMain = new System.Windows.Forms.SplitContainer();
-            this.dataFiles = new MessageImporter.CustomDataGridView();
-            this.gridReplacements = new MessageImporter.CustomDataGridView();
-            this.gridChilds = new MessageImporter.CustomDataGridView();
-            this.dataCSV = new MessageImporter.CustomDataGridView();
-            this.dataGridInvItems = new MessageImporter.CustomDataGridView();
-            this.dataGrid = new MessageImporter.CustomDataGridView();
-            this.gridReader = new MessageImporter.CustomDataGridView();
-            this.btnPostaExport = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtPartnerSport = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtPartnerMandM = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.txtPartnerLabel = new System.Windows.Forms.TextBox();
             this.grpInputSettings.SuspendLayout();
             this.tabData.SuspendLayout();
             this.invoice.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataCSV)).BeginInit();
             this.tabItems.SuspendLayout();
             this.tabAllItems.SuspendLayout();
             this.tabSelItems.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInvItems)).BeginInit();
             this.stock.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
             this.reader.SuspendLayout();
             this.ReaderFilter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridReader)).BeginInit();
             this.tabFilesLog.SuspendLayout();
             this.tabFoundFiles.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).BeginInit();
             this.tabSettings.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabReplace.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).BeginInit();
             this.tabChild.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridChilds)).BeginInit();
             this.tabLog.SuspendLayout();
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
             this.splitMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridChilds)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataCSV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridInvItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridReader)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnRead
@@ -204,7 +212,7 @@
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLog.Size = new System.Drawing.Size(461, 478);
+            this.txtLog.Size = new System.Drawing.Size(485, 478);
             this.txtLog.TabIndex = 1;
             this.txtLog.WordWrap = false;
             // 
@@ -424,6 +432,17 @@
             this.splitContainer1.SplitterDistance = 430;
             this.splitContainer1.TabIndex = 27;
             // 
+            // btnPostaExport
+            // 
+            this.btnPostaExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPostaExport.Location = new System.Drawing.Point(467, 400);
+            this.btnPostaExport.Name = "btnPostaExport";
+            this.btnPostaExport.Size = new System.Drawing.Size(105, 23);
+            this.btnPostaExport.TabIndex = 30;
+            this.btnPostaExport.Text = "Posta export";
+            this.btnPostaExport.UseVisualStyleBackColor = true;
+            this.btnPostaExport.Click += new System.EventHandler(this.btnPostaExport_Click);
+            // 
             // btnRefreshTotalInvSum
             // 
             this.btnRefreshTotalInvSum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -489,6 +508,23 @@
             this.btnInvoiceAdd.Text = "Add new";
             this.btnInvoiceAdd.UseVisualStyleBackColor = true;
             this.btnInvoiceAdd.Click += new System.EventHandler(this.btnInvoiceAdd_Click);
+            // 
+            // dataCSV
+            // 
+            this.dataCSV.AllowUserToAddRows = false;
+            this.dataCSV.AllowUserToDeleteRows = false;
+            this.dataCSV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataCSV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataCSV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataCSV.Location = new System.Drawing.Point(5, 4);
+            this.dataCSV.MultiSelect = false;
+            this.dataCSV.Name = "dataCSV";
+            this.dataCSV.Size = new System.Drawing.Size(976, 390);
+            this.dataCSV.TabIndex = 23;
+            this.dataCSV.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceValueChanged);
+            this.dataCSV.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceChanged);
             // 
             // tabItems
             // 
@@ -630,6 +666,22 @@
             this.label8.TabIndex = 27;
             this.label8.Text = "Invoice items";
             // 
+            // dataGridInvItems
+            // 
+            this.dataGridInvItems.AllowUserToAddRows = false;
+            this.dataGridInvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridInvItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridInvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridInvItems.Location = new System.Drawing.Point(134, 21);
+            this.dataGridInvItems.MultiSelect = false;
+            this.dataGridInvItems.Name = "dataGridInvItems";
+            this.dataGridInvItems.Size = new System.Drawing.Size(847, 186);
+            this.dataGridInvItems.TabIndex = 0;
+            this.dataGridInvItems.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInvItems_CellEndEdit);
+            this.dataGridInvItems.SelectionChanged += new System.EventHandler(this.InvoiceItemSelChanged);
+            // 
             // stock
             // 
             this.stock.Controls.Add(this.btnStockCopy);
@@ -643,7 +695,7 @@
             this.stock.Location = new System.Drawing.Point(4, 22);
             this.stock.Name = "stock";
             this.stock.Padding = new System.Windows.Forms.Padding(3);
-            this.stock.Size = new System.Drawing.Size(939, 675);
+            this.stock.Size = new System.Drawing.Size(989, 675);
             this.stock.TabIndex = 1;
             this.stock.Text = "Stock";
             this.stock.UseVisualStyleBackColor = true;
@@ -714,6 +766,22 @@
             this.btnAddMsg.UseVisualStyleBackColor = true;
             this.btnAddMsg.Click += new System.EventHandler(this.btnAddMsg_Click);
             // 
+            // dataGrid
+            // 
+            this.dataGrid.AllowUserToAddRows = false;
+            this.dataGrid.AllowUserToOrderColumns = true;
+            this.dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid.Location = new System.Drawing.Point(6, 6);
+            this.dataGrid.MultiSelect = false;
+            this.dataGrid.Name = "dataGrid";
+            this.dataGrid.Size = new System.Drawing.Size(931, 623);
+            this.dataGrid.TabIndex = 3;
+            this.dataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.StockValueChanged);
+            // 
             // reader
             // 
             this.reader.Controls.Add(this.btnDeleteAllReader);
@@ -722,7 +790,7 @@
             this.reader.Controls.Add(this.gridReader);
             this.reader.Location = new System.Drawing.Point(4, 22);
             this.reader.Name = "reader";
-            this.reader.Size = new System.Drawing.Size(939, 675);
+            this.reader.Size = new System.Drawing.Size(989, 675);
             this.reader.TabIndex = 2;
             this.reader.Text = "Reader";
             this.reader.UseVisualStyleBackColor = true;
@@ -849,6 +917,20 @@
             this.label19.TabIndex = 0;
             this.label19.Text = "Order number";
             // 
+            // gridReader
+            // 
+            this.gridReader.AllowUserToAddRows = false;
+            this.gridReader.AllowUserToDeleteRows = false;
+            this.gridReader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridReader.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridReader.Location = new System.Drawing.Point(3, 60);
+            this.gridReader.MultiSelect = false;
+            this.gridReader.Name = "gridReader";
+            this.gridReader.Size = new System.Drawing.Size(937, 569);
+            this.gridReader.TabIndex = 0;
+            // 
             // tabFilesLog
             // 
             this.tabFilesLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -879,9 +961,25 @@
             this.tabFoundFiles.Text = "Found files";
             this.tabFoundFiles.UseVisualStyleBackColor = true;
             // 
+            // dataFiles
+            // 
+            this.dataFiles.AllowUserToOrderColumns = true;
+            this.dataFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataFiles.Location = new System.Drawing.Point(0, 0);
+            this.dataFiles.MultiSelect = false;
+            this.dataFiles.Name = "dataFiles";
+            this.dataFiles.Size = new System.Drawing.Size(485, 478);
+            this.dataFiles.TabIndex = 18;
+            this.dataFiles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataFiles_CellValueChanged);
+            // 
             // tabSettings
             // 
             this.tabSettings.BackColor = System.Drawing.Color.Transparent;
+            this.tabSettings.Controls.Add(this.groupBox4);
             this.tabSettings.Controls.Add(this.txtSetDefStorage);
             this.tabSettings.Controls.Add(this.label24);
             this.tabSettings.Controls.Add(this.txtSettingsProdLength);
@@ -897,7 +995,7 @@
             this.tabSettings.Location = new System.Drawing.Point(4, 22);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSettings.Size = new System.Drawing.Size(461, 513);
+            this.tabSettings.Size = new System.Drawing.Size(485, 513);
             this.tabSettings.TabIndex = 2;
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
@@ -949,8 +1047,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.txtSetSkkTax);
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.label18);
@@ -961,7 +1057,7 @@
             this.groupBox3.Controls.Add(this.txtSetHufTax);
             this.groupBox3.Location = new System.Drawing.Point(9, 320);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(435, 130);
+            this.groupBox3.Size = new System.Drawing.Size(171, 130);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tax";
@@ -970,7 +1066,7 @@
             // 
             this.txtSetSkkTax.Location = new System.Drawing.Point(84, 22);
             this.txtSetSkkTax.Name = "txtSetSkkTax";
-            this.txtSetSkkTax.Size = new System.Drawing.Size(122, 20);
+            this.txtSetSkkTax.Size = new System.Drawing.Size(76, 20);
             this.txtSetSkkTax.TabIndex = 29;
             // 
             // label15
@@ -997,14 +1093,14 @@
             // 
             this.txtSetPlnTax.Location = new System.Drawing.Point(84, 100);
             this.txtSetPlnTax.Name = "txtSetPlnTax";
-            this.txtSetPlnTax.Size = new System.Drawing.Size(122, 20);
+            this.txtSetPlnTax.Size = new System.Drawing.Size(76, 20);
             this.txtSetPlnTax.TabIndex = 26;
             // 
             // txtSetCzkTax
             // 
             this.txtSetCzkTax.Location = new System.Drawing.Point(84, 48);
             this.txtSetCzkTax.Name = "txtSetCzkTax";
-            this.txtSetCzkTax.Size = new System.Drawing.Size(122, 20);
+            this.txtSetCzkTax.Size = new System.Drawing.Size(76, 20);
             this.txtSetCzkTax.TabIndex = 23;
             // 
             // label16
@@ -1031,7 +1127,7 @@
             // 
             this.txtSetHufTax.Location = new System.Drawing.Point(84, 74);
             this.txtSetHufTax.Name = "txtSetHufTax";
-            this.txtSetHufTax.Size = new System.Drawing.Size(122, 20);
+            this.txtSetHufTax.Size = new System.Drawing.Size(76, 20);
             this.txtSetHufTax.TabIndex = 24;
             // 
             // groupBox2
@@ -1187,7 +1283,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(9, 39);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(435, 130);
+            this.groupBox1.Size = new System.Drawing.Size(459, 130);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Echange rates";
@@ -1198,7 +1294,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSetExRatePath.Location = new System.Drawing.Point(95, 100);
             this.txtSetExRatePath.Name = "txtSetExRatePath";
-            this.txtSetExRatePath.Size = new System.Drawing.Size(334, 20);
+            this.txtSetExRatePath.Size = new System.Drawing.Size(358, 20);
             this.txtSetExRatePath.TabIndex = 12;
             // 
             // label22
@@ -1282,7 +1378,7 @@
             // btnSettingsLoad
             // 
             this.btnSettingsLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSettingsLoad.Location = new System.Drawing.Point(243, 485);
+            this.btnSettingsLoad.Location = new System.Drawing.Point(267, 485);
             this.btnSettingsLoad.Name = "btnSettingsLoad";
             this.btnSettingsLoad.Size = new System.Drawing.Size(103, 23);
             this.btnSettingsLoad.TabIndex = 1;
@@ -1293,7 +1389,7 @@
             // btnSettingsSave
             // 
             this.btnSettingsSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSettingsSave.Location = new System.Drawing.Point(352, 485);
+            this.btnSettingsSave.Location = new System.Drawing.Point(376, 485);
             this.btnSettingsSave.Name = "btnSettingsSave";
             this.btnSettingsSave.Size = new System.Drawing.Size(103, 23);
             this.btnSettingsSave.TabIndex = 0;
@@ -1310,7 +1406,7 @@
             this.tabReplace.Controls.Add(this.gridReplacements);
             this.tabReplace.Location = new System.Drawing.Point(4, 22);
             this.tabReplace.Name = "tabReplace";
-            this.tabReplace.Size = new System.Drawing.Size(461, 513);
+            this.tabReplace.Size = new System.Drawing.Size(485, 513);
             this.tabReplace.TabIndex = 3;
             this.tabReplace.Text = "Replacements";
             this.tabReplace.UseVisualStyleBackColor = true;
@@ -1329,7 +1425,7 @@
             // btnReplaceReload
             // 
             this.btnReplaceReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReplaceReload.Location = new System.Drawing.Point(235, 484);
+            this.btnReplaceReload.Location = new System.Drawing.Point(259, 484);
             this.btnReplaceReload.Name = "btnReplaceReload";
             this.btnReplaceReload.Size = new System.Drawing.Size(109, 23);
             this.btnReplaceReload.TabIndex = 2;
@@ -1351,13 +1447,24 @@
             // btnReplaceSave
             // 
             this.btnReplaceSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReplaceSave.Location = new System.Drawing.Point(350, 484);
+            this.btnReplaceSave.Location = new System.Drawing.Point(374, 484);
             this.btnReplaceSave.Name = "btnReplaceSave";
             this.btnReplaceSave.Size = new System.Drawing.Size(109, 23);
             this.btnReplaceSave.TabIndex = 1;
             this.btnReplaceSave.Text = "Save";
             this.btnReplaceSave.UseVisualStyleBackColor = true;
             this.btnReplaceSave.Click += new System.EventHandler(this.btnReplaceSave_Click);
+            // 
+            // gridReplacements
+            // 
+            this.gridReplacements.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridReplacements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridReplacements.Location = new System.Drawing.Point(0, 0);
+            this.gridReplacements.Name = "gridReplacements";
+            this.gridReplacements.Size = new System.Drawing.Size(485, 477);
+            this.gridReplacements.TabIndex = 0;
             // 
             // tabChild
             // 
@@ -1368,7 +1475,7 @@
             this.tabChild.Controls.Add(this.gridChilds);
             this.tabChild.Location = new System.Drawing.Point(4, 22);
             this.tabChild.Name = "tabChild";
-            this.tabChild.Size = new System.Drawing.Size(461, 513);
+            this.tabChild.Size = new System.Drawing.Size(485, 513);
             this.tabChild.TabIndex = 4;
             this.tabChild.Text = "Child items";
             this.tabChild.UseVisualStyleBackColor = true;
@@ -1387,7 +1494,7 @@
             // btnChildReload
             // 
             this.btnChildReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChildReload.Location = new System.Drawing.Point(235, 484);
+            this.btnChildReload.Location = new System.Drawing.Point(259, 484);
             this.btnChildReload.Name = "btnChildReload";
             this.btnChildReload.Size = new System.Drawing.Size(109, 23);
             this.btnChildReload.TabIndex = 29;
@@ -1409,13 +1516,24 @@
             // btnChildSave
             // 
             this.btnChildSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChildSave.Location = new System.Drawing.Point(350, 484);
+            this.btnChildSave.Location = new System.Drawing.Point(374, 484);
             this.btnChildSave.Name = "btnChildSave";
             this.btnChildSave.Size = new System.Drawing.Size(109, 23);
             this.btnChildSave.TabIndex = 28;
             this.btnChildSave.Text = "Save";
             this.btnChildSave.UseVisualStyleBackColor = true;
             this.btnChildSave.Click += new System.EventHandler(this.btnChildSave_Click);
+            // 
+            // gridChilds
+            // 
+            this.gridChilds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridChilds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridChilds.Location = new System.Drawing.Point(0, 0);
+            this.gridChilds.Name = "gridChilds";
+            this.gridChilds.Size = new System.Drawing.Size(485, 478);
+            this.gridChilds.TabIndex = 0;
             // 
             // tabLog
             // 
@@ -1424,7 +1542,7 @@
             this.tabLog.Location = new System.Drawing.Point(4, 22);
             this.tabLog.Name = "tabLog";
             this.tabLog.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLog.Size = new System.Drawing.Size(461, 513);
+            this.tabLog.Size = new System.Drawing.Size(485, 513);
             this.tabLog.TabIndex = 1;
             this.tabLog.Text = "Log";
             this.tabLog.UseVisualStyleBackColor = true;
@@ -1453,116 +1571,79 @@
             this.splitMain.SplitterDistance = 503;
             this.splitMain.TabIndex = 30;
             // 
-            // dataFiles
+            // groupBox4
             // 
-            this.dataFiles.AllowUserToOrderColumns = true;
-            this.dataFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataFiles.Location = new System.Drawing.Point(0, 0);
-            this.dataFiles.MultiSelect = false;
-            this.dataFiles.Name = "dataFiles";
-            this.dataFiles.Size = new System.Drawing.Size(485, 478);
-            this.dataFiles.TabIndex = 18;
-            this.dataFiles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataFiles_CellValueChanged);
+            this.groupBox4.Controls.Add(this.txtPartnerSport);
+            this.groupBox4.Controls.Add(this.label25);
+            this.groupBox4.Controls.Add(this.label26);
+            this.groupBox4.Controls.Add(this.txtPartnerMandM);
+            this.groupBox4.Controls.Add(this.label28);
+            this.groupBox4.Controls.Add(this.txtPartnerLabel);
+            this.groupBox4.Location = new System.Drawing.Point(186, 320);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(275, 130);
+            this.groupBox4.TabIndex = 19;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Partner identity";
             // 
-            // gridReplacements
+            // txtPartnerSport
             // 
-            this.gridReplacements.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
+            this.txtPartnerSport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridReplacements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridReplacements.Location = new System.Drawing.Point(0, 0);
-            this.gridReplacements.Name = "gridReplacements";
-            this.gridReplacements.Size = new System.Drawing.Size(461, 477);
-            this.gridReplacements.TabIndex = 0;
+            this.txtPartnerSport.Location = new System.Drawing.Point(84, 22);
+            this.txtPartnerSport.Name = "txtPartnerSport";
+            this.txtPartnerSport.Size = new System.Drawing.Size(185, 20);
+            this.txtPartnerSport.TabIndex = 29;
             // 
-            // gridChilds
+            // label25
             // 
-            this.gridChilds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
+            this.label25.AutoSize = true;
+            this.label25.ForeColor = System.Drawing.Color.Maroon;
+            this.label25.Location = new System.Drawing.Point(6, 25);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(65, 13);
+            this.label25.TabIndex = 28;
+            this.label25.Text = "SportsDirect";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.Color.Maroon;
+            this.label26.Location = new System.Drawing.Point(6, 77);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(69, 13);
+            this.label26.TabIndex = 25;
+            this.label26.Text = "GetTheLabel";
+            // 
+            // txtPartnerMandM
+            // 
+            this.txtPartnerMandM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridChilds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridChilds.Location = new System.Drawing.Point(0, 0);
-            this.gridChilds.Name = "gridChilds";
-            this.gridChilds.Size = new System.Drawing.Size(461, 478);
-            this.gridChilds.TabIndex = 0;
+            this.txtPartnerMandM.Location = new System.Drawing.Point(84, 48);
+            this.txtPartnerMandM.Name = "txtPartnerMandM";
+            this.txtPartnerMandM.Size = new System.Drawing.Size(185, 20);
+            this.txtPartnerMandM.TabIndex = 23;
             // 
-            // dataCSV
+            // label28
             // 
-            this.dataCSV.AllowUserToAddRows = false;
-            this.dataCSV.AllowUserToDeleteRows = false;
-            this.dataCSV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
+            this.label28.AutoSize = true;
+            this.label28.ForeColor = System.Drawing.Color.Maroon;
+            this.label28.Location = new System.Drawing.Point(6, 51);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(71, 13);
+            this.label28.TabIndex = 22;
+            this.label28.Text = "MandMDirect";
+            // 
+            // txtPartnerLabel
+            // 
+            this.txtPartnerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataCSV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataCSV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataCSV.Location = new System.Drawing.Point(5, 4);
-            this.dataCSV.MultiSelect = false;
-            this.dataCSV.Name = "dataCSV";
-            this.dataCSV.Size = new System.Drawing.Size(976, 390);
-            this.dataCSV.TabIndex = 23;
-            this.dataCSV.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceValueChanged);
-            this.dataCSV.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceChanged);
-            // 
-            // dataGridInvItems
-            // 
-            this.dataGridInvItems.AllowUserToAddRows = false;
-            this.dataGridInvItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridInvItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridInvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridInvItems.Location = new System.Drawing.Point(134, 21);
-            this.dataGridInvItems.MultiSelect = false;
-            this.dataGridInvItems.Name = "dataGridInvItems";
-            this.dataGridInvItems.Size = new System.Drawing.Size(847, 186);
-            this.dataGridInvItems.TabIndex = 0;
-            this.dataGridInvItems.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInvItems_CellEndEdit);
-            this.dataGridInvItems.SelectionChanged += new System.EventHandler(this.InvoiceItemSelChanged);
-            // 
-            // dataGrid
-            // 
-            this.dataGrid.AllowUserToAddRows = false;
-            this.dataGrid.AllowUserToOrderColumns = true;
-            this.dataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid.Location = new System.Drawing.Point(6, 6);
-            this.dataGrid.MultiSelect = false;
-            this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(931, 623);
-            this.dataGrid.TabIndex = 3;
-            this.dataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.StockValueChanged);
-            // 
-            // gridReader
-            // 
-            this.gridReader.AllowUserToAddRows = false;
-            this.gridReader.AllowUserToDeleteRows = false;
-            this.gridReader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridReader.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridReader.Location = new System.Drawing.Point(3, 60);
-            this.gridReader.MultiSelect = false;
-            this.gridReader.Name = "gridReader";
-            this.gridReader.Size = new System.Drawing.Size(937, 569);
-            this.gridReader.TabIndex = 0;
-            // 
-            // btnPostaExport
-            // 
-            this.btnPostaExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPostaExport.Location = new System.Drawing.Point(467, 400);
-            this.btnPostaExport.Name = "btnPostaExport";
-            this.btnPostaExport.Size = new System.Drawing.Size(105, 23);
-            this.btnPostaExport.TabIndex = 30;
-            this.btnPostaExport.Text = "Posta export";
-            this.btnPostaExport.UseVisualStyleBackColor = true;
-            this.btnPostaExport.Click += new System.EventHandler(this.btnPostaExport_Click);
+            this.txtPartnerLabel.Location = new System.Drawing.Point(84, 74);
+            this.txtPartnerLabel.Name = "txtPartnerLabel";
+            this.txtPartnerLabel.Size = new System.Drawing.Size(185, 20);
+            this.txtPartnerLabel.TabIndex = 24;
             // 
             // FrmActiveStyle
             // 
@@ -1583,15 +1664,20 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataCSV)).EndInit();
             this.tabItems.ResumeLayout(false);
             this.tabAllItems.ResumeLayout(false);
             this.tabSelItems.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridInvItems)).EndInit();
             this.stock.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
             this.reader.ResumeLayout(false);
             this.ReaderFilter.ResumeLayout(false);
             this.ReaderFilter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridReader)).EndInit();
             this.tabFilesLog.ResumeLayout(false);
             this.tabFoundFiles.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).EndInit();
             this.tabSettings.ResumeLayout(false);
             this.tabSettings.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1601,19 +1687,16 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabReplace.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).EndInit();
             this.tabChild.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridChilds)).EndInit();
             this.tabLog.ResumeLayout(false);
             this.tabLog.PerformLayout();
             this.splitMain.Panel1.ResumeLayout(false);
             this.splitMain.Panel2.ResumeLayout(false);
             this.splitMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridChilds)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataCSV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridInvItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridReader)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1742,6 +1825,13 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btnRefreshTotalInvSum;
         private System.Windows.Forms.Button btnPostaExport;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox txtPartnerSport;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox txtPartnerMandM;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox txtPartnerLabel;
     }
 }
 

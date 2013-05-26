@@ -1862,7 +1862,7 @@ namespace MessageImporter
             newInv.invoiceHeader.text = refProd.FromFile.Type.ToString() + "_" + (allMessages.Count > 0 ? allMessages[0].OrderReference : "<err>");
             newInv.invoiceHeader.partnerIdentity = new address();
             newInv.invoiceHeader.partnerIdentity.id = "24";
-
+          
             // polozky z faktury.. zatial fiktivne
             if (refProd.FromFile != null)
             {
@@ -2438,6 +2438,11 @@ namespace MessageImporter
             txtSetHufTax.Text = prop.TaxHuf;
             txtSetPlnTax.Text = prop.TaxPln;
 
+            // partner identity
+            txtPartnerSport.Text = prop.PartnerSports;
+            txtPartnerMandM.Text = prop.PartnerMandM;
+            txtPartnerLabel.Text = prop.PartnerLabel;
+
             txtSetDefStorage.Text = prop.Storage;
         }
 
@@ -2469,6 +2474,11 @@ namespace MessageImporter
             prop.TaxCzk = Common.CleanPrice(txtSetCzkTax.Text);
             prop.TaxHuf = Common.CleanPrice(txtSetHufTax.Text);
             prop.TaxPln = Common.CleanPrice(txtSetPlnTax.Text);
+
+            // partner identity
+            prop.PartnerSports = txtPartnerSport.Text;
+            prop.PartnerMandM = txtPartnerMandM.Text;
+            prop.PartnerLabel = txtPartnerLabel.Text;
 
             prop.Storage = txtSetDefStorage.Text;
 
