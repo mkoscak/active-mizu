@@ -1873,7 +1873,21 @@ namespace MessageImporter
             newInv.invoiceHeader.classificationVAT.classificationVATType1 = classificationVATTypeClassificationVATType.inland;
             newInv.invoiceHeader.text = refProd.FromFile.Type.ToString() + "_" + (allMessages.Count > 0 ? allMessages[0].OrderReference : "<err>");
             newInv.invoiceHeader.partnerIdentity = new address();
-            newInv.invoiceHeader.partnerIdentity.id = "24";
+            switch (refProd.FromFile.Type)
+            {
+                case MSG_TYPE.SPORTS_DIRECT:
+                    newInv.invoiceHeader.partnerIdentity.id = Properties.Settings.Default.PartnerSports;
+                    break;
+                case MSG_TYPE.MANDM_DIRECT:
+                    newInv.invoiceHeader.partnerIdentity.id = Properties.Settings.Default.PartnerMandM;
+                    break;
+                case MSG_TYPE.GETTHELABEL:
+                    newInv.invoiceHeader.partnerIdentity.id = Properties.Settings.Default.PartnerLabel;
+                    break;
+                default:
+                    newInv.invoiceHeader.partnerIdentity.id = "24";
+                    break;
+            }
           
             // polozky z faktury.. zatial fiktivne
             if (refProd.FromFile != null)
