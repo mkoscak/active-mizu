@@ -394,5 +394,101 @@ namespace MessageImporter.Properties {
                 this["PartnerLabel"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseSkkSerie {
+            get {
+                return ((bool)(this["UseSkkSerie"]));
+            }
+            set {
+                this["UseSkkSerie"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseCzkSerie {
+            get {
+                return ((bool)(this["UseCzkSerie"]));
+            }
+            set {
+                this["UseCzkSerie"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseHufSerie {
+            get {
+                return ((bool)(this["UseHufSerie"]));
+            }
+            set {
+                this["UseHufSerie"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UsePlnSerie {
+            get {
+                return ((bool)(this["UsePlnSerie"]));
+            }
+            set {
+                this["UsePlnSerie"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SkkSerie {
+            get {
+                return ((string)(this["SkkSerie"]));
+            }
+            set {
+                this["SkkSerie"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CzkSerie {
+            get {
+                return ((string)(this["CzkSerie"]));
+            }
+            set {
+                this["CzkSerie"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string HufSerie {
+            get {
+                return ((string)(this["HufSerie"]));
+            }
+            set {
+                this["HufSerie"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PlnSerie {
+            get {
+                return ((string)(this["PlnSerie"]));
+            }
+            set {
+                this["PlnSerie"] = value;
+            }
+        }
     }
 }

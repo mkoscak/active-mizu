@@ -95,6 +95,13 @@
             this.tabFoundFiles = new System.Windows.Forms.TabPage();
             this.dataFiles = new MessageImporter.CustomDataGridView();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtPartnerSport = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtPartnerMandM = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.txtPartnerLabel = new System.Windows.Forms.TextBox();
             this.txtSetDefStorage = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.txtSettingsProdLength = new System.Windows.Forms.TextBox();
@@ -151,13 +158,15 @@
             this.gridChilds = new MessageImporter.CustomDataGridView();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.splitMain = new System.Windows.Forms.SplitContainer();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtPartnerSport = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtPartnerMandM = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.txtPartnerLabel = new System.Windows.Forms.TextBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.chkSkkSerie = new System.Windows.Forms.CheckBox();
+            this.chkCzkSerie = new System.Windows.Forms.CheckBox();
+            this.chkHufSerie = new System.Windows.Forms.CheckBox();
+            this.chkPlnSerie = new System.Windows.Forms.CheckBox();
+            this.txtSkkSerie = new System.Windows.Forms.TextBox();
+            this.txtCzkSerie = new System.Windows.Forms.TextBox();
+            this.txtHufSerie = new System.Windows.Forms.TextBox();
+            this.txtPlnSerie = new System.Windows.Forms.TextBox();
             this.grpInputSettings.SuspendLayout();
             this.tabData.SuspendLayout();
             this.invoice.SuspendLayout();
@@ -178,6 +187,7 @@
             this.tabFoundFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).BeginInit();
             this.tabSettings.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -189,7 +199,7 @@
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
             this.splitMain.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnRead
@@ -979,6 +989,7 @@
             // tabSettings
             // 
             this.tabSettings.BackColor = System.Drawing.Color.Transparent;
+            this.tabSettings.Controls.Add(this.groupBox5);
             this.tabSettings.Controls.Add(this.groupBox4);
             this.tabSettings.Controls.Add(this.txtSetDefStorage);
             this.tabSettings.Controls.Add(this.label24);
@@ -1000,6 +1011,80 @@
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.txtPartnerSport);
+            this.groupBox4.Controls.Add(this.label25);
+            this.groupBox4.Controls.Add(this.label26);
+            this.groupBox4.Controls.Add(this.txtPartnerMandM);
+            this.groupBox4.Controls.Add(this.label28);
+            this.groupBox4.Controls.Add(this.txtPartnerLabel);
+            this.groupBox4.Location = new System.Drawing.Point(186, 320);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(282, 130);
+            this.groupBox4.TabIndex = 19;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Partner identity";
+            // 
+            // txtPartnerSport
+            // 
+            this.txtPartnerSport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPartnerSport.Location = new System.Drawing.Point(84, 22);
+            this.txtPartnerSport.Name = "txtPartnerSport";
+            this.txtPartnerSport.Size = new System.Drawing.Size(192, 20);
+            this.txtPartnerSport.TabIndex = 29;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.ForeColor = System.Drawing.Color.Maroon;
+            this.label25.Location = new System.Drawing.Point(6, 25);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(65, 13);
+            this.label25.TabIndex = 28;
+            this.label25.Text = "SportsDirect";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.ForeColor = System.Drawing.Color.Maroon;
+            this.label26.Location = new System.Drawing.Point(6, 77);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(69, 13);
+            this.label26.TabIndex = 25;
+            this.label26.Text = "GetTheLabel";
+            // 
+            // txtPartnerMandM
+            // 
+            this.txtPartnerMandM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPartnerMandM.Location = new System.Drawing.Point(84, 48);
+            this.txtPartnerMandM.Name = "txtPartnerMandM";
+            this.txtPartnerMandM.Size = new System.Drawing.Size(192, 20);
+            this.txtPartnerMandM.TabIndex = 23;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.ForeColor = System.Drawing.Color.Maroon;
+            this.label28.Location = new System.Drawing.Point(6, 51);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(71, 13);
+            this.label28.TabIndex = 22;
+            this.label28.Text = "MandMDirect";
+            // 
+            // txtPartnerLabel
+            // 
+            this.txtPartnerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPartnerLabel.Location = new System.Drawing.Point(84, 74);
+            this.txtPartnerLabel.Name = "txtPartnerLabel";
+            this.txtPartnerLabel.Size = new System.Drawing.Size(192, 20);
+            this.txtPartnerLabel.TabIndex = 24;
+            // 
             // txtSetDefStorage
             // 
             this.txtSetDefStorage.Location = new System.Drawing.Point(100, 459);
@@ -1019,7 +1104,7 @@
             // 
             // txtSettingsProdLength
             // 
-            this.txtSettingsProdLength.Location = new System.Drawing.Point(392, 13);
+            this.txtSettingsProdLength.Location = new System.Drawing.Point(399, 13);
             this.txtSettingsProdLength.Name = "txtSettingsProdLength";
             this.txtSettingsProdLength.Size = new System.Drawing.Size(69, 20);
             this.txtSettingsProdLength.TabIndex = 16;
@@ -1028,7 +1113,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.ForeColor = System.Drawing.Color.Maroon;
-            this.label23.Location = new System.Drawing.Point(267, 16);
+            this.label23.Location = new System.Drawing.Point(274, 16);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(119, 13);
             this.label23.TabIndex = 15;
@@ -1148,23 +1233,23 @@
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Location = new System.Drawing.Point(9, 175);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(452, 139);
+            this.groupBox2.Size = new System.Drawing.Size(323, 139);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Shipping";
             // 
             // txtSetSkkPrice
             // 
-            this.txtSetSkkPrice.Location = new System.Drawing.Point(232, 32);
+            this.txtSetSkkPrice.Location = new System.Drawing.Point(247, 32);
             this.txtSetSkkPrice.Name = "txtSetSkkPrice";
-            this.txtSetSkkPrice.Size = new System.Drawing.Size(122, 20);
+            this.txtSetSkkPrice.Size = new System.Drawing.Size(70, 20);
             this.txtSetSkkPrice.TabIndex = 21;
             // 
             // txtSetSkkText
             // 
             this.txtSetSkkText.Location = new System.Drawing.Point(84, 32);
             this.txtSetSkkText.Name = "txtSetSkkText";
-            this.txtSetSkkText.Size = new System.Drawing.Size(122, 20);
+            this.txtSetSkkText.Size = new System.Drawing.Size(155, 20);
             this.txtSetSkkText.TabIndex = 20;
             // 
             // label14
@@ -1181,7 +1266,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.ForeColor = System.Drawing.Color.Maroon;
-            this.label13.Location = new System.Drawing.Point(229, 16);
+            this.label13.Location = new System.Drawing.Point(244, 16);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(31, 13);
             this.label13.TabIndex = 18;
@@ -1189,23 +1274,23 @@
             // 
             // txtSetPlnPrice
             // 
-            this.txtSetPlnPrice.Location = new System.Drawing.Point(232, 110);
+            this.txtSetPlnPrice.Location = new System.Drawing.Point(247, 110);
             this.txtSetPlnPrice.Name = "txtSetPlnPrice";
-            this.txtSetPlnPrice.Size = new System.Drawing.Size(122, 20);
+            this.txtSetPlnPrice.Size = new System.Drawing.Size(70, 20);
             this.txtSetPlnPrice.TabIndex = 17;
             // 
             // txtSetHufPrice
             // 
-            this.txtSetHufPrice.Location = new System.Drawing.Point(232, 84);
+            this.txtSetHufPrice.Location = new System.Drawing.Point(247, 84);
             this.txtSetHufPrice.Name = "txtSetHufPrice";
-            this.txtSetHufPrice.Size = new System.Drawing.Size(122, 20);
+            this.txtSetHufPrice.Size = new System.Drawing.Size(70, 20);
             this.txtSetHufPrice.TabIndex = 16;
             // 
             // txtSetCzkPrice
             // 
-            this.txtSetCzkPrice.Location = new System.Drawing.Point(232, 58);
+            this.txtSetCzkPrice.Location = new System.Drawing.Point(247, 58);
             this.txtSetCzkPrice.Name = "txtSetCzkPrice";
-            this.txtSetCzkPrice.Size = new System.Drawing.Size(122, 20);
+            this.txtSetCzkPrice.Size = new System.Drawing.Size(70, 20);
             this.txtSetCzkPrice.TabIndex = 15;
             // 
             // label12
@@ -1222,7 +1307,7 @@
             // 
             this.txtSetPlnText.Location = new System.Drawing.Point(84, 110);
             this.txtSetPlnText.Name = "txtSetPlnText";
-            this.txtSetPlnText.Size = new System.Drawing.Size(122, 20);
+            this.txtSetPlnText.Size = new System.Drawing.Size(155, 20);
             this.txtSetPlnText.TabIndex = 13;
             // 
             // label9
@@ -1239,7 +1324,7 @@
             // 
             this.txtSetHufText.Location = new System.Drawing.Point(84, 84);
             this.txtSetHufText.Name = "txtSetHufText";
-            this.txtSetHufText.Size = new System.Drawing.Size(122, 20);
+            this.txtSetHufText.Size = new System.Drawing.Size(155, 20);
             this.txtSetHufText.TabIndex = 12;
             // 
             // label11
@@ -1256,7 +1341,7 @@
             // 
             this.txtSetCzkText.Location = new System.Drawing.Point(84, 58);
             this.txtSetCzkText.Name = "txtSetCzkText";
-            this.txtSetCzkText.Size = new System.Drawing.Size(122, 20);
+            this.txtSetCzkText.Size = new System.Drawing.Size(155, 20);
             this.txtSetCzkText.TabIndex = 11;
             // 
             // label10
@@ -1292,9 +1377,9 @@
             // 
             this.txtSetExRatePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSetExRatePath.Location = new System.Drawing.Point(95, 100);
+            this.txtSetExRatePath.Location = new System.Drawing.Point(84, 100);
             this.txtSetExRatePath.Name = "txtSetExRatePath";
-            this.txtSetExRatePath.Size = new System.Drawing.Size(358, 20);
+            this.txtSetExRatePath.Size = new System.Drawing.Size(369, 20);
             this.txtSetExRatePath.TabIndex = 12;
             // 
             // label22
@@ -1303,9 +1388,9 @@
             this.label22.ForeColor = System.Drawing.Color.Maroon;
             this.label22.Location = new System.Drawing.Point(6, 103);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(83, 13);
+            this.label22.Size = new System.Drawing.Size(66, 13);
             this.label22.TabIndex = 11;
-            this.label22.Text = "Ex. rate address";
+            this.label22.Text = "Ex. rate web";
             // 
             // txtSetPlnEx
             // 
@@ -1571,79 +1656,96 @@
             this.splitMain.SplitterDistance = 503;
             this.splitMain.TabIndex = 30;
             // 
-            // groupBox4
+            // groupBox5
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox4.Controls.Add(this.txtPartnerSport);
-            this.groupBox4.Controls.Add(this.label25);
-            this.groupBox4.Controls.Add(this.label26);
-            this.groupBox4.Controls.Add(this.txtPartnerMandM);
-            this.groupBox4.Controls.Add(this.label28);
-            this.groupBox4.Controls.Add(this.txtPartnerLabel);
-            this.groupBox4.Location = new System.Drawing.Point(186, 320);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(275, 130);
-            this.groupBox4.TabIndex = 19;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Partner identity";
+            this.groupBox5.Controls.Add(this.txtPlnSerie);
+            this.groupBox5.Controls.Add(this.txtHufSerie);
+            this.groupBox5.Controls.Add(this.txtCzkSerie);
+            this.groupBox5.Controls.Add(this.txtSkkSerie);
+            this.groupBox5.Controls.Add(this.chkPlnSerie);
+            this.groupBox5.Controls.Add(this.chkHufSerie);
+            this.groupBox5.Controls.Add(this.chkCzkSerie);
+            this.groupBox5.Controls.Add(this.chkSkkSerie);
+            this.groupBox5.Location = new System.Drawing.Point(338, 175);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(130, 139);
+            this.groupBox5.TabIndex = 20;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Number series";
             // 
-            // txtPartnerSport
+            // chkSkkSerie
             // 
-            this.txtPartnerSport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPartnerSport.Location = new System.Drawing.Point(84, 22);
-            this.txtPartnerSport.Name = "txtPartnerSport";
-            this.txtPartnerSport.Size = new System.Drawing.Size(185, 20);
-            this.txtPartnerSport.TabIndex = 29;
+            this.chkSkkSerie.AutoSize = true;
+            this.chkSkkSerie.ForeColor = System.Drawing.Color.Maroon;
+            this.chkSkkSerie.Location = new System.Drawing.Point(6, 34);
+            this.chkSkkSerie.Name = "chkSkkSerie";
+            this.chkSkkSerie.Size = new System.Drawing.Size(47, 17);
+            this.chkSkkSerie.TabIndex = 0;
+            this.chkSkkSerie.Text = "SKK";
+            this.chkSkkSerie.UseVisualStyleBackColor = true;
             // 
-            // label25
+            // chkCzkSerie
             // 
-            this.label25.AutoSize = true;
-            this.label25.ForeColor = System.Drawing.Color.Maroon;
-            this.label25.Location = new System.Drawing.Point(6, 25);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(65, 13);
-            this.label25.TabIndex = 28;
-            this.label25.Text = "SportsDirect";
+            this.chkCzkSerie.AutoSize = true;
+            this.chkCzkSerie.ForeColor = System.Drawing.Color.Maroon;
+            this.chkCzkSerie.Location = new System.Drawing.Point(6, 60);
+            this.chkCzkSerie.Name = "chkCzkSerie";
+            this.chkCzkSerie.Size = new System.Drawing.Size(47, 17);
+            this.chkCzkSerie.TabIndex = 1;
+            this.chkCzkSerie.Text = "CZK";
+            this.chkCzkSerie.UseVisualStyleBackColor = true;
             // 
-            // label26
+            // chkHufSerie
             // 
-            this.label26.AutoSize = true;
-            this.label26.ForeColor = System.Drawing.Color.Maroon;
-            this.label26.Location = new System.Drawing.Point(6, 77);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(69, 13);
-            this.label26.TabIndex = 25;
-            this.label26.Text = "GetTheLabel";
+            this.chkHufSerie.AutoSize = true;
+            this.chkHufSerie.ForeColor = System.Drawing.Color.Maroon;
+            this.chkHufSerie.Location = new System.Drawing.Point(6, 86);
+            this.chkHufSerie.Name = "chkHufSerie";
+            this.chkHufSerie.Size = new System.Drawing.Size(48, 17);
+            this.chkHufSerie.TabIndex = 2;
+            this.chkHufSerie.Text = "HUF";
+            this.chkHufSerie.UseVisualStyleBackColor = true;
             // 
-            // txtPartnerMandM
+            // chkPlnSerie
             // 
-            this.txtPartnerMandM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPartnerMandM.Location = new System.Drawing.Point(84, 48);
-            this.txtPartnerMandM.Name = "txtPartnerMandM";
-            this.txtPartnerMandM.Size = new System.Drawing.Size(185, 20);
-            this.txtPartnerMandM.TabIndex = 23;
+            this.chkPlnSerie.AutoSize = true;
+            this.chkPlnSerie.ForeColor = System.Drawing.Color.Maroon;
+            this.chkPlnSerie.Location = new System.Drawing.Point(6, 112);
+            this.chkPlnSerie.Name = "chkPlnSerie";
+            this.chkPlnSerie.Size = new System.Drawing.Size(47, 17);
+            this.chkPlnSerie.TabIndex = 3;
+            this.chkPlnSerie.Text = "PLN";
+            this.chkPlnSerie.UseVisualStyleBackColor = true;
             // 
-            // label28
+            // txtSkkSerie
             // 
-            this.label28.AutoSize = true;
-            this.label28.ForeColor = System.Drawing.Color.Maroon;
-            this.label28.Location = new System.Drawing.Point(6, 51);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(71, 13);
-            this.label28.TabIndex = 22;
-            this.label28.Text = "MandMDirect";
+            this.txtSkkSerie.Location = new System.Drawing.Point(59, 32);
+            this.txtSkkSerie.Name = "txtSkkSerie";
+            this.txtSkkSerie.Size = new System.Drawing.Size(64, 20);
+            this.txtSkkSerie.TabIndex = 22;
             // 
-            // txtPartnerLabel
+            // txtCzkSerie
             // 
-            this.txtPartnerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPartnerLabel.Location = new System.Drawing.Point(84, 74);
-            this.txtPartnerLabel.Name = "txtPartnerLabel";
-            this.txtPartnerLabel.Size = new System.Drawing.Size(185, 20);
-            this.txtPartnerLabel.TabIndex = 24;
+            this.txtCzkSerie.Location = new System.Drawing.Point(59, 58);
+            this.txtCzkSerie.Name = "txtCzkSerie";
+            this.txtCzkSerie.Size = new System.Drawing.Size(64, 20);
+            this.txtCzkSerie.TabIndex = 23;
+            // 
+            // txtHufSerie
+            // 
+            this.txtHufSerie.Location = new System.Drawing.Point(59, 84);
+            this.txtHufSerie.Name = "txtHufSerie";
+            this.txtHufSerie.Size = new System.Drawing.Size(64, 20);
+            this.txtHufSerie.TabIndex = 24;
+            // 
+            // txtPlnSerie
+            // 
+            this.txtPlnSerie.Location = new System.Drawing.Point(59, 110);
+            this.txtPlnSerie.Name = "txtPlnSerie";
+            this.txtPlnSerie.Size = new System.Drawing.Size(64, 20);
+            this.txtPlnSerie.TabIndex = 25;
             // 
             // FrmActiveStyle
             // 
@@ -1680,6 +1782,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).EndInit();
             this.tabSettings.ResumeLayout(false);
             this.tabSettings.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1695,8 +1799,8 @@
             this.splitMain.Panel1.ResumeLayout(false);
             this.splitMain.Panel2.ResumeLayout(false);
             this.splitMain.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1832,6 +1936,15 @@
         private System.Windows.Forms.TextBox txtPartnerMandM;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox txtPartnerLabel;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.CheckBox chkCzkSerie;
+        private System.Windows.Forms.CheckBox chkSkkSerie;
+        private System.Windows.Forms.CheckBox chkPlnSerie;
+        private System.Windows.Forms.CheckBox chkHufSerie;
+        private System.Windows.Forms.TextBox txtSkkSerie;
+        private System.Windows.Forms.TextBox txtPlnSerie;
+        private System.Windows.Forms.TextBox txtHufSerie;
+        private System.Windows.Forms.TextBox txtCzkSerie;
     }
 }
 

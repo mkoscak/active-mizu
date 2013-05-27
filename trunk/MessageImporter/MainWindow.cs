@@ -1328,6 +1328,18 @@ namespace MessageImporter
                 newInv.invoiceHeader.account.bankCode = Properties.Settings.Default.BankCode;
                 newInv.invoiceHeader.account.ids = Properties.Settings.Default.Bank;
 
+                newInv.invoiceHeader.number = new numberType();
+                if (Properties.Settings.Default.UseSkkSerie && inv.Country == Country.Slovakia)
+                    newInv.invoiceHeader.number.ids = Properties.Settings.Default.SkkSerie;
+                else if (Properties.Settings.Default.UseCzkSerie && inv.Country == Country.CzechRepublic)
+                    newInv.invoiceHeader.number.ids = Properties.Settings.Default.CzkSerie;
+                else if (Properties.Settings.Default.UseHufSerie && inv.Country == Country.Hungary)
+                    newInv.invoiceHeader.number.ids = Properties.Settings.Default.HufSerie;
+                else if (Properties.Settings.Default.UsePlnSerie && inv.Country == Country.Poland)
+                    newInv.invoiceHeader.number.ids = Properties.Settings.Default.PlnSerie;
+                else
+                    newInv.invoiceHeader.number = null;
+
                 // polozky faktury
                 var invItems = new List<invoiceItemType>();
                 foreach (var invItem in inv.InvoiceItems)
@@ -2443,6 +2455,16 @@ namespace MessageImporter
             txtPartnerMandM.Text = prop.PartnerMandM;
             txtPartnerLabel.Text = prop.PartnerLabel;
 
+            // number series
+            chkSkkSerie.Checked = prop.UseSkkSerie;
+            chkCzkSerie.Checked = prop.UseCzkSerie;
+            chkHufSerie.Checked = prop.UseHufSerie;
+            chkPlnSerie.Checked = prop.UsePlnSerie;
+            txtSkkSerie.Text = prop.SkkSerie;
+            txtCzkSerie.Text = prop.CzkSerie;
+            txtHufSerie.Text = prop.HufSerie;
+            txtPlnSerie.Text = prop.PlnSerie;
+
             txtSetDefStorage.Text = prop.Storage;
         }
 
@@ -2479,6 +2501,16 @@ namespace MessageImporter
             prop.PartnerSports = txtPartnerSport.Text;
             prop.PartnerMandM = txtPartnerMandM.Text;
             prop.PartnerLabel = txtPartnerLabel.Text;
+
+            // number series
+            prop.UseSkkSerie = chkSkkSerie.Checked;
+            prop.UseCzkSerie = chkCzkSerie.Checked;
+            prop.UseHufSerie = chkHufSerie.Checked;
+            prop.UsePlnSerie = chkPlnSerie.Checked;
+            prop.SkkSerie = txtSkkSerie.Text;
+            prop.CzkSerie = txtCzkSerie.Text;
+            prop.HufSerie = txtHufSerie.Text;
+            prop.PlnSerie = txtPlnSerie.Text;   
 
             prop.Storage = txtSetDefStorage.Text;
 
