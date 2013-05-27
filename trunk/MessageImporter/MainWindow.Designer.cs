@@ -95,6 +95,15 @@
             this.tabFoundFiles = new System.Windows.Forms.TabPage();
             this.dataFiles = new MessageImporter.CustomDataGridView();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtPlnSerie = new System.Windows.Forms.TextBox();
+            this.txtHufSerie = new System.Windows.Forms.TextBox();
+            this.txtCzkSerie = new System.Windows.Forms.TextBox();
+            this.txtSkkSerie = new System.Windows.Forms.TextBox();
+            this.chkPlnSerie = new System.Windows.Forms.CheckBox();
+            this.chkHufSerie = new System.Windows.Forms.CheckBox();
+            this.chkCzkSerie = new System.Windows.Forms.CheckBox();
+            this.chkSkkSerie = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.txtPartnerSport = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -158,15 +167,6 @@
             this.gridChilds = new MessageImporter.CustomDataGridView();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.splitMain = new System.Windows.Forms.SplitContainer();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.chkSkkSerie = new System.Windows.Forms.CheckBox();
-            this.chkCzkSerie = new System.Windows.Forms.CheckBox();
-            this.chkHufSerie = new System.Windows.Forms.CheckBox();
-            this.chkPlnSerie = new System.Windows.Forms.CheckBox();
-            this.txtSkkSerie = new System.Windows.Forms.TextBox();
-            this.txtCzkSerie = new System.Windows.Forms.TextBox();
-            this.txtHufSerie = new System.Windows.Forms.TextBox();
-            this.txtPlnSerie = new System.Windows.Forms.TextBox();
             this.grpInputSettings.SuspendLayout();
             this.tabData.SuspendLayout();
             this.invoice.SuspendLayout();
@@ -187,6 +187,7 @@
             this.tabFoundFiles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).BeginInit();
             this.tabSettings.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -199,7 +200,6 @@
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
             this.splitMain.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnRead
@@ -713,7 +713,7 @@
             // btnStockCopy
             // 
             this.btnStockCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnStockCopy.Location = new System.Drawing.Point(87, 635);
+            this.btnStockCopy.Location = new System.Drawing.Point(84, 646);
             this.btnStockCopy.Name = "btnStockCopy";
             this.btnStockCopy.Size = new System.Drawing.Size(101, 23);
             this.btnStockCopy.TabIndex = 36;
@@ -724,7 +724,7 @@
             // btnExportMSG
             // 
             this.btnExportMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportMSG.Location = new System.Drawing.Point(543, 635);
+            this.btnExportMSG.Location = new System.Drawing.Point(538, 646);
             this.btnExportMSG.Name = "btnExportMSG";
             this.btnExportMSG.Size = new System.Drawing.Size(114, 23);
             this.btnExportMSG.TabIndex = 35;
@@ -735,7 +735,7 @@
             // btnUnpairAllMSG
             // 
             this.btnUnpairAllMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUnpairAllMSG.Location = new System.Drawing.Point(823, 635);
+            this.btnUnpairAllMSG.Location = new System.Drawing.Point(866, 646);
             this.btnUnpairAllMSG.Name = "btnUnpairAllMSG";
             this.btnUnpairAllMSG.Size = new System.Drawing.Size(114, 23);
             this.btnUnpairAllMSG.TabIndex = 33;
@@ -746,7 +746,7 @@
             // btnUnpairProductMSG
             // 
             this.btnUnpairProductMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUnpairProductMSG.Location = new System.Drawing.Point(701, 635);
+            this.btnUnpairProductMSG.Location = new System.Drawing.Point(744, 646);
             this.btnUnpairProductMSG.Name = "btnUnpairProductMSG";
             this.btnUnpairProductMSG.Size = new System.Drawing.Size(114, 23);
             this.btnUnpairProductMSG.TabIndex = 32;
@@ -757,7 +757,7 @@
             // btnRemoveMSG
             // 
             this.btnRemoveMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemoveMSG.Location = new System.Drawing.Point(194, 635);
+            this.btnRemoveMSG.Location = new System.Drawing.Point(191, 646);
             this.btnRemoveMSG.Name = "btnRemoveMSG";
             this.btnRemoveMSG.Size = new System.Drawing.Size(114, 23);
             this.btnRemoveMSG.TabIndex = 27;
@@ -768,7 +768,7 @@
             // btnAddMsg
             // 
             this.btnAddMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddMsg.Location = new System.Drawing.Point(6, 635);
+            this.btnAddMsg.Location = new System.Drawing.Point(3, 646);
             this.btnAddMsg.Name = "btnAddMsg";
             this.btnAddMsg.Size = new System.Drawing.Size(75, 23);
             this.btnAddMsg.TabIndex = 26;
@@ -788,7 +788,7 @@
             this.dataGrid.Location = new System.Drawing.Point(6, 6);
             this.dataGrid.MultiSelect = false;
             this.dataGrid.Name = "dataGrid";
-            this.dataGrid.Size = new System.Drawing.Size(931, 623);
+            this.dataGrid.Size = new System.Drawing.Size(977, 634);
             this.dataGrid.TabIndex = 3;
             this.dataGrid.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.StockValueChanged);
             // 
@@ -1010,6 +1010,97 @@
             this.tabSettings.TabIndex = 2;
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.txtPlnSerie);
+            this.groupBox5.Controls.Add(this.txtHufSerie);
+            this.groupBox5.Controls.Add(this.txtCzkSerie);
+            this.groupBox5.Controls.Add(this.txtSkkSerie);
+            this.groupBox5.Controls.Add(this.chkPlnSerie);
+            this.groupBox5.Controls.Add(this.chkHufSerie);
+            this.groupBox5.Controls.Add(this.chkCzkSerie);
+            this.groupBox5.Controls.Add(this.chkSkkSerie);
+            this.groupBox5.Location = new System.Drawing.Point(338, 175);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(130, 139);
+            this.groupBox5.TabIndex = 20;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Number series";
+            // 
+            // txtPlnSerie
+            // 
+            this.txtPlnSerie.Location = new System.Drawing.Point(59, 110);
+            this.txtPlnSerie.Name = "txtPlnSerie";
+            this.txtPlnSerie.Size = new System.Drawing.Size(64, 20);
+            this.txtPlnSerie.TabIndex = 25;
+            // 
+            // txtHufSerie
+            // 
+            this.txtHufSerie.Location = new System.Drawing.Point(59, 84);
+            this.txtHufSerie.Name = "txtHufSerie";
+            this.txtHufSerie.Size = new System.Drawing.Size(64, 20);
+            this.txtHufSerie.TabIndex = 24;
+            // 
+            // txtCzkSerie
+            // 
+            this.txtCzkSerie.Location = new System.Drawing.Point(59, 58);
+            this.txtCzkSerie.Name = "txtCzkSerie";
+            this.txtCzkSerie.Size = new System.Drawing.Size(64, 20);
+            this.txtCzkSerie.TabIndex = 23;
+            // 
+            // txtSkkSerie
+            // 
+            this.txtSkkSerie.Location = new System.Drawing.Point(59, 32);
+            this.txtSkkSerie.Name = "txtSkkSerie";
+            this.txtSkkSerie.Size = new System.Drawing.Size(64, 20);
+            this.txtSkkSerie.TabIndex = 22;
+            // 
+            // chkPlnSerie
+            // 
+            this.chkPlnSerie.AutoSize = true;
+            this.chkPlnSerie.ForeColor = System.Drawing.Color.Maroon;
+            this.chkPlnSerie.Location = new System.Drawing.Point(6, 112);
+            this.chkPlnSerie.Name = "chkPlnSerie";
+            this.chkPlnSerie.Size = new System.Drawing.Size(47, 17);
+            this.chkPlnSerie.TabIndex = 3;
+            this.chkPlnSerie.Text = "PLN";
+            this.chkPlnSerie.UseVisualStyleBackColor = true;
+            // 
+            // chkHufSerie
+            // 
+            this.chkHufSerie.AutoSize = true;
+            this.chkHufSerie.ForeColor = System.Drawing.Color.Maroon;
+            this.chkHufSerie.Location = new System.Drawing.Point(6, 86);
+            this.chkHufSerie.Name = "chkHufSerie";
+            this.chkHufSerie.Size = new System.Drawing.Size(48, 17);
+            this.chkHufSerie.TabIndex = 2;
+            this.chkHufSerie.Text = "HUF";
+            this.chkHufSerie.UseVisualStyleBackColor = true;
+            // 
+            // chkCzkSerie
+            // 
+            this.chkCzkSerie.AutoSize = true;
+            this.chkCzkSerie.ForeColor = System.Drawing.Color.Maroon;
+            this.chkCzkSerie.Location = new System.Drawing.Point(6, 60);
+            this.chkCzkSerie.Name = "chkCzkSerie";
+            this.chkCzkSerie.Size = new System.Drawing.Size(47, 17);
+            this.chkCzkSerie.TabIndex = 1;
+            this.chkCzkSerie.Text = "CZK";
+            this.chkCzkSerie.UseVisualStyleBackColor = true;
+            // 
+            // chkSkkSerie
+            // 
+            this.chkSkkSerie.AutoSize = true;
+            this.chkSkkSerie.ForeColor = System.Drawing.Color.Maroon;
+            this.chkSkkSerie.Location = new System.Drawing.Point(6, 34);
+            this.chkSkkSerie.Name = "chkSkkSerie";
+            this.chkSkkSerie.Size = new System.Drawing.Size(47, 17);
+            this.chkSkkSerie.TabIndex = 0;
+            this.chkSkkSerie.Text = "SKK";
+            this.chkSkkSerie.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
@@ -1656,97 +1747,6 @@
             this.splitMain.SplitterDistance = 503;
             this.splitMain.TabIndex = 30;
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox5.Controls.Add(this.txtPlnSerie);
-            this.groupBox5.Controls.Add(this.txtHufSerie);
-            this.groupBox5.Controls.Add(this.txtCzkSerie);
-            this.groupBox5.Controls.Add(this.txtSkkSerie);
-            this.groupBox5.Controls.Add(this.chkPlnSerie);
-            this.groupBox5.Controls.Add(this.chkHufSerie);
-            this.groupBox5.Controls.Add(this.chkCzkSerie);
-            this.groupBox5.Controls.Add(this.chkSkkSerie);
-            this.groupBox5.Location = new System.Drawing.Point(338, 175);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(130, 139);
-            this.groupBox5.TabIndex = 20;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Number series";
-            // 
-            // chkSkkSerie
-            // 
-            this.chkSkkSerie.AutoSize = true;
-            this.chkSkkSerie.ForeColor = System.Drawing.Color.Maroon;
-            this.chkSkkSerie.Location = new System.Drawing.Point(6, 34);
-            this.chkSkkSerie.Name = "chkSkkSerie";
-            this.chkSkkSerie.Size = new System.Drawing.Size(47, 17);
-            this.chkSkkSerie.TabIndex = 0;
-            this.chkSkkSerie.Text = "SKK";
-            this.chkSkkSerie.UseVisualStyleBackColor = true;
-            // 
-            // chkCzkSerie
-            // 
-            this.chkCzkSerie.AutoSize = true;
-            this.chkCzkSerie.ForeColor = System.Drawing.Color.Maroon;
-            this.chkCzkSerie.Location = new System.Drawing.Point(6, 60);
-            this.chkCzkSerie.Name = "chkCzkSerie";
-            this.chkCzkSerie.Size = new System.Drawing.Size(47, 17);
-            this.chkCzkSerie.TabIndex = 1;
-            this.chkCzkSerie.Text = "CZK";
-            this.chkCzkSerie.UseVisualStyleBackColor = true;
-            // 
-            // chkHufSerie
-            // 
-            this.chkHufSerie.AutoSize = true;
-            this.chkHufSerie.ForeColor = System.Drawing.Color.Maroon;
-            this.chkHufSerie.Location = new System.Drawing.Point(6, 86);
-            this.chkHufSerie.Name = "chkHufSerie";
-            this.chkHufSerie.Size = new System.Drawing.Size(48, 17);
-            this.chkHufSerie.TabIndex = 2;
-            this.chkHufSerie.Text = "HUF";
-            this.chkHufSerie.UseVisualStyleBackColor = true;
-            // 
-            // chkPlnSerie
-            // 
-            this.chkPlnSerie.AutoSize = true;
-            this.chkPlnSerie.ForeColor = System.Drawing.Color.Maroon;
-            this.chkPlnSerie.Location = new System.Drawing.Point(6, 112);
-            this.chkPlnSerie.Name = "chkPlnSerie";
-            this.chkPlnSerie.Size = new System.Drawing.Size(47, 17);
-            this.chkPlnSerie.TabIndex = 3;
-            this.chkPlnSerie.Text = "PLN";
-            this.chkPlnSerie.UseVisualStyleBackColor = true;
-            // 
-            // txtSkkSerie
-            // 
-            this.txtSkkSerie.Location = new System.Drawing.Point(59, 32);
-            this.txtSkkSerie.Name = "txtSkkSerie";
-            this.txtSkkSerie.Size = new System.Drawing.Size(64, 20);
-            this.txtSkkSerie.TabIndex = 22;
-            // 
-            // txtCzkSerie
-            // 
-            this.txtCzkSerie.Location = new System.Drawing.Point(59, 58);
-            this.txtCzkSerie.Name = "txtCzkSerie";
-            this.txtCzkSerie.Size = new System.Drawing.Size(64, 20);
-            this.txtCzkSerie.TabIndex = 23;
-            // 
-            // txtHufSerie
-            // 
-            this.txtHufSerie.Location = new System.Drawing.Point(59, 84);
-            this.txtHufSerie.Name = "txtHufSerie";
-            this.txtHufSerie.Size = new System.Drawing.Size(64, 20);
-            this.txtHufSerie.TabIndex = 24;
-            // 
-            // txtPlnSerie
-            // 
-            this.txtPlnSerie.Location = new System.Drawing.Point(59, 110);
-            this.txtPlnSerie.Name = "txtPlnSerie";
-            this.txtPlnSerie.Size = new System.Drawing.Size(64, 20);
-            this.txtPlnSerie.TabIndex = 25;
-            // 
             // FrmActiveStyle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1782,6 +1782,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).EndInit();
             this.tabSettings.ResumeLayout(false);
             this.tabSettings.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1799,8 +1801,6 @@
             this.splitMain.Panel1.ResumeLayout(false);
             this.splitMain.Panel2.ResumeLayout(false);
             this.splitMain.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }

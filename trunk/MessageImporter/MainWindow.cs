@@ -1759,11 +1759,12 @@ namespace MessageImporter
                 {
                     try
                     {
-                        /*var update = string.Format("UPDATE {0} SET VALID = 0 WHERE SKU=\"{1}\"", DBProvider.T_WAIT_PRODS, prod.ProductCode);
-                        DBProvider.ExecuteNonQuery(update);*/
+                        var orderNum = (string.IsNullOrEmpty(prod.WaitingOrderNum) ? Common.ModifyOrderNumber2(prod.PairProduct.Parent.OrderNumber) : prod.WaitingOrderNum);
+                        var update = string.Format("UPDATE {0} SET ORDER_NUMBER = \"{1}\" WHERE INV_SKU=\"{2}\"", DBProvider.T_WAIT_PRODS, orderNum, prod.PairProduct.invSKU);
+                        DBProvider.ExecuteNonQuery(update);
 
                         // ulozenie produktu do DB
-                        var insert = string.Format("INSERT INTO " + DBProvider.T_WAIT_PRODS + " VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", (string.IsNullOrEmpty(prod.WaitingOrderNum) ? Common.ModifyOrderNumber2(prod.PairProduct.Parent.OrderNumber) : prod.WaitingOrderNum), prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
+                        var insert = string.Format("INSERT INTO " + DBProvider.T_WAIT_PRODS + " VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", orderNum, prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
                         log(insert);
                         DBProvider.ExecuteNonQuery(insert);
                         if (prod.PairProduct != null)
