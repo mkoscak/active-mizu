@@ -201,6 +201,9 @@ namespace MessageImporter
         [System.ComponentModel.DisplayName("Status")]
         public string OrderStatus { get; set; }
 
+        [System.ComponentModel.DisplayName("Číslo košíka")]
+        public string TrashNumber { get; set; }
+
         // krajina sa urci z polozky OrderPurchasedFrom pri importe
         internal Country Country { get; set; }
         internal string OrderPurchasedFrom { get; set; }
