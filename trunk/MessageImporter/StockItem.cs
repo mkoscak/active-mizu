@@ -367,7 +367,7 @@ namespace MessageImporter
 
         internal int Ord_Qty { get; set; }
 
-        internal int Disp_Qty { get; set; }
+        public int Disp_Qty { get; set; }
 
         internal double Price { get; set; }
 

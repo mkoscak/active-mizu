@@ -13,6 +13,7 @@ using System.Xml.Serialization;
 using System.Net;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Schema;
 
 namespace MessageImporter
 {
@@ -37,29 +38,29 @@ namespace MessageImporter
         //////////////////////////////////////////////////////////////////////////////////////////
         BindingList<Invoice> GetInvoiceDS()
         {
-            return dataCSV.DataSource as BindingList<Invoice>;
+            return gridInvoices.DataSource as BindingList<Invoice>;
         }
         void SetInvoiceDS(BindingList<Invoice> dataSource)
         {
-            dataCSV.DataSource = dataSource;
+            gridInvoices.DataSource = dataSource;
         }
 
         BindingList<InvoiceItem> GetInvoiceItemsDS()
         {
-            return dataGridInvItems.DataSource as BindingList<InvoiceItem>;
+            return gridInvItems.DataSource as BindingList<InvoiceItem>;
         }
         void SetInvoiceItemsDS(BindingList<InvoiceItem> dataSource)
         {
-            dataGridInvItems.DataSource = dataSource;
+            gridInvItems.DataSource = dataSource;
         }
 
         BindingList<StockItem> GetProductsDS()
         {
-            return dataGrid.DataSource as BindingList<StockItem>;
+            return gridStocks.DataSource as BindingList<StockItem>;
         }
         void SetProductsDS(BindingList<StockItem> dataSource)
         {
-            dataGrid.DataSource = dataSource;
+            gridStocks.DataSource = dataSource;
         }
         //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -416,8 +417,8 @@ namespace MessageImporter
                 // postprocessing pre MandMdirect
                 PostProcessMandM(stocks);
 
-                dataGrid.Columns["OrderDate"].DefaultCellStyle.Format = "dd.MM.yyyy";
-                dataGridInvItems.Columns["Datetime"].DefaultCellStyle.Format = "dd.MM.yyyy";
+                gridStocks.Columns["OrderDate"].DefaultCellStyle.Format = "dd.MM.yyyy";
+                gridInvItems.Columns["Datetime"].DefaultCellStyle.Format = "dd.MM.yyyy";
                 
                 if (chkMoveProcessed.Checked)
                     btnRead.PerformClick();
@@ -466,6 +467,7 @@ namespace MessageImporter
                     continue;
 
                 item.Disp_Qty = c;  // nastavime celkovy pocet
+                item.Ord_Qty = c;  // nastavime celkovy pocet
                 newDs.Add(item);
             }
 
@@ -536,12 +538,12 @@ namespace MessageImporter
         {
             if (tabData.SelectedIndex == (int)Tabs.Invoices)
             {
-                dataCSV.Refresh();
-                dataGridInvItems.Refresh();
+                gridInvoices.Refresh();
+                gridInvItems.Refresh();
             }
             else if (tabData.SelectedIndex == (int)Tabs.Stocks)
             {
-                dataGrid.Refresh();
+                gridStocks.Refresh();
 
                 var ds = GetProductsDS();
                 if (ds == null)
@@ -552,15 +554,17 @@ namespace MessageImporter
                 {
                     if (ds[i].ChangeColor)
                     {
-                        dataGrid["PriceEURnoTaxEUR", i].Style.BackColor = Color.Green;
-                        dataGrid["PriceEURnoTaxEUR", i].Style.ForeColor = Color.White;
+                        gridStocks["PriceEURnoTaxEUR", i].Style.BackColor = Color.Green;
+                        gridStocks["PriceEURnoTaxEUR", i].Style.ForeColor = Color.White;
                     }
 
                     if (ds[i].PairByHand && ds[i].PairProduct == null)
                     {
-                        dataGrid["ProductCode", i].Style.BackColor = Color.Blue;
-                        dataGrid["ProductCode", i].Style.ForeColor = Color.White;
+                        gridStocks["ProductCode", i].Style.BackColor = Color.Blue;
+                        gridStocks["ProductCode", i].Style.ForeColor = Color.White;
                     }
+
+                    var tmp = ds[i].State;  // refresh stavu na naplnenie Skladu
                 }
             }
             else if (tabData.SelectedIndex == (int)Tabs.Reader)
@@ -1287,7 +1291,7 @@ namespace MessageImporter
                 newInv.invoiceHeader.classificationVAT = new classificationVATType();
                 newInv.invoiceHeader.classificationVAT.ids = Properties.Settings.Default.ClasifficationVAT;
                 newInv.invoiceHeader.classificationVAT.classificationVATType1 = classificationVATTypeClassificationVATType.inland;
-                newInv.invoiceHeader.text = inv.OrderGrandTotal;
+                newInv.invoiceHeader.text = inv.TrashNumber + " " + inv.OrderGrandTotal;
 
                 // header->identity
                 newInv.invoiceHeader.partnerIdentity = new address();
@@ -1500,7 +1504,15 @@ namespace MessageImporter
             try
             {
                 // ulozenie zmien do xml
-                dp.SaveToFile(outDir + dp.id);
+                var fname = outDir + dp.id;
+                dp.SaveToFile(fname);
+                
+                if (!ValidateXML(fname))
+                {
+                    //File.Delete(fname);
+                    MessageBox.Show(this, "Validation failed! Generated xml file is not valid!", "Invoice generation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
             catch (System.Exception ex)
             {
@@ -1584,6 +1596,41 @@ namespace MessageImporter
             File.WriteAllText(outDir + "reader_"+DateTime.Now.ToString("yyyyMMdd_hhmmss")+".csv", readerStrings.ToString());
 
             MessageBox.Show("Invoice XML generated!", "Save XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        static bool ValidationResult = false;
+        private bool ValidateXML(string xml)
+        {
+            // Set the validation settings.
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.ValidationType = ValidationType.Schema;
+            settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessInlineSchema;
+            settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessSchemaLocation;
+            settings.ValidationFlags |= XmlSchemaValidationFlags.ReportValidationWarnings;
+            settings.ValidationEventHandler += new ValidationEventHandler(ValidationCallBack);
+
+            // schema na validaciu
+            settings.Schemas.Add(@"http://www.stormware.cz/schema/version_2/data.xsd", System.Windows.Forms.Application.StartupPath + @"\XSD\data.xsd");
+
+            // Create the XmlReader object.
+            XmlReader reader = XmlReader.Create(xml, settings);
+
+            // Parse the file. 
+            ValidationResult = true;
+            while (reader.Read()) ;
+
+            return ValidationResult;
+        }
+
+        // Display any warnings or errors.
+        private static void ValidationCallBack(object sender, ValidationEventArgs args)
+        {
+            if (args.Severity == XmlSeverityType.Warning)
+                MessageBox.Show(null, "Validation warning: " + args.Message, "XML Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+                MessageBox.Show(null, "Validation error: " + args.Message, "XML Validation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            ValidationResult = false;
         }
 
         private string GetAccountingSuffix(Country country)
@@ -1981,7 +2028,16 @@ namespace MessageImporter
 
             try
             {
-                dp.SaveToFile(outDir + dp.id);
+                // ulozenie zmien do xml
+                var fname = outDir + dp.id;
+                dp.SaveToFile(fname);
+
+                if (!ValidateXML(fname))
+                {
+                    //File.Delete(fname);
+                    MessageBox.Show(this, "Validation failed! Generated xml file is not valid!", "Stock generation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
             catch (System.Exception ex)
             {
@@ -2058,13 +2114,13 @@ namespace MessageImporter
 
         internal void btnInvoiceRemove_Click(object sender, EventArgs e)
         {
-            var selCell = dataCSV.SelectedCells;
+            var selCell = gridInvoices.SelectedCells;
             if (selCell != null && selCell.Count > 0)
             {
                 if (MessageBox.Show(this, "Really delete?", "Remove items", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
 
-                var selItem = dataCSV.Rows[selCell[0].RowIndex].DataBoundItem as Invoice;
+                var selItem = gridInvoices.Rows[selCell[0].RowIndex].DataBoundItem as Invoice;
 
                 var ds = GetInvoiceDS();
                 if (ds == null)
@@ -2084,7 +2140,7 @@ namespace MessageImporter
             if (selprodcode == null || selprodcode.Length == 0)
                 return;
 
-            var selCells = dataGridInvItems.SelectedCells;
+            var selCells = gridInvItems.SelectedCells;
             if (selCells != null && selCells.Count > 0)
             {
                 var selItem = selCells[0];
@@ -2112,9 +2168,13 @@ namespace MessageImporter
             var ds = GetInvoiceItemsDS();
             if (ds == null)
                 return;
-            var added = ds.AddNew();
+            var added = new InvoiceItem();
+            if (ds.Count > 0)
+                ds.Insert(ds.Count-1, added);
+            else
+                ds.Insert(0, added);
 
-            var selcells = dataCSV.SelectedCells;
+            var selcells = gridInvoices.SelectedCells;
             if (selcells != null && selcells.Count > 0)
             {
                 var item = allInvoices[selcells[0].RowIndex];
@@ -2127,13 +2187,13 @@ namespace MessageImporter
 
         internal void btnInvoiceItemRemove_Click(object sender, EventArgs e)
         {
-            var selCell = dataGridInvItems.SelectedCells;
+            var selCell = gridInvItems.SelectedCells;
             if (selCell != null && selCell.Count > 0)
             {
                 if (MessageBox.Show(this, "Really delete?", "Remove items", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
 
-                var selItem = dataGridInvItems.Rows[selCell[0].RowIndex].DataBoundItem as InvoiceItem;
+                var selItem = gridInvItems.Rows[selCell[0].RowIndex].DataBoundItem as InvoiceItem;
 
                 var ds = GetInvoiceItemsDS();
                 ds.Remove(selItem);
@@ -2160,13 +2220,13 @@ namespace MessageImporter
 
         internal void btnRemoveMSG_Click(object sender, EventArgs e)
         {
-            var selCell = dataGrid.SelectedCells;
+            var selCell = gridStocks.SelectedCells;
             if (selCell != null && selCell.Count > 0)
             {
                 if (MessageBox.Show(this, "Really delete?", "Remove items", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
 
-                var selItem = dataGrid.Rows[selCell[0].RowIndex].DataBoundItem as StockItem;
+                var selItem = gridStocks.Rows[selCell[0].RowIndex].DataBoundItem as StockItem;
 
                 Unpair(selItem);
                 
@@ -2198,10 +2258,10 @@ namespace MessageImporter
 
         internal void btnUnpairInvoiceItem_Click(object sender, EventArgs e)
         {
-            var selCell = dataGridInvItems.SelectedCells;
+            var selCell = gridInvItems.SelectedCells;
             if (selCell != null && selCell.Count > 0)
             {
-                var selItem = dataGridInvItems.Rows[selCell[0].RowIndex].DataBoundItem as InvoiceItem;
+                var selItem = gridInvItems.Rows[selCell[0].RowIndex].DataBoundItem as InvoiceItem;
 
                 selItem.PairProduct = null;
             }
@@ -2213,9 +2273,9 @@ namespace MessageImporter
 
         internal void btnUnpairAll_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dataGridInvItems.RowCount; i++)
+            for (int i = 0; i < gridInvItems.RowCount; i++)
             {
-                var selItem = dataGridInvItems.Rows[i].DataBoundItem as InvoiceItem;
+                var selItem = gridInvItems.Rows[i].DataBoundItem as InvoiceItem;
 
                 selItem.PairProduct = null;
             }
@@ -2227,10 +2287,10 @@ namespace MessageImporter
 
         internal void btnUnpairProductMSG_Click(object sender, EventArgs e)
         {
-            var selCell = dataGrid.SelectedCells;
+            var selCell = gridStocks.SelectedCells;
             if (selCell != null && selCell.Count > 0)
             {
-                var selItem = dataGrid.Rows[selCell[0].RowIndex].DataBoundItem as StockItem;
+                var selItem = gridStocks.Rows[selCell[0].RowIndex].DataBoundItem as StockItem;
 
                 Unpair(selItem);
             }
@@ -2243,9 +2303,9 @@ namespace MessageImporter
 
         internal void btnUnpairAllMSG_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < dataGrid.RowCount; i++)
+            for (int i = 0; i < gridStocks.RowCount; i++)
             {
-                var selItem = dataGrid.Rows[i].DataBoundItem as StockItem;
+                var selItem = gridStocks.Rows[i].DataBoundItem as StockItem;
 
                 Unpair(selItem);
             }
@@ -2315,9 +2375,9 @@ namespace MessageImporter
                 case 5:
                     CalcBuyingPrice(GetProductsDS());
                     RateChanged(ds[e.RowIndex]);
-                    dataGrid.Refresh();
-                    dataCSV.Refresh();
-                    dataGridInvItems.Refresh();
+                    gridStocks.Refresh();
+                    gridInvoices.Refresh();
+                    gridInvItems.Refresh();
                     break;
 
                 default:
@@ -2418,7 +2478,7 @@ namespace MessageImporter
         internal void InvoiceItemSelChanged(object sender, EventArgs e)
         {
             var all = lbNonPaired.Items;
-            var selCells = dataGridInvItems.SelectedCells;
+            var selCells = gridInvItems.SelectedCells;
             if (selCells == null || selCells.Count == 0)
                 return;
 
@@ -2561,7 +2621,7 @@ namespace MessageImporter
 
                 // nastavenie glovalneho objektu do StockItem triedy
                 StockItem.Replacements = gridReplacements.DataSource as BindingList<ReplacementPair>;
-                dataGrid.Refresh();
+                gridStocks.Refresh();
             }
             catch (System.Exception ex)
             {
@@ -2660,7 +2720,7 @@ namespace MessageImporter
 
                 // nastavenie glovalneho objektu do StockItem triedy
                 StockItem.ChildItems = gridChilds.DataSource as BindingList<ChildItem>;
-                dataGrid.Refresh();
+                gridStocks.Refresh();
             }
             catch (System.Exception ex)
             {
@@ -3091,11 +3151,11 @@ namespace MessageImporter
 
         private void btnInvCopy_Click(object sender, EventArgs e)
         {
-            var selCells = dataCSV.SelectedCells;
+            var selCells = gridInvoices.SelectedCells;
             if (selCells == null || selCells.Count == 0)
                 return;
 
-            var toCopy = dataCSV.Rows[selCells[0].RowIndex].DataBoundItem as Invoice;
+            var toCopy = gridInvoices.Rows[selCells[0].RowIndex].DataBoundItem as Invoice;
 
             var ds = GetInvoiceDS();
             if (ds == null)
@@ -3105,11 +3165,11 @@ namespace MessageImporter
 
         private void btnStockCopy_Click(object sender, EventArgs e)
         {
-            var selCells = dataGrid.SelectedCells;
+            var selCells = gridStocks.SelectedCells;
             if (selCells == null || selCells.Count == 0)
                 return;
 
-            var toCopy = dataGrid.Rows[selCells[0].RowIndex].DataBoundItem as StockItem;
+            var toCopy = gridStocks.Rows[selCells[0].RowIndex].DataBoundItem as StockItem;
 
             var ds = GetProductsDS();
             if (ds == null)
@@ -3166,9 +3226,9 @@ namespace MessageImporter
             if (e.ColumnIndex != 2) // SKU pre invoice item dotahovane zo stock
                 return;
 
-            dataGridInvItems.InvalidateRow(e.RowIndex);
+            gridInvItems.InvalidateRow(e.RowIndex);
             
-            var selCells = dataGridInvItems.SelectedCells;
+            var selCells = gridInvItems.SelectedCells;
             if (selCells != null && selCells.Count > 0)
             {
                 var selItem = selCells[0];
@@ -3179,7 +3239,7 @@ namespace MessageImporter
 
                 if (selInv != null)
                     CheckEqipped(selInv.Parent);
-                dataCSV.InvalidateRow(dataCSV.SelectedCells[0].RowIndex);
+                gridInvoices.InvalidateRow(gridInvoices.SelectedCells[0].RowIndex);
             }
         }
 
@@ -3307,6 +3367,98 @@ namespace MessageImporter
                 return "0.00";
 
             return price.ItemPrice.Replace(",", ".");
+        }
+
+        private void FrmActiveStyle_Load(object sender, EventArgs e)
+        {
+            // nacitanie sirok stlpcov
+            LoadColWidths();
+        }
+
+        private void LoadColWidths()
+        {
+            var path = System.Windows.Forms.Application.StartupPath;
+            path += @"\cols.dat";
+
+            if (!File.Exists(path))
+                return;
+
+            var lines = File.ReadAllLines(path);
+
+            SetGridWidths(gridInvoices, lines[0]);
+            SetGridWidths(gridInvItems, lines[1]);
+            SetGridWidths(gridStocks, lines[2]);
+        }
+
+        private void SetGridWidths(DataGridView grid, string widths)
+        {
+            var w = widths.Split(';');
+            for (int i = 0; i < w.Length; i++)
+            {
+                if (i >= grid.Columns.Count)
+                    break;
+
+                grid.Columns[i].Width = int.Parse(w[i]);
+            }
+        }
+
+        private void FrmActiveStyle_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // ulozenie sirok stlpcov
+            SaveColWidths();
+        }
+
+        private void SaveColWidths()
+        {
+            var path = System.Windows.Forms.Application.StartupPath;
+            path += @"\cols.dat";
+
+            var lines = new List<string>();
+
+            // grid invoices
+            lines.Add(GetGridWidths(gridInvoices));
+            lines.Add(GetGridWidths(gridInvItems));
+            lines.Add(GetGridWidths(gridStocks));
+
+            File.WriteAllLines(path, lines.ToArray());
+        }
+
+        string GetGridWidths(DataGridView grid)
+        {
+            var sb = new StringBuilder();
+            string toAdd;
+
+            for (int i = 0; i < grid.Columns.Count; i++)
+            {
+                sb.AppendFormat("{0};", grid.Columns[i].Width);
+            }
+            toAdd = sb.ToString();
+
+            return toAdd.TrimEnd(';');
+        }
+
+        private void btnSetTrashNr_Click(object sender, EventArgs e)
+        {
+            TextInputForm frm = new TextInputForm("Číslo košíka", "Zadajte číslo košíka");
+            var res = frm.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                SetTrashNumber(frm.ReturnText);
+            }
+        }
+
+        private void SetTrashNumber(string p)
+        {
+            var ds = GetInvoiceDS();
+            if (ds == null)
+                return;
+
+            foreach (var item in ds)
+            {
+                item.TrashNumber = p;
+            }
+
+            RefreshTab();
         }
     }
 

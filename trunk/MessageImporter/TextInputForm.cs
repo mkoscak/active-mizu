@@ -27,6 +27,8 @@ namespace MessageImporter
             if (!string.IsNullOrEmpty(txtInput.Text))
                 ReturnText = txtInput.Text;
 
+            DialogResult = DialogResult.OK;
+
             Close();
         }
     }
