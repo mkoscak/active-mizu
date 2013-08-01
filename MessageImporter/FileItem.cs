@@ -20,6 +20,7 @@ namespace MessageImporter
     /// <summary>
     /// Pomocna struktura do datagridu na vyber suborov na spracovanie
     /// </summary>
+    [Serializable]
     public class FileItem
     {
         internal const string SportsDirect = "sportsdirect";    // na identifikaciu faktur zo sportsdirect

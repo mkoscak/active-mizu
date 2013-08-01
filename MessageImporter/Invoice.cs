@@ -19,6 +19,7 @@ namespace MessageImporter
     /// <summary>
     /// Objednavka
     /// </summary>
+    [Serializable]
     public class Invoice
     {
         public Invoice()

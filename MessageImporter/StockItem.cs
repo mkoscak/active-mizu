@@ -18,6 +18,7 @@ namespace MessageImporter
     /// <summary>
     /// Polozka objednavky
     /// </summary>
+    [Serializable]
     public class StockItem : ICloneable
     {
         private InvoiceItem pairProd;

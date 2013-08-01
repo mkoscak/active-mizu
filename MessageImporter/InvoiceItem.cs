@@ -9,6 +9,7 @@ namespace MessageImporter
     /// <summary>
     /// Polozka objednavky
     /// </summary>
+    [Serializable]
     public class InvoiceItem
     {
         public InvoiceItem()
