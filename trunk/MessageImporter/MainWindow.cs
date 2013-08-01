@@ -14,6 +14,7 @@ using System.Net;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MessageImporter
 {
@@ -317,7 +318,7 @@ namespace MessageImporter
                 using (FolderBrowserDialog dialog = new FolderBrowserDialog())
                 {
                     dialog.Description = title;
-                    dialog.ShowNewFolderButton = false;
+                    dialog.ShowNewFolderButton = true;
                     dialog.RootFolder = Environment.SpecialFolder.MyComputer;
                     dialog.SelectedPath = System.Windows.Forms.Application.StartupPath;
                     if (dialog.ShowDialog() == DialogResult.OK)
@@ -830,7 +831,7 @@ namespace MessageImporter
                 {
                     n.Parent = item;
                 }
-                item.InvoiceItems.AddRange(toAdd);
+                //item.InvoiceItems.AddRange(toAdd);
             }
         }
 
@@ -3459,6 +3460,55 @@ namespace MessageImporter
             }
 
             RefreshTab();
+        }
+
+        private void btnStoreState_Click(object sender, EventArgs e)
+        {
+            var folder = SelectDirectory("Choose a directory to save");
+            if (folder == null)
+                return;
+            var fname = DateTime.Now.Ticks;
+
+            var inv = GetInvoiceDS();
+            if (inv == null)
+                return;
+            Serializer.Serialize<BindingList<Invoice>>(inv, folder+@"\"+fname+".inv");
+            MessageBox.Show(this, "Invoice state saved!", "LoadState", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            var stk = GetProductsDS();
+            if (stk == null)
+                return;
+            Serializer.Serialize<BindingList<StockItem>>(stk, folder + @"\" + fname + ".stk");
+            MessageBox.Show(this, "Stock state saved!", "LoadState", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnDeserialize_Click(object sender, EventArgs e)
+        {
+            var folder = SelectDirectory("Choose a directory to load");
+            if (folder == null)
+                return;
+
+            var inv = Directory.GetFiles(folder, "*.inv");
+            if (inv != null && inv.Length > 0)
+            {
+                var ds = Serializer.Deserialize<BindingList<Invoice>>(inv[0]);
+                if (ds != null)
+                {
+                    SetInvoiceDS(ds);
+                    MessageBox.Show(this, "Invoice state loaded!", "LoadState", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
+            var stk = Directory.GetFiles(folder, "*.stk");
+            if (stk != null && stk.Length > 0)
+            {
+                var ds = Serializer.Deserialize<BindingList<StockItem>>(stk[0]);
+                if (ds != null)
+                {
+                    SetProductsDS(ds);
+                    MessageBox.Show(this, "Stock state loaded!", "LoadState", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 

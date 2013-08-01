@@ -165,6 +165,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.txtFilOrderNr = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.btnStoreState = new System.Windows.Forms.Button();
+            this.btnDeserialize = new System.Windows.Forms.Button();
             this.dataFiles = new MessageImporter.CustomDataGridView();
             this.gridReplacements = new MessageImporter.CustomDataGridView();
             this.gridChilds = new MessageImporter.CustomDataGridView();
@@ -218,7 +220,9 @@
             // 
             // splitMain.Panel1
             // 
+            this.splitMain.Panel1.Controls.Add(this.btnDeserialize);
             this.splitMain.Panel1.Controls.Add(this.grpInputSettings);
+            this.splitMain.Panel1.Controls.Add(this.btnStoreState);
             this.splitMain.Panel1.Controls.Add(this.btn2XML);
             this.splitMain.Panel1.Controls.Add(this.btnProcess);
             this.splitMain.Panel1.Controls.Add(this.tabFilesLog);
@@ -349,10 +353,10 @@
             this.tabFilesLog.Controls.Add(this.tabReplace);
             this.tabFilesLog.Controls.Add(this.tabChild);
             this.tabFilesLog.Controls.Add(this.tabLog);
-            this.tabFilesLog.Location = new System.Drawing.Point(3, 165);
+            this.tabFilesLog.Location = new System.Drawing.Point(3, 195);
             this.tabFilesLog.Name = "tabFilesLog";
             this.tabFilesLog.SelectedIndex = 0;
-            this.tabFilesLog.Size = new System.Drawing.Size(493, 539);
+            this.tabFilesLog.Size = new System.Drawing.Size(493, 509);
             this.tabFilesLog.TabIndex = 29;
             // 
             // tabFoundFiles
@@ -364,7 +368,7 @@
             this.tabFoundFiles.Location = new System.Drawing.Point(4, 22);
             this.tabFoundFiles.Name = "tabFoundFiles";
             this.tabFoundFiles.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFoundFiles.Size = new System.Drawing.Size(485, 513);
+            this.tabFoundFiles.Size = new System.Drawing.Size(485, 483);
             this.tabFoundFiles.TabIndex = 0;
             this.tabFoundFiles.Text = "Found files";
             this.tabFoundFiles.UseVisualStyleBackColor = true;
@@ -372,7 +376,7 @@
             // btnDeselectAll
             // 
             this.btnDeselectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeselectAll.Location = new System.Drawing.Point(192, 484);
+            this.btnDeselectAll.Location = new System.Drawing.Point(192, 454);
             this.btnDeselectAll.Name = "btnDeselectAll";
             this.btnDeselectAll.Size = new System.Drawing.Size(87, 23);
             this.btnDeselectAll.TabIndex = 22;
@@ -383,7 +387,7 @@
             // btnSelectAll
             // 
             this.btnSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSelectAll.Location = new System.Drawing.Point(4, 484);
+            this.btnSelectAll.Location = new System.Drawing.Point(4, 454);
             this.btnSelectAll.Name = "btnSelectAll";
             this.btnSelectAll.Size = new System.Drawing.Size(87, 23);
             this.btnSelectAll.TabIndex = 20;
@@ -394,7 +398,7 @@
             // btnInverse
             // 
             this.btnInverse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnInverse.Location = new System.Drawing.Point(98, 484);
+            this.btnInverse.Location = new System.Drawing.Point(98, 454);
             this.btnInverse.Name = "btnInverse";
             this.btnInverse.Size = new System.Drawing.Size(87, 23);
             this.btnInverse.TabIndex = 21;
@@ -422,7 +426,7 @@
             this.tabSettings.Location = new System.Drawing.Point(4, 22);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSettings.Size = new System.Drawing.Size(485, 513);
+            this.tabSettings.Size = new System.Drawing.Size(485, 483);
             this.tabSettings.TabIndex = 2;
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
@@ -981,7 +985,7 @@
             // btnSettingsSave
             // 
             this.btnSettingsSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSettingsSave.Location = new System.Drawing.Point(376, 485);
+            this.btnSettingsSave.Location = new System.Drawing.Point(376, 455);
             this.btnSettingsSave.Name = "btnSettingsSave";
             this.btnSettingsSave.Size = new System.Drawing.Size(103, 23);
             this.btnSettingsSave.TabIndex = 0;
@@ -998,7 +1002,7 @@
             this.tabReplace.Controls.Add(this.gridReplacements);
             this.tabReplace.Location = new System.Drawing.Point(4, 22);
             this.tabReplace.Name = "tabReplace";
-            this.tabReplace.Size = new System.Drawing.Size(485, 513);
+            this.tabReplace.Size = new System.Drawing.Size(485, 499);
             this.tabReplace.TabIndex = 3;
             this.tabReplace.Text = "Replacements";
             this.tabReplace.UseVisualStyleBackColor = true;
@@ -1006,7 +1010,7 @@
             // btnReplacementRemove
             // 
             this.btnReplacementRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnReplacementRemove.Location = new System.Drawing.Point(85, 483);
+            this.btnReplacementRemove.Location = new System.Drawing.Point(85, 469);
             this.btnReplacementRemove.Name = "btnReplacementRemove";
             this.btnReplacementRemove.Size = new System.Drawing.Size(114, 23);
             this.btnReplacementRemove.TabIndex = 27;
@@ -1017,7 +1021,7 @@
             // btnReplaceReload
             // 
             this.btnReplaceReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReplaceReload.Location = new System.Drawing.Point(259, 484);
+            this.btnReplaceReload.Location = new System.Drawing.Point(259, 470);
             this.btnReplaceReload.Name = "btnReplaceReload";
             this.btnReplaceReload.Size = new System.Drawing.Size(109, 23);
             this.btnReplaceReload.TabIndex = 2;
@@ -1028,7 +1032,7 @@
             // btnReplacementAdd
             // 
             this.btnReplacementAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnReplacementAdd.Location = new System.Drawing.Point(4, 483);
+            this.btnReplacementAdd.Location = new System.Drawing.Point(4, 469);
             this.btnReplacementAdd.Name = "btnReplacementAdd";
             this.btnReplacementAdd.Size = new System.Drawing.Size(75, 23);
             this.btnReplacementAdd.TabIndex = 26;
@@ -1039,7 +1043,7 @@
             // btnReplaceSave
             // 
             this.btnReplaceSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReplaceSave.Location = new System.Drawing.Point(374, 484);
+            this.btnReplaceSave.Location = new System.Drawing.Point(374, 470);
             this.btnReplaceSave.Name = "btnReplaceSave";
             this.btnReplaceSave.Size = new System.Drawing.Size(109, 23);
             this.btnReplaceSave.TabIndex = 1;
@@ -1056,7 +1060,7 @@
             this.tabChild.Controls.Add(this.gridChilds);
             this.tabChild.Location = new System.Drawing.Point(4, 22);
             this.tabChild.Name = "tabChild";
-            this.tabChild.Size = new System.Drawing.Size(485, 513);
+            this.tabChild.Size = new System.Drawing.Size(485, 499);
             this.tabChild.TabIndex = 4;
             this.tabChild.Text = "Child items";
             this.tabChild.UseVisualStyleBackColor = true;
@@ -1064,7 +1068,7 @@
             // btnChildRemove
             // 
             this.btnChildRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnChildRemove.Location = new System.Drawing.Point(85, 483);
+            this.btnChildRemove.Location = new System.Drawing.Point(85, 469);
             this.btnChildRemove.Name = "btnChildRemove";
             this.btnChildRemove.Size = new System.Drawing.Size(114, 23);
             this.btnChildRemove.TabIndex = 31;
@@ -1075,7 +1079,7 @@
             // btnChildReload
             // 
             this.btnChildReload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChildReload.Location = new System.Drawing.Point(259, 484);
+            this.btnChildReload.Location = new System.Drawing.Point(259, 470);
             this.btnChildReload.Name = "btnChildReload";
             this.btnChildReload.Size = new System.Drawing.Size(109, 23);
             this.btnChildReload.TabIndex = 29;
@@ -1086,7 +1090,7 @@
             // btnChildAdd
             // 
             this.btnChildAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnChildAdd.Location = new System.Drawing.Point(4, 483);
+            this.btnChildAdd.Location = new System.Drawing.Point(4, 469);
             this.btnChildAdd.Name = "btnChildAdd";
             this.btnChildAdd.Size = new System.Drawing.Size(75, 23);
             this.btnChildAdd.TabIndex = 30;
@@ -1097,7 +1101,7 @@
             // btnChildSave
             // 
             this.btnChildSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChildSave.Location = new System.Drawing.Point(374, 484);
+            this.btnChildSave.Location = new System.Drawing.Point(374, 470);
             this.btnChildSave.Name = "btnChildSave";
             this.btnChildSave.Size = new System.Drawing.Size(109, 23);
             this.btnChildSave.TabIndex = 28;
@@ -1112,7 +1116,7 @@
             this.tabLog.Location = new System.Drawing.Point(4, 22);
             this.tabLog.Name = "tabLog";
             this.tabLog.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLog.Size = new System.Drawing.Size(485, 513);
+            this.tabLog.Size = new System.Drawing.Size(485, 499);
             this.tabLog.TabIndex = 1;
             this.tabLog.Text = "Log";
             this.tabLog.UseVisualStyleBackColor = true;
@@ -1126,14 +1130,14 @@
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLog.Size = new System.Drawing.Size(485, 478);
+            this.txtLog.Size = new System.Drawing.Size(485, 464);
             this.txtLog.TabIndex = 1;
             this.txtLog.WordWrap = false;
             // 
             // btnClear
             // 
             this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnClear.Location = new System.Drawing.Point(3, 484);
+            this.btnClear.Location = new System.Drawing.Point(3, 470);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(113, 23);
             this.btnClear.TabIndex = 12;
@@ -1664,6 +1668,28 @@
             this.label19.TabIndex = 0;
             this.label19.Text = "Order number";
             // 
+            // btnStoreState
+            // 
+            this.btnStoreState.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnStoreState.Location = new System.Drawing.Point(3, 163);
+            this.btnStoreState.Name = "btnStoreState";
+            this.btnStoreState.Size = new System.Drawing.Size(224, 26);
+            this.btnStoreState.TabIndex = 30;
+            this.btnStoreState.Text = "Save state";
+            this.btnStoreState.UseVisualStyleBackColor = true;
+            this.btnStoreState.Click += new System.EventHandler(this.btnStoreState_Click);
+            // 
+            // btnDeserialize
+            // 
+            this.btnDeserialize.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDeserialize.Location = new System.Drawing.Point(233, 163);
+            this.btnDeserialize.Name = "btnDeserialize";
+            this.btnDeserialize.Size = new System.Drawing.Size(237, 26);
+            this.btnDeserialize.TabIndex = 31;
+            this.btnDeserialize.Text = "Load state";
+            this.btnDeserialize.UseVisualStyleBackColor = true;
+            this.btnDeserialize.Click += new System.EventHandler(this.btnDeserialize_Click);
+            // 
             // dataFiles
             // 
             this.dataFiles.AllowUserToOrderColumns = true;
@@ -1680,7 +1706,7 @@
             this.dataFiles.MultiSelect = false;
             this.dataFiles.Name = "dataFiles";
             this.dataFiles.RowHeadersVisible = false;
-            this.dataFiles.Size = new System.Drawing.Size(485, 478);
+            this.dataFiles.Size = new System.Drawing.Size(485, 448);
             this.dataFiles.TabIndex = 18;
             this.dataFiles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataFiles_CellValueChanged);
             // 
@@ -1694,7 +1720,7 @@
             this.gridReplacements.Location = new System.Drawing.Point(0, 0);
             this.gridReplacements.Name = "gridReplacements";
             this.gridReplacements.RowHeadersVisible = false;
-            this.gridReplacements.Size = new System.Drawing.Size(485, 477);
+            this.gridReplacements.Size = new System.Drawing.Size(485, 463);
             this.gridReplacements.TabIndex = 0;
             // 
             // gridChilds
@@ -1707,7 +1733,7 @@
             this.gridChilds.Location = new System.Drawing.Point(0, 0);
             this.gridChilds.Name = "gridChilds";
             this.gridChilds.RowHeadersVisible = false;
-            this.gridChilds.Size = new System.Drawing.Size(485, 478);
+            this.gridChilds.Size = new System.Drawing.Size(485, 464);
             this.gridChilds.TabIndex = 0;
             // 
             // gridInvoices
@@ -1987,6 +2013,8 @@
         private System.Windows.Forms.TextBox txtHufSerie;
         private System.Windows.Forms.TextBox txtCzkSerie;
         private System.Windows.Forms.Button btnSetTrashNr;
+        private System.Windows.Forms.Button btnStoreState;
+        private System.Windows.Forms.Button btnDeserialize;
     }
 }
 
