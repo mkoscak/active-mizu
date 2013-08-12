@@ -1957,7 +1957,11 @@ namespace MessageImporter
                 newInv.invoiceSummary = new invoiceSummaryType();
                 newInv.invoiceSummary.foreignCurrency = new typeCurrencyForeign();
                 newInv.invoiceSummary.foreignCurrency.currency = new refType();
-                newInv.invoiceSummary.foreignCurrency.currency.ids = "GBP";
+
+                if (refProd.FromFile != null && !string.IsNullOrEmpty(refProd.FromFile.Currency))
+                    newInv.invoiceSummary.foreignCurrency.currency.ids = refProd.FromFile.Currency;
+                else
+                    newInv.invoiceSummary.foreignCurrency.currency.ids = "GBP";
             }
 
             invDatapack.Item = newInv;

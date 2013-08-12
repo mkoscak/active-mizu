@@ -82,6 +82,8 @@ namespace MessageImporter
 
         public double ExchRate { get; set; }
 
+        public string Currency { get; set; }
+
         internal MSG_TYPE type;
         public MSG_TYPE Type
         {
