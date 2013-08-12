@@ -2170,6 +2170,9 @@ namespace MessageImporter
             if (ds == null)
                 return;
             var added = new InvoiceItem();
+            added.ItemDiscount = "0.00";
+            added.ItemQtyOrdered = "1";
+
             if (ds.Count > 0)
                 ds.Insert(ds.Count-1, added);
             else
