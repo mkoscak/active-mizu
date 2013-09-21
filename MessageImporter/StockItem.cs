@@ -297,7 +297,7 @@ namespace MessageImporter
         {
             get
             {
-                double tax = 1.2;
+                double tax = 1;
 
                 if (FromFile != null)
                 {

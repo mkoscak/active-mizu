@@ -1719,8 +1719,9 @@ namespace MessageImporter
 
                 // header
                 stock.stockHeader = new stockHeaderType();
-                stock.stockHeader.purchasingPriceSpecified = true;
-                stock.stockHeader.purchasingPrice = prod.PriceEURnoTax;
+                // zakomentovane kvoli waiting produktom z DB, ktore tuto cenu nemaju
+                //stock.stockHeader.purchasingPriceSpecified = true;
+                //stock.stockHeader.purchasingPrice = prod.PriceEURnoTax;
                 stock.stockHeader.sellingPrice = Common.GetPrice(prod.FictivePrice);
                 stock.stockHeader.name = prod.Description;
                 stock.stockHeader.nameComplement = prod.SizeInv;
