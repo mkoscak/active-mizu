@@ -1953,16 +1953,24 @@ namespace MessageImporter
                         
             newInv.invoiceDetail = invItems.ToArray();
 
-            if (GBP_part)
+            if (GBP_part) 
             {
                 newInv.invoiceSummary = new invoiceSummaryType();
                 newInv.invoiceSummary.foreignCurrency = new typeCurrencyForeign();
                 newInv.invoiceSummary.foreignCurrency.currency = new refType();
+                newInv.invoiceSummary.foreignCurrency.currency.ids = "GBP";
+            }
 
-                if (refProd.FromFile != null && !string.IsNullOrEmpty(refProd.FromFile.Currency))
-                    newInv.invoiceSummary.foreignCurrency.currency.ids = refProd.FromFile.Currency;
-                else
-                    newInv.invoiceSummary.foreignCurrency.currency.ids = "GBP";
+            // naplnenie cudzej meny ak je zadana
+            if (refProd.FromFile != null && !string.IsNullOrEmpty(refProd.FromFile.Currency))
+            {
+                if (newInv.invoiceSummary == null)
+                {
+                    newInv.invoiceSummary = new invoiceSummaryType();
+                    newInv.invoiceSummary.foreignCurrency = new typeCurrencyForeign();
+                    newInv.invoiceSummary.foreignCurrency.currency = new refType();
+                }
+                newInv.invoiceSummary.foreignCurrency.currency.ids = refProd.FromFile.Currency;
             }
 
             invDatapack.Item = newInv;
