@@ -1691,12 +1691,12 @@ namespace MessageImporter
             // referencna polozka
             StockItem refProd = null;
 
-            var toUpdate = new List<StockItem>();
-            toUpdate.AddRange(WaitingToUpdate);
-            toUpdate.AddRange(prodDS);
+            var allProds = new List<StockItem>();
+            allProds.AddRange(WaitingToUpdate);
+            allProds.AddRange(prodDS);
 
             /////////////////////////////////////////////// UPDATE POLOZIEK
-            foreach (var prod in toUpdate)
+            /*foreach (var prod in toUpdate)
             {
                 if (!prod.EquippedInv && prod.State != StockItemState.Waiting) // do exportu len produkty z vybavenych objednavok
                     continue;
@@ -1748,10 +1748,10 @@ namespace MessageImporter
 
                 newDatapack.Item = stock;
                 dataPacks.Add(newDatapack);
-            }
+            }*/
             /////////////////////////////////////////////// STORE POLOZIEK
 
-            foreach (var prod in prodDS)
+            foreach (var prod in allProds)
             {
                 if (!prod.EquippedInv && prod.State != StockItemState.Waiting) // do exportu len produkty z vybavenych objednavok
                     continue;
@@ -1783,7 +1783,7 @@ namespace MessageImporter
                 stock.actionType = new actionTypeType1();
                 stock.actionType.Item = new requestStockType();
                 stock.actionType.Item.add = boolean.@true;
-                stock.actionType.ItemElementName = ItemChoiceType3.add;
+                stock.actionType.ItemElementName = ItemChoiceType3.update;
 
                 // header
                 stock.stockHeader = new stockHeaderType();
