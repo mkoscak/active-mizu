@@ -1692,7 +1692,7 @@ namespace MessageImporter
             StockItem refProd = null;
 
             var allProds = new List<StockItem>();
-            allProds.AddRange(WaitingToUpdate);
+            //allProds.AddRange(WaitingToUpdate); // waiting nepojdu do stock, iba invoice..
             allProds.AddRange(prodDS);
 
             /////////////////////////////////////////////// UPDATE POLOZIEK
