@@ -9,7 +9,7 @@ namespace MessageImporter
 {
     public class DBProvider
     {
-        private static SQLiteDataAdapter DB;
+        //private static SQLiteDataAdapter DB;
         internal static string DataSource = @".\activestyle.db";
 
         internal static string T_WAIT_PRODS = "WAITING_PRODS";
@@ -43,26 +43,29 @@ namespace MessageImporter
 
         public static void ExecuteNonQuery(string txtQuery)
         {
-            var sql_con = GetConnection();
-            sql_con.Open();
-            var sql_cmd = sql_con.CreateCommand();
-            sql_cmd.CommandText = txtQuery;
-            sql_cmd.ExecuteNonQuery();
-            sql_con.Close();
+            using (var sql_con = GetConnection())
+            {
+                sql_con.Open();
+                var sql_cmd = sql_con.CreateCommand();
+                sql_cmd.CommandText = txtQuery;
+                sql_cmd.ExecuteNonQuery();
+                sql_con.Close();
+            }
         }
 
         public static DataSet ExecuteQuery(string query)
         {
             DataSet DS = new DataSet();
 
-            var sql_con = GetConnection();
-            sql_con.Open();
-            var sql_cmd = sql_con.CreateCommand();
-            DB = new SQLiteDataAdapter(query, sql_con);
-            DS.Reset();
-            DB.Fill(DS);
-            sql_con.Close();
-
+            using (var sql_con = GetConnection())
+            {
+                sql_con.Open();
+                var sql_cmd = sql_con.CreateCommand();
+                var DB = new SQLiteDataAdapter(query, sql_con);
+                DS.Reset();
+                DB.Fill(DS);
+                sql_con.Close();
+            }
             return DS;
         }
 
@@ -70,15 +73,16 @@ namespace MessageImporter
         {
             DataSet DS = new DataSet();
 
-            var sql_con = GetConnection();
-            sql_con.Open();
-            var sql_cmd = sql_con.CreateCommand();
-            string CommandText = "select * from " + tableName + " A " + where + " " + order;
-            DB = new SQLiteDataAdapter(CommandText, sql_con);
-            DS.Reset();
-            DB.Fill(DS);
-            sql_con.Close();
-
+            using (var sql_con = GetConnection())
+            {
+                sql_con.Open();
+                var sql_cmd = sql_con.CreateCommand();
+                string CommandText = "select * from " + tableName + " A " + where + " " + order;
+                var DB = new SQLiteDataAdapter(CommandText, sql_con);
+                DS.Reset();
+                DB.Fill(DS);
+                sql_con.Close();
+            }
             return DS;
         }
 
