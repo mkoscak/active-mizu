@@ -159,7 +159,10 @@ namespace MessageImporter
                 System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
                 xmlWriterSettings.Encoding = encoding;
                 System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
-                Serializer.Serialize(xmlWriter, this);
+
+                var ns = XmlNamespacePrefixes.GetSerializerNamespaces();
+
+                Serializer.Serialize(xmlWriter, this, ns);
                 memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
                 streamReader = new System.IO.StreamReader(memoryStream);
                 return streamReader.ReadToEnd();

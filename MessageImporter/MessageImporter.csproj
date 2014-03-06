@@ -195,6 +195,7 @@
     <Compile Include="TextInputForm.Designer.cs">
       <DependentUpon>TextInputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="XmlNamespacePrefixes.cs" />
     <Compile Include="XSD20\data.designer.cs" />
     <Compile Include="XSD20\posta_eph.designer.cs" />
   </ItemGroup>
