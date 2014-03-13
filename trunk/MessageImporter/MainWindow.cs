@@ -1784,6 +1784,11 @@ namespace MessageImporter
                 stock.actionType.Item = new requestStockType();
                 stock.actionType.Item.add = boolean.@true;
                 stock.actionType.ItemElementName = ItemChoiceType3.update;
+				// filter pridany 13.3.2014
+                stock.actionType.Item.filter = new filterStocksType();
+                stock.actionType.Item.filter.code = code;
+                stock.actionType.Item.filter.store = new refType();
+                stock.actionType.Item.filter.store.ids = prod.Sklad;
 
                 // header
                 stock.stockHeader = new stockHeaderType();
