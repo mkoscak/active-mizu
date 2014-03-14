@@ -238,6 +238,18 @@ namespace MessageImporter
         [System.ComponentModel.DisplayName("Počet ks")]
         public string ItemQtyOrdered { get; set; }
 
+        [System.ComponentModel.DisplayName("Sklad")]
+        public string Storage
+        {
+            get
+            {
+                if (pairProd == null)
+                    return string.Empty;
+
+                return pairProd.Sklad;
+            }
+        }
+
         internal string ItemQtyInvoiced { get; set; }
         internal string ItemQtyShipped { get; set; }
         internal string ItemQtyCanceled { get; set; }
