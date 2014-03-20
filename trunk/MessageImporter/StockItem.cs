@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.ComponentModel;
 
+
 namespace MessageImporter
 {
     public enum StockItemState
@@ -20,12 +21,12 @@ namespace MessageImporter
     /// </summary>
     [Serializable]
     public class StockItem : ICloneable
-    {
+    {      
         private InvoiceItem pairProd;
-        internal InvoiceItem PairProduct 
-        {
+        internal InvoiceItem PairProduct
+        {         
             get
-            {
+            {             
                 return pairProd;
             }
 
@@ -149,7 +150,7 @@ namespace MessageImporter
         {
             get
             {
-                if (itemNameInv == null && pairProd != null)
+                if (pairProd != null)//itemNameInv == null && 
                     itemNameInv = PairProduct.ItemName;
 
                 return itemNameInv;
@@ -168,7 +169,8 @@ namespace MessageImporter
         {
             get
             {
-                if (string.IsNullOrEmpty(sellPriceInv) && PairProduct != null)
+                //if (string.IsNullOrEmpty(sellPriceInv) && PairProduct != null)
+                if (PairProduct != null)
                 {
                     var config = new CountrySetting(PairProduct.Parent.Country);
                     var price= Common.GetPrice(PairProduct.ItemPrice);
@@ -270,7 +272,7 @@ namespace MessageImporter
         {
             get
             {
-                if (sizeInv == null && pairProd != null)
+                if (pairProd != null)//sizeInv == null && 
                     sizeInv = PairProduct.ItemOptions;
 
                 if (sizeInv == null)
@@ -413,6 +415,10 @@ namespace MessageImporter
                     IsRefund = true;
             }
         }
+
+       /*Nomenkaltura pre intrastat
+        [System.ComponentModel.DisplayName("Nomenklatura")]
+        public string nomenklatura { get; set; }*/ 
 
         // len rucne parovanie, existuje viacero druhov/velkosti tohto produktu - nevieme parovat
         internal bool PairByHand { get; set; }

@@ -264,9 +264,14 @@ namespace MessageImporter
         internal static List<InvoiceItem> ReadWaitingInvoices(string orderNumber, ref List<StockItem> stocksToUpdate)
         {
             var ret = new List<InvoiceItem>();
+    
+          /*  var x="dd";
+    if (orderNumber == "433266")
+        x = "aa";*/
 
             var query = string.Format("select * from WAITING_INV_ITEMS inv join WAITING_PRODS stock on stock.ID = inv.WAITING_PRODS_ID where stock.ORDER_NUMBER = \"{0}\" and inv.valid = 1 and stock.valid = 1", orderNumber);
             var data = ExecuteQuery(query);
+          
             if (data != null && data.Tables != null && data.Tables.Count > 0)
             {
                 for (int i = 0; i < data.Tables[0].Rows.Count; i++)
@@ -281,6 +286,9 @@ namespace MessageImporter
                     stock.PairProduct = inv;
 
                     inv.MSG_SKU = data.Tables[0].Rows[i]["DESCRIPTION"].ToString();
+
+                  //  inv.itemStorage = stock.Sklad;
+
                     inv.invSKU = data.Tables[0].Rows[i]["INV_SKU"].ToString();
                     inv.PairCode = data.Tables[0].Rows[i]["SKU"].ToString();
                     inv.OrderNumber = data.Tables[0].Rows[i]["ORDER_NUMBER"].ToString();

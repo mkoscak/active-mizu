@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
+using System.Diagnostics;//pre debug
+
 namespace MessageImporter
 {
     /// <summary>
@@ -14,6 +16,8 @@ namespace MessageImporter
     {
         public InvoiceItem()
         {
+           // PairProductStack=new List<StockItem>(); 
+           //this.PairProductStack = new List<StockItem>();
         }
 
         public InvoiceItem(InvoiceItem copy, Invoice parent)
@@ -35,6 +39,7 @@ namespace MessageImporter
             this.ItemStatus = copy.ItemStatus;
             this.ItemTax = copy.ItemTax;
             this.ItemTotal = copy.ItemTotal;
+            
             this.MSG_SKU = copy.MSG_SKU;
             this.OrderItemIncrement = copy.OrderItemIncrement;
             // dopravu parujeme
@@ -42,7 +47,11 @@ namespace MessageImporter
             {
                 //this.PairCode = copy.PairCode;
                 this.PairProduct = copy.PairProduct.Clone() as StockItem;
+               
             }
+            this.PairProductStack = copy.PairProductStack;
+            this.itemStorage = copy.itemStorage;
+
             this.Parent = parent;
             this.PredajnaCena = copy.PredajnaCena;
         }
@@ -51,6 +60,8 @@ namespace MessageImporter
         {
             Parent = parent;
         }
+
+        internal List<StockItem> PairProductStack { get; set; }
 
         internal Invoice Parent { get; set; }
 
@@ -64,11 +75,13 @@ namespace MessageImporter
 
             set
             {
+                
                 // pripadne odparovanie povodneho
                 if (pairProd != null)
                     pairProd.PairProduct = null;
 
                 pairProd = value;
+              //  this.itemStorage = pairProd.Sklad;
                 if (pairProd != null)
                     pairProd.PairProduct = this;
 
@@ -239,14 +252,33 @@ namespace MessageImporter
         public string ItemQtyOrdered { get; set; }
 
         [System.ComponentModel.DisplayName("Sklad")]
-        public string Storage
+        public string itemStorage// { get; set; }
         {
+        /*    get
+            {
+                return pairProd.Sklad;
+               var x= pairProd.Sklad;
+                Debug.WriteLine(PairProduct == null ? string.Empty : PairProduct.Sklad);
+                return PairProduct == null ? string.Empty : PairProduct.Description;
+            }
+
+            set
+            {
+                if (PairProduct != null)
+                    PairProduct.Description = value;
+                Debug.WriteLine(PairProduct.Description);
+            }*/
+           /**/
+
             get
             {
-                if (pairProd == null)
-                    return string.Empty;
+                return PairProduct == null ? string.Empty : PairProduct.Sklad;
+            }
 
-                return pairProd.Sklad;
+            set
+            {
+                if (PairProduct != null)
+                    PairProduct.Sklad = value;
             }
         }
 

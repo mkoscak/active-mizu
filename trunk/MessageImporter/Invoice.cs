@@ -25,6 +25,7 @@ namespace MessageImporter
         public Invoice()
         {
             InvoiceItems = new List<InvoiceItem>();
+            
         }
 
         public Invoice(Invoice copy)
@@ -40,6 +41,11 @@ namespace MessageImporter
             this.BillingStateName = copy.BillingStateName;
             this.BillingStreet = copy.BillingStreet;
             this.BillingZip = copy.BillingZip;
+
+            this.icoNumber = copy.icoNumber;
+            this.dicNumber = copy.dicNumber;
+           // this.company = copy.company;
+
             this.Cancelled = copy.Cancelled;
             this.Country = copy.Country;
             this.CustomerEmail = copy.CustomerEmail;
@@ -76,6 +82,8 @@ namespace MessageImporter
             this.ShippingZip = copy.ShippingZip;
             this.TotQtyOrdered = copy.TotQtyOrdered;
             this.fromFile = copy.fromFile;
+
+        //    this.TestValues = copy.TestValues;
         }
 
         public Image Icon
@@ -142,7 +150,10 @@ namespace MessageImporter
 
         [System.ComponentModel.DisplayName("Položiek")]
         public string TotQtyOrdered { get; set; }
-        
+
+       // [System.ComponentModel.DisplayName("Test")]
+       // public string TestValues { get; set; }
+
         [System.ComponentModel.DisplayName("Poznámka")]
         public string Note { get; set; }
 
@@ -316,7 +327,22 @@ namespace MessageImporter
             }
         }
 
-        internal string BillingCompany { get; set; }
+       // internal string BillingCompany { get; set; }
+
+        private string billingCompany;
+        [System.ComponentModel.DisplayName("BillingCompany")]
+        public string BillingCompany
+        {
+            get
+            {
+                return billingCompany;
+            }
+
+            set
+            {
+                billingCompany = Common.Proper(value);
+            }
+        }
 
         private string billingStreet;
         [System.ComponentModel.DisplayName("BillingStreet")]
@@ -373,6 +399,15 @@ namespace MessageImporter
         
         [System.ComponentModel.DisplayName("BillingPhoneNumber")]
         public string BillingPhoneNumber { get; set; }
+
+        [System.ComponentModel.DisplayName("IČO")]
+        public string icoNumber { get; set; }
+                
+        [System.ComponentModel.DisplayName("DIČ")]
+        public string dicNumber { get; set; }
+        
+       /* [System.ComponentModel.DisplayName("Firma")]
+        public string company { get; set; }*/
 
         private double CalcInvoiceSum()
         {
