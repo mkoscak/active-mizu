@@ -15,11 +15,13 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.RegularExpressions;
 
 namespace MessageImporter
 {
+
     public partial class FrmActiveStyle : Form
-    {
+    {   
         internal const string productCode = "Product Code:";
         internal const string delivery = "Delivery:";
         internal const string deliveryText = "Delivery";
@@ -35,7 +37,7 @@ namespace MessageImporter
         List<Invoice> AllInvoices = new List<Invoice>();
         List<StockItem> AllStocks = new List<StockItem>();
         List<StockItem> WaitingToUpdate = new List<StockItem>();
-
+       
         //////////////////////////////////////////////////////////////////////////////////////////
         BindingList<Invoice> GetInvoiceDS()
         {
@@ -63,7 +65,9 @@ namespace MessageImporter
         {
             gridStocks.DataSource = dataSource;
         }
+
         //////////////////////////////////////////////////////////////////////////////////////////
+
 
         public FrmActiveStyle()
         {
@@ -194,81 +198,86 @@ namespace MessageImporter
             try
             {
                 var lines = messageBody.Split(Environment.NewLine.ToCharArray()).Where(s => s != null && s.Trim().Length > 0).ToArray();
-                
+                var positionQTY = 5;
+                if (lines.Contains("\tConfirmation Note\t "))
+                    positionQTY = 4;
+             
+
                 var order = new StockEntity();
                 List<StockItem> items = new List<StockItem>();
 
                 file.ProdCount = 0;
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    string line = lines[i];
-
-                    if (line.Contains(productCode))
+                    for (int i = 0; i < lines.Length; i++)
                     {
-                        StockItem item = new StockItem();
+                        string line = lines[i];
 
-                        item.ProductCode = line.Substring(line.IndexOf(':') + 1).Trim();
-                        line = lines[i - 5];
-                        item.Ord_Qty = int.Parse(line.Trim());
-                        line = lines[i - 4];
-                        item.Disp_Qty = int.Parse(line.Trim());
-                        line = lines[i - 3];
-                        item.Description = line.Trim();
-                        line = lines[i - 2];
-                        line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                        item.Price = double.Parse(line.Trim().Substring(1));
-                        line = lines[i - 1];
-                        line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                        item.Total = double.Parse(line.Trim().Substring(1));
+                        if (line.Contains(productCode))
+                        {
+                            StockItem item = new StockItem();
 
-                        item.Currency = line.Substring(0, 1);
+                            item.ProductCode = line.Substring(line.IndexOf(':') + 1).Trim();
+                            line = lines[i - positionQTY];//i - 5
+                            item.Ord_Qty = int.Parse(line.Trim());
+                            line = lines[i - 4];
+                            item.Disp_Qty = int.Parse(line.Trim());
+                            line = lines[i - 3];
+                            item.Description = line.Trim();
+                            line = lines[i - 2];
+                            line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                            //item.Price = double.Parse(line.Trim().Substring(1));// Regex.Replace(strPara, @"\([A-9]\)", "");  [^0-9.,]
+                            item.Price = double.Parse(Regex.Replace(line, @"[^0-9.,]", ""));
+                            line = lines[i - 1];
+                            line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                           // item.Total = double.Parse(line.Trim().Substring(1));
+                            item.Total = double.Parse(Regex.Replace(line, @"[^0-9.,]", ""));
+                            item.Currency = line.Substring(0, 1);
 
-                        item.FromFile = file;
-                        file.ProdCount++;
+                            item.FromFile = file;
+                            file.ProdCount++;
 
-                        if (item.State == StockItemState.PermanentStorage)
-                            item.Sklad = "02";
-                        else if (item.State == StockItemState.Waiting)
-                            item.Sklad = Properties.Settings.Default.Storage;
+                            if (item.State == StockItemState.PermanentStorage)
+                                item.Sklad = "02";
+                            else if (item.State == StockItemState.Waiting)
+                                item.Sklad = Properties.Settings.Default.Storage;
 
-                        items.Add(item);
+                            items.Add(item);
+                        }
+
+                        if (line.Contains(delivery))//!!!!!NIKDY NENASTANE!!!!!!
+                        {
+                            StockItem item = new StockItem();
+
+                            line = lines[i + 1];
+                            line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                            item.Price = double.Parse(line.Trim().Substring(1));
+                            item.Total = item.Price;
+                            item.Currency = line.Substring(0, 1);
+
+                            item.Description = deliveryText;
+                            item.Disp_Qty = 1;
+                            item.Ord_Qty = 1;
+                            item.ProductCode = item.Description;
+
+                            item.FromFile = file;
+
+                            file.Delivery += item.Price;
+                            //file.ProdCount++;
+                            //items.Add(item);  // doprava nebude polozka ale spojena so suborom
+                        }
+
+                        if (line.Contains(orderRef))
+                        {
+                            line = lines[i + 1];
+                            order.OrderReference = line.Trim();
+                        }
+
+                        if (line.Contains(ourRef))
+                        {
+                            line = lines[i + 1];
+                            order.OurReference = line.Trim();
+                        }
                     }
-
-                    if (line.Contains(delivery))
-                    {
-                        StockItem item = new StockItem();
-
-                        line = lines[i + 1];
-                        line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                        item.Price = double.Parse(line.Trim().Substring(1));
-                        item.Total = item.Price;
-                        item.Currency = line.Substring(0, 1);
-
-                        item.Description = deliveryText;
-                        item.Disp_Qty = 1;
-                        item.Ord_Qty = 1;
-                        item.ProductCode = item.Description;
-
-                        item.FromFile = file;
-
-                        file.Delivery += item.Price;
-                        //file.ProdCount++;
-                        //items.Add(item);  // doprava nebude polozka ale spojena so suborom
-                    }
-
-                    if (line.Contains(orderRef))
-                    {
-                        line = lines[i + 1];
-                        order.OrderReference = line.Trim();
-                    }
-
-                    if (line.Contains(ourRef))
-                    {
-                        line = lines[i + 1];
-                        order.OurReference = line.Trim();
-                    }
-                }
-
+                
                 DecomposeMultipleItems(items);
 
                 order.Items = items.ToArray();
@@ -423,6 +432,11 @@ namespace MessageImporter
                 
                 if (chkMoveProcessed.Checked)
                     btnRead.PerformClick();
+
+               /* gridStocks.Refresh();
+                UpdateProductSet();
+                gridStocks.Refresh();
+                dataFiles.Refresh();*/
 
                 RefreshTab();
             }
@@ -791,6 +805,10 @@ namespace MessageImporter
                         inv.ShippingStateName = item.ShippingStateName;
                         inv.ShippingStreet = item.ShippingStreet;
                         inv.ShippingZip = item.ShippingZip;
+
+                        /*IČO,DIČ,Company*/
+                       // inv.company = item.
+                     //   inv.TestValues = item.TestValues;
                     }
 
                     if (inv != null)
@@ -823,15 +841,27 @@ namespace MessageImporter
                 inv = null;
             }
 
-            WaitingToUpdate = new List<StockItem>();
+           /**/ WaitingToUpdate = new List<StockItem>();
             foreach (var item in AllInvoices)
             {
                 var toAdd = DBProvider.ReadWaitingInvoices(item.OrderNumber, ref WaitingToUpdate);
                 foreach (var n in toAdd)
                 {
                     n.Parent = item;
+                    
                 }
+                /*Toto neisté, bolo vypnuté ale niekedy to asi treba*/
                 //item.InvoiceItems.AddRange(toAdd);
+                /*Fix*/
+                if (toAdd.Count() > 0)
+                {
+                    bool containSKU = false;
+                    foreach (var product in item.InvoiceItems)
+                        if (product.invSKU == toAdd.First().invSKU)
+                            containSKU = true;
+                    if (!containSKU)
+                        item.InvoiceItems.AddRange(toAdd);
+                }
             }
         }
 
@@ -878,10 +908,11 @@ namespace MessageImporter
 
         string ConvertInvoiceItem(string item)
         {
-            if (item == null)
+            if (item == null || item == "")
                 return null;
 
-            string productCode = new string(item.ToCharArray().Where(c => "0123456789".Contains(c)).ToArray());
+            //string productCode = new string(item.ToCharArray().Where(c => "0123456789".Contains(c)).ToArray());
+            string productCode = item.Substring(2);
             // 8 mieste kody produtov treba doplnit o lomitko
             if (productCode.Length == 8)
             {
@@ -903,22 +934,33 @@ namespace MessageImporter
             {
                 foreach (var product in CSV.InvoiceItems)
                 {
+                    //string productCode="";
                     string productCode = ConvertInvoiceItem(product.invSKU);
-                    if (productCode == null)
+                    /*FIX
+                    if (product.invSKU!="")
+                        productCode = ConvertInvoiceItem(product.invSKU);*/
+                    /*END FIX*/
+
+                    if (productCode == null || productCode=="")
                         continue;
 
                     var prodDS = GetProductsDS();
                     //foreach (var msg in allMessages)
                     {
-                        var foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null && orderItem.ProductCode.Contains(productCode) && orderItem.PairProduct == null).ToList();
-                        
+
+                        var foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null && stringFunctions.ContainsCaseInsensitive(orderItem.ProductCode, productCode) && orderItem.PairProduct == null).ToList();
+
+                      //  var foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null && orderItem.ProductCode.Contains(productCode) && orderItem.PairProduct == null).ToList();
+
                         // ak nic nenajdeme skusime opacne parovanie
                         if (foundItems.Count == 0)
                             foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null && product.invSKU.Contains(orderItem.ProductCode) && orderItem.PairProduct == null).ToList();
 
                         // GetTheLabel produkty nemaju kody, treba skusit parovanie cez nazov
                         if (foundItems.Count == 0)
-                            foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null && product.ItemName.Contains(orderItem.ProductCode) && orderItem.PairProduct == null && product.ItemOptions != null && orderItem.Size != null && orderItem.Size.Trim() == product.ItemOptions.Trim()).ToList();
+                                  foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null &&  stringFunctions.ContainsCaseInsensitive(product.ItemName,orderItem.Description) && orderItem.PairProduct == null && product.ItemOptions != null && orderItem.Size != null && orderItem.Size.Trim() == product.ItemOptions.Trim()).ToList();
+
+                     //       foundItems = prodDS.Where(orderItem => orderItem.ProductCode != null && product.ItemName.Contains(orderItem.ProductCode) && orderItem.PairProduct == null && product.ItemOptions != null && orderItem.Size != null && orderItem.Size.Trim() == product.ItemOptions.Trim()).ToList();
 
                         if (foundItems.Count == 1)
                         {
@@ -927,10 +969,11 @@ namespace MessageImporter
                         else if (foundItems.Count == 0) // vsetko v pohode
                         {
                         }
+
                         else //viacnasobne produkty
                         {
                             var count = int.Parse(product.ItemQtyOrdered);
-
+                            var index=-1;
                             for (int i = 0; i < count; i++)
                             {
                                 if (foundItems.Count == i)
@@ -938,15 +981,58 @@ namespace MessageImporter
 
                                 if (foundItems[i].PairByHand)
                                     continue;
-
+                                
                                 if (i == 0 && count <= foundItems.Count)
-                                    product.PairProduct = foundItems[i];
+                                {
+                                    
+                                    //string size;
+                                    for (int j = 0; j < foundItems.Count; j++)
+                                    {
+                                        if (foundItems.ElementAt(j).Size == null)
+                                        {
+                                            if (stringFunctions.ContainsCaseInsensitive(foundItems.ElementAt(j).Description,product.ItemOptions))
+                                            {
+                                                if (index == -1)
+                                                {
+                                                    index = j;
+                                                }
+                                                else
+                                                    index = -2;//sme tu po druhe je zle                                       
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (stringFunctions.ContainsCaseInsensitive(product.ItemOptions, foundItems.ElementAt(j).Size))
+                                            {
+                                                if (index == -1)
+                                                {
+                                                    index = j;
+                                                }
+                                                else
+                                                    index = -2;//sme tu po druhe je zle                                       
+                                            }
+                                        }
+                                    }
+                                    if (index >= 0)
+                                    {
+                                        product.PairProduct = foundItems[index];
+                                        foundItems[index].PairProduct = product;
+                                    }
+                                }
 
-                                if (i < foundItems.Count)
-                                    foundItems[i].PairProduct = product;    // n produktov zo stock sa naviaze na jeden produkt z CSV (n pocet objednanych v CSV)
+
+                                /*if (i < foundItems.Count){
+                                    if (index>=0)
+                                        foundItems[index].PairProduct = product;     // n produktov zo stock sa naviaze na jeden produkt z CSV (n pocet objednanych v CSV)
+                                    else
+                                        foundItems[i].PairProduct = product; 
+                                }*/
                             }
                         }
                     }
+                   /* string x;
+                    if (product.invSKU == "AS53201025")
+                        x=product.PairCode;*/
 
                     if (product.PairProduct == null)
                     {
@@ -970,6 +1056,8 @@ namespace MessageImporter
                                 newitem.IsFromDB = true;
 
                                 product.PairProduct = newitem;
+
+                                
                             }
                         }
                     }
@@ -1043,7 +1131,10 @@ namespace MessageImporter
 
                     StockItem item = new StockItem();
                     item.Description = cols[0];
+                    
+                    item.Description = item.Description.Remove(0, item.Description.IndexOf(" ") + 1);
                     item.ProductCode = item.Description;
+                    //item.ProductCode = item.ProductCode.Remove(0,item.ProductCode.IndexOf(" ")+1);//odstranime prve slovo Mens,Womens.. aby sa dalo porovnať s náazvom v csv
                     item.Ord_Qty = int.Parse(cols[1].Trim());
                     item.Disp_Qty = item.Ord_Qty;
                     item.Price = Common.GetPrice(cols[4]);
@@ -1298,6 +1389,10 @@ namespace MessageImporter
                 newInv.invoiceHeader.partnerIdentity = new address();
                 newInv.invoiceHeader.partnerIdentity.address1 = new addressType();
                 newInv.invoiceHeader.partnerIdentity.address1.name = inv.BillingName;
+
+                newInv.invoiceHeader.partnerIdentity.address1.ico = inv.icoNumber;
+                newInv.invoiceHeader.partnerIdentity.address1.dic = inv.dicNumber;
+
                 newInv.invoiceHeader.partnerIdentity.address1.street = inv.BillingStreet;
                 newInv.invoiceHeader.partnerIdentity.address1.zip = inv.BillingZip;
                 newInv.invoiceHeader.partnerIdentity.address1.phone = inv.BillingPhoneNumber;
@@ -1569,9 +1664,11 @@ namespace MessageImporter
                     readerItem.Name = invItem.Parent.CustomerName;
                     if (invItem.MSG_SKU != null)
                         readerItem.ProdName = invItem.MSG_SKU.Trim();
-                    if (invItem.Parent.fromFile != null && invItem.Parent.fromFile.PopisWEB)
+                    /*Fix popisWEB*/
+                    //if (invItem.Parent.fromFile != null && invItem.Parent.fromFile.PopisWEB)         if ((invItem.Parent.fromFile != null || invItem.Parent.fromFile.ToString() != "CHYBA_FAKTURA!!!") && invItem.Parent.fromFile.PopisWEB)
+                    if (invItem.Parent.fromFile.PopisWEB)
                     {
-                        readerItem.ProdName = string.Empty;
+                        //readerItem.ProdName = string.Empty;// TOTO neviem načo je? vymazať a potom iba možna vyplniť? radšej nechám staré ak by sa nedoplnilo nič 
 
                         if (invItem.ItemName != null)
                             readerItem.ProdName = invItem.ItemName.Trim();
@@ -1749,7 +1846,21 @@ namespace MessageImporter
                 newDatapack.Item = stock;
                 dataPacks.Add(newDatapack);
             }*/
-            /////////////////////////////////////////////// STORE POLOZIEK
+            /////////////////////////////////////////////// STORE POLOZIEK                
+            
+            /*Fix pre opakujuce sa order number (alternativa by boli maily)*/
+            foreach (var inv in AllInvoices)
+            {
+                foreach (var invItem in inv.InvoiceItems)
+                {
+                    if (invItem.FromDB)
+                    {
+                      //  var orderNum = (string.IsNullOrEmpty(invItem.Parent.OrderNumber.WaitingOrderNum) ? Common.ModifyOrderNumber2(prod.PairProduct.Parent.OrderNumber) : prod.WaitingOrderNum);
+                        var update = string.Format("UPDATE {0} SET VALID = \"-1\" WHERE ORDER_NUMBER=\"{1}\" AND INV_SKU = \"{2}\"", DBProvider.T_WAIT_PRODS, invItem.Parent.OrderNumber,invItem.invSKU);//prod.PairProduct.invSKU
+                        DBProvider.ExecuteNonQuery(update);
+                    }
+                }
+            }
 
             foreach (var prod in allProds)
             {
@@ -1784,7 +1895,7 @@ namespace MessageImporter
                 stock.actionType.Item = new requestStockType();
                 stock.actionType.Item.add = boolean.@true;
                 stock.actionType.ItemElementName = ItemChoiceType3.update;
-				// filter pridany 13.3.2014
+                // filter pridany 13.3.2014
                 stock.actionType.Item.filter = new filterStocksType();
                 stock.actionType.Item.filter.code = code;
                 stock.actionType.Item.filter.store = new refType();
@@ -1808,6 +1919,7 @@ namespace MessageImporter
 
                 stock.stockHeader.storage = new refTypeStorage();
                 stock.stockHeader.storage.ids = prod.Sklad;
+
 
                 if (prod.State == StockItemState.Waiting)
                 {
@@ -2166,14 +2278,23 @@ namespace MessageImporter
                 var dsMSG = GetProductsDS();
                 if (dsMSG == null)
                     return;
-                var selProd = dsMSG.Where(o => o.ProductCode == selprodcode && o.PairProduct == null).ToArray()[0];
-
+                var selProd = dsMSG.Where(o => o.ProductCode == selprodcode && o.PairProduct == null).ToArray()[0];//
+                
                 var ds = GetInvoiceItemsDS();
                 if (ds == null)
                     return;
                 var selInv = ds[selItem.RowIndex];
 
-                selInv.PairProduct = selProd;
+                if (selInv.PairProduct != null)
+                {
+                    if (selInv.PairProductStack == null)
+                        selInv.PairProductStack= new List<StockItem>();
+                    selInv.PairProductStack.Add(selProd);
+                    selProd.PairProduct = selInv;
+                   // selInv.ItemQtyOrdered =   Convert.ToString(Convert.ToInt32(selInv.ItemQtyOrdered) + 1);
+                }
+                else
+                    selInv.PairProduct = selProd;
 
                 CheckEqipped(selInv.Parent);
                 UpdateProductSet();
@@ -2286,6 +2407,15 @@ namespace MessageImporter
                 var selItem = gridInvItems.Rows[selCell[0].RowIndex].DataBoundItem as InvoiceItem;
 
                 selItem.PairProduct = null;
+                if (selItem.PairProductStack != null)
+                {
+                    for (int i = 0; i < selItem.PairProductStack.Count(); i++)
+                    {
+                        selItem.PairProductStack.ElementAt(i).PairProduct = null;
+                    //    selItem.PairProductStack.ElementAt(i).SizeInv = null;
+                    }
+                    selItem.PairProductStack.Clear();
+                }
             }
 
             CheckAllEqipped();
@@ -2952,16 +3082,16 @@ namespace MessageImporter
             }
             else
             {
-                sb.Append("c_nev;");
+                /*sb.Append("c_nev;");//név
                 sb.Append("c_szemely;");
-                sb.Append("c_irsz;");
-                sb.Append("c_helyseg;");
-                sb.Append("c_utca;");
-                sb.Append("c_telefon;");
-                sb.Append("c_email;");
-                sb.Append("c_vevokod;");
-                sb.Append("szamlaszam;");
-                sb.Append("aruertek;");
+                sb.Append("c_irsz;");//irányítószám
+                sb.Append("c_helyseg;");//város
+                sb.Append("c_utca;");//cím
+                sb.Append("c_telefon;");//telefonszám
+                sb.Append("c_email;");//e-mail
+                sb.Append("c_vevokod;");//ország
+                sb.Append("szamlaszam;");//utánvét hivatkozás
+                sb.Append("aruertek;");//Utánvét
                 sb.Append("utanvetel;");
                 sb.Append("fuvardij;");
                 sb.Append("darab;");
@@ -2981,7 +3111,18 @@ namespace MessageImporter
                 sb.Append("instrukcio;");
                 sb.Append("kezbesites;");
                 sb.Append("visszaru;");
-                sb.Append("feladobetujel");
+                sb.Append("feladobetujel");*/
+                sb.Append("Utánvét;");
+                sb.Append("utánvét hivatkozás;");
+                sb.Append("név;");
+                sb.Append("cím;");
+                sb.Append("telefonszám;");            
+                sb.Append("irányítószám;");
+                sb.Append("város;");                            
+                sb.Append("e-mail;");
+                sb.Append("ország;");
+                
+                
             }
 
             // formatovanie dat
@@ -3025,7 +3166,7 @@ namespace MessageImporter
                 }
                 else // madarske
                 {
-                    sb.Append(shipper.CustName + ";");
+                   /* sb.Append(shipper.CustName + ";");
                     sb.Append(shipper.CustName + ";");
                     sb.Append(shipper.CustZip + ";");
                     sb.Append(shipper.CustCity + ";");
@@ -3063,7 +3204,28 @@ namespace MessageImporter
                     sb.Append("Hívás!! Hívás!! Hívás!!;");
                     sb.Append("1;");
                     sb.Append("0;");
-                    sb.Append("MMR");
+                    sb.Append("MMR");*/
+                    var suma=shipper.Suma.Replace(",",".");
+                    if (suma.Contains("."))
+                        suma=suma.Substring(0, suma.LastIndexOf(".")).Replace(".","");//Utánvét
+                    sb.Append(suma + ";");//Utánvét
+                    sb.Append(shipper.ParcelOrderNumber + ";");//utánvét hivatkozás
+                    sb.Append(shipper.CustName + ";");//nev
+                    sb.Append(shipper.CustStreet + ";");//cím
+                    var phone = shipper.PhoneNumber;
+                    if (phone.StartsWith("06"))
+                        phone = "+36" + phone.Substring(2);
+                    if (phone.StartsWith("36"))
+                        phone = "+" + phone;
+                    if (!phone.StartsWith("+36"))
+                        phone = "+36" + phone;
+                    phone = phone.Replace(" ", "").Replace("-", "").Replace("/", "").Replace("\\", "");
+
+                    sb.Append(phone + ";");//todo upravit telefonszám                   
+                    sb.Append(shipper.CustZip + ";");//irányítószám
+                    sb.Append(shipper.CustCity + ";");//város
+                    sb.Append(shipper.CustEmail + ";");//e-mail
+                    sb.Append("Magyarország;");//ország
                 }
             }
 
@@ -3531,8 +3693,41 @@ namespace MessageImporter
                 }
             }
         }
-    }
 
+       private void generateNomen_Click(object sender, EventArgs e)
+        {
+       /*      var stockItems = GetProductsDS();
+            ms_SQL msSQLConnect = new ms_SQL();
+
+            foreach (var item in stockItems)
+            {
+                
+                //item.nomenklatura=item.ProductCode;
+                string sku = item.ProductCode;//ProductCode
+
+                if (sku.Contains('/'))//sportdirect
+                {
+                    sku = sku.Remove(sku.LastIndexOf('/'));
+                    sku = sku.Replace("/", "");
+                }
+                else if (sku.Contains('_'))//mandmdirect,getthelabel
+                {
+
+                    //sku = sku.Remove(sku.LastIndexOf('_'));
+                    if (sku.Count(f => f == '_')>1)
+                        sku = sku.Substring(sku.IndexOf('_')+1, sku.LastIndexOf('_') - sku.IndexOf('_')-1);
+                    else
+                        sku = sku.Substring(sku.IndexOf('_')+1);
+                   // sku = sku.Replace("/", "");
+                }
+                item.nomenklatura = msSQLConnect.getNomenclature(sku);
+            }
+           // MessageBox.Show(this, skus, skus, MessageBoxButtons.OK, MessageBoxIcon.Information);
+          //  MessageBox.Show(this, skus.Count.ToString(), skus.First().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);*/
+        }
+
+    }
+    
     class ChildItem
     {
         public string ItemText { get; set; }
@@ -3570,6 +3765,17 @@ namespace MessageImporter
         public CustomDataGridView()
         {
             DoubleBuffered = true;
+        }
+    }
+    public static class stringFunctions
+    {
+        public static bool ContainsCaseInsensitive(this string source, string value)
+        {
+
+            int results = source.IndexOf(value, StringComparison.CurrentCultureIgnoreCase);
+
+            return results == -1 ? false : true;
+
         }
     }
 }

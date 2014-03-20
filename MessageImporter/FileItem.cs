@@ -103,10 +103,13 @@ namespace MessageImporter
                     ExchRate = Common.GetPrice("1.28");
             }
         }
-
+        
         public DateTime OrderDate { get; set; }
 
         public double Delivery { get; set; }
+
+        [System.ComponentModel.DisplayName("Číslo faktúry")]
+        public string OrderNumber { get; set; }
 
         public bool PopisWEB { get; set; }
 
@@ -114,7 +117,9 @@ namespace MessageImporter
 
         internal string FullFileName { get; set; }
 
-        internal string OrderNumber { get; set; }
+       // internal string OrderNumber { get; set; }
+        
+        
 
         public FileItem()
         {
@@ -140,6 +145,8 @@ namespace MessageImporter
 
         public override string ToString()
         {
+            if (OrderNumber == null)
+                return "CHYBA_FAKTURA!!!";
             return OrderNumber;
         }
     }

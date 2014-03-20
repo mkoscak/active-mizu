@@ -58,6 +58,8 @@ namespace MessageImporter
 
         public static string Proper(string s)
         {
+            if (s == null)
+                s = "";
             return System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(s.ToLower());
         }
 

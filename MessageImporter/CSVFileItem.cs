@@ -57,7 +57,9 @@ namespace MessageImporter
                     case 11: OrderPaid = ok; break;
                     case 12: OrderRefunded = ok; break;
                     case 13: OrderDue = ok; break;
-                    case 14: TotQtyOrdered = ok; break;
+                    case 14: TotQtyOrdered = ok; 
+                        //TestValues = Convert.ToString(Convert.ToInt32(ok)+1);
+                        break;
                     case 15: CustomerName = ok; break;
                     case 16: CustomerEmail = ok; break;
                     case 17: ShippingName = ok; break;
@@ -116,7 +118,7 @@ namespace MessageImporter
                 InvoiceDate = pairProd.OrderDate;
             }
         }
-
+        
         public string LongSKU { get; set; }
         public double ShoppingPrice { get; set; }
         public DateTime InvoiceDate { get; set; }
@@ -173,6 +175,8 @@ namespace MessageImporter
         public string ItemQtyShipped { get; set; }
         public string ItemQtyCanceled { get; set; }
         public string ItemQtyRefunded { get; set; }
+
+       // public string TestValues { get; set; }
 
         public override string ToString()
         {
