@@ -136,5 +136,12 @@ namespace MessageImporter
 
             return ret;
         }
+
+        internal static string TruncPrice(string value)
+        {
+            var dblVal = GetPrice(value);
+            
+            return Math.Round(dblVal).ToString();
+        }
     }
 }
