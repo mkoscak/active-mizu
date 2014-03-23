@@ -202,7 +202,10 @@ namespace MessageImporter
 
             set
             {
-                orderGrandTotal = Common.CleanPrice(value);
+                if (Country == Country.Hungary)
+                    orderGrandTotal = Common.TruncPrice(value);
+                else
+                    orderGrandTotal = Common.CleanPrice(value);
             }
         }
 
