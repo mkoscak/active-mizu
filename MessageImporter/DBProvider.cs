@@ -4,6 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MessageImporter
 {
@@ -12,7 +13,8 @@ namespace MessageImporter
         //private static SQLiteDataAdapter DB;
         internal static string DataSource = @".\activestyle.db";
 
-        internal static string T_WAIT_PRODS = "WAITING_PRODS";
+        internal static string T_WAIT_INVOICES = "WAITING_INV_ITEMS";
+        internal static string T_WAIT_STOCK = "WAITING_PRODS";
         internal static string T_READER = "READER";
         internal static string T_EXCH_RATE = "EXCH_RATE";
 
@@ -313,6 +315,13 @@ namespace MessageImporter
             }
 
             return ret;
+        }
+
+        internal static void UpdateWaitingValidity(string tblName, int toValue, int[] ids)
+        {
+            var cmd = string.Format("update {0} set valid = {1} where ID in ({2})", tblName, toValue, string.Join(",", ids.Select(id => id.ToString()).ToArray()));
+            
+            ExecuteNonQuery(cmd);
         }
     }
 }
