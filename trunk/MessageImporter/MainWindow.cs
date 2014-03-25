@@ -207,76 +207,76 @@ namespace MessageImporter
                 List<StockItem> items = new List<StockItem>();
 
                 file.ProdCount = 0;
-                    for (int i = 0; i < lines.Length; i++)
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string line = lines[i];
+
+                    if (line.Contains(productCode))
                     {
-                        string line = lines[i];
+                        StockItem item = new StockItem();
 
-                        if (line.Contains(productCode))
-                        {
-                            StockItem item = new StockItem();
+                        item.ProductCode = line.Substring(line.IndexOf(':') + 1).Trim();
+                        line = lines[i - positionQTY];//i - 5
+                        item.Ord_Qty = int.Parse(line.Trim());
+                        line = lines[i - 4];
+                        item.Disp_Qty = int.Parse(line.Trim());
+                        line = lines[i - 3];
+                        item.Description = line.Trim();
+                        line = lines[i - 2];
+                        line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                        //item.Price = double.Parse(line.Trim().Substring(1));// Regex.Replace(strPara, @"\([A-9]\)", "");  [^0-9.,]
+                        item.Price = double.Parse(Regex.Replace(line, @"[^0-9.,]", ""));
+                        line = lines[i - 1];
+                        line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                       // item.Total = double.Parse(line.Trim().Substring(1));
+                        item.Total = double.Parse(Regex.Replace(line, @"[^0-9.,]", ""));
+                        item.Currency = line.Substring(0, 1);
 
-                            item.ProductCode = line.Substring(line.IndexOf(':') + 1).Trim();
-                            line = lines[i - positionQTY];//i - 5
-                            item.Ord_Qty = int.Parse(line.Trim());
-                            line = lines[i - 4];
-                            item.Disp_Qty = int.Parse(line.Trim());
-                            line = lines[i - 3];
-                            item.Description = line.Trim();
-                            line = lines[i - 2];
-                            line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                            //item.Price = double.Parse(line.Trim().Substring(1));// Regex.Replace(strPara, @"\([A-9]\)", "");  [^0-9.,]
-                            item.Price = double.Parse(Regex.Replace(line, @"[^0-9.,]", ""));
-                            line = lines[i - 1];
-                            line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                           // item.Total = double.Parse(line.Trim().Substring(1));
-                            item.Total = double.Parse(Regex.Replace(line, @"[^0-9.,]", ""));
-                            item.Currency = line.Substring(0, 1);
+                        item.FromFile = file;
+                        file.ProdCount++;
 
-                            item.FromFile = file;
-                            file.ProdCount++;
+                        if (item.State == StockItemState.PermanentStorage)
+                            item.Sklad = "02";
+                        else if (item.State == StockItemState.Waiting)
+                            item.Sklad = Properties.Settings.Default.Storage;
 
-                            if (item.State == StockItemState.PermanentStorage)
-                                item.Sklad = "02";
-                            else if (item.State == StockItemState.Waiting)
-                                item.Sklad = Properties.Settings.Default.Storage;
-
-                            items.Add(item);
-                        }
-
-                        if (line.Contains(delivery))//!!!!!NIKDY NENASTANE!!!!!!
-                        {
-                            StockItem item = new StockItem();
-
-                            line = lines[i + 1];
-                            line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                            item.Price = double.Parse(line.Trim().Substring(1));
-                            item.Total = item.Price;
-                            item.Currency = line.Substring(0, 1);
-
-                            item.Description = deliveryText;
-                            item.Disp_Qty = 1;
-                            item.Ord_Qty = 1;
-                            item.ProductCode = item.Description;
-
-                            item.FromFile = file;
-
-                            file.Delivery += item.Price;
-                            //file.ProdCount++;
-                            //items.Add(item);  // doprava nebude polozka ale spojena so suborom
-                        }
-
-                        if (line.Contains(orderRef))
-                        {
-                            line = lines[i + 1];
-                            order.OrderReference = line.Trim();
-                        }
-
-                        if (line.Contains(ourRef))
-                        {
-                            line = lines[i + 1];
-                            order.OurReference = line.Trim();
-                        }
+                        items.Add(item);
                     }
+
+                    if (line.Contains(delivery))//!!!!!NIKDY NENASTANE!!!!!!
+                    {
+                        StockItem item = new StockItem();
+
+                        line = lines[i + 1];
+                        line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                        item.Price = double.Parse(line.Trim().Substring(1));
+                        item.Total = item.Price;
+                        item.Currency = line.Substring(0, 1);
+
+                        item.Description = deliveryText;
+                        item.Disp_Qty = 1;
+                        item.Ord_Qty = 1;
+                        item.ProductCode = item.Description;
+
+                        item.FromFile = file;
+
+                        file.Delivery += item.Price;
+                        //file.ProdCount++;
+                        //items.Add(item);  // doprava nebude polozka ale spojena so suborom
+                    }
+
+                    if (line.Contains(orderRef))
+                    {
+                        line = lines[i + 1];
+                        order.OrderReference = line.Trim();
+                    }
+
+                    if (line.Contains(ourRef))
+                    {
+                        line = lines[i + 1];
+                        order.OurReference = line.Trim();
+                    }
+                }
                 
                 DecomposeMultipleItems(items);
 
@@ -551,43 +551,136 @@ namespace MessageImporter
 
         void RefreshTab()
         {
-            if (tabData.SelectedIndex == (int)Tabs.Invoices)
-            {
-                gridInvoices.Refresh();
-                gridInvItems.Refresh();
-            }
-            else if (tabData.SelectedIndex == (int)Tabs.Stocks)
-            {
-                gridStocks.Refresh();
+            var sel = (Tabs)tabData.SelectedIndex;
 
-                var ds = GetProductsDS();
-                if (ds == null)
-                    return;
-
-                // nastavenie farieb
-                for (int i = 0; i < ds.Count; i++)
-                {
-                    if (ds[i].ChangeColor)
+            switch (sel)
+            {
+                case Tabs.Invoices:
                     {
-                        gridStocks["PriceEURnoTaxEUR", i].Style.BackColor = Color.Green;
-                        gridStocks["PriceEURnoTaxEUR", i].Style.ForeColor = Color.White;
+                        gridInvoices.Refresh();
+                        gridInvItems.Refresh();
                     }
+                    break;
 
-                    if (ds[i].PairByHand && ds[i].PairProduct == null)
+                case Tabs.Stocks:
                     {
-                        gridStocks["ProductCode", i].Style.BackColor = Color.Blue;
-                        gridStocks["ProductCode", i].Style.ForeColor = Color.White;
-                    }
+                        gridStocks.Refresh();
 
-                    var tmp = ds[i].State;  // refresh stavu na naplnenie Skladu
-                }
-            }
-            else if (tabData.SelectedIndex == (int)Tabs.Reader)
-            {
-                RefreshReader();
+                        var ds = GetProductsDS();
+                        if (ds == null)
+                            return;
+
+                        // nastavenie farieb
+                        for (int i = 0; i < ds.Count; i++)
+                        {
+                            if (ds[i].ChangeColor)
+                            {
+                                gridStocks["PriceEURnoTaxEUR", i].Style.BackColor = Color.Green;
+                                gridStocks["PriceEURnoTaxEUR", i].Style.ForeColor = Color.White;
+                            }
+
+                            if (ds[i].PairByHand && ds[i].PairProduct == null)
+                            {
+                                gridStocks["ProductCode", i].Style.BackColor = Color.Blue;
+                                gridStocks["ProductCode", i].Style.ForeColor = Color.White;
+                            }
+
+                            var tmp = ds[i].State;  // refresh stavu na naplnenie Skladu
+                        }
+                    }
+                    break;
+
+                case Tabs.Reader:
+                    {
+                        RefreshReader();
+                    }
+                    break;
+
+                case Tabs.Waiting:
+                    {
+                        RefreshWaiting();
+                    }
+                    break;
+
+                default:
+                    break;
             }
 
             dataFiles.Refresh();
+        }
+
+        /// <summary>
+        /// Nacita waiting produkty podla aktualneho filtra..
+        /// </summary>
+        private void RefreshWaiting()
+        {
+            RefreshWaitingInvoices(checkOnlyValidWaitInv.Checked);
+            RefreshWaitingStocks(checkOnlyValidWaitStock.Checked);
+        }
+
+        private void RefreshWaitingInvoices(bool onlyValid)
+        {
+            var query = string.Format("select * from {0} where {1}", DBProvider.T_WAIT_INVOICES, onlyValid ? "valid = 1" : "1=1");
+            var found = DBProvider.ExecuteQuery(query);
+            gridWaitingInv.DataSource = null;
+            var table = found.Tables[0];
+            gridWaitingInv.DataSource = table;
+
+            lblWaitingInvCount.Text = table.Rows.Count.ToString() + " items";
+        }
+
+        private void RefreshWaitingStocks(bool onlyValid)
+        {
+            var query = string.Format("select * from {0} where {1}", DBProvider.T_WAIT_STOCK, onlyValid ? "valid = 1" : "1=1");
+            var found = DBProvider.ExecuteQuery(query);
+            gridWaitingStock.DataSource = null;
+            var table = found.Tables[0];
+            gridWaitingStock.DataSource = table;
+
+            lblWaitingStockCount.Text = table.Rows.Count.ToString() + " items";
+        }
+
+        private void checkOnlyValidWaitInv_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshWaitingInvoices(checkOnlyValidWaitInv.Checked);
+        }
+
+        private void checkOnlyValidWaitStock_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshWaitingStocks(checkOnlyValidWaitStock.Checked);
+        }
+
+        private void btnWaitingInvSetUsed_Click(object sender, EventArgs e)
+        {
+            var ids = GetSelectedIds(gridWaitingInv);
+            DBProvider.UpdateWaitingValidity(DBProvider.T_WAIT_INVOICES, 0, ids);
+
+            RefreshWaitingInvoices(checkOnlyValidWaitInv.Checked);
+        }
+
+        private void btnWaitingStockSetUsed_Click(object sender, EventArgs e)
+        {
+            var ids = GetSelectedIds(gridWaitingStock);
+            DBProvider.UpdateWaitingValidity(DBProvider.T_WAIT_STOCK, 0, ids);
+
+            RefreshWaitingStocks(checkOnlyValidWaitStock.Checked);
+        }
+
+        private int[] GetSelectedIds(CustomDataGridView grid)
+        {
+            var sel = grid.SelectedCells;
+            var ret = new List<int>();
+
+            for (int i = 0; i < sel.Count; i++)
+            {
+                var rowi = sel[i].RowIndex;
+                var item = grid.Rows[rowi].DataBoundItem as DataRowView;
+                var id = Convert.ToInt32(item[0]);
+
+                ret.Add(id);
+            }
+
+            return ret.ToArray();
         }
 
         private void RefreshReader()
@@ -1036,7 +1129,7 @@ namespace MessageImporter
 
                     if (product.PairProduct == null)
                     {
-                        var req = string.Format("SELECT * FROM "+DBProvider.T_WAIT_PRODS+" WHERE ORDER_NUMBER = \"{0}\" AND INV_SKU = \"{1}\" AND VALID = 1", Common.ModifyOrderNumber2(CSV.OrderNumber), product.invSKU);
+                        var req = string.Format("SELECT * FROM "+DBProvider.T_WAIT_STOCK+" WHERE ORDER_NUMBER = \"{0}\" AND INV_SKU = \"{1}\" AND VALID = 1", Common.ModifyOrderNumber2(CSV.OrderNumber), product.invSKU);
                         var res = DBProvider.ExecuteQuery(req);
                         if (res != null && res.Tables != null && res.Tables.Count > 0)
                         {
@@ -1856,7 +1949,7 @@ namespace MessageImporter
                     if (invItem.FromDB)
                     {
                       //  var orderNum = (string.IsNullOrEmpty(invItem.Parent.OrderNumber.WaitingOrderNum) ? Common.ModifyOrderNumber2(prod.PairProduct.Parent.OrderNumber) : prod.WaitingOrderNum);
-                        var update = string.Format("UPDATE {0} SET VALID = \"-1\" WHERE ORDER_NUMBER=\"{1}\" AND INV_SKU = \"{2}\"", DBProvider.T_WAIT_PRODS, invItem.Parent.OrderNumber,invItem.invSKU);//prod.PairProduct.invSKU
+                        var update = string.Format("UPDATE {0} SET VALID = \"-1\" WHERE ORDER_NUMBER=\"{1}\" AND INV_SKU = \"{2}\"", DBProvider.T_WAIT_STOCK, invItem.Parent.OrderNumber,invItem.invSKU);//prod.PairProduct.invSKU
                         DBProvider.ExecuteNonQuery(update);
                     }
                 }
@@ -1926,11 +2019,11 @@ namespace MessageImporter
                     try
                     {
                         var orderNum = (string.IsNullOrEmpty(prod.WaitingOrderNum) ? Common.ModifyOrderNumber2(prod.PairProduct.Parent.OrderNumber) : prod.WaitingOrderNum);
-                        var update = string.Format("UPDATE {0} SET ORDER_NUMBER = \"{1}\" WHERE INV_SKU=\"{2}\"", DBProvider.T_WAIT_PRODS, orderNum, prod.PairProduct.invSKU);
+                        var update = string.Format("UPDATE {0} SET ORDER_NUMBER = \"{1}\" WHERE INV_SKU=\"{2}\"", DBProvider.T_WAIT_STOCK, orderNum, prod.PairProduct.invSKU);
                         DBProvider.ExecuteNonQuery(update);
 
                         // ulozenie produktu do DB
-                        var insert = string.Format("INSERT INTO " + DBProvider.T_WAIT_PRODS + " VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", orderNum, prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
+                        var insert = string.Format("INSERT INTO " + DBProvider.T_WAIT_STOCK + " VALUES ({0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5})", "null", orderNum, prod.PairProduct.invSKU, prod.ProductCode, prod.Description, 1);
                         log(insert);
                         DBProvider.ExecuteNonQuery(insert);
                         if (prod.PairProduct != null)
@@ -3725,7 +3818,6 @@ namespace MessageImporter
            // MessageBox.Show(this, skus, skus, MessageBoxButtons.OK, MessageBoxIcon.Information);
           //  MessageBox.Show(this, skus.Count.ToString(), skus.First().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);*/
         }
-
     }
     
     class ChildItem
@@ -3757,7 +3849,8 @@ namespace MessageImporter
     {
         Invoices,
         Stocks,
-        Reader
+        Reader,
+        Waiting
     }
 
     class CustomDataGridView : DataGridView
