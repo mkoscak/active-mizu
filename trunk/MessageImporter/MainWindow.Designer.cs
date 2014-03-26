@@ -182,14 +182,16 @@
             this.gridReader = new MessageImporter.CustomDataGridView();
             this.splitWaiting = new System.Windows.Forms.SplitContainer();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.cbWaitingInvValidity = new System.Windows.Forms.ComboBox();
+            this.btnSetValidWaitingInv = new System.Windows.Forms.Button();
             this.btnWaitingInvSetUsed = new System.Windows.Forms.Button();
             this.lblWaitingInvCount = new System.Windows.Forms.Label();
-            this.checkOnlyValidWaitInv = new System.Windows.Forms.CheckBox();
             this.gridWaitingInv = new MessageImporter.CustomDataGridView();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.cbWaitingStockValidity = new System.Windows.Forms.ComboBox();
+            this.btnSetValidStocks = new System.Windows.Forms.Button();
             this.btnWaitingStockSetUsed = new System.Windows.Forms.Button();
             this.lblWaitingStockCount = new System.Windows.Forms.Label();
-            this.checkOnlyValidWaitStock = new System.Windows.Forms.CheckBox();
             this.gridWaitingStock = new MessageImporter.CustomDataGridView();
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
@@ -1885,9 +1887,10 @@
             this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.cbWaitingInvValidity);
+            this.groupBox6.Controls.Add(this.btnSetValidWaitingInv);
             this.groupBox6.Controls.Add(this.btnWaitingInvSetUsed);
             this.groupBox6.Controls.Add(this.lblWaitingInvCount);
-            this.groupBox6.Controls.Add(this.checkOnlyValidWaitInv);
             this.groupBox6.Controls.Add(this.gridWaitingInv);
             this.groupBox6.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.groupBox6.Location = new System.Drawing.Point(3, 3);
@@ -1897,13 +1900,37 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Invoice";
             // 
+            // cbWaitingInvValidity
+            // 
+            this.cbWaitingInvValidity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWaitingInvValidity.FormattingEnabled = true;
+            this.cbWaitingInvValidity.Items.AddRange(new object[] {
+            "Only valid",
+            "Only invalid",
+            "All"});
+            this.cbWaitingInvValidity.Location = new System.Drawing.Point(6, 19);
+            this.cbWaitingInvValidity.Name = "cbWaitingInvValidity";
+            this.cbWaitingInvValidity.Size = new System.Drawing.Size(142, 21);
+            this.cbWaitingInvValidity.TabIndex = 29;
+            this.cbWaitingInvValidity.SelectedIndexChanged += new System.EventHandler(this.cbWaitingInvValidity_SelectedIndexChanged);
+            // 
+            // btnSetValidWaitingInv
+            // 
+            this.btnSetValidWaitingInv.Location = new System.Drawing.Point(6, 121);
+            this.btnSetValidWaitingInv.Name = "btnSetValidWaitingInv";
+            this.btnSetValidWaitingInv.Size = new System.Drawing.Size(142, 32);
+            this.btnSetValidWaitingInv.TabIndex = 28;
+            this.btnSetValidWaitingInv.Text = "Set selected as valid";
+            this.btnSetValidWaitingInv.UseVisualStyleBackColor = true;
+            this.btnSetValidWaitingInv.Click += new System.EventHandler(this.btnSetValidWaitingInv_Click);
+            // 
             // btnWaitingInvSetUsed
             // 
-            this.btnWaitingInvSetUsed.Location = new System.Drawing.Point(6, 45);
+            this.btnWaitingInvSetUsed.Location = new System.Drawing.Point(6, 83);
             this.btnWaitingInvSetUsed.Name = "btnWaitingInvSetUsed";
             this.btnWaitingInvSetUsed.Size = new System.Drawing.Size(142, 32);
             this.btnWaitingInvSetUsed.TabIndex = 27;
-            this.btnWaitingInvSetUsed.Text = "Set selected as invalid";
+            this.btnWaitingInvSetUsed.Text = "Set selected as INvalid";
             this.btnWaitingInvSetUsed.UseVisualStyleBackColor = true;
             this.btnWaitingInvSetUsed.Click += new System.EventHandler(this.btnWaitingInvSetUsed_Click);
             // 
@@ -1917,20 +1944,6 @@
             this.lblWaitingInvCount.Size = new System.Drawing.Size(41, 13);
             this.lblWaitingInvCount.TabIndex = 26;
             this.lblWaitingInvCount.Text = "X items";
-            // 
-            // checkOnlyValidWaitInv
-            // 
-            this.checkOnlyValidWaitInv.AutoSize = true;
-            this.checkOnlyValidWaitInv.Checked = true;
-            this.checkOnlyValidWaitInv.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkOnlyValidWaitInv.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkOnlyValidWaitInv.Location = new System.Drawing.Point(6, 22);
-            this.checkOnlyValidWaitInv.Name = "checkOnlyValidWaitInv";
-            this.checkOnlyValidWaitInv.Size = new System.Drawing.Size(70, 17);
-            this.checkOnlyValidWaitInv.TabIndex = 25;
-            this.checkOnlyValidWaitInv.Text = "only valid";
-            this.checkOnlyValidWaitInv.UseVisualStyleBackColor = true;
-            this.checkOnlyValidWaitInv.CheckedChanged += new System.EventHandler(this.checkOnlyValidWaitInv_CheckedChanged);
             // 
             // gridWaitingInv
             // 
@@ -1953,7 +1966,6 @@
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridWaitingInv.DefaultCellStyle = dataGridViewCellStyle6;
             this.gridWaitingInv.Location = new System.Drawing.Point(154, 19);
-            this.gridWaitingInv.MultiSelect = false;
             this.gridWaitingInv.Name = "gridWaitingInv";
             this.gridWaitingInv.RowHeadersVisible = false;
             this.gridWaitingInv.Size = new System.Drawing.Size(819, 320);
@@ -1964,9 +1976,10 @@
             this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox7.Controls.Add(this.cbWaitingStockValidity);
+            this.groupBox7.Controls.Add(this.btnSetValidStocks);
             this.groupBox7.Controls.Add(this.btnWaitingStockSetUsed);
             this.groupBox7.Controls.Add(this.lblWaitingStockCount);
-            this.groupBox7.Controls.Add(this.checkOnlyValidWaitStock);
             this.groupBox7.Controls.Add(this.gridWaitingStock);
             this.groupBox7.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.groupBox7.Location = new System.Drawing.Point(3, 3);
@@ -1976,13 +1989,37 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Stock";
             // 
+            // cbWaitingStockValidity
+            // 
+            this.cbWaitingStockValidity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWaitingStockValidity.FormattingEnabled = true;
+            this.cbWaitingStockValidity.Items.AddRange(new object[] {
+            "Only valid",
+            "Only invalid",
+            "All"});
+            this.cbWaitingStockValidity.Location = new System.Drawing.Point(6, 19);
+            this.cbWaitingStockValidity.Name = "cbWaitingStockValidity";
+            this.cbWaitingStockValidity.Size = new System.Drawing.Size(142, 21);
+            this.cbWaitingStockValidity.TabIndex = 30;
+            this.cbWaitingStockValidity.SelectedIndexChanged += new System.EventHandler(this.cbWaitingStockValidity_SelectedIndexChanged);
+            // 
+            // btnSetValidStocks
+            // 
+            this.btnSetValidStocks.Location = new System.Drawing.Point(6, 114);
+            this.btnSetValidStocks.Name = "btnSetValidStocks";
+            this.btnSetValidStocks.Size = new System.Drawing.Size(142, 32);
+            this.btnSetValidStocks.TabIndex = 29;
+            this.btnSetValidStocks.Text = "Set selected as valid";
+            this.btnSetValidStocks.UseVisualStyleBackColor = true;
+            this.btnSetValidStocks.Click += new System.EventHandler(this.btnSetValidWaitingStocks_Click);
+            // 
             // btnWaitingStockSetUsed
             // 
-            this.btnWaitingStockSetUsed.Location = new System.Drawing.Point(6, 51);
+            this.btnWaitingStockSetUsed.Location = new System.Drawing.Point(6, 76);
             this.btnWaitingStockSetUsed.Name = "btnWaitingStockSetUsed";
             this.btnWaitingStockSetUsed.Size = new System.Drawing.Size(142, 32);
             this.btnWaitingStockSetUsed.TabIndex = 28;
-            this.btnWaitingStockSetUsed.Text = "Set selected as invalid";
+            this.btnWaitingStockSetUsed.Text = "Set selected as INvalid";
             this.btnWaitingStockSetUsed.UseVisualStyleBackColor = true;
             this.btnWaitingStockSetUsed.Click += new System.EventHandler(this.btnWaitingStockSetUsed_Click);
             // 
@@ -1996,20 +2033,6 @@
             this.lblWaitingStockCount.Size = new System.Drawing.Size(41, 13);
             this.lblWaitingStockCount.TabIndex = 27;
             this.lblWaitingStockCount.Text = "X items";
-            // 
-            // checkOnlyValidWaitStock
-            // 
-            this.checkOnlyValidWaitStock.AutoSize = true;
-            this.checkOnlyValidWaitStock.Checked = true;
-            this.checkOnlyValidWaitStock.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkOnlyValidWaitStock.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkOnlyValidWaitStock.Location = new System.Drawing.Point(6, 28);
-            this.checkOnlyValidWaitStock.Name = "checkOnlyValidWaitStock";
-            this.checkOnlyValidWaitStock.Size = new System.Drawing.Size(70, 17);
-            this.checkOnlyValidWaitStock.TabIndex = 26;
-            this.checkOnlyValidWaitStock.Text = "only valid";
-            this.checkOnlyValidWaitStock.UseVisualStyleBackColor = true;
-            this.checkOnlyValidWaitStock.CheckedChanged += new System.EventHandler(this.checkOnlyValidWaitStock_CheckedChanged);
             // 
             // gridWaitingStock
             // 
@@ -2032,7 +2055,6 @@
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridWaitingStock.DefaultCellStyle = dataGridViewCellStyle8;
             this.gridWaitingStock.Location = new System.Drawing.Point(154, 19);
-            this.gridWaitingStock.MultiSelect = false;
             this.gridWaitingStock.Name = "gridWaitingStock";
             this.gridWaitingStock.RowHeadersVisible = false;
             this.gridWaitingStock.Size = new System.Drawing.Size(819, 281);
@@ -2258,12 +2280,14 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private CustomDataGridView gridWaitingInv;
         private CustomDataGridView gridWaitingStock;
-        private System.Windows.Forms.CheckBox checkOnlyValidWaitInv;
-        private System.Windows.Forms.CheckBox checkOnlyValidWaitStock;
         private System.Windows.Forms.Label lblWaitingInvCount;
         private System.Windows.Forms.Label lblWaitingStockCount;
         private System.Windows.Forms.Button btnWaitingInvSetUsed;
         private System.Windows.Forms.Button btnWaitingStockSetUsed;
+        private System.Windows.Forms.Button btnSetValidWaitingInv;
+        private System.Windows.Forms.Button btnSetValidStocks;
+        private System.Windows.Forms.ComboBox cbWaitingInvValidity;
+        private System.Windows.Forms.ComboBox cbWaitingStockValidity;
     }
 }
 

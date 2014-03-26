@@ -83,6 +83,9 @@ namespace MessageImporter
             btnReplaceReload_Click(btnReplaceReload, new EventArgs());
             btnChildReload_Click(btnChildReload, new EventArgs());
 
+            cbWaitingInvValidity.SelectedIndex = 0;
+            cbWaitingStockValidity.SelectedIndex = 0;
+
             // stiahnutie a import kurzoveho listka
             try
             {
@@ -614,13 +617,19 @@ namespace MessageImporter
         /// </summary>
         private void RefreshWaiting()
         {
-            RefreshWaitingInvoices(checkOnlyValidWaitInv.Checked);
-            RefreshWaitingStocks(checkOnlyValidWaitStock.Checked);
+            RefreshWaitingInvoices(cbWaitingInvValidity.SelectedIndex);
+            RefreshWaitingStocks(cbWaitingStockValidity.SelectedIndex);
         }
 
-        private void RefreshWaitingInvoices(bool onlyValid)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="validity">0 - valid, 1 - invalid, 2 - all</param>
+        private void RefreshWaitingInvoices(int validity)
         {
-            var query = string.Format("select * from {0} where {1}", DBProvider.T_WAIT_INVOICES, onlyValid ? "valid = 1" : "1=1");
+            var valid = Math.Abs(validity - 1);
+
+            var query = string.Format("select * from {0} where {1}", DBProvider.T_WAIT_INVOICES, validity < 2 ? "valid = " + valid.ToString() : "1=1");
             var found = DBProvider.ExecuteQuery(query);
             gridWaitingInv.DataSource = null;
             var table = found.Tables[0];
@@ -629,9 +638,15 @@ namespace MessageImporter
             lblWaitingInvCount.Text = table.Rows.Count.ToString() + " items";
         }
 
-        private void RefreshWaitingStocks(bool onlyValid)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="validity">0 - valid, 1 - invalid, 2 - all</param>
+        private void RefreshWaitingStocks(int validity)
         {
-            var query = string.Format("select * from {0} where {1}", DBProvider.T_WAIT_STOCK, onlyValid ? "valid = 1" : "1=1");
+            var valid = Math.Abs(validity - 1);
+
+            var query = string.Format("select * from {0} where {1}", DBProvider.T_WAIT_STOCK, validity < 2 ? "valid = " + valid.ToString() : "1=1");
             var found = DBProvider.ExecuteQuery(query);
             gridWaitingStock.DataSource = null;
             var table = found.Tables[0];
@@ -640,22 +655,12 @@ namespace MessageImporter
             lblWaitingStockCount.Text = table.Rows.Count.ToString() + " items";
         }
 
-        private void checkOnlyValidWaitInv_CheckedChanged(object sender, EventArgs e)
-        {
-            RefreshWaitingInvoices(checkOnlyValidWaitInv.Checked);
-        }
-
-        private void checkOnlyValidWaitStock_CheckedChanged(object sender, EventArgs e)
-        {
-            RefreshWaitingStocks(checkOnlyValidWaitStock.Checked);
-        }
-
         private void btnWaitingInvSetUsed_Click(object sender, EventArgs e)
         {
             var ids = GetSelectedIds(gridWaitingInv);
             DBProvider.UpdateWaitingValidity(DBProvider.T_WAIT_INVOICES, 0, ids);
 
-            RefreshWaitingInvoices(checkOnlyValidWaitInv.Checked);
+            RefreshWaitingInvoices(cbWaitingInvValidity.SelectedIndex);
         }
 
         private void btnWaitingStockSetUsed_Click(object sender, EventArgs e)
@@ -663,7 +668,33 @@ namespace MessageImporter
             var ids = GetSelectedIds(gridWaitingStock);
             DBProvider.UpdateWaitingValidity(DBProvider.T_WAIT_STOCK, 0, ids);
 
-            RefreshWaitingStocks(checkOnlyValidWaitStock.Checked);
+            RefreshWaitingStocks(cbWaitingStockValidity.SelectedIndex);
+        }
+
+        private void btnSetValidWaitingInv_Click(object sender, EventArgs e)
+        {
+            var ids = GetSelectedIds(gridWaitingInv);
+            DBProvider.UpdateWaitingValidity(DBProvider.T_WAIT_INVOICES, 1, ids);
+
+            RefreshWaitingInvoices(cbWaitingInvValidity.SelectedIndex);
+        }
+
+        private void btnSetValidWaitingStocks_Click(object sender, EventArgs e)
+        {
+            var ids = GetSelectedIds(gridWaitingStock);
+            DBProvider.UpdateWaitingValidity(DBProvider.T_WAIT_STOCK, 1, ids);
+
+            RefreshWaitingStocks(cbWaitingStockValidity.SelectedIndex);
+        }
+
+        private void cbWaitingInvValidity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshWaitingInvoices(cbWaitingInvValidity.SelectedIndex);
+        }
+
+        private void cbWaitingStockValidity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshWaitingStocks(cbWaitingStockValidity.SelectedIndex);
         }
 
         private int[] GetSelectedIds(CustomDataGridView grid)
