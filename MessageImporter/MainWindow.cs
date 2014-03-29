@@ -642,16 +642,22 @@ namespace MessageImporter
 
         private void btnWaitingInvSetUsed_Click(object sender, EventArgs e)
         {
-            var ids = GetSelectedIds(gridWaitingInv);
-            DBProvider.UpdateWaitingValidity(DBProvider.T_WAIT_INVOICES, 0, ids);
-
-            RefreshWaitingInvoices(cbWaitingInvValidity.SelectedIndex);
+            UpdateWaitingValidity(false);
         }
 
         private void btnSetValidWaitingInv_Click(object sender, EventArgs e)
         {
-            var ids = GetSelectedIds(gridWaitingInv);
-            DBProvider.UpdateWaitingValidity(DBProvider.T_WAIT_INVOICES, 1, ids);
+            UpdateWaitingValidity(true);
+        }
+
+        private void UpdateWaitingValidity(bool valid)
+        {
+            var ids = GetSelectedWaitingEnts(gridWaitingInv);
+            foreach (var we in ids)
+            {
+                we.Valid = valid;
+                we.Save();
+            }
 
             RefreshWaitingInvoices(cbWaitingInvValidity.SelectedIndex);
         }
@@ -661,21 +667,20 @@ namespace MessageImporter
             RefreshWaitingInvoices(cbWaitingInvValidity.SelectedIndex);
         }
 
-        private int[] GetSelectedIds(CustomDataGridView grid)
+        private List<WaitingProductEntity> GetSelectedWaitingEnts(CustomDataGridView grid)
         {
             var sel = grid.SelectedCells;
-            var ret = new List<int>();
+            var ret = new List<WaitingProductEntity>();
 
             for (int i = 0; i < sel.Count; i++)
             {
                 var rowi = sel[i].RowIndex;
-                var item = grid.Rows[rowi].DataBoundItem as DataRowView;
-                var id = Convert.ToInt32(item[0]);
+                var item = grid.Rows[rowi].DataBoundItem as WaitingProductEntity;
 
-                ret.Add(id);
+                ret.Add(item);
             }
 
-            return ret.ToArray();
+            return ret;
         }
 
         private void RefreshReader()
@@ -1122,9 +1127,22 @@ namespace MessageImporter
                     if (product.invSKU == "AS53201025")
                         x=product.PairCode;*/
 
+                    // po novom by nemalo nastavat
                     if (product.PairProduct == null)
                     {
-                        var req = string.Format("SELECT * FROM "+DBProvider.T_WAIT_STOCK+" WHERE ORDER_NUMBER = \"{0}\" AND INV_SKU = \"{1}\" AND VALID = 1", Common.ModifyOrderNumber2(CSV.OrderNumber), product.invSKU);
+                        var found = WaitingProductEntity.Load(string.Format("INVOICE_NR = \"{0\"} AND INV_SKU = \"{1}\" AND VALID = 1", Common.ModifyOrderNumber2(CSV.OrderNumber), product.invSKU), null);
+                        if (found.Count == 1)
+                        {
+                            StockItem newitem = new StockItem();
+                            newitem.State = StockItemState.Paired;
+                            newitem.ProductCode = found[0].Sku;
+                            newitem.Description = found[0].Description;
+                            newitem.IsFromDB = true;
+
+                            product.PairProduct = newitem;
+                        }
+                        
+                        /*var req = string.Format("SELECT * FROM "+DBProvider.T_WAIT_STOCK+" WHERE ORDER_NUMBER = \"{0}\" AND INV_SKU = \"{1}\" AND VALID = 1", Common.ModifyOrderNumber2(CSV.OrderNumber), product.invSKU);
                         var res = DBProvider.ExecuteQuery(req);
                         if (res != null && res.Tables != null && res.Tables.Count > 0)
                         {
@@ -1147,7 +1165,7 @@ namespace MessageImporter
 
                                 
                             }
-                        }
+                        }*/
                     }
                 }
             }
@@ -1937,7 +1955,8 @@ namespace MessageImporter
             /////////////////////////////////////////////// STORE POLOZIEK                
             
             /*Fix pre opakujuce sa order number (alternativa by boli maily)*/
-            foreach (var inv in AllInvoices)
+            // MiKo zakomentovane 29.3.14 - waiting po novom..
+            /*foreach (var inv in AllInvoices)
             {
                 foreach (var invItem in inv.InvoiceItems)
                 {
@@ -1948,7 +1967,7 @@ namespace MessageImporter
                         DBProvider.ExecuteNonQuery(update);
                     }
                 }
-            }
+            }*/
 
             foreach (var prod in allProds)
             {
@@ -1966,7 +1985,7 @@ namespace MessageImporter
 
                 if (string.IsNullOrEmpty(prod.Sklad) || string.IsNullOrEmpty(prod.FictivePrice))
                 {
-                    MessageBox.Show(this, "Not all 'Sklad' and/or 'Fiktívna cena' are filled! Missing in product with code: "+code, "Missing fields", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, "Not all 'Sklad' and/or 'Fiktívna cena' are filled! Missing in product with code: " + code, "Missing fields", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -2009,7 +2028,8 @@ namespace MessageImporter
                 stock.stockHeader.storage.ids = prod.Sklad;
 
 
-                if (prod.State == StockItemState.Waiting)
+                // MiKo 29.3.14 - waiting sa ukladaju hned pri kliknuti na Waiting
+                /*if (prod.State == StockItemState.Waiting)
                 {
                     try
                     {
@@ -2029,7 +2049,7 @@ namespace MessageImporter
                         MessageBox.Show(this, "Exception during inserting waiting product into database: " + ex.ToString(), "Execute insert", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                }
+                }*/
 
                 stock.stockHeader.typePrice = new refType();
                 stock.stockHeader.typePrice.ids = Properties.Settings.Default.TypePrice;
@@ -3023,7 +3043,7 @@ namespace MessageImporter
             int count = 0;
             foreach (var item in items)
             {
-                if (item.PairProduct == null || (item.PairCode != null && item.PairCode == "shipping"))
+                if (/*item.PairProduct == null || (item.PairCode != null &&*/ item.PairCode == "shipping")
                     continue;
 
                 // produkty oznacime ako cakajuce na dalsie, pri exporte sa ulozia do DB..
@@ -3031,6 +3051,11 @@ namespace MessageImporter
                 item.PairProduct.Sklad = Properties.Settings.Default.Storage;
                 item.PairProduct.WaitingOrderNum = orderNum.ReturnText;
                 count++;
+
+                // ulozenie entity do DB
+                var dbEnt = item.GetWaitingEntity();
+                dbEnt.InvoiceNr = orderNum.ReturnText;
+                dbEnt.Save();
             }
 
             MessageBox.Show(this, string.Format("{0} products set as waiting.", count), "Waiting for products", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -3813,6 +3838,42 @@ namespace MessageImporter
            // MessageBox.Show(this, skus, skus, MessageBoxButtons.OK, MessageBoxIcon.Information);
           //  MessageBox.Show(this, skus.Count.ToString(), skus.First().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);*/
         }
+
+       private void gridWaitingInv_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+       {
+           var row = gridWaitingInv.Rows[e.RowIndex];
+           (row.DataBoundItem as WaitingProductEntity).Modified = true;
+           gridWaitingInv.InvalidateRow(e.RowIndex);
+       }
+
+       private void btnExportWaiting_Click(object sender, EventArgs e)
+       {
+           Common.ExportExcel("waiting", gridWaitingInv);
+       }
+
+       private void btnSaveChanges_Click(object sender, EventArgs e)
+       {
+           try
+           {
+               SaveWaitingChanges();
+               MessageBox.Show(this, "Save ok ;)", "Save changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               RefreshWaiting();
+           }
+           catch (System.Exception ex)
+           {
+               MessageBox.Show(this, "Exception: " + ex, "Save changes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           }
+       }
+
+       private void SaveWaitingChanges()
+       {
+           var ds = gridWaitingInv.DataSource as BindingList<WaitingProductEntity>;
+           var modif = ds.Where(e => e.Modified).ToList();
+           foreach (var item in modif)
+           {
+               item.Save();
+           }
+       }
     }
     
     class ChildItem

@@ -212,10 +212,10 @@ namespace MessageImporter
                     // farbicky pre parne riadky
                     if (obj != null)
                     {
-                        var dp = GetPrice(obj.ToString());
+                        /*var dp = GetPrice(obj.ToString());
                         if (!double.IsNaN(dp))
                             ws.Cells[row, col].Value = dp;
-                        else
+                        else*/
                             ws.Cells[row, col].Value = obj.ToString();
                     }
 

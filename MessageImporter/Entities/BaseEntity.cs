@@ -16,7 +16,7 @@ namespace MessageImporter.Entities
         public string Comment { get; set; }
         public long? Id { get; set; }
         // internal because of invisibility in grids
-        internal bool Valid { get; set; }
+        public bool Valid { get; set; }
 
         // basic column names
         public static string ID = "ID";
