@@ -409,11 +409,11 @@ namespace MessageImporter
                 CreateInvoice(allOrders);
                 // pridanie poloziek "Cena za dopravu"
                 AddShippingItems(AllInvoices);
-                SetInvoiceDS(new BindingList<Invoice>(AllInvoices));
+                SetInvoiceDS(new MySortableBindingList<Invoice>(AllInvoices));
                 // kontrola na nejasnosti v kodoch produktov
                 CheckPairByHand(stocks);
                 //AllStocks = allMessages.SelectMany(o => o.Items).ToList();
-                SetProductsDS(new BindingList<StockItem>(stocks));
+                SetProductsDS(new MySortableBindingList<StockItem>(stocks));
                 //UniqueStocks();
                                 
                 // dopocitanie cien s dopravou
@@ -2313,10 +2313,10 @@ namespace MessageImporter
             var items = GetInvoiceDS();
 
             if (items != null && items[e.RowIndex].InvoiceItems != null)
-                SetInvoiceItemsDS(new BindingList<InvoiceItem>(items[e.RowIndex].InvoiceItems));
+                SetInvoiceItemsDS(new MySortableBindingList<InvoiceItem>(items[e.RowIndex].InvoiceItems));
             else
                 // prazdny zoznam poloziek 
-                SetInvoiceItemsDS(new BindingList<InvoiceItem>());
+                SetInvoiceItemsDS(new MySortableBindingList<InvoiceItem>());
         }
 
         internal void CheckAllEqipped()
