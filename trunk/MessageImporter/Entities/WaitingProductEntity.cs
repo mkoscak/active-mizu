@@ -2,14 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace MessageImporter.Entities
 {
     /// <summary>
     /// DB entita cakajuceho produktu - invoice item
     /// </summary>
-    class WaitingProductEntity : BaseEntity<WaitingProductEntity>
+    public class WaitingProductEntity : BaseEntity<WaitingProductEntity>
     {
+        internal bool Modified;
+        [DisplayName("Modified?")]
+        public string ModifiedFlag
+        {
+            get
+            {
+                if (Modified)
+                    return "*";
+
+                return string.Empty;
+            }
+        }
+
         public string InvoiceNr { get; set; }
         public string Sku { get; set; }
         public string InvSku { get; set; }
@@ -26,7 +40,7 @@ namespace MessageImporter.Entities
         public string DiscountPohoda { get; set; }
         public string ItemTotal { get; set; }
         public string ItemStatus { get; set; }
-        public int    OrdCount { get; set; }
+        public string OrdCount { get; set; }
         public string Storage { get; set; }
 
         static string INVOICE_NR = "INVOICE_NR";
@@ -73,7 +87,7 @@ namespace MessageImporter.Entities
             DiscountPohoda = string.Empty;
             ItemTotal = string.Empty;
             ItemStatus = string.Empty;
-            OrdCount = 0;
+            OrdCount = string.Empty;
             Storage = string.Empty;
         }
 
@@ -123,7 +137,7 @@ namespace MessageImporter.Entities
             DiscountPohoda = row[DISCOUNT_POHODA].ToString();
             ItemTotal = row[ITEM_TOTAL].ToString();
             ItemStatus = row[ITEM_STATUS].ToString();
-            OrdCount = int.Parse(row[ORD_COUNT].ToString());
+            OrdCount = row[ORD_COUNT].ToString();
             Storage = row[STORAGE].ToString();
         }
 

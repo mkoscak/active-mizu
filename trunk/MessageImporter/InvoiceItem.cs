@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
-using System.Diagnostics;//pre debug
+using System.Diagnostics;
+using MessageImporter.Entities;//pre debug
 
 namespace MessageImporter
 {
@@ -59,6 +60,38 @@ namespace MessageImporter
         public InvoiceItem(Invoice parent)
         {
             Parent = parent;
+        }
+
+        public InvoiceItem(WaitingProductEntity waitingEnt)
+        {
+            this.PairCode = waitingEnt.Sku;
+            this.invSKU = waitingEnt.InvSku;
+            this.MSG_SKU = waitingEnt.Description;
+            this.BuyingPrice = waitingEnt.BuyingPrice;
+            this.Datetime = Convert.ToDateTime(waitingEnt.Date);
+            this.ItemName = waitingEnt.DescriptionWeb;
+            this.PredajnaCena = waitingEnt.SellPrice;
+            this.ItemOptions = waitingEnt.Size;
+            this.ItemOrigPrice = waitingEnt.ItemOrigPrice;
+            this.ItemPrice = waitingEnt.ItemPrice;
+            this.ItemTax = waitingEnt.ItemTax;
+            this.ItemDiscount = waitingEnt.ItemDiscount;
+            this.Zlava_Pohoda = waitingEnt.DiscountPohoda;
+            this.ItemTotal = waitingEnt.ItemTotal;
+            this.ItemStatus = waitingEnt.ItemStatus;
+            this.ItemQtyOrdered = waitingEnt.OrdCount;
+            this.itemStorage = waitingEnt.Storage;
+
+            if (!string.IsNullOrEmpty(waitingEnt.Sku))
+            {
+                StockItem newitem = new StockItem();
+                newitem.State = StockItemState.Paired;
+                newitem.ProductCode = waitingEnt.Sku;
+                newitem.Description = waitingEnt.Description;
+                newitem.IsFromDB = true;
+                
+                this.PairProduct = newitem;
+            }
         }
 
         internal List<StockItem> PairProductStack { get; set; }
@@ -288,5 +321,37 @@ namespace MessageImporter
         internal string ItemQtyRefunded { get; set; }
 
         internal string OrderNumber { get; set; }
+
+        /// <summary>
+        /// Vytvori novu entitu waiting produkt s null ID
+        /// </summary>
+        /// <returns></returns>
+        public WaitingProductEntity GetWaitingEntity()
+        {
+            var ret = new WaitingProductEntity();
+            ret.Valid = true;
+            ret.Sku = this.PairCode;
+            ret.InvSku = this.invSKU;
+            ret.Description = this.MSG_SKU;
+            ret.BuyingPrice = this.BuyingPrice;
+            ret.Date = this.Datetime.ToString();
+            ret.DescriptionWeb = this.ItemName;
+            ret.SellPrice = this.PredajnaCena;
+            ret.Size = this.ItemOptions;
+            ret.ItemOrigPrice = this.ItemOrigPrice;
+            ret.ItemPrice = this.ItemPrice;
+            ret.ItemTax = this.ItemTax;
+            ret.ItemDiscount = this.ItemDiscount;
+            ret.DiscountPohoda = this.Zlava_Pohoda;
+            ret.ItemTotal = this.ItemTotal;
+            ret.ItemStatus = this.ItemStatus;
+            ret.OrdCount = this.ItemQtyOrdered;
+            ret.Storage = this.itemStorage;
+
+            // cislo objednavky
+            ret.InvoiceNr = this.Parent.OrderNumber;
+
+            return ret;
+        }
     }
 }

@@ -60,9 +60,8 @@
             this.txtQuery.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtQuery.Size = new System.Drawing.Size(432, 297);
             this.txtQuery.TabIndex = 1;
-            this.txtQuery.Text = "select * from sqlite_master\r\n\r\nselect * from WAITING_PRODS order by id desc\r\n\r\nse" +
-                "lect * from WAITING_INV_ITEMS order by id desc\r\n\r\nselect * from READER order by " +
-                "id desc\r\n";
+            this.txtQuery.Text = "select * from sqlite_master\r\n\r\nselect * from WAITING_PRODUCTS order by id desc\r\n\r" +
+                "\nselect * from READER order by id desc\r\n";
             // 
             // txtNonQueryRes
             // 

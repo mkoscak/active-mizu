@@ -50,7 +50,6 @@
             this.btnProcess = new System.Windows.Forms.Button();
             this.tabFilesLog = new System.Windows.Forms.TabControl();
             this.tabFoundFiles = new System.Windows.Forms.TabPage();
-            this.dataFiles = new MessageImporter.CustomDataGridView();
             this.btnDeselectAll = new System.Windows.Forms.Button();
             this.btnSelectAll = new System.Windows.Forms.Button();
             this.btnInverse = new System.Windows.Forms.Button();
@@ -118,19 +117,45 @@
             this.btnReplaceReload = new System.Windows.Forms.Button();
             this.btnReplacementAdd = new System.Windows.Forms.Button();
             this.btnReplaceSave = new System.Windows.Forms.Button();
-            this.gridReplacements = new MessageImporter.CustomDataGridView();
             this.tabChild = new System.Windows.Forms.TabPage();
             this.btnChildRemove = new System.Windows.Forms.Button();
             this.btnChildReload = new System.Windows.Forms.Button();
             this.btnChildAdd = new System.Windows.Forms.Button();
             this.btnChildSave = new System.Windows.Forms.Button();
-            this.gridChilds = new MessageImporter.CustomDataGridView();
             this.tabLog = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnRead = new System.Windows.Forms.Button();
             this.tabData = new System.Windows.Forms.TabControl();
             this.invoice = new System.Windows.Forms.TabPage();
+            this.stock = new System.Windows.Forms.TabPage();
+            this.generateNomen = new System.Windows.Forms.Button();
+            this.btnStockCopy = new System.Windows.Forms.Button();
+            this.btnExportMSG = new System.Windows.Forms.Button();
+            this.btnUnpairAllMSG = new System.Windows.Forms.Button();
+            this.btnUnpairProductMSG = new System.Windows.Forms.Button();
+            this.btnRemoveMSG = new System.Windows.Forms.Button();
+            this.btnAddMsg = new System.Windows.Forms.Button();
+            this.reader = new System.Windows.Forms.TabPage();
+            this.btnDeleteAllReader = new System.Windows.Forms.Button();
+            this.btnOrderEquipped = new System.Windows.Forms.Button();
+            this.ReaderFilter = new System.Windows.Forms.GroupBox();
+            this.chkOnlyValid = new System.Windows.Forms.CheckBox();
+            this.btnFilClear = new System.Windows.Forms.Button();
+            this.txtFilStoreNr = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtFilSKU = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtFilOrderNr = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.tabWaiting = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.cbWaitingInvValidity = new System.Windows.Forms.ComboBox();
+            this.btnSetValidWaitingInv = new System.Windows.Forms.Button();
+            this.btnWaitingInvSetUsed = new System.Windows.Forms.Button();
+            this.lblWaitingInvCount = new System.Windows.Forms.Label();
+            this.btnExportWaiting = new System.Windows.Forms.Button();
+            this.btnSaveChanges = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnSetTrashNr = new System.Windows.Forms.Button();
             this.btnPostaExport = new System.Windows.Forms.Button();
@@ -140,7 +165,6 @@
             this.btnSetWaiting = new System.Windows.Forms.Button();
             this.btnInvoiceRemove = new System.Windows.Forms.Button();
             this.btnInvoiceAdd = new System.Windows.Forms.Button();
-            this.gridInvoices = new MessageImporter.CustomDataGridView();
             this.tabItems = new System.Windows.Forms.TabControl();
             this.tabAllItems = new System.Windows.Forms.TabPage();
             this.lbNonPaired = new System.Windows.Forms.ListBox();
@@ -154,35 +178,13 @@
             this.btnInvoiceItemNew = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.dataFiles = new MessageImporter.CustomDataGridView();
+            this.gridReplacements = new MessageImporter.CustomDataGridView();
+            this.gridChilds = new MessageImporter.CustomDataGridView();
+            this.gridInvoices = new MessageImporter.CustomDataGridView();
             this.gridInvItems = new MessageImporter.CustomDataGridView();
-            this.stock = new System.Windows.Forms.TabPage();
-            this.generateNomen = new System.Windows.Forms.Button();
-            this.btnStockCopy = new System.Windows.Forms.Button();
-            this.btnExportMSG = new System.Windows.Forms.Button();
-            this.btnUnpairAllMSG = new System.Windows.Forms.Button();
-            this.btnUnpairProductMSG = new System.Windows.Forms.Button();
-            this.btnRemoveMSG = new System.Windows.Forms.Button();
-            this.btnAddMsg = new System.Windows.Forms.Button();
             this.gridStocks = new MessageImporter.CustomDataGridView();
-            this.reader = new System.Windows.Forms.TabPage();
-            this.btnDeleteAllReader = new System.Windows.Forms.Button();
-            this.btnOrderEquipped = new System.Windows.Forms.Button();
-            this.ReaderFilter = new System.Windows.Forms.GroupBox();
-            this.chkOnlyValid = new System.Windows.Forms.CheckBox();
-            this.btnFilClear = new System.Windows.Forms.Button();
-            this.txtFilStoreNr = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtFilSKU = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtFilOrderNr = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.gridReader = new MessageImporter.CustomDataGridView();
-            this.tabWaiting = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.cbWaitingInvValidity = new System.Windows.Forms.ComboBox();
-            this.btnSetValidWaitingInv = new System.Windows.Forms.Button();
-            this.btnWaitingInvSetUsed = new System.Windows.Forms.Button();
-            this.lblWaitingInvCount = new System.Windows.Forms.Label();
             this.gridWaitingInv = new MessageImporter.CustomDataGridView();
             this.splitMain.Panel1.SuspendLayout();
             this.splitMain.Panel2.SuspendLayout();
@@ -190,7 +192,6 @@
             this.grpInputSettings.SuspendLayout();
             this.tabFilesLog.SuspendLayout();
             this.tabFoundFiles.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).BeginInit();
             this.tabSettings.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -198,27 +199,28 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabReplace.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).BeginInit();
             this.tabChild.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridChilds)).BeginInit();
             this.tabLog.SuspendLayout();
             this.tabData.SuspendLayout();
             this.invoice.SuspendLayout();
+            this.stock.SuspendLayout();
+            this.reader.SuspendLayout();
+            this.ReaderFilter.SuspendLayout();
+            this.tabWaiting.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridInvoices)).BeginInit();
             this.tabItems.SuspendLayout();
             this.tabAllItems.SuspendLayout();
             this.tabSelItems.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridChilds)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridInvoices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridInvItems)).BeginInit();
-            this.stock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridStocks)).BeginInit();
-            this.reader.SuspendLayout();
-            this.ReaderFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridReader)).BeginInit();
-            this.tabWaiting.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridWaitingInv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -407,26 +409,6 @@
             this.tabFoundFiles.TabIndex = 0;
             this.tabFoundFiles.Text = "Found files";
             this.tabFoundFiles.UseVisualStyleBackColor = true;
-            // 
-            // dataFiles
-            // 
-            this.dataFiles.AllowUserToOrderColumns = true;
-            this.dataFiles.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Info;
-            this.dataFiles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataFiles.BackgroundColor = System.Drawing.SystemColors.MenuBar;
-            this.dataFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataFiles.Location = new System.Drawing.Point(0, 0);
-            this.dataFiles.MultiSelect = false;
-            this.dataFiles.Name = "dataFiles";
-            this.dataFiles.RowHeadersVisible = false;
-            this.dataFiles.Size = new System.Drawing.Size(485, 448);
-            this.dataFiles.TabIndex = 18;
-            this.dataFiles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataFiles_CellValueChanged);
             // 
             // btnDeselectAll
             // 
@@ -1106,19 +1088,6 @@
             this.btnReplaceSave.UseVisualStyleBackColor = true;
             this.btnReplaceSave.Click += new System.EventHandler(this.btnReplaceSave_Click);
             // 
-            // gridReplacements
-            // 
-            this.gridReplacements.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridReplacements.BackgroundColor = System.Drawing.SystemColors.MenuBar;
-            this.gridReplacements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridReplacements.Location = new System.Drawing.Point(0, 0);
-            this.gridReplacements.Name = "gridReplacements";
-            this.gridReplacements.RowHeadersVisible = false;
-            this.gridReplacements.Size = new System.Drawing.Size(485, 447);
-            this.gridReplacements.TabIndex = 0;
-            // 
             // tabChild
             // 
             this.tabChild.Controls.Add(this.btnChildRemove);
@@ -1176,19 +1145,6 @@
             this.btnChildSave.Text = "Save";
             this.btnChildSave.UseVisualStyleBackColor = true;
             this.btnChildSave.Click += new System.EventHandler(this.btnChildSave_Click);
-            // 
-            // gridChilds
-            // 
-            this.gridChilds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridChilds.BackgroundColor = System.Drawing.SystemColors.MenuBar;
-            this.gridChilds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridChilds.Location = new System.Drawing.Point(0, 0);
-            this.gridChilds.Name = "gridChilds";
-            this.gridChilds.RowHeadersVisible = false;
-            this.gridChilds.Size = new System.Drawing.Size(485, 448);
-            this.gridChilds.TabIndex = 0;
             // 
             // tabLog
             // 
@@ -1264,6 +1220,337 @@
             this.invoice.TabIndex = 0;
             this.invoice.Text = "Invoice";
             this.invoice.UseVisualStyleBackColor = true;
+            // 
+            // stock
+            // 
+            this.stock.Controls.Add(this.generateNomen);
+            this.stock.Controls.Add(this.btnStockCopy);
+            this.stock.Controls.Add(this.btnExportMSG);
+            this.stock.Controls.Add(this.btnUnpairAllMSG);
+            this.stock.Controls.Add(this.btnUnpairProductMSG);
+            this.stock.Controls.Add(this.btnRemoveMSG);
+            this.stock.Controls.Add(this.btnAddMsg);
+            this.stock.Controls.Add(this.gridStocks);
+            this.stock.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.stock.Location = new System.Drawing.Point(4, 22);
+            this.stock.Name = "stock";
+            this.stock.Padding = new System.Windows.Forms.Padding(3);
+            this.stock.Size = new System.Drawing.Size(989, 675);
+            this.stock.TabIndex = 1;
+            this.stock.Text = "Stock";
+            this.stock.UseVisualStyleBackColor = true;
+            // 
+            // generateNomen
+            // 
+            this.generateNomen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.generateNomen.Location = new System.Drawing.Point(397, 647);
+            this.generateNomen.Name = "generateNomen";
+            this.generateNomen.Size = new System.Drawing.Size(118, 23);
+            this.generateNomen.TabIndex = 37;
+            this.generateNomen.Text = "Vytvor Nomenklaturu";
+            this.generateNomen.UseVisualStyleBackColor = true;
+            this.generateNomen.Visible = false;
+            this.generateNomen.Click += new System.EventHandler(this.generateNomen_Click);
+            // 
+            // btnStockCopy
+            // 
+            this.btnStockCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnStockCopy.Location = new System.Drawing.Point(84, 646);
+            this.btnStockCopy.Name = "btnStockCopy";
+            this.btnStockCopy.Size = new System.Drawing.Size(101, 23);
+            this.btnStockCopy.TabIndex = 36;
+            this.btnStockCopy.Text = "Copy selected";
+            this.btnStockCopy.UseVisualStyleBackColor = true;
+            this.btnStockCopy.Click += new System.EventHandler(this.btnStockCopy_Click);
+            // 
+            // btnExportMSG
+            // 
+            this.btnExportMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportMSG.Location = new System.Drawing.Point(538, 646);
+            this.btnExportMSG.Name = "btnExportMSG";
+            this.btnExportMSG.Size = new System.Drawing.Size(114, 23);
+            this.btnExportMSG.TabIndex = 35;
+            this.btnExportMSG.Text = "Export";
+            this.btnExportMSG.UseVisualStyleBackColor = true;
+            this.btnExportMSG.Click += new System.EventHandler(this.btnExportMSG_Click);
+            // 
+            // btnUnpairAllMSG
+            // 
+            this.btnUnpairAllMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUnpairAllMSG.Location = new System.Drawing.Point(866, 646);
+            this.btnUnpairAllMSG.Name = "btnUnpairAllMSG";
+            this.btnUnpairAllMSG.Size = new System.Drawing.Size(114, 23);
+            this.btnUnpairAllMSG.TabIndex = 33;
+            this.btnUnpairAllMSG.Text = "Unpair all";
+            this.btnUnpairAllMSG.UseVisualStyleBackColor = true;
+            this.btnUnpairAllMSG.Click += new System.EventHandler(this.btnUnpairAllMSG_Click);
+            // 
+            // btnUnpairProductMSG
+            // 
+            this.btnUnpairProductMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUnpairProductMSG.Location = new System.Drawing.Point(744, 646);
+            this.btnUnpairProductMSG.Name = "btnUnpairProductMSG";
+            this.btnUnpairProductMSG.Size = new System.Drawing.Size(114, 23);
+            this.btnUnpairProductMSG.TabIndex = 32;
+            this.btnUnpairProductMSG.Text = "Unpair selected";
+            this.btnUnpairProductMSG.UseVisualStyleBackColor = true;
+            this.btnUnpairProductMSG.Click += new System.EventHandler(this.btnUnpairProductMSG_Click);
+            // 
+            // btnRemoveMSG
+            // 
+            this.btnRemoveMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRemoveMSG.Location = new System.Drawing.Point(191, 646);
+            this.btnRemoveMSG.Name = "btnRemoveMSG";
+            this.btnRemoveMSG.Size = new System.Drawing.Size(114, 23);
+            this.btnRemoveMSG.TabIndex = 27;
+            this.btnRemoveMSG.Text = "Remove selected";
+            this.btnRemoveMSG.UseVisualStyleBackColor = true;
+            this.btnRemoveMSG.Click += new System.EventHandler(this.btnRemoveMSG_Click);
+            // 
+            // btnAddMsg
+            // 
+            this.btnAddMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddMsg.Location = new System.Drawing.Point(3, 646);
+            this.btnAddMsg.Name = "btnAddMsg";
+            this.btnAddMsg.Size = new System.Drawing.Size(75, 23);
+            this.btnAddMsg.TabIndex = 26;
+            this.btnAddMsg.Text = "Add new";
+            this.btnAddMsg.UseVisualStyleBackColor = true;
+            this.btnAddMsg.Click += new System.EventHandler(this.btnAddMsg_Click);
+            // 
+            // reader
+            // 
+            this.reader.Controls.Add(this.btnDeleteAllReader);
+            this.reader.Controls.Add(this.btnOrderEquipped);
+            this.reader.Controls.Add(this.ReaderFilter);
+            this.reader.Controls.Add(this.gridReader);
+            this.reader.Location = new System.Drawing.Point(4, 22);
+            this.reader.Name = "reader";
+            this.reader.Size = new System.Drawing.Size(989, 675);
+            this.reader.TabIndex = 2;
+            this.reader.Text = "Reader";
+            this.reader.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteAllReader
+            // 
+            this.btnDeleteAllReader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteAllReader.Location = new System.Drawing.Point(796, 635);
+            this.btnDeleteAllReader.Name = "btnDeleteAllReader";
+            this.btnDeleteAllReader.Size = new System.Drawing.Size(144, 23);
+            this.btnDeleteAllReader.TabIndex = 3;
+            this.btnDeleteAllReader.Text = "Delete all items";
+            this.btnDeleteAllReader.UseVisualStyleBackColor = true;
+            this.btnDeleteAllReader.Click += new System.EventHandler(this.btnDeleteAllReader_Click);
+            // 
+            // btnOrderEquipped
+            // 
+            this.btnOrderEquipped.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOrderEquipped.Location = new System.Drawing.Point(3, 635);
+            this.btnOrderEquipped.Name = "btnOrderEquipped";
+            this.btnOrderEquipped.Size = new System.Drawing.Size(136, 23);
+            this.btnOrderEquipped.TabIndex = 2;
+            this.btnOrderEquipped.Text = "Set order equipped";
+            this.btnOrderEquipped.UseVisualStyleBackColor = true;
+            this.btnOrderEquipped.Click += new System.EventHandler(this.btnOrderEquipped_Click);
+            // 
+            // ReaderFilter
+            // 
+            this.ReaderFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.ReaderFilter.Controls.Add(this.chkOnlyValid);
+            this.ReaderFilter.Controls.Add(this.btnFilClear);
+            this.ReaderFilter.Controls.Add(this.txtFilStoreNr);
+            this.ReaderFilter.Controls.Add(this.label21);
+            this.ReaderFilter.Controls.Add(this.txtFilSKU);
+            this.ReaderFilter.Controls.Add(this.label20);
+            this.ReaderFilter.Controls.Add(this.txtFilOrderNr);
+            this.ReaderFilter.Controls.Add(this.label19);
+            this.ReaderFilter.Location = new System.Drawing.Point(3, 3);
+            this.ReaderFilter.Name = "ReaderFilter";
+            this.ReaderFilter.Size = new System.Drawing.Size(937, 51);
+            this.ReaderFilter.TabIndex = 1;
+            this.ReaderFilter.TabStop = false;
+            this.ReaderFilter.Text = "Filter";
+            // 
+            // chkOnlyValid
+            // 
+            this.chkOnlyValid.AutoSize = true;
+            this.chkOnlyValid.Checked = true;
+            this.chkOnlyValid.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkOnlyValid.Location = new System.Drawing.Point(535, 20);
+            this.chkOnlyValid.Name = "chkOnlyValid";
+            this.chkOnlyValid.Size = new System.Drawing.Size(75, 17);
+            this.chkOnlyValid.TabIndex = 7;
+            this.chkOnlyValid.Text = "VALID = 1";
+            this.chkOnlyValid.UseVisualStyleBackColor = true;
+            this.chkOnlyValid.CheckedChanged += new System.EventHandler(this.FilterChanged);
+            // 
+            // btnFilClear
+            // 
+            this.btnFilClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFilClear.Location = new System.Drawing.Point(856, 15);
+            this.btnFilClear.Name = "btnFilClear";
+            this.btnFilClear.Size = new System.Drawing.Size(75, 23);
+            this.btnFilClear.TabIndex = 6;
+            this.btnFilClear.Text = "Clear";
+            this.btnFilClear.UseVisualStyleBackColor = true;
+            this.btnFilClear.Click += new System.EventHandler(this.btnFilClear_Click);
+            // 
+            // txtFilStoreNr
+            // 
+            this.txtFilStoreNr.Location = new System.Drawing.Point(406, 18);
+            this.txtFilStoreNr.Name = "txtFilStoreNr";
+            this.txtFilStoreNr.Size = new System.Drawing.Size(100, 20);
+            this.txtFilStoreNr.TabIndex = 5;
+            this.txtFilStoreNr.TextChanged += new System.EventHandler(this.FilterChanged);
+            this.txtFilStoreNr.Click += new System.EventHandler(this.txtFilSKU_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.Color.Maroon;
+            this.label21.Location = new System.Drawing.Point(330, 21);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(70, 13);
+            this.label21.TabIndex = 4;
+            this.label21.Text = "Store number";
+            // 
+            // txtFilSKU
+            // 
+            this.txtFilSKU.Location = new System.Drawing.Point(224, 17);
+            this.txtFilSKU.Name = "txtFilSKU";
+            this.txtFilSKU.Size = new System.Drawing.Size(100, 20);
+            this.txtFilSKU.TabIndex = 3;
+            this.txtFilSKU.TextChanged += new System.EventHandler(this.FilterChanged);
+            this.txtFilSKU.Click += new System.EventHandler(this.txtFilSKU_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.Maroon;
+            this.label20.Location = new System.Drawing.Point(189, 21);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(29, 13);
+            this.label20.TabIndex = 2;
+            this.label20.Text = "SKU";
+            // 
+            // txtFilOrderNr
+            // 
+            this.txtFilOrderNr.Location = new System.Drawing.Point(83, 17);
+            this.txtFilOrderNr.Name = "txtFilOrderNr";
+            this.txtFilOrderNr.Size = new System.Drawing.Size(100, 20);
+            this.txtFilOrderNr.TabIndex = 1;
+            this.txtFilOrderNr.TextChanged += new System.EventHandler(this.FilterChanged);
+            this.txtFilOrderNr.Click += new System.EventHandler(this.txtFilSKU_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.Color.Maroon;
+            this.label19.Location = new System.Drawing.Point(6, 21);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(71, 13);
+            this.label19.TabIndex = 0;
+            this.label19.Text = "Order number";
+            // 
+            // tabWaiting
+            // 
+            this.tabWaiting.Controls.Add(this.groupBox6);
+            this.tabWaiting.Location = new System.Drawing.Point(4, 22);
+            this.tabWaiting.Name = "tabWaiting";
+            this.tabWaiting.Size = new System.Drawing.Size(989, 675);
+            this.tabWaiting.TabIndex = 3;
+            this.tabWaiting.Text = "Waiting";
+            this.tabWaiting.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox6.Controls.Add(this.btnSaveChanges);
+            this.groupBox6.Controls.Add(this.btnExportWaiting);
+            this.groupBox6.Controls.Add(this.cbWaitingInvValidity);
+            this.groupBox6.Controls.Add(this.btnSetValidWaitingInv);
+            this.groupBox6.Controls.Add(this.btnWaitingInvSetUsed);
+            this.groupBox6.Controls.Add(this.lblWaitingInvCount);
+            this.groupBox6.Controls.Add(this.gridWaitingInv);
+            this.groupBox6.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.groupBox6.Location = new System.Drawing.Point(3, 3);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(979, 666);
+            this.groupBox6.TabIndex = 0;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Invoice";
+            // 
+            // cbWaitingInvValidity
+            // 
+            this.cbWaitingInvValidity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWaitingInvValidity.FormattingEnabled = true;
+            this.cbWaitingInvValidity.Items.AddRange(new object[] {
+            "Not used",
+            "Used",
+            "All"});
+            this.cbWaitingInvValidity.Location = new System.Drawing.Point(6, 19);
+            this.cbWaitingInvValidity.Name = "cbWaitingInvValidity";
+            this.cbWaitingInvValidity.Size = new System.Drawing.Size(142, 21);
+            this.cbWaitingInvValidity.TabIndex = 29;
+            this.cbWaitingInvValidity.SelectedIndexChanged += new System.EventHandler(this.cbWaitingInvValidity_SelectedIndexChanged);
+            // 
+            // btnSetValidWaitingInv
+            // 
+            this.btnSetValidWaitingInv.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSetValidWaitingInv.Location = new System.Drawing.Point(6, 121);
+            this.btnSetValidWaitingInv.Name = "btnSetValidWaitingInv";
+            this.btnSetValidWaitingInv.Size = new System.Drawing.Size(142, 32);
+            this.btnSetValidWaitingInv.TabIndex = 28;
+            this.btnSetValidWaitingInv.Text = "Set selected as NOT used";
+            this.btnSetValidWaitingInv.UseVisualStyleBackColor = true;
+            this.btnSetValidWaitingInv.Click += new System.EventHandler(this.btnSetValidWaitingInv_Click);
+            // 
+            // btnWaitingInvSetUsed
+            // 
+            this.btnWaitingInvSetUsed.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnWaitingInvSetUsed.Location = new System.Drawing.Point(6, 83);
+            this.btnWaitingInvSetUsed.Name = "btnWaitingInvSetUsed";
+            this.btnWaitingInvSetUsed.Size = new System.Drawing.Size(142, 32);
+            this.btnWaitingInvSetUsed.TabIndex = 27;
+            this.btnWaitingInvSetUsed.Text = "Set selected as used";
+            this.btnWaitingInvSetUsed.UseVisualStyleBackColor = true;
+            this.btnWaitingInvSetUsed.Click += new System.EventHandler(this.btnWaitingInvSetUsed_Click);
+            // 
+            // lblWaitingInvCount
+            // 
+            this.lblWaitingInvCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblWaitingInvCount.AutoSize = true;
+            this.lblWaitingInvCount.ForeColor = System.Drawing.Color.Maroon;
+            this.lblWaitingInvCount.Location = new System.Drawing.Point(6, 647);
+            this.lblWaitingInvCount.Name = "lblWaitingInvCount";
+            this.lblWaitingInvCount.Size = new System.Drawing.Size(41, 13);
+            this.lblWaitingInvCount.TabIndex = 26;
+            this.lblWaitingInvCount.Text = "X items";
+            // 
+            // btnExportWaiting
+            // 
+            this.btnExportWaiting.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnExportWaiting.Location = new System.Drawing.Point(6, 331);
+            this.btnExportWaiting.Name = "btnExportWaiting";
+            this.btnExportWaiting.Size = new System.Drawing.Size(142, 32);
+            this.btnExportWaiting.TabIndex = 30;
+            this.btnExportWaiting.Text = "E&xport to excel";
+            this.btnExportWaiting.UseVisualStyleBackColor = true;
+            this.btnExportWaiting.Click += new System.EventHandler(this.btnExportWaiting_Click);
+            // 
+            // btnSaveChanges
+            // 
+            this.btnSaveChanges.ForeColor = System.Drawing.Color.Maroon;
+            this.btnSaveChanges.Location = new System.Drawing.Point(6, 189);
+            this.btnSaveChanges.Name = "btnSaveChanges";
+            this.btnSaveChanges.Size = new System.Drawing.Size(142, 32);
+            this.btnSaveChanges.TabIndex = 31;
+            this.btnSaveChanges.Text = "&Save changes";
+            this.btnSaveChanges.UseVisualStyleBackColor = true;
+            this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
             // 
             // splitContainer1
             // 
@@ -1390,27 +1677,6 @@
             this.btnInvoiceAdd.Text = "Add new";
             this.btnInvoiceAdd.UseVisualStyleBackColor = true;
             this.btnInvoiceAdd.Click += new System.EventHandler(this.btnInvoiceAdd_Click);
-            // 
-            // gridInvoices
-            // 
-            this.gridInvoices.AllowUserToAddRows = false;
-            this.gridInvoices.AllowUserToDeleteRows = false;
-            this.gridInvoices.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
-            this.gridInvoices.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.gridInvoices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridInvoices.BackgroundColor = System.Drawing.SystemColors.MenuBar;
-            this.gridInvoices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridInvoices.Location = new System.Drawing.Point(5, 4);
-            this.gridInvoices.MultiSelect = false;
-            this.gridInvoices.Name = "gridInvoices";
-            this.gridInvoices.RowHeadersVisible = false;
-            this.gridInvoices.Size = new System.Drawing.Size(976, 390);
-            this.gridInvoices.TabIndex = 23;
-            this.gridInvoices.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceValueChanged);
-            this.gridInvoices.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceChanged);
             // 
             // tabItems
             // 
@@ -1552,6 +1818,73 @@
             this.label8.TabIndex = 27;
             this.label8.Text = "Invoice items";
             // 
+            // dataFiles
+            // 
+            this.dataFiles.AllowUserToOrderColumns = true;
+            this.dataFiles.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Info;
+            this.dataFiles.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataFiles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataFiles.BackgroundColor = System.Drawing.SystemColors.MenuBar;
+            this.dataFiles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataFiles.Location = new System.Drawing.Point(0, 0);
+            this.dataFiles.MultiSelect = false;
+            this.dataFiles.Name = "dataFiles";
+            this.dataFiles.RowHeadersVisible = false;
+            this.dataFiles.Size = new System.Drawing.Size(485, 448);
+            this.dataFiles.TabIndex = 18;
+            this.dataFiles.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataFiles_CellValueChanged);
+            // 
+            // gridReplacements
+            // 
+            this.gridReplacements.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridReplacements.BackgroundColor = System.Drawing.SystemColors.MenuBar;
+            this.gridReplacements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridReplacements.Location = new System.Drawing.Point(0, 0);
+            this.gridReplacements.Name = "gridReplacements";
+            this.gridReplacements.RowHeadersVisible = false;
+            this.gridReplacements.Size = new System.Drawing.Size(485, 447);
+            this.gridReplacements.TabIndex = 0;
+            // 
+            // gridChilds
+            // 
+            this.gridChilds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridChilds.BackgroundColor = System.Drawing.SystemColors.MenuBar;
+            this.gridChilds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridChilds.Location = new System.Drawing.Point(0, 0);
+            this.gridChilds.Name = "gridChilds";
+            this.gridChilds.RowHeadersVisible = false;
+            this.gridChilds.Size = new System.Drawing.Size(485, 448);
+            this.gridChilds.TabIndex = 0;
+            // 
+            // gridInvoices
+            // 
+            this.gridInvoices.AllowUserToAddRows = false;
+            this.gridInvoices.AllowUserToDeleteRows = false;
+            this.gridInvoices.AllowUserToResizeRows = false;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Info;
+            this.gridInvoices.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.gridInvoices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridInvoices.BackgroundColor = System.Drawing.SystemColors.MenuBar;
+            this.gridInvoices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridInvoices.Location = new System.Drawing.Point(5, 4);
+            this.gridInvoices.MultiSelect = false;
+            this.gridInvoices.Name = "gridInvoices";
+            this.gridInvoices.RowHeadersVisible = false;
+            this.gridInvoices.Size = new System.Drawing.Size(976, 390);
+            this.gridInvoices.TabIndex = 23;
+            this.gridInvoices.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceValueChanged);
+            this.gridInvoices.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.InvoiceChanged);
+            // 
             // gridInvItems
             // 
             this.gridInvItems.AllowUserToAddRows = false;
@@ -1571,103 +1904,6 @@
             this.gridInvItems.TabIndex = 0;
             this.gridInvItems.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInvItems_CellEndEdit);
             this.gridInvItems.SelectionChanged += new System.EventHandler(this.InvoiceItemSelChanged);
-            // 
-            // stock
-            // 
-            this.stock.Controls.Add(this.generateNomen);
-            this.stock.Controls.Add(this.btnStockCopy);
-            this.stock.Controls.Add(this.btnExportMSG);
-            this.stock.Controls.Add(this.btnUnpairAllMSG);
-            this.stock.Controls.Add(this.btnUnpairProductMSG);
-            this.stock.Controls.Add(this.btnRemoveMSG);
-            this.stock.Controls.Add(this.btnAddMsg);
-            this.stock.Controls.Add(this.gridStocks);
-            this.stock.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.stock.Location = new System.Drawing.Point(4, 22);
-            this.stock.Name = "stock";
-            this.stock.Padding = new System.Windows.Forms.Padding(3);
-            this.stock.Size = new System.Drawing.Size(989, 675);
-            this.stock.TabIndex = 1;
-            this.stock.Text = "Stock";
-            this.stock.UseVisualStyleBackColor = true;
-            // 
-            // generateNomen
-            // 
-            this.generateNomen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.generateNomen.Location = new System.Drawing.Point(397, 647);
-            this.generateNomen.Name = "generateNomen";
-            this.generateNomen.Size = new System.Drawing.Size(118, 23);
-            this.generateNomen.TabIndex = 37;
-            this.generateNomen.Text = "Vytvor Nomenklaturu";
-            this.generateNomen.UseVisualStyleBackColor = true;
-            this.generateNomen.Visible = false;
-            this.generateNomen.Click += new System.EventHandler(this.generateNomen_Click);
-            // 
-            // btnStockCopy
-            // 
-            this.btnStockCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnStockCopy.Location = new System.Drawing.Point(84, 646);
-            this.btnStockCopy.Name = "btnStockCopy";
-            this.btnStockCopy.Size = new System.Drawing.Size(101, 23);
-            this.btnStockCopy.TabIndex = 36;
-            this.btnStockCopy.Text = "Copy selected";
-            this.btnStockCopy.UseVisualStyleBackColor = true;
-            this.btnStockCopy.Click += new System.EventHandler(this.btnStockCopy_Click);
-            // 
-            // btnExportMSG
-            // 
-            this.btnExportMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportMSG.Location = new System.Drawing.Point(538, 646);
-            this.btnExportMSG.Name = "btnExportMSG";
-            this.btnExportMSG.Size = new System.Drawing.Size(114, 23);
-            this.btnExportMSG.TabIndex = 35;
-            this.btnExportMSG.Text = "Export";
-            this.btnExportMSG.UseVisualStyleBackColor = true;
-            this.btnExportMSG.Click += new System.EventHandler(this.btnExportMSG_Click);
-            // 
-            // btnUnpairAllMSG
-            // 
-            this.btnUnpairAllMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUnpairAllMSG.Location = new System.Drawing.Point(866, 646);
-            this.btnUnpairAllMSG.Name = "btnUnpairAllMSG";
-            this.btnUnpairAllMSG.Size = new System.Drawing.Size(114, 23);
-            this.btnUnpairAllMSG.TabIndex = 33;
-            this.btnUnpairAllMSG.Text = "Unpair all";
-            this.btnUnpairAllMSG.UseVisualStyleBackColor = true;
-            this.btnUnpairAllMSG.Click += new System.EventHandler(this.btnUnpairAllMSG_Click);
-            // 
-            // btnUnpairProductMSG
-            // 
-            this.btnUnpairProductMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUnpairProductMSG.Location = new System.Drawing.Point(744, 646);
-            this.btnUnpairProductMSG.Name = "btnUnpairProductMSG";
-            this.btnUnpairProductMSG.Size = new System.Drawing.Size(114, 23);
-            this.btnUnpairProductMSG.TabIndex = 32;
-            this.btnUnpairProductMSG.Text = "Unpair selected";
-            this.btnUnpairProductMSG.UseVisualStyleBackColor = true;
-            this.btnUnpairProductMSG.Click += new System.EventHandler(this.btnUnpairProductMSG_Click);
-            // 
-            // btnRemoveMSG
-            // 
-            this.btnRemoveMSG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemoveMSG.Location = new System.Drawing.Point(191, 646);
-            this.btnRemoveMSG.Name = "btnRemoveMSG";
-            this.btnRemoveMSG.Size = new System.Drawing.Size(114, 23);
-            this.btnRemoveMSG.TabIndex = 27;
-            this.btnRemoveMSG.Text = "Remove selected";
-            this.btnRemoveMSG.UseVisualStyleBackColor = true;
-            this.btnRemoveMSG.Click += new System.EventHandler(this.btnRemoveMSG_Click);
-            // 
-            // btnAddMsg
-            // 
-            this.btnAddMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddMsg.Location = new System.Drawing.Point(3, 646);
-            this.btnAddMsg.Name = "btnAddMsg";
-            this.btnAddMsg.Size = new System.Drawing.Size(75, 23);
-            this.btnAddMsg.TabIndex = 26;
-            this.btnAddMsg.Text = "Add new";
-            this.btnAddMsg.UseVisualStyleBackColor = true;
-            this.btnAddMsg.Click += new System.EventHandler(this.btnAddMsg_Click);
             // 
             // gridStocks
             // 
@@ -1689,141 +1925,6 @@
             this.gridStocks.TabIndex = 3;
             this.gridStocks.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.StockValueChanged);
             // 
-            // reader
-            // 
-            this.reader.Controls.Add(this.btnDeleteAllReader);
-            this.reader.Controls.Add(this.btnOrderEquipped);
-            this.reader.Controls.Add(this.ReaderFilter);
-            this.reader.Controls.Add(this.gridReader);
-            this.reader.Location = new System.Drawing.Point(4, 22);
-            this.reader.Name = "reader";
-            this.reader.Size = new System.Drawing.Size(989, 675);
-            this.reader.TabIndex = 2;
-            this.reader.Text = "Reader";
-            this.reader.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteAllReader
-            // 
-            this.btnDeleteAllReader.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteAllReader.Location = new System.Drawing.Point(796, 635);
-            this.btnDeleteAllReader.Name = "btnDeleteAllReader";
-            this.btnDeleteAllReader.Size = new System.Drawing.Size(144, 23);
-            this.btnDeleteAllReader.TabIndex = 3;
-            this.btnDeleteAllReader.Text = "Delete all items";
-            this.btnDeleteAllReader.UseVisualStyleBackColor = true;
-            this.btnDeleteAllReader.Click += new System.EventHandler(this.btnDeleteAllReader_Click);
-            // 
-            // btnOrderEquipped
-            // 
-            this.btnOrderEquipped.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOrderEquipped.Location = new System.Drawing.Point(3, 635);
-            this.btnOrderEquipped.Name = "btnOrderEquipped";
-            this.btnOrderEquipped.Size = new System.Drawing.Size(136, 23);
-            this.btnOrderEquipped.TabIndex = 2;
-            this.btnOrderEquipped.Text = "Set order equipped";
-            this.btnOrderEquipped.UseVisualStyleBackColor = true;
-            this.btnOrderEquipped.Click += new System.EventHandler(this.btnOrderEquipped_Click);
-            // 
-            // ReaderFilter
-            // 
-            this.ReaderFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.ReaderFilter.Controls.Add(this.chkOnlyValid);
-            this.ReaderFilter.Controls.Add(this.btnFilClear);
-            this.ReaderFilter.Controls.Add(this.txtFilStoreNr);
-            this.ReaderFilter.Controls.Add(this.label21);
-            this.ReaderFilter.Controls.Add(this.txtFilSKU);
-            this.ReaderFilter.Controls.Add(this.label20);
-            this.ReaderFilter.Controls.Add(this.txtFilOrderNr);
-            this.ReaderFilter.Controls.Add(this.label19);
-            this.ReaderFilter.Location = new System.Drawing.Point(3, 3);
-            this.ReaderFilter.Name = "ReaderFilter";
-            this.ReaderFilter.Size = new System.Drawing.Size(937, 51);
-            this.ReaderFilter.TabIndex = 1;
-            this.ReaderFilter.TabStop = false;
-            this.ReaderFilter.Text = "Filter";
-            // 
-            // chkOnlyValid
-            // 
-            this.chkOnlyValid.AutoSize = true;
-            this.chkOnlyValid.Checked = true;
-            this.chkOnlyValid.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkOnlyValid.Location = new System.Drawing.Point(535, 20);
-            this.chkOnlyValid.Name = "chkOnlyValid";
-            this.chkOnlyValid.Size = new System.Drawing.Size(75, 17);
-            this.chkOnlyValid.TabIndex = 7;
-            this.chkOnlyValid.Text = "VALID = 1";
-            this.chkOnlyValid.UseVisualStyleBackColor = true;
-            this.chkOnlyValid.CheckedChanged += new System.EventHandler(this.FilterChanged);
-            // 
-            // btnFilClear
-            // 
-            this.btnFilClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFilClear.Location = new System.Drawing.Point(856, 15);
-            this.btnFilClear.Name = "btnFilClear";
-            this.btnFilClear.Size = new System.Drawing.Size(75, 23);
-            this.btnFilClear.TabIndex = 6;
-            this.btnFilClear.Text = "Clear";
-            this.btnFilClear.UseVisualStyleBackColor = true;
-            this.btnFilClear.Click += new System.EventHandler(this.btnFilClear_Click);
-            // 
-            // txtFilStoreNr
-            // 
-            this.txtFilStoreNr.Location = new System.Drawing.Point(406, 18);
-            this.txtFilStoreNr.Name = "txtFilStoreNr";
-            this.txtFilStoreNr.Size = new System.Drawing.Size(100, 20);
-            this.txtFilStoreNr.TabIndex = 5;
-            this.txtFilStoreNr.TextChanged += new System.EventHandler(this.FilterChanged);
-            this.txtFilStoreNr.Click += new System.EventHandler(this.txtFilSKU_Click);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.ForeColor = System.Drawing.Color.Maroon;
-            this.label21.Location = new System.Drawing.Point(330, 21);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(70, 13);
-            this.label21.TabIndex = 4;
-            this.label21.Text = "Store number";
-            // 
-            // txtFilSKU
-            // 
-            this.txtFilSKU.Location = new System.Drawing.Point(224, 17);
-            this.txtFilSKU.Name = "txtFilSKU";
-            this.txtFilSKU.Size = new System.Drawing.Size(100, 20);
-            this.txtFilSKU.TabIndex = 3;
-            this.txtFilSKU.TextChanged += new System.EventHandler(this.FilterChanged);
-            this.txtFilSKU.Click += new System.EventHandler(this.txtFilSKU_Click);
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.Color.Maroon;
-            this.label20.Location = new System.Drawing.Point(189, 21);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(29, 13);
-            this.label20.TabIndex = 2;
-            this.label20.Text = "SKU";
-            // 
-            // txtFilOrderNr
-            // 
-            this.txtFilOrderNr.Location = new System.Drawing.Point(83, 17);
-            this.txtFilOrderNr.Name = "txtFilOrderNr";
-            this.txtFilOrderNr.Size = new System.Drawing.Size(100, 20);
-            this.txtFilOrderNr.TabIndex = 1;
-            this.txtFilOrderNr.TextChanged += new System.EventHandler(this.FilterChanged);
-            this.txtFilOrderNr.Click += new System.EventHandler(this.txtFilSKU_Click);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.Color.Maroon;
-            this.label19.Location = new System.Drawing.Point(6, 21);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(71, 13);
-            this.label19.TabIndex = 0;
-            this.label19.Text = "Order number";
-            // 
             // gridReader
             // 
             this.gridReader.AllowUserToAddRows = false;
@@ -1838,79 +1939,6 @@
             this.gridReader.Name = "gridReader";
             this.gridReader.Size = new System.Drawing.Size(937, 569);
             this.gridReader.TabIndex = 0;
-            // 
-            // tabWaiting
-            // 
-            this.tabWaiting.Controls.Add(this.groupBox6);
-            this.tabWaiting.Location = new System.Drawing.Point(4, 22);
-            this.tabWaiting.Name = "tabWaiting";
-            this.tabWaiting.Size = new System.Drawing.Size(989, 675);
-            this.tabWaiting.TabIndex = 3;
-            this.tabWaiting.Text = "Waiting";
-            this.tabWaiting.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox6.Controls.Add(this.cbWaitingInvValidity);
-            this.groupBox6.Controls.Add(this.btnSetValidWaitingInv);
-            this.groupBox6.Controls.Add(this.btnWaitingInvSetUsed);
-            this.groupBox6.Controls.Add(this.lblWaitingInvCount);
-            this.groupBox6.Controls.Add(this.gridWaitingInv);
-            this.groupBox6.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox6.Location = new System.Drawing.Point(3, 3);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(979, 666);
-            this.groupBox6.TabIndex = 0;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Invoice";
-            // 
-            // cbWaitingInvValidity
-            // 
-            this.cbWaitingInvValidity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbWaitingInvValidity.FormattingEnabled = true;
-            this.cbWaitingInvValidity.Items.AddRange(new object[] {
-            "Only valid",
-            "Only invalid",
-            "All"});
-            this.cbWaitingInvValidity.Location = new System.Drawing.Point(6, 19);
-            this.cbWaitingInvValidity.Name = "cbWaitingInvValidity";
-            this.cbWaitingInvValidity.Size = new System.Drawing.Size(142, 21);
-            this.cbWaitingInvValidity.TabIndex = 29;
-            this.cbWaitingInvValidity.SelectedIndexChanged += new System.EventHandler(this.cbWaitingInvValidity_SelectedIndexChanged);
-            // 
-            // btnSetValidWaitingInv
-            // 
-            this.btnSetValidWaitingInv.Location = new System.Drawing.Point(6, 121);
-            this.btnSetValidWaitingInv.Name = "btnSetValidWaitingInv";
-            this.btnSetValidWaitingInv.Size = new System.Drawing.Size(142, 32);
-            this.btnSetValidWaitingInv.TabIndex = 28;
-            this.btnSetValidWaitingInv.Text = "Set selected as valid";
-            this.btnSetValidWaitingInv.UseVisualStyleBackColor = true;
-            this.btnSetValidWaitingInv.Click += new System.EventHandler(this.btnSetValidWaitingInv_Click);
-            // 
-            // btnWaitingInvSetUsed
-            // 
-            this.btnWaitingInvSetUsed.Location = new System.Drawing.Point(6, 83);
-            this.btnWaitingInvSetUsed.Name = "btnWaitingInvSetUsed";
-            this.btnWaitingInvSetUsed.Size = new System.Drawing.Size(142, 32);
-            this.btnWaitingInvSetUsed.TabIndex = 27;
-            this.btnWaitingInvSetUsed.Text = "Set selected as INvalid";
-            this.btnWaitingInvSetUsed.UseVisualStyleBackColor = true;
-            this.btnWaitingInvSetUsed.Click += new System.EventHandler(this.btnWaitingInvSetUsed_Click);
-            // 
-            // lblWaitingInvCount
-            // 
-            this.lblWaitingInvCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblWaitingInvCount.AutoSize = true;
-            this.lblWaitingInvCount.ForeColor = System.Drawing.Color.Maroon;
-            this.lblWaitingInvCount.Location = new System.Drawing.Point(6, 647);
-            this.lblWaitingInvCount.Name = "lblWaitingInvCount";
-            this.lblWaitingInvCount.Size = new System.Drawing.Size(41, 13);
-            this.lblWaitingInvCount.TabIndex = 26;
-            this.lblWaitingInvCount.Text = "X items";
             // 
             // gridWaitingInv
             // 
@@ -1927,7 +1955,7 @@
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.InfoText;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -1937,6 +1965,7 @@
             this.gridWaitingInv.RowHeadersVisible = false;
             this.gridWaitingInv.Size = new System.Drawing.Size(819, 641);
             this.gridWaitingInv.TabIndex = 24;
+            this.gridWaitingInv.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridWaitingInv_CellEndEdit);
             // 
             // FrmActiveStyle
             // 
@@ -1958,7 +1987,6 @@
             this.grpInputSettings.PerformLayout();
             this.tabFilesLog.ResumeLayout(false);
             this.tabFoundFiles.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).EndInit();
             this.tabSettings.ResumeLayout(false);
             this.tabSettings.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -1972,31 +2000,32 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabReplace.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).EndInit();
             this.tabChild.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridChilds)).EndInit();
             this.tabLog.ResumeLayout(false);
             this.tabLog.PerformLayout();
             this.tabData.ResumeLayout(false);
             this.invoice.ResumeLayout(false);
+            this.stock.ResumeLayout(false);
+            this.reader.ResumeLayout(false);
+            this.ReaderFilter.ResumeLayout(false);
+            this.ReaderFilter.PerformLayout();
+            this.tabWaiting.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridInvoices)).EndInit();
             this.tabItems.ResumeLayout(false);
             this.tabAllItems.ResumeLayout(false);
             this.tabSelItems.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataFiles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridReplacements)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridChilds)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridInvoices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridInvItems)).EndInit();
-            this.stock.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridStocks)).EndInit();
-            this.reader.ResumeLayout(false);
-            this.ReaderFilter.ResumeLayout(false);
-            this.ReaderFilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridReader)).EndInit();
-            this.tabWaiting.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridWaitingInv)).EndInit();
             this.ResumeLayout(false);
 
@@ -2153,6 +2182,8 @@
         private System.Windows.Forms.Button btnWaitingInvSetUsed;
         private System.Windows.Forms.Button btnSetValidWaitingInv;
         private System.Windows.Forms.ComboBox cbWaitingInvValidity;
+        private System.Windows.Forms.Button btnExportWaiting;
+        private System.Windows.Forms.Button btnSaveChanges;
     }
 }
 

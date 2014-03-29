@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using MessageImporter.Entities;
 
 namespace MessageImporter
 {
@@ -281,12 +282,16 @@ namespace MessageImporter
         internal static List<InvoiceItem> ReadWaitingInvoices(string orderNumber, ref List<StockItem> stocksToUpdate)
         {
             var ret = new List<InvoiceItem>();
+
+            var found = WaitingProductEntity.Load(string.Format("INVOICE_NR = \"{0}\" AND VALID = 1", orderNumber), null);
+            foreach (var item in found)
+                ret.Add(new InvoiceItem(item));
     
           /*  var x="dd";
     if (orderNumber == "433266")
         x = "aa";*/
 
-            var query = string.Format("select * from WAITING_INV_ITEMS inv join WAITING_PRODS stock on stock.ID = inv.WAITING_PRODS_ID where stock.ORDER_NUMBER = \"{0}\" and inv.valid = 1 and stock.valid = 1", orderNumber);
+            /*var query = string.Format("select * from WAITING_INV_ITEMS inv join WAITING_PRODS stock on stock.ID = inv.WAITING_PRODS_ID where stock.ORDER_NUMBER = \"{0}\" and inv.valid = 1 and stock.valid = 1", orderNumber);
             var data = ExecuteQuery(query);
           
             if (data != null && data.Tables != null && data.Tables.Count > 0)
@@ -327,7 +332,7 @@ namespace MessageImporter
 
                     ret.Add(inv);
 			    }
-            }
+            }*/
 
             return ret;
         }
