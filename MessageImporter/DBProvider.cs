@@ -17,6 +17,8 @@ namespace MessageImporter
         internal static string T_WAIT_STOCK = "WAITING_PRODS";
         internal static string T_READER = "READER";
         internal static string T_EXCH_RATE = "EXCH_RATE";
+        // nova tabulka cakajucich produktov
+        internal static string T_WAITING_PRODUCTS = "WAITING_PRODUCTS";
 
         static DBProvider()
         {
@@ -26,6 +28,19 @@ namespace MessageImporter
                 SQLiteConnection.CreateFile(DataSource);
             }
         }
+
+        private static DBProvider db;
+        public static DBProvider Instance
+        {
+            get
+            {
+                if (db == null)
+                    db = new DBProvider();
+
+                return db;
+            }
+        }
+
 
         public static SQLiteConnection GetConnection()
         {

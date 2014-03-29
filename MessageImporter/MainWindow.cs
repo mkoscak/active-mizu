@@ -16,6 +16,7 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
+using MessageImporter.Entities;
 
 namespace MessageImporter
 {
@@ -84,7 +85,6 @@ namespace MessageImporter
             btnChildReload_Click(btnChildReload, new EventArgs());
 
             cbWaitingInvValidity.SelectedIndex = 0;
-            cbWaitingStockValidity.SelectedIndex = 0;
 
             // stiahnutie a import kurzoveho listka
             try
@@ -618,7 +618,6 @@ namespace MessageImporter
         private void RefreshWaiting()
         {
             RefreshWaitingInvoices(cbWaitingInvValidity.SelectedIndex);
-            RefreshWaitingStocks(cbWaitingStockValidity.SelectedIndex);
         }
 
         /// <summary>
@@ -627,32 +626,18 @@ namespace MessageImporter
         /// <param name="validity">0 - valid, 1 - invalid, 2 - all</param>
         private void RefreshWaitingInvoices(int validity)
         {
-            var valid = Math.Abs(validity - 1);
+            try
+            {
+                var valid = Math.Abs(validity - 1);
+                var data = WaitingProductEntity.Load(validity < 2 ? "valid = " + valid.ToString() : "1=1", null);
 
-            var query = string.Format("select * from {0} where {1}", DBProvider.T_WAIT_INVOICES, validity < 2 ? "valid = " + valid.ToString() : "1=1");
-            var found = DBProvider.ExecuteQuery(query);
-            gridWaitingInv.DataSource = null;
-            var table = found.Tables[0];
-            gridWaitingInv.DataSource = table;
-
-            lblWaitingInvCount.Text = table.Rows.Count.ToString() + " items";
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="validity">0 - valid, 1 - invalid, 2 - all</param>
-        private void RefreshWaitingStocks(int validity)
-        {
-            var valid = Math.Abs(validity - 1);
-
-            var query = string.Format("select * from {0} where {1}", DBProvider.T_WAIT_STOCK, validity < 2 ? "valid = " + valid.ToString() : "1=1");
-            var found = DBProvider.ExecuteQuery(query);
-            gridWaitingStock.DataSource = null;
-            var table = found.Tables[0];
-            gridWaitingStock.DataSource = table;
-
-            lblWaitingStockCount.Text = table.Rows.Count.ToString() + " items";
+                gridWaitingInv.DataSource = new MySortableBindingList<WaitingProductEntity>(data);
+                lblWaitingInvCount.Text = data.Count.ToString() + " items";
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, "Exception: "+ex, "Refresh waiting products", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnWaitingInvSetUsed_Click(object sender, EventArgs e)
@@ -663,14 +648,6 @@ namespace MessageImporter
             RefreshWaitingInvoices(cbWaitingInvValidity.SelectedIndex);
         }
 
-        private void btnWaitingStockSetUsed_Click(object sender, EventArgs e)
-        {
-            var ids = GetSelectedIds(gridWaitingStock);
-            DBProvider.UpdateWaitingValidity(DBProvider.T_WAIT_STOCK, 0, ids);
-
-            RefreshWaitingStocks(cbWaitingStockValidity.SelectedIndex);
-        }
-
         private void btnSetValidWaitingInv_Click(object sender, EventArgs e)
         {
             var ids = GetSelectedIds(gridWaitingInv);
@@ -679,22 +656,9 @@ namespace MessageImporter
             RefreshWaitingInvoices(cbWaitingInvValidity.SelectedIndex);
         }
 
-        private void btnSetValidWaitingStocks_Click(object sender, EventArgs e)
-        {
-            var ids = GetSelectedIds(gridWaitingStock);
-            DBProvider.UpdateWaitingValidity(DBProvider.T_WAIT_STOCK, 1, ids);
-
-            RefreshWaitingStocks(cbWaitingStockValidity.SelectedIndex);
-        }
-
         private void cbWaitingInvValidity_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshWaitingInvoices(cbWaitingInvValidity.SelectedIndex);
-        }
-
-        private void cbWaitingStockValidity_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            RefreshWaitingStocks(cbWaitingStockValidity.SelectedIndex);
         }
 
         private int[] GetSelectedIds(CustomDataGridView grid)
