@@ -279,13 +279,14 @@ namespace MessageImporter
             return price.ToString().Replace(',','.');
         }
 
-        internal static List<InvoiceItem> ReadWaitingInvoices(string orderNumber, ref List<StockItem> stocksToUpdate)
+        internal static List<WaitingProductEntity> ReadWaitingInvoices(string orderNumber, ref List<StockItem> stocksToUpdate)
         {
-            var ret = new List<InvoiceItem>();
+            return WaitingProductEntity.Load(string.Format("INVOICE_NR = \"{0}\" AND VALID = 1", orderNumber), null);
+            /*var ret = new List<InvoiceItem>();
 
             var found = WaitingProductEntity.Load(string.Format("INVOICE_NR = \"{0}\" AND VALID = 1", orderNumber), null);
             foreach (var item in found)
-                ret.Add(new InvoiceItem(item));
+                ret.Add(new InvoiceItem(item));*/
     
           /*  var x="dd";
     if (orderNumber == "433266")
@@ -332,9 +333,9 @@ namespace MessageImporter
 
                     ret.Add(inv);
 			    }
-            }*/
+            }
 
-            return ret;
+            return ret;*/
         }
 
         internal static void UpdateWaitingValidity(string tblName, int toValue, int[] ids)

@@ -33,6 +33,7 @@ namespace MessageImporter
 
         List<CSVFile> allOrders = new List<CSVFile>();
         List<StockEntity> allMessages = new List<StockEntity>();
+        List<WaitingProductEntity> CurrentWaitingLoaded = new List<WaitingProductEntity>();
         
         // data sources
         List<Invoice> AllInvoices = new List<Invoice>();
@@ -939,7 +940,8 @@ namespace MessageImporter
            /**/ WaitingToUpdate = new List<StockItem>();
             foreach (var item in AllInvoices)
             {
-                var toAdd = DBProvider.ReadWaitingInvoices(item.OrderNumber, ref WaitingToUpdate);
+                CurrentWaitingLoaded = DBProvider.ReadWaitingInvoices(item.OrderNumber, ref WaitingToUpdate);
+                var toAdd = CurrentWaitingLoaded.Select(e => new InvoiceItem(e)).ToList();
                 foreach (var n in toAdd)
                 {
                     n.Parent = item;
@@ -1421,6 +1423,17 @@ namespace MessageImporter
                     // invoice
                 case (int)Tabs.Invoices:
                     StoreInvoice();
+                    if (CurrentWaitingLoaded != null && CurrentWaitingLoaded.Count > 0)
+                    {
+                        if (MessageBox.Show(this, string.Format("Chcete nastaviť {0} načítaných čakajúcich produktov ako použité?", CurrentWaitingLoaded.Count), "Čakajúce produkty", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            CurrentWaitingLoaded.ForEach(ent =>
+                            {
+                                ent.Valid = false;
+                                ent.Save();
+                            });
+                        }
+                    }
                     break;
 
                     // stock
