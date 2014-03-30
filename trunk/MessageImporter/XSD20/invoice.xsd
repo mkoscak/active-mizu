@@ -2,6 +2,7 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 			xmlns:typ="http://www.stormware.cz/schema/version_2/type.xsd"
 			xmlns:rdc="http://www.stormware.cz/schema/version_2/documentresponse.xsd"
+      xmlns:prn="http://www.stormware.cz/schema/version_2/print.xsd"
 			xmlns:inv="http://www.stormware.cz/schema/version_2/invoice.xsd"
 			xmlns="http://www.stormware.cz/schema/version_2/invoice.xsd"
 			targetNamespace="http://www.stormware.cz/schema/version_2/invoice.xsd"
@@ -10,6 +11,7 @@
 
 <xsd:import namespace="http://www.stormware.cz/schema/version_2/type.xsd" 					schemaLocation="type.xsd"/>
 <xsd:import namespace="http://www.stormware.cz/schema/version_2/documentresponse.xsd" 	schemaLocation="documentresponse.xsd"/>
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/print.xsd" 					schemaLocation="print.xsd"/>
 
 <!-- **************************************************************************
 		root element must be <invoice>
@@ -38,6 +40,11 @@
 		<xsd:element name="invoiceHeader" type="inv:invoiceHeaderType" minOccurs="0"/>
 	 	<xsd:element name="invoiceDetail" type="inv:invoiceDetailType" minOccurs="0"/>
 		<xsd:element name="invoiceSummary" type="inv:invoiceSummaryType" minOccurs="0"/>
+    <xsd:element name="print" type="prn:agendaPrintType" minOccurs="0">
+      <xsd:annotation>
+				<xsd:documentation>Po vytvoøení záznamu se provede jeho tisk.</xsd:documentation>
+			</xsd:annotation>
+    </xsd:element>
 	</xsd:sequence>
 	<xsd:attribute name="version" type="inv:invVersionType" use="required"/>
 </xsd:complexType>
@@ -84,6 +91,11 @@
 				<xsd:documentation>Èíslo dokladu, používá se jako variabilní symbol pøi vystavení pøíkazu k úhradì a pøi likvidaci.</xsd:documentation>
 			</xsd:annotation>
 		</xsd:element>
+		<xsd:element name="originalDocumentNumber" type="xsd:string" minOccurs="0">
+			<xsd:annotation>
+				<xsd:documentation>Pùvodní èíslo dokladu, pro doklady typu Dobropis, Vrubopis (pouze SK verze).</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
 		<xsd:element name="symPar" type="typ:symVarType" minOccurs="0">
 			<xsd:annotation>
 				<xsd:documentation>Párový symbol. Používá se jen v úèetníctví (døívé PU).</xsd:documentation>
@@ -112,6 +124,18 @@
 			</xsd:annotation>
 		</xsd:element>
 
+    <xsd:element name="dateApplicationVAT" type="xsd:date" minOccurs="0">
+      <xsd:annotation>
+        <xsd:documentation>Datum uplatnìní DPH.Datum pro zaøazení dobropisu, resp. opravného daòového dokladu do pøiznání k dani z pøidané hodnoty a uplatnìní odpoètu DPH. </xsd:documentation>
+      </xsd:annotation>
+    </xsd:element>
+
+    <xsd:element name="dateDelivery" type="xsd:date" minOccurs="0">
+			<xsd:annotation>
+				<xsd:documentation>Datum dodání tovaru (pouze SK verze, Ostatní závazky, Pøijaté faktury).</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+
 		<xsd:element name="accounting" type="typ:accountingType" minOccurs="0">
 			<xsd:annotation>
 				<xsd:documentation>Pøedkontace. Pokud není uveden typ pøedkontace, je nastaveno 'Nevím'.</xsd:documentation>
@@ -120,6 +144,11 @@
 		<xsd:element name="classificationVAT" type="typ:classificationVATType" minOccurs="0">
 			<xsd:annotation>
 				<xsd:documentation>Èlenìní DPH, pøednastavená hodnota je "inland". Nepoužívá se u typù "Proforma" a "Zálohová" faktura.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+		<xsd:element name="classificationKVDPH" type="typ:refType" minOccurs="0">
+			<xsd:annotation>
+				<xsd:documentation>Èlenìní KV DPH (pouze SK verze).</xsd:documentation>
 			</xsd:annotation>
 		</xsd:element>
 		<xsd:element name="text" type="typ:string240" minOccurs="0">
@@ -311,7 +340,7 @@
 	  	</xsd:element>
 	  	<xsd:element name="payVAT" type="typ:boolean" minOccurs="0" default="false">
 	  		<xsd:annotation>
-	  			<xsd:documentation>Ceny jsou uvedeny: bez DPH, vèetnì DPH.</xsd:documentation>
+	  			<xsd:documentation>Ceny jsou uvedeny: bez DPH, vèetnì DPH. Výchozí hodnota se týká pouze textové položky. Pro skladové položky bude brána výchozí hodnota dle nastavení v programu POHODA.</xsd:documentation>
 	  		</xsd:annotation>
 	  	</xsd:element>
 	    <xsd:element name="rateVAT" type="typ:vatRateType" minOccurs="0" default="none">
@@ -372,6 +401,11 @@
 		<xsd:element name="classificationVAT" type="typ:classificationVATType" minOccurs="0">
 			<xsd:annotation>
 				<xsd:documentation>Èlenìní DPH.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+    <xsd:element name="classificationKVDPH" type="typ:refType" minOccurs="0">
+			<xsd:annotation>
+				<xsd:documentation>Èlenìní KV DPH (pouze SK verze).</xsd:documentation>
 			</xsd:annotation>
 		</xsd:element>
 		<xsd:element name="centre" type="typ:refType" minOccurs="0">

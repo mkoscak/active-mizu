@@ -24,6 +24,7 @@
 			xmlns:bal="http://www.stormware.cz/schema/version_2/balance.xsd"
 			xmlns:con="http://www.stormware.cz/schema/version_2/contract.xsd"
       xmlns:str="http://www.stormware.cz/schema/version_2/storage.xsd"
+			xmlns:ipm="http://www.stormware.cz/schema/version_2/intParam.xsd"
 			xmlns="http://www.stormware.cz/schema/version_2/response.xsd"
 			targetNamespace="http://www.stormware.cz/schema/version_2/response.xsd"
 			elementFormDefault="qualified"
@@ -54,6 +55,7 @@
 <xsd:import namespace="http://www.stormware.cz/schema/version_2/balance.xsd" schemaLocation="balance.xsd" />
 <xsd:import namespace="http://www.stormware.cz/schema/version_2/contract.xsd" schemaLocation="contract.xsd" />
 <xsd:import namespace="http://www.stormware.cz/schema/version_2/storage.xsd" schemaLocation="storage.xsd" />
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/intParam.xsd" schemaLocation="intParam.xsd" />
 
 <!-- **************************************************************************
 		root element must be <responsePack>
@@ -95,6 +97,7 @@
 		<xsd:element ref="prm:parameterItemResponse"/>
 		<xsd:element ref="con:contract" />
     <xsd:element ref="str:storageResponse" />
+		<xsd:element ref="ipm:intParamResponse" />
 		
     <!-- export dat z programu -->
 		<xsd:element ref="lst:listCentre"/>
@@ -122,8 +125,14 @@
 		<xsd:element ref="lst:listBalance" />
 		<xsd:element ref="lCon:listContract"/>
 		<xsd:element ref="lst:listCategory"/>	
-		<xsd:element ref="lst:listIntParam"/>	
-	</xsd:choice>
+		<xsd:element ref="lst:listIntParam"/>
+		<xsd:element ref="lst:listIntDoc"/>
+		<xsd:element ref="lst:listProdejka"/>
+		<xsd:element ref="lst:listVoucher"/>
+		<xsd:element ref="lst:listPrevodka"/>
+		<xsd:element ref="lst:listVyroba"/>	
+		<xsd:element ref="lst:taxDataResponse"/>
+  </xsd:choice> 
 	<xsd:attribute name="version" type="xsd:string" use="required"/>
   	<xsd:attribute name="id" type="xsd:string" use="required"/>
   	<xsd:attribute name="state" type="typ:stavType2" form="unqualified" use="required"/>

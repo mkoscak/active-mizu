@@ -301,7 +301,12 @@
 			<xsd:annotation>
 				<xsd:documentation>Výnos. Úèet pro úètování výnosù z prodeje zásoby.</xsd:documentation>
 			</xsd:annotation>
-		</xsd:element>		
+		</xsd:element>
+		<xsd:element name="cost" type="typ:numberAccountType" minOccurs="0">
+			<xsd:annotation>
+				<xsd:documentation>Náklad. Úèet pro úètování nákladu z prodeje zásoby.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
 		<xsd:element name="classOfStock" type="stk:classOfStockType" minOccurs="0">
 			<xsd:annotation>
 				<xsd:documentation>Úètování metodou A - Druh zásoby.</xsd:documentation>
@@ -551,7 +556,7 @@
 				<xsd:documentation>Typ práce s dokladem. Výchozí hodnota je pøidání nového dokladu.</xsd:documentation>
 			</xsd:annotation>
 		</xsd:element>
-		<xsd:element name="intParameterID" type="typ:idType" minOccurs="1" maxOccurs="1">
+		<xsd:element name="intParameterID" type="typ:idType" minOccurs="0" maxOccurs="1">
 		  <xsd:annotation>
 				<xsd:documentation>ID internetového parametru.</xsd:documentation>
 			</xsd:annotation>
@@ -691,6 +696,11 @@
     <xsd:element name="unit" type="typ:unitType" minOccurs="0">
 			<xsd:annotation>
 				<xsd:documentation>Mìrná jednotka (jen pro export).</xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+		<xsd:element name="stockOrder" type="xsd:integer" minOccurs="0">
+			<xsd:annotation>
+				<xsd:documentation>Poøadí položek.</xsd:documentation>
 			</xsd:annotation>
 		</xsd:element>
 	</xsd:sequence>
