@@ -246,7 +246,7 @@ namespace MessageImporter
                         items.Add(item);
                     }
 
-                    if (line.Contains(delivery))//!!!!!NIKDY NENASTANE!!!!!!
+                    if (line.Trim() == delivery || line.Trim() == deliveryText)
                     {
                         StockItem item = new StockItem();
 
@@ -632,6 +632,8 @@ namespace MessageImporter
                 var data = WaitingProductEntity.Load(validity < 2 ? "valid = " + valid.ToString() : "1=1", null);
 
                 gridWaitingInv.DataSource = new MySortableBindingList<WaitingProductEntity>(data);
+                gridWaitingInv.Columns[0].Width = 40;
+                gridWaitingInv.Columns[1].Width = 40;
                 lblWaitingInvCount.Text = data.Count.ToString() + " items";
             }
             catch (System.Exception ex)
@@ -2141,10 +2143,12 @@ namespace MessageImporter
             newInv.invoiceHeader.dateTaxSpecified = true;
             newInv.invoiceHeader.dateDue = DateTime.Now.AddDays(Properties.Settings.Default.DueDateAdd);
             newInv.invoiceHeader.dateDueSpecified = true;
+            newInv.invoiceHeader.dateDeliverySpecified = true;
+            newInv.invoiceHeader.dateDelivery = DateTime.Now;
             newInv.invoiceHeader.accounting = new accountingType();
             newInv.invoiceHeader.accounting.ids = "1 GBP";
             newInv.invoiceHeader.classificationVAT = new classificationVATType();
-            newInv.invoiceHeader.classificationVAT.ids = "PDnadEU";
+            newInv.invoiceHeader.classificationVAT.ids = "PN";
             newInv.invoiceHeader.classificationVAT.classificationVATType1 = classificationVATTypeClassificationVATType.inland;
             newInv.invoiceHeader.text = refProd.FromFile.Type.ToString() + "_" + (allMessages.Count > 0 ? allMessages[0].OrderReference : "<err>");
             newInv.invoiceHeader.partnerIdentity = new address();
@@ -2197,6 +2201,7 @@ namespace MessageImporter
                 }
                 newInv.invoiceSummary.foreignCurrency.currency.ids = refProd.FromFile.Currency;
             }
+            var foreignCurrency = newInv.invoiceSummary.foreignCurrency;
 
             invDatapack.Item = newInv;
             invoices.Add(invDatapack);
@@ -2225,10 +2230,12 @@ namespace MessageImporter
                 newInv.invoiceHeader.dateTaxSpecified = true;
                 newInv.invoiceHeader.dateDue = DateTime.Now.AddDays(Properties.Settings.Default.DueDateAdd);
                 newInv.invoiceHeader.dateDueSpecified = true;
+                newInv.invoiceHeader.dateDeliverySpecified = true;
+                newInv.invoiceHeader.dateDelivery = DateTime.Now;
                 newInv.invoiceHeader.accounting = new accountingType();
                 newInv.invoiceHeader.accounting.ids = "1 GBP";
                 newInv.invoiceHeader.classificationVAT = new classificationVATType();
-                newInv.invoiceHeader.classificationVAT.ids = "PD";
+                newInv.invoiceHeader.classificationVAT.ids = "PN";
                 newInv.invoiceHeader.classificationVAT.classificationVATType1 = classificationVATTypeClassificationVATType.inland;
                 newInv.invoiceHeader.text = "SportsDirect_doprava_" + (allMessages.Count > 0 ? allMessages[0].OrderReference : "<err>");
                 newInv.invoiceHeader.partnerIdentity = new address();
@@ -2245,15 +2252,21 @@ namespace MessageImporter
                 newInv.invoiceHeader.date = DateTime.Now;
                 newInv.invoiceHeader.paymentType = new paymentType();
                 newInv.invoiceHeader.paymentType.ids = "cashondelivery";
+                // summary 
+                newInv.invoiceSummary = new invoiceSummaryType();
+                newInv.invoiceSummary.foreignCurrency = foreignCurrency;
+
                 // detail
                 List<invoiceItemType> details = new List<invoiceItemType>();
                 invoiceItemType xmlItem = new invoiceItemType();
                 xmlItem.text = "doprava";
                 xmlItem.quantity = 1;
                 xmlItem.quantitySpecified = true;
+                /* presunute do summary ako foreign currency
                 xmlItem.homeCurrency = new typeCurrencyHomeItem();
                 xmlItem.homeCurrency.unitPriceSpecified = true;
                 xmlItem.homeCurrency.unitPrice = refProd.FromFile.Delivery;
+                 */
                 details.Add(xmlItem);
                 newInv.invoiceDetail = details.ToArray();
 
@@ -3040,6 +3053,9 @@ namespace MessageImporter
             if (orderNum.ReturnText == null)
                 return;
 
+            TextInputForm comment = new TextInputForm("Enter a comment", string.Empty);
+            comment.ShowDialog(this);
+
             int count = 0;
             foreach (var item in items)
             {
@@ -3055,6 +3071,7 @@ namespace MessageImporter
                 // ulozenie entity do DB
                 var dbEnt = item.GetWaitingEntity();
                 dbEnt.InvoiceNr = orderNum.ReturnText;
+                dbEnt.Comment = comment.ReturnText;
                 dbEnt.Save();
             }
 

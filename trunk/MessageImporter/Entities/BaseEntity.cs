@@ -13,10 +13,10 @@ namespace MessageImporter.Entities
         where T : BaseEntity<T>, new()
     {
         // column variables for mapping
-        public string Comment { get; set; }
-        public long? Id { get; set; }
+        internal string Comment { get; set; }
+        internal long? Id { get; set; }
         // internal because of invisibility in grids
-        public bool Valid { get; set; }
+        internal bool Valid { get; set; }
 
         // basic column names
         public static string ID = "ID";

@@ -12,7 +12,7 @@ namespace MessageImporter.Entities
     public class WaitingProductEntity : BaseEntity<WaitingProductEntity>
     {
         internal bool Modified;
-        [DisplayName("Modified?")]
+        [DisplayName("*")]
         public string ModifiedFlag
         {
             get
@@ -24,7 +24,28 @@ namespace MessageImporter.Entities
             }
         }
 
+        public new long? Id
+        {
+            get
+            {
+                return base.Id;
+            }
+        }
+
         public string InvoiceNr { get; set; }
+
+        public new string Comment
+        {
+            get
+            {
+                return base.Comment;
+            }
+            set
+            {
+                base.Comment = value;
+            }
+        }
+
         public string Sku { get; set; }
         public string InvSku { get; set; }
         public string Description { get; set; }
@@ -42,6 +63,18 @@ namespace MessageImporter.Entities
         public string ItemStatus { get; set; }
         public string OrdCount { get; set; }
         public string Storage { get; set; }
+
+        public new bool Valid
+        {
+            get
+            {
+                return base.Valid;
+            }
+            set
+            {
+                base.Valid = value;
+            }
+        }
 
         static string INVOICE_NR = "INVOICE_NR";
         static string SKU = "SKU";

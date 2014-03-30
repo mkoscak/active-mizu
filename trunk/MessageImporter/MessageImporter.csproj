@@ -178,6 +178,7 @@
     <None Include="XSD20\documentresponse.xsd" />
     <None Include="XSD20\enquiry.xsd" />
     <None Include="XSD20\filter.xsd" />
+    <None Include="XSD20\individualprice.xsd" />
     <None Include="XSD20\intdoc.xsd" />
     <None Include="XSD20\intparam.xsd" />
     <None Include="XSD20\invoice.xsd" />
@@ -195,6 +196,7 @@
     <None Include="XSD20\response.xsd" />
     <None Include="XSD20\stock.xsd" />
     <None Include="XSD20\storage.xsd" />
+    <None Include="XSD20\supplier.xsd" />
     <None Include="XSD20\type.xsd" />
     <None Include="XSD20\voucher.xsd" />
     <None Include="XSD20\vydejka.xsd" />
