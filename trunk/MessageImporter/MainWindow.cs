@@ -1130,7 +1130,7 @@ namespace MessageImporter
                     // po novom by nemalo nastavat
                     if (product.PairProduct == null)
                     {
-                        var found = WaitingProductEntity.Load(string.Format("INVOICE_NR = \"{0\"} AND INV_SKU = \"{1}\" AND VALID = 1", Common.ModifyOrderNumber2(CSV.OrderNumber), product.invSKU), null);
+                        var found = WaitingProductEntity.Load(string.Format("INVOICE_NR = \"{0}\" AND INV_SKU = \"{1}\" AND VALID = 1", Common.ModifyOrderNumber2(CSV.OrderNumber), product.invSKU), null);
                         if (found.Count == 1)
                         {
                             StockItem newitem = new StockItem();
