@@ -40,11 +40,12 @@
 		<xsd:element name="invoiceHeader" type="inv:invoiceHeaderType" minOccurs="0"/>
 	 	<xsd:element name="invoiceDetail" type="inv:invoiceDetailType" minOccurs="0"/>
 		<xsd:element name="invoiceSummary" type="inv:invoiceSummaryType" minOccurs="0"/>
-    <xsd:element name="print" type="prn:agendaPrintType" minOccurs="0">
+   <!-- zakomentovane - print.xsd je npc -->
+   <!-- <xsd:element name="print" type="prn:agendaPrintType" minOccurs="0">
       <xsd:annotation>
 				<xsd:documentation>Po vytvoøení záznamu se provede jeho tisk.</xsd:documentation>
 			</xsd:annotation>
-    </xsd:element>
+    </xsd:element>-->
 	</xsd:sequence>
 	<xsd:attribute name="version" type="inv:invVersionType" use="required"/>
 </xsd:complexType>
