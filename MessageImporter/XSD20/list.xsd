@@ -19,6 +19,8 @@
 			xmlns:vch="http://www.stormware.cz/schema/version_2/voucher.xsd"
 			xmlns:vyr="http://www.stormware.cz/schema/version_2/vyroba.xsd"
 			xmlns:pre="http://www.stormware.cz/schema/version_2/prevodka.xsd"
+			xmlns:idp="http://www.stormware.cz/schema/version_2/individualPrice.xsd"
+			xmlns:sup="http://www.stormware.cz/schema/version_2/supplier.xsd"
 			xmlns="http://www.stormware.cz/schema/version_2/list.xsd"
 			targetNamespace="http://www.stormware.cz/schema/version_2/list.xsd"
 			elementFormDefault="qualified"
@@ -42,6 +44,8 @@
 <xsd:import namespace="http://www.stormware.cz/schema/version_2/voucher.xsd" schemaLocation="voucher.xsd"/>
 <xsd:import namespace="http://www.stormware.cz/schema/version_2/vyroba.xsd" schemaLocation="vyroba.xsd"/>
 <xsd:import namespace="http://www.stormware.cz/schema/version_2/prevodka.xsd" schemaLocation="prevodka.xsd"/>
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/individualPrice.xsd" schemaLocation="individualPrice.xsd"/>
+<xsd:import namespace="http://www.stormware.cz/schema/version_2/supplier.xsd" schemaLocation="supplier.xsd"/>
 
 <!-- ************************************************************************** -->
 <!-- root element REQUEST - požadavek na export -->
@@ -71,6 +75,8 @@
 <xsd:element name="listBalanceRequest" type="lst:listBalanceRequestType"/>
 <xsd:element name="listCategoryRequest" type="lst:listCategoryRequestType"/>
 <xsd:element name="listIntParamRequest" type="lst:listIntParamRequestType"/>
+<xsd:element name="listIndividualPriceRequest" type="lst:listIndividualPriceRequestType"/>
+<xsd:element name="listSupplierRequest" type="lst:listSupplierRequestType"/>
 
 <!-- ************************************************************************** -->
 <!-- root element RESPONSE  - ödpovìï na export seznamù -->
@@ -102,6 +108,9 @@
 <xsd:element name="listBalance" type="lst:listBalanceType"/>
 <xsd:element name="listCategory" type="lst:listCategoryType"/>
 <xsd:element name="listIntParam" type="lst:listIntParamType"/>
+<xsd:element name="taxDataResponse" type="lst:listVersionTypeTax"/>
+<xsd:element name="listIndividualPrice" type="lst:listIndividualPriceType"/>
+<xsd:element name="listSupplier" type="lst:listSupplierType"/>
 
 <!-- **************************************************************************
 		base types
@@ -191,11 +200,22 @@
 	</xsd:attribute>
 </xsd:complexType>
 
+<xsd:simpleType name="listInvoiceRequestVerType">
+	<xsd:annotation>
+		<xsd:documentation>Verze, které jsou dostupné k tomuto dokladu. Podrobnosti k jednotlivým verzím najdete na www.stormware.cz/xml</xsd:documentation>
+	</xsd:annotation>
+	<xsd:restriction base="xsd:string">
+		<xsd:enumeration value="2.0"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<!-- ****************************************************************************** -->
+	
 <xsd:complexType name="listIntDocRequestType">
 	<xsd:sequence minOccurs="1" maxOccurs="unbounded">
 		<xsd:element name="requestIntDoc" type="ftr:requestIntDocType"/>
 	</xsd:sequence>
-	<xsd:attribute name="version" type="lst:listInvoiceRequestVerType" use="required"/>
+	<xsd:attribute name="version" type="lst:listIntDocRequestVerType" use="required"/>
 	<xsd:attribute name="intDocVersion" type="int:intVersionType" use="required">
 		<xsd:annotation>
 			<xsd:documentation>Požadovaná verze dokladu.</xsd:documentation>
@@ -208,7 +228,7 @@
 	</xsd:attribute>
 </xsd:complexType>
 
-	<xsd:simpleType name="listInvoiceRequestVerType">
+<xsd:simpleType name="listIntDocRequestVerType">
 	<xsd:annotation>
 		<xsd:documentation>Verze, které jsou dostupné k tomuto dokladu. Podrobnosti k jednotlivým verzím najdete na www.stormware.cz/xml</xsd:documentation>
 	</xsd:annotation>
@@ -523,6 +543,61 @@
 </xsd:simpleType>
 
 <!-- ****************************************************************************** -->
+<xsd:complexType name="listIndividualPriceRequestType">
+	<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+		<xsd:element name="requestIndividualPrice" type="ftr:requestAddressBookType"/>
+	</xsd:sequence>
+	<xsd:attribute name="version" type="lst:listIndividualPriceRequestVerType" use="required"/>
+	<xsd:attribute name="individualPriceVersion" type="idp:idpVersionType" use="required">
+		<xsd:annotation>
+			<xsd:documentation>Požadovaná verze výdejky.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+	<xsd:attribute name="extSystem" type="typ:string64">
+		<xsd:annotation>
+			<xsd:documentation>Oznaèení externího systému, pro který se vyexportují identifikátory.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+</xsd:complexType>
+
+<xsd:simpleType name="listIndividualPriceRequestVerType">
+	<xsd:annotation>
+		<xsd:documentation>Verze, které jsou dostupné k tomuto dokladu. Podrobnosti k jednotlivým verzím najdete na www.stormware.cz/xml</xsd:documentation>
+	</xsd:annotation>
+	<xsd:restriction base="xsd:string">
+		<xsd:enumeration value="2.0"/>
+	</xsd:restriction>
+</xsd:simpleType>
+	
+<!-- ****************************************************************************** -->
+<xsd:complexType name="listSupplierRequestType">
+	<xsd:sequence minOccurs="1" maxOccurs="unbounded">
+		<xsd:element name="requestSupplier" type="ftr:requestStockType"/>
+	</xsd:sequence>
+	<xsd:attribute name="version" type="lst:listSupplierRequestVerType" use="required"/>
+	<xsd:attribute name="supplierVersion" type="idp:idpVersionType" use="required">
+		<xsd:annotation>
+			<xsd:documentation>Požadovaná verze dodavatele.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+	<xsd:attribute name="extSystem" type="typ:string64">
+		<xsd:annotation>
+			<xsd:documentation>Oznaèení externího systému, pro který se vyexportují identifikátory.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:attribute>
+</xsd:complexType>
+
+<xsd:simpleType name="listSupplierRequestVerType">
+	<xsd:annotation>
+		<xsd:documentation>Verze, které jsou dostupné k tomuto dokladu. Podrobnosti k jednotlivým verzím najdete na www.stormware.cz/xml</xsd:documentation>
+	</xsd:annotation>
+	<xsd:restriction base="xsd:string">
+		<xsd:enumeration value="2.0"/>
+	</xsd:restriction>
+</xsd:simpleType>
+
+<!-- ****************************************************************************** -->
+	
 <xsd:complexType name="listCentreType">
 	<xsd:complexContent>
 		<xsd:extension base="lst:listVersionType">
@@ -774,6 +849,26 @@
 	</xsd:complexContent>
 </xsd:complexType>
 
+<xsd:complexType name="listIndividualPriceType">
+	<xsd:complexContent>
+		<xsd:extension base="lst:listVersionType">
+			<xsd:choice>
+				<xsd:element name="individualPrice" type="idp:individualPriceType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:choice>
+		</xsd:extension>
+	</xsd:complexContent>
+</xsd:complexType>
+
+<xsd:complexType name="listSupplierType">
+	<xsd:complexContent>
+		<xsd:extension base="lst:listVersionType">
+			<xsd:choice>
+				<xsd:element name="supplier" type="sup:supplierType" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:choice>
+		</xsd:extension>
+	</xsd:complexContent>
+</xsd:complexType>
+
 <!-- ****************************************************************************** -->
 <xsd:complexType name="requestParameterType">
 	<xsd:attribute name="idsAgenda" type="typ:parameterAgendaType" use="required"/>
@@ -876,7 +971,22 @@
   	<xsd:attribute name="state" type="typ:stavType2" use="required"/>
 </xsd:complexType>
 
-<xsd:complexType name="itemType">
+<xsd:complexType name="listVersionTypeTax">
+    <xsd:sequence>
+      <xsd:element name="importDetails"   type="rdc:importDetailsType"	minOccurs="0"/>
+      <xsd:element name="importData"  type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="version" type="xsd:string" use="required"/>
+    <xsd:attribute name="dateTimeStamp" type="xsd:dateTime" use="required"/>
+    <xsd:attribute name="dateValidFrom" type="xsd:date" use="required"/>
+    <xsd:attribute name="state" type="typ:stavType2" use="required"/>
+    <xsd:attribute name="db" type="xsd:string" use="required"/>
+    <xsd:attribute name="format" type="xsd:string" use="required"/>
+    <xsd:attribute name="contID" type="xsd:string" use="required"/>
+    <xsd:attribute name="rqFormat" type="xsd:string" use="required"/>
+</xsd:complexType>
+
+  <xsd:complexType name="itemType">
   	<xsd:attribute name="id" type="typ:idType" use="required"/>
   	<xsd:attribute name="code" type="typ:idsType" use="required"/>
 </xsd:complexType>

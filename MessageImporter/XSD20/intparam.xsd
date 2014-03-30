@@ -97,6 +97,12 @@
 			</xsd:annotation>
 		</xsd:element>
 
+		<xsd:element name="currency" type="typ:refType" minOccurs="0" maxOccurs="1">
+			<xsd:annotation>
+				<xsd:documentation></xsd:documentation>
+			</xsd:annotation>
+		</xsd:element>
+
 	</xsd:sequence>
 </xsd:complexType>
 
@@ -118,7 +124,7 @@
 		<xsd:documentation></xsd:documentation>
 	</xsd:annotation>
 	<xsd:sequence>
-		<xsd:element name="id" type="typ:idType" minOccurs="1" maxOccurs="1">
+		<xsd:element name="id" type="typ:idType" minOccurs="0" maxOccurs="1">
 			<xsd:annotation>
 				<xsd:documentation>ID záznamu (jen pro export).</xsd:documentation>
 			</xsd:annotation>

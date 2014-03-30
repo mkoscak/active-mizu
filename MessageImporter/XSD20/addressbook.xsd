@@ -253,20 +253,25 @@
 					<xsd:documentation>Odpovìdná osoba.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
+			<xsd:element name="toleranceMaturity" type="xsd:short" minOccurs="0" default="0">
+				<xsd:annotation>
+					<xsd:documentation>Poèet dnù tolerované splatnosti faktur.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
 
 			<xsd:element name="centre" type="typ:refType" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation>Støedisko èinnosti. Od verze 1.5</xsd:documentation>
+					<xsd:documentation>Støedisko èinnosti.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="activity" type="typ:refType" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation>Èinnost. Od verze 1.5</xsd:documentation>
+					<xsd:documentation>Èinnost.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="contract" type="typ:refType" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation>Zakázka. Od verze 1.5</xsd:documentation>
+					<xsd:documentation>Zakázka.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="parameters" type="typ:parametersType" minOccurs="0">

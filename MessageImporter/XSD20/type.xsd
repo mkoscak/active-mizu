@@ -673,6 +673,7 @@
 		<xsd:element name="zip" type="typ:string15" minOccurs="0"/>
 		<xsd:element name="ico" type="typ:icoType" minOccurs="0"/>
   	<xsd:element name="dic" type="typ:dicType" minOccurs="0"/>
+		<xsd:element name="icDph" type="typ:icDphType" minOccurs="0"/>
   	<xsd:element name="phone" type="typ:string40" minOccurs="0"/>
   	<xsd:element name="mobilPhone" type="typ:string24" minOccurs="0"/>
   	<xsd:element name="fax" type="typ:string24" minOccurs="0"/>
@@ -782,6 +783,16 @@
 	</xsd:all>
 </xsd:complexType>
 
+<xsd:complexType name="refTypeSupplierAddress">
+	<xsd:annotation>
+		<xsd:documentation>Odkaz na entitu. Vyšší prioritu má elemet "id".</xsd:documentation>
+	</xsd:annotation>
+	<xsd:all>
+		<xsd:element name="id" type="typ:idType" minOccurs="0" />
+		<xsd:element name="ids" type="xsd:string" minOccurs="0" />
+	</xsd:all>
+</xsd:complexType>
+	
 <xsd:complexType name="refTypeRegVATinEU">
 	<xsd:annotation>
 		<xsd:documentation>Odkaz na entitu. Vyšší prioritu má elemet "id".</xsd:documentation>
