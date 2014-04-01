@@ -82,7 +82,7 @@ namespace MessageImporter
             this.ItemQtyOrdered = waitingEnt.OrdCount;
             this.itemStorage = waitingEnt.Storage;
 
-            if (!string.IsNullOrEmpty(waitingEnt.Sku))
+            //if (!string.IsNullOrEmpty(waitingEnt.Sku))
             {
                 StockItem newitem = new StockItem();
                 newitem.State = StockItemState.Paired;
