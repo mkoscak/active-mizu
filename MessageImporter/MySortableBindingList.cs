@@ -8,10 +8,10 @@ using System.Linq.Expressions;
 namespace MessageImporter
 {
     /// <summary>
-    /// By Muigai Mwaura, 1 Dec 2008
     /// http://www.codeproject.com/Articles/31418/Implementing-a-Sortable-BindingList-Very-Very-Quic
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    [Serializable]
     public class MySortableBindingList<T> : BindingList<T>
     {
         private bool _isSorted;
