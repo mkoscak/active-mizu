@@ -2456,6 +2456,7 @@ namespace MessageImporter
             {
                 var item = allInvoices[selcells[0].RowIndex];
                 added.Parent = item;
+                item.InvoiceItems.Add(added);
             }
 
             CheckAllEqipped();
@@ -2472,8 +2473,14 @@ namespace MessageImporter
 
                 var selItem = gridInvItems.Rows[selCell[0].RowIndex].DataBoundItem as InvoiceItem;
 
+                // fix - odparovanie
+                if (selItem.PairProduct != null)
+                    Unpair(selItem.PairProduct);
+
                 var ds = GetInvoiceItemsDS();
                 ds.Remove(selItem);
+                // fix - po zmazani sa polozka objavila znova kedze bola stale v tomto zozname
+                selItem.Parent.InvoiceItems.Remove(selItem);
             }
 
             CheckAllEqipped();
