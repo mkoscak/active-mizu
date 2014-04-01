@@ -410,11 +410,11 @@ namespace MessageImporter
                 CreateInvoice(allOrders);
                 // pridanie poloziek "Cena za dopravu"
                 AddShippingItems(AllInvoices);
-                SetInvoiceDS(new MySortableBindingList<Invoice>(AllInvoices));
+                SetInvoiceDS(new /*MySortable*/BindingList<Invoice>(AllInvoices));
                 // kontrola na nejasnosti v kodoch produktov
                 CheckPairByHand(stocks);
                 //AllStocks = allMessages.SelectMany(o => o.Items).ToList();
-                SetProductsDS(new MySortableBindingList<StockItem>(stocks));
+                SetProductsDS(new /*MySortable*/BindingList<StockItem>(stocks));
                 //UniqueStocks();
                                 
                 // dopocitanie cien s dopravou
@@ -632,7 +632,7 @@ namespace MessageImporter
                 var valid = Math.Abs(validity - 1);
                 var data = WaitingProductEntity.Load(validity < 2 ? "valid = " + valid.ToString() : "1=1", null);
 
-                gridWaitingInv.DataSource = new MySortableBindingList<WaitingProductEntity>(data);
+                gridWaitingInv.DataSource = new /*MySortable*/BindingList<WaitingProductEntity>(data);
                 gridWaitingInv.Columns[0].Width = 40;
                 gridWaitingInv.Columns[1].Width = 40;
                 lblWaitingInvCount.Text = data.Count.ToString() + " items";
@@ -2323,10 +2323,10 @@ namespace MessageImporter
             var items = GetInvoiceDS();
 
             if (items != null && items[e.RowIndex].InvoiceItems != null)
-                SetInvoiceItemsDS(new MySortableBindingList<InvoiceItem>(items[e.RowIndex].InvoiceItems));
+                SetInvoiceItemsDS(new /*MySortable*/BindingList<InvoiceItem>(items[e.RowIndex].InvoiceItems));
             else
                 // prazdny zoznam poloziek 
-                SetInvoiceItemsDS(new MySortableBindingList<InvoiceItem>());
+                SetInvoiceItemsDS(new /*MySortable*/BindingList<InvoiceItem>());
         }
 
         internal void CheckAllEqipped()
@@ -2456,7 +2456,7 @@ namespace MessageImporter
             {
                 var item = allInvoices[selcells[0].RowIndex];
                 added.Parent = item;
-                item.InvoiceItems.Add(added);
+                //item.InvoiceItems.Add(added);
             }
 
             CheckAllEqipped();
@@ -3073,7 +3073,7 @@ namespace MessageImporter
             if (orderNum.ReturnText == null)
                 return;
 
-            TextInputForm comment = new TextInputForm("Enter a comment", string.Empty);
+            TextInputForm comment = new TextInputForm("Enter a comment", items[0].Parent.CustomerName);
             comment.ShowDialog(this);
 
             int count = 0;
@@ -3083,9 +3083,12 @@ namespace MessageImporter
                     continue;
 
                 // produkty oznacime ako cakajuce na dalsie, pri exporte sa ulozia do DB..
-                item.PairProduct.State = StockItemState.Waiting;
-                item.PairProduct.Sklad = Properties.Settings.Default.Storage;
-                item.PairProduct.WaitingOrderNum = orderNum.ReturnText;
+                if (item.PairProduct != null)
+                {
+                    item.PairProduct.State = StockItemState.Waiting;
+                    item.PairProduct.Sklad = Properties.Settings.Default.Storage;
+                    item.PairProduct.WaitingOrderNum = orderNum.ReturnText;
+                }
                 count++;
 
                 // ulozenie entity do DB
@@ -3805,7 +3808,7 @@ namespace MessageImporter
             var inv = GetInvoiceDS();
             if (inv == null)
                 return;
-            Serializer.Serialize<BindingList<Invoice>>(inv, folder+@"\"+fname+".inv");
+            Serializer.Serialize<BindingList<Invoice>>(inv, folder + @"\" + fname + ".inv");
             MessageBox.Show(this, "Invoice state saved!", "LoadState", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             var stk = GetProductsDS();

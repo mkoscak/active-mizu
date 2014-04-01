@@ -23,6 +23,9 @@ namespace MessageImporter
         /// <returns></returns>
         public static string ToDBString(this double num)
         {
+            if (double.IsNaN(num))
+                return "null";
+
             return num.ToString().Replace(',', '.');
         }
 
