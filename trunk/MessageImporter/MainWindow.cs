@@ -630,9 +630,9 @@ namespace MessageImporter
             try
             {
                 var valid = Math.Abs(validity - 1);
-                var data = WaitingProductEntity.Load(validity < 2 ? "valid = " + valid.ToString() : "1=1", null);
+                var data = WaitingProductEntity.Load(validity < 2 ? "valid = " + valid.ToString() : "1=1", "INVOICE_NR, ID");
 
-                gridWaitingInv.DataSource = new /*MySortable*/BindingList<WaitingProductEntity>(data);
+                gridWaitingInv.DataSource = new MySortableBindingList<WaitingProductEntity>(data);
                 gridWaitingInv.Columns[0].Width = 40;
                 gridWaitingInv.Columns[1].Width = 40;
                 lblWaitingInvCount.Text = data.Count.ToString() + " items";
