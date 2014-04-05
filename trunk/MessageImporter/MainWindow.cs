@@ -937,29 +937,19 @@ namespace MessageImporter
                 inv = null;
             }
 
-           /**/ WaitingToUpdate = new List<StockItem>();
-            foreach (var item in AllInvoices)
-            {
-                CurrentWaitingLoaded = DBProvider.ReadWaitingInvoices(item.OrderNumber, ref WaitingToUpdate);
-                var toAdd = CurrentWaitingLoaded.Select(e => new InvoiceItem(e)).ToList();
-                foreach (var n in toAdd)
-                {
-                    n.Parent = item;
-                    
-                }
-                /*Toto neisté, bolo vypnuté ale niekedy to asi treba*/
-                //item.InvoiceItems.AddRange(toAdd);
-                /*Fix*/
-                if (toAdd.Count() > 0)
-                {
-                    bool containSKU = false;
-                    foreach (var product in item.InvoiceItems)
-                        if (product.invSKU == toAdd.First().invSKU)
-                            containSKU = true;
-                    if (!containSKU)
-                        item.InvoiceItems.AddRange(toAdd);
-                }
-            }
+           CurrentWaitingLoaded = new List<WaitingProductEntity>();
+           foreach (var item in AllInvoices)
+           {
+               var waiting = DBProvider.ReadWaitingInvoices(item.OrderNumber);
+               CurrentWaitingLoaded.AddRange(waiting);
+
+               var toAdd = waiting.Select(e => new InvoiceItem(e)).ToList();
+               foreach (var n in toAdd)
+               {
+                   n.Parent = item;
+               }
+               item.InvoiceItems.AddRange(toAdd);
+           }
         }
 
         /// <summary>
@@ -1132,7 +1122,7 @@ namespace MessageImporter
                         x=product.PairCode;*/
 
                     // po novom by nemalo nastavat
-                    if (product.PairProduct == null)
+                    /*if (product.PairProduct == null)
                     {
                         var found = WaitingProductEntity.Load(string.Format("INVOICE_NR = \"{0}\" AND INV_SKU = \"{1}\" AND VALID = 1", Common.ModifyOrderNumber2(CSV.OrderNumber), product.invSKU), null);
                         if (found.Count == 1)
@@ -1170,7 +1160,7 @@ namespace MessageImporter
                                 
                             }
                         }*/
-                    }
+                    //}
                 }
             }
         }
@@ -2214,7 +2204,6 @@ namespace MessageImporter
                 }
                 newInv.invoiceSummary.foreignCurrency.currency.ids = refProd.FromFile.Currency;
             }
-            var foreignCurrency = newInv.invoiceSummary.foreignCurrency;
 
             invDatapack.Item = newInv;
             invoices.Add(invDatapack);
@@ -2267,6 +2256,10 @@ namespace MessageImporter
                 newInv.invoiceHeader.paymentType.ids = "cashondelivery";
                 // summary 
                 newInv.invoiceSummary = new invoiceSummaryType();
+                typeCurrencyForeign foreignCurrency = null;
+                if (newInv.invoiceSummary != null)
+                    foreignCurrency = newInv.invoiceSummary.foreignCurrency;
+
                 newInv.invoiceSummary.foreignCurrency = foreignCurrency;
 
                 // detail
@@ -3058,7 +3051,8 @@ namespace MessageImporter
 
         private void btnSetWaiting_Click(object sender, EventArgs e)
         {
-            var items = GetInvoiceItemsDS();
+            // fix - MK 5.4.14 - pridame len tie, ktore nie su z DB, teda uz su cakajuce..
+            var items = GetInvoiceItemsDS().Where(i => !i.FromDB).ToList();
             if (items == null || items.Count == 0)
             {
                 MessageBox.Show(this, "No items to set!", "Waiting for products", MessageBoxButtons.OK, MessageBoxIcon.Error);
