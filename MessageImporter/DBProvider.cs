@@ -279,7 +279,7 @@ namespace MessageImporter
             return price.ToString().Replace(',','.');
         }
 
-        internal static List<WaitingProductEntity> ReadWaitingInvoices(string orderNumber, ref List<StockItem> stocksToUpdate)
+        internal static List<WaitingProductEntity> ReadWaitingInvoices(string orderNumber/*, ref List<StockItem> stocksToUpdate*/)
         {
             return WaitingProductEntity.Load(string.Format("INVOICE_NR = \"{0}\" AND VALID = 1", orderNumber), null);
             /*var ret = new List<InvoiceItem>();
