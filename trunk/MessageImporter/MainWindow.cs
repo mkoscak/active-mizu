@@ -3051,8 +3051,7 @@ namespace MessageImporter
 
         private void btnSetWaiting_Click(object sender, EventArgs e)
         {
-            // fix - MK 5.4.14 - pridame len tie, ktore nie su z DB, teda uz su cakajuce..
-            var items = GetInvoiceItemsDS().Where(i => !i.FromDB).ToList();
+            var items = GetInvoiceItemsDS();
             if (items == null || items.Count == 0)
             {
                 MessageBox.Show(this, "No items to set!", "Waiting for products", MessageBoxButtons.OK, MessageBoxIcon.Error);

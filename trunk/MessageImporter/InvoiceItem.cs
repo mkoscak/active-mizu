@@ -62,6 +62,7 @@ namespace MessageImporter
             Parent = parent;
         }
 
+        internal WaitingProductEntity CreatedFromWaiting;
         public InvoiceItem(WaitingProductEntity waitingEnt)
         {
             this.PairCode = waitingEnt.Sku;
@@ -92,6 +93,9 @@ namespace MessageImporter
                 
                 this.PairProduct = newitem;
             }
+
+            // zapametame si entitu, z ktorej bola polozka vytvorena
+            CreatedFromWaiting = waitingEnt;
         }
 
         internal List<StockItem> PairProductStack { get; set; }
@@ -328,6 +332,9 @@ namespace MessageImporter
         /// <returns></returns>
         public WaitingProductEntity GetWaitingEntity()
         {
+            if (CreatedFromWaiting != null)
+                return CreatedFromWaiting;
+
             var ret = new WaitingProductEntity();
             ret.Valid = true;
             ret.Sku = this.PairCode;
