@@ -9,6 +9,7 @@ namespace MessageImporter.Entities
     /// <summary>
     /// Base DB entity with basic columns
     /// </summary>
+    [Serializable]
     public abstract class BaseEntity<T> : IEntity
         where T : BaseEntity<T>, new()
     {
