@@ -266,6 +266,8 @@ namespace MessageImporter
 
         internal string Size { get; set; }
 
+        internal string Color { get; set; }
+
         private string sizeInv;
         [System.ComponentModel.DisplayName("Veľkosť")]
         public string SizeInv
