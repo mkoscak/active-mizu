@@ -9,6 +9,7 @@ namespace MessageImporter.Entities
     /// <summary>
     /// DB entita cakajuceho produktu - invoice item
     /// </summary>
+    [Serializable]
     public class WaitingProductEntity : BaseEntity<WaitingProductEntity>
     {
         internal bool Modified;
