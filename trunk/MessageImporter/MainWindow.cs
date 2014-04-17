@@ -1188,6 +1188,8 @@ namespace MessageImporter
                     order = decodeMandMMessage(item.Body, file);
                 else if (file.Type == MSG_TYPE.GETTHELABEL)
                     order = decodeGTLMessage(item.Body, file);
+                else if (file.Type == MSG_TYPE.FIVE_POUNDS)
+                    order = decode5PoundsMessage(item.Body, file);
 
                 file.OrderNumber = order.OrderReference;
             }
@@ -1198,6 +1200,114 @@ namespace MessageImporter
             }
             
             return order;
+        }
+
+        private StockEntity decode5PoundsMessage(string messageBody, FileItem file)
+        {
+            try
+            {
+                var order = new StockEntity();
+                List<StockItem> items = new List<StockItem>();
+
+                var lines = messageBody.Split(Environment.NewLine.ToCharArray()).Where(s => s != null && s.Trim().Length > 0).ToArray();
+
+                // cislo objednavky
+                var orderNum = lines.Where(s => s.ToUpper().Contains("ORDER NUMBER:")).FirstOrDefault();
+                if (!string.IsNullOrEmpty(orderNum))
+                {
+                    var from = orderNum.IndexOf(':') + 1;
+
+                    order.OrderReference = orderNum.Substring(from).Trim();
+                    order.OurReference = order.OrderReference;
+                }
+
+                // order date
+                var orderDate = lines.Where(s => s.ToUpper().Contains("DATE ORDERED:")).FirstOrDefault();
+
+                var start = lines.Where(s => s.Contains("Item") && s.Contains("Qty") && s.Contains("Price") && s.Contains("Total")).FirstOrDefault();
+                var end = lines.Where(s => s.Trim() == "Billing Address").FirstOrDefault();
+                if (string.IsNullOrEmpty(start) || string.IsNullOrEmpty(end))
+                    return order;
+                var istart = lines.ToList().FindIndex(s => s == start);
+                var iend= lines.ToList().FindIndex(s => s == end);
+
+                file.ProdCount = 0;
+                var offset = 5;
+                for (int i = istart + 1; i < iend; i += offset)
+                {
+                    if (i + 4 > iend)
+                        break;
+
+                    string[] tmp;
+                    StockItem item = new StockItem();
+                    offset = 0;
+
+                    // description
+                    tmp = lines[i + offset].Split(new string[] { "\\n" }, StringSplitOptions.None);
+                    item.Description = tmp[1].Split('\t')[0];
+                    item.ProductCode = item.Description;
+                    offset++;
+
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (lines[i + offset].Contains("Size:"))
+                        {
+                            // size
+                            tmp = lines[i + offset].Split(':');
+                            item.Size = tmp[1].Trim();
+                            offset++;
+                        }
+                        else if (lines[i + offset].Contains("Style Number:"))
+                        {
+                            // product code
+                            tmp = lines[i + offset].Split(':');
+                            item.ProductCode = tmp[1].Trim();
+                            offset++;
+                        }
+                        else if (lines[i + offset].Contains("Colour(s):"))
+                        {
+                            // color
+                            tmp = lines[i + offset].Split(':');
+                            item.Color = tmp[1].Trim();
+                            offset++;
+                        }
+                    }
+
+                    // qauntity
+                    tmp = lines[i + offset].Split(new string[] { "\\n" }, StringSplitOptions.None);
+                    item.Ord_Qty = 1;
+                    try
+                    {
+                        item.Ord_Qty = Convert.ToInt32(tmp[3].Split('\t')[1].Trim());
+                    } catch (System.Exception) { }
+                    offset++;
+
+                    item.Total = 5;
+                    item.Price = item.Total * item.Ord_Qty;
+                    item.Currency = "£";
+                    //item.OrderDate = orderDate;
+                    item.FromFile = file;
+
+                    if (item.State == StockItemState.PermanentStorage)
+                        item.Sklad = "02";
+                    else if (item.State == StockItemState.Waiting)
+                        item.Sklad = Properties.Settings.Default.Storage;
+                    items.Add(item);
+
+                    file.ProdCount++;
+                }
+
+                DecomposeMultipleItems(items);
+                order.Items = items.ToArray();
+
+                return order;
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, ex.ToString(), "Error");
+            }
+
+            return null;
         }
 
         private StockEntity decodeGTLMessage(string messageBody, FileItem file)
