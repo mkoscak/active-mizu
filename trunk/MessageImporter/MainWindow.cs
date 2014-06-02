@@ -1260,8 +1260,8 @@ namespace MessageImporter
                         else if (lines[i + offset].Contains("Style Number:"))
                         {
                             // product code
-                            tmp = lines[i + offset].Split(':');
-                            item.ProductCode = tmp[1].Trim();
+                            /*tmp = lines[i + offset].Split(':');
+                            item.ProductCode = tmp[1].Trim();*/
                             offset++;
                         }
                         else if (lines[i + offset].Contains("Colour(s):"))
@@ -1280,6 +1280,7 @@ namespace MessageImporter
                     {
                         item.Ord_Qty = Convert.ToInt32(tmp[3].Split('\t')[1].Trim());
                     } catch (System.Exception) { }
+                    item.Disp_Qty = item.Ord_Qty;
                     offset++;
 
                     item.Total = 5;
