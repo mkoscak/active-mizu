@@ -87,37 +87,40 @@
       <Value Profile="(Default)">6</Value>
     </Setting>
     <Setting Name="PartnerSports" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">24</Value>
     </Setting>
     <Setting Name="PartnerMandM" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">14</Value>
     </Setting>
     <Setting Name="PartnerLabel" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">67</Value>
     </Setting>
     <Setting Name="UseSkkSerie" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="UseCzkSerie" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="UseHufSerie" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="UsePlnSerie" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="SkkSerie" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">13SVF</Value>
     </Setting>
     <Setting Name="CzkSerie" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">13CVF</Value>
     </Setting>
     <Setting Name="HufSerie" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">13HVF</Value>
     </Setting>
     <Setting Name="PlnSerie" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">13PVF</Value>
+    </Setting>
+    <Setting Name="CancelledStorage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">09</Value>
     </Setting>
   </Settings>
 </SettingsFile>
