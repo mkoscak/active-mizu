@@ -2938,6 +2938,7 @@ namespace MessageImporter
             txtPlnSerie.Text = prop.PlnSerie;
 
             txtSetDefStorage.Text = prop.Storage;
+            txtCancelledStorage.Text = prop.CancelledStorage;
         }
 
         private void btnSettingsSave_Click(object sender, EventArgs e)
@@ -2982,9 +2983,10 @@ namespace MessageImporter
             prop.SkkSerie = txtSkkSerie.Text;
             prop.CzkSerie = txtCzkSerie.Text;
             prop.HufSerie = txtHufSerie.Text;
-            prop.PlnSerie = txtPlnSerie.Text;   
+            prop.PlnSerie = txtPlnSerie.Text;
 
             prop.Storage = txtSetDefStorage.Text;
+            prop.CancelledStorage = txtCancelledStorage.Text;
 
             prop.Save();
         }
@@ -3270,7 +3272,7 @@ namespace MessageImporter
                 shipper.SMSPreAdvice = "Y";//S
                 shipper.PhoneNumber = item.ShippingPhoneNumber;//T
                 shipper.ParcelNote = "ActiveStyle.sk";//U
-                shipper.Suma = item.OrderGrandTotal;
+                shipper.Suma = item.InvoicePrice.ToString();//item.OrderGrandTotal; // zmena podla ulohy 112
 
                 if (item.Country == Country.Hungary)
                     outdataHU.Add(shipper);
@@ -4016,6 +4018,31 @@ namespace MessageImporter
            foreach (var item in modif)
            {
                item.Save();
+           }
+       }
+
+       private void btnFindStock_Click(object sender, EventArgs e)
+       {
+           var selCell = gridInvItems.SelectedCells;
+           if (selCell == null || selCell.Count == 0)
+               return;
+
+           var selItem = gridInvItems.Rows[selCell[0].RowIndex].DataBoundItem as InvoiceItem;
+           if (selItem.PairProduct != null)
+           {
+               var stocks = GetProductsDS();
+               var i = stocks.IndexOf(selItem.PairProduct);
+               if (i < 0)
+                   return;
+
+               var cell = gridStocks["Description", i];
+               gridStocks.ClearSelection();
+               gridStocks.CurrentCell = null;
+               gridStocks.CurrentCell = cell;
+               tabData.SelectedIndex = 1;
+
+               gridStocks.Select();
+               gridStocks.Invalidate();
            }
        }
     }

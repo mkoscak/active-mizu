@@ -76,7 +76,7 @@ namespace MessageImporter
                 {
                     state = StockItemState.PermanentStorage;
                     if (string.IsNullOrEmpty(Sklad))
-                        Sklad = "02";
+                        Sklad = Properties.Settings.Default.CancelledStorage;
                 }
                 else if (pairProd != null && state != StockItemState.Waiting)
                 {
@@ -371,6 +371,17 @@ namespace MessageImporter
         internal double PriceWithDelivery { get; set; }
 
         internal int Ord_Qty { get; set; }
+
+        public string Name
+        {
+            get
+            {
+                if (pairProd == null)
+                    return string.Empty;
+
+                return pairProd.Parent.CustomerName;
+            }
+        }
 
         public int Disp_Qty { get; set; }
 
