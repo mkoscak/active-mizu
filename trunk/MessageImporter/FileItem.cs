@@ -12,6 +12,7 @@ namespace MessageImporter
         UNKNOWN,
         SPORTS_DIRECT,
         MANDM_DIRECT,
+        MANDM_DIRECT_OLD,
         CSV,
         CSVX,
         GETTHELABEL,
@@ -25,7 +26,8 @@ namespace MessageImporter
     public class FileItem
     {
         internal const string SportsDirect = "sportsdirect";    // na identifikaciu faktur zo sportsdirect
-        internal const string MandMDirect = "mandmdirect";    // na identifikaciu faktur z mandmdirect
+        internal const string MandMDirectOld = "mandmdirect";    // na identifikaciu faktur z mandmdirect
+        internal const string MandMDirect = "mandm direct";    // na identifikaciu faktur z mandmdirect
         internal const string Refund = "refund";    // na identifikaciu faktur z mandmdirect
         internal const string FivePounds = "5pounds";    // na identifikaciu faktur z 5Pounds
 
@@ -58,7 +60,7 @@ namespace MessageImporter
                 {
                     if (fileName.ToLower().Contains(SportsDirect.ToLower()))
                         Type = MSG_TYPE.SPORTS_DIRECT;
-                    else if (fileName.ToLower().Contains(MandMDirect.ToLower()))
+                    else if (fileName.ToLower().Contains(MandMDirect.ToLower()) || fileName.ToLower().Contains(MandMDirectOld.ToLower()))
                         Type = MSG_TYPE.MANDM_DIRECT;
                     else if (fileName.ToLower().Contains(FivePounds.ToLower()))
                         Type = MSG_TYPE.FIVE_POUNDS;

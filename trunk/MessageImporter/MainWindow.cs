@@ -1385,6 +1385,89 @@ namespace MessageImporter
                 var order = new StockEntity();
                 List<StockItem> items = new List<StockItem>();
 
+                var lines = messageBody.Split(Environment.NewLine.ToCharArray()).Where(s => s != null && s.Trim().Length > 0).ToList();
+
+                // cislo objednavky
+                var orderNum = lines.Where(s => s.Contains("order confirmation number")).FirstOrDefault();
+                if (!string.IsNullOrEmpty(orderNum))
+                {
+                    var from = orderNum.IndexOf(':') + 1;
+
+                    order.OrderReference = orderNum.Substring(from).Trim();
+                    order.OurReference = order.OrderReference;
+                }
+
+                var start = lines.IndexOf("Items for delivery: ");
+                var stop = false;
+                var i = start + 1;
+                file.ProdCount = 0;
+                file.Currency = "£";
+                var delivery = (lines.FirstOrDefault(l => l.Trim().StartsWith("Standard Delivery")) ?? "£0.00").Trim();
+                file.Delivery = Convert.ToDouble(delivery.Substring(delivery.LastIndexOf('£') + 1));
+                while (!stop || i>= lines.Count)
+                {
+                    var hypl_qty = lines[i++];
+                    if (hypl_qty.ToLower().Trim().StartsWith("total items"))
+                        break;
+
+                    var props = lines[i++];
+
+                    StockItem item = new StockItem();
+                    var si = hypl_qty.LastIndexOf('"') + 1;
+                    var ei = hypl_qty.LastIndexOf("Qty.");
+                    item.Description = hypl_qty.Substring(si, ei - si).Trim();
+                    var di = hypl_qty.IndexOf("details/") + 8;
+                    var edi = hypl_qty.IndexOf('/', di);
+                    item.ProductCode = hypl_qty.Substring(di, edi - di);
+                    item.Ord_Qty = Convert.ToInt32(hypl_qty.Substring(ei + 5).Trim());
+                    item.Disp_Qty = item.Ord_Qty;
+                    var prop = props.Split('\t');
+                    item.Size = prop[0].Substring(6);
+                    item.Total = Convert.ToDouble(prop[2].Trim('£'));
+                    item.Price = item.Total / item.Ord_Qty;
+
+                    item.Currency = "£";
+                    item.FromFile = file;
+                    
+                    i += 2; // 2 riadky ______
+
+                    file.ProdCount++;
+
+                    if (item.State == StockItemState.PermanentStorage)
+                        item.Sklad = "02";
+                    else if (item.State == StockItemState.Waiting)
+                        item.Sklad = Properties.Settings.Default.Storage;
+
+                    items.Add(item);
+                }
+
+                DecomposeMultipleItems(items);
+
+                order.Items = items.ToArray();
+
+                return order;
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, ex.ToString(), "Error");
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Deprecated..
+        /// </summary>
+        /// <param name="messageBody"></param>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        private StockEntity decodeMandMMessageOld(string messageBody, FileItem file)
+        {
+            try
+            {
+                var order = new StockEntity();
+                List<StockItem> items = new List<StockItem>();
+
                 var lines = messageBody.Split(Environment.NewLine.ToCharArray()).Where(s => s != null && s.Trim().Length > 0).ToArray();
                 
                 // cislo objednavky
