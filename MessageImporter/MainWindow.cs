@@ -1403,7 +1403,7 @@ namespace MessageImporter
                 file.ProdCount = 0;
                 file.Currency = "£";
                 var delivery = (lines.FirstOrDefault(l => l.Trim().StartsWith("Standard Delivery")) ?? "£0.00").Trim();
-                file.Delivery = Convert.ToDouble(delivery.Substring(delivery.LastIndexOf('£') + 1));
+                file.Delivery = Convert.ToDouble(Common.CleanPrice(delivery.Substring(delivery.LastIndexOf('£') + 1)));
                 while (!stop || i>= lines.Count)
                 {
                     var hypl_qty = lines[i++];
@@ -1423,7 +1423,7 @@ namespace MessageImporter
                     item.Disp_Qty = item.Ord_Qty;
                     var prop = props.Split('\t');
                     item.Size = prop[0].Substring(6);
-                    item.Total = Convert.ToDouble(prop[2].Trim('£'));
+                    item.Total = Convert.ToDouble(Common.CleanPrice(prop[2].Trim('£')));
                     item.Price = item.Total / item.Ord_Qty;
 
                     item.Currency = "£";
