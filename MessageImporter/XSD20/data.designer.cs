@@ -158,6 +158,8 @@ namespace MessageImporter
                 memoryStream = new System.IO.MemoryStream();
                 System.Xml.XmlWriterSettings xmlWriterSettings = new System.Xml.XmlWriterSettings();
                 xmlWriterSettings.Encoding = encoding;
+                xmlWriterSettings.Indent = true;
+                //xmlWriterSettings.
                 System.Xml.XmlWriter xmlWriter = XmlWriter.Create(memoryStream, xmlWriterSettings);
                 var ns = XmlNamespacePrefixes.GetSerializerNamespaces();
                 Serializer.Serialize(xmlWriter, this, ns);

@@ -1403,7 +1403,9 @@ namespace MessageImporter
                 file.ProdCount = 0;
                 file.Currency = "£";
                 var delivery = (lines.FirstOrDefault(l => l.Trim().StartsWith("Standard Delivery")) ?? "£0.00").Trim();
-                file.Delivery = Convert.ToDouble(Common.CleanPrice(delivery.Substring(delivery.LastIndexOf('£') + 1)));
+                file.Delivery = Common.GetPrice(delivery.Substring(delivery.LastIndexOf('£') + 1));
+                if (double.IsNaN(file.Delivery))
+                    file.Delivery = 0;
                 while (!stop || i>= lines.Count)
                 {
                     var hypl_qty = lines[i++];
