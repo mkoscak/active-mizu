@@ -1406,7 +1406,8 @@ namespace MessageImporter
                 file.Delivery = Common.GetPrice(delivery.Substring(delivery.LastIndexOf('£') + 1));
                 if (double.IsNaN(file.Delivery))
                     file.Delivery = 0;
-                while (!stop || i>= lines.Count)
+
+                while (!stop || i >= lines.Count)
                 {
                     var hypl_qty = lines[i++];
                     if (hypl_qty.ToLower().Trim().StartsWith("total items"))
@@ -1430,8 +1431,9 @@ namespace MessageImporter
 
                     item.Currency = "£";
                     item.FromFile = file;
-                    
-                    i += 2; // 2 riadky ______
+
+                    while (lines[i].Trim().StartsWith("_") && lines[i].Trim().EndsWith("_"))
+                        i++; //= 2; // 2 riadky ______
 
                     file.ProdCount++;
 
