@@ -153,7 +153,7 @@ namespace MessageImporter
             {
                 logNewSection("Reading input directory..");
 
-                var files = new List<FileItem>();
+                var files = new BindingList<FileItem>();
                 
                 log("MSG files: ");
                 var orders = new List<StockEntity>();
@@ -179,7 +179,7 @@ namespace MessageImporter
                     files.Add(new FileItem(true, fileName));
                 }
 
-                dataFiles.DataSource = files;
+                dataFiles.DataSource = new BindingList<FileItem>(files);
 
                 dataFiles.Columns["OrderDate"].DefaultCellStyle.Format = "dd.MM.yyyy";
 
@@ -227,13 +227,9 @@ namespace MessageImporter
                         line = lines[i - 3];
                         item.Description = line.Trim();
                         line = lines[i - 2];
-                        line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                        //item.Price = double.Parse(line.Trim().Substring(1));// Regex.Replace(strPara, @"\([A-9]\)", "");  [^0-9.,]
-                        item.Price = double.Parse(Regex.Replace(line, @"[^0-9.,]", ""));
+                        item.Price = Common.GetPrice(line);
                         line = lines[i - 1];
-                        line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                       // item.Total = double.Parse(line.Trim().Substring(1));
-                        item.Total = double.Parse(Regex.Replace(line, @"[^0-9.,]", ""));
+                        item.Total = Common.GetPrice(line);
                         item.Currency = line.Substring(0, 1);
 
                         item.FromFile = file;
@@ -253,7 +249,7 @@ namespace MessageImporter
 
                         line = lines[i + 1];
                         line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                        item.Price = double.Parse(line.Trim().Substring(1));
+                        item.Price = Common.GetPrice(line);
                         item.Total = item.Price;
                         item.Currency = line.Substring(0, 1);
 
@@ -426,7 +422,7 @@ namespace MessageImporter
                 // nastavenie vybavenosti objednavkam
                 CheckAllEqipped();
                 // kurzovy prepocet a nastavenie datumu objednavky
-                CalcRateOrderdate(dataFiles.DataSource as List<FileItem>);
+                CalcRateOrderdate(dataFiles.DataSource as BindingList<FileItem>);
 
                 // postprocessing pre MandMdirect
                 PostProcessMandM(stocks);
@@ -711,7 +707,7 @@ namespace MessageImporter
             allMessages.Clear();
             allOrders.Clear();
 
-            var files = dataFiles.DataSource as List<FileItem>;
+            var files = dataFiles.DataSource as BindingList<FileItem>;
             if (files == null)
             {
                 log("\tNo files loaded! Read the input direcotyr first.");
@@ -1560,7 +1556,7 @@ namespace MessageImporter
 
         internal void btnSelectAll_Click(object sender, EventArgs e)
         {
-            var files = dataFiles.DataSource as List<FileItem>;
+            var files = dataFiles.DataSource as BindingList<FileItem>;
             foreach (var f in files)
             {
                 f.Process = true;
@@ -1572,7 +1568,7 @@ namespace MessageImporter
 
         internal void btnInverse_Click(object sender, EventArgs e)
         {
-            var files = dataFiles.DataSource as List<FileItem>;
+            var files = dataFiles.DataSource as BindingList<FileItem>;
             foreach (var f in files)
             {
                 f.Process = !f.Process;
@@ -1584,7 +1580,7 @@ namespace MessageImporter
 
         internal void btnDeselectAll_Click(object sender, EventArgs e)
         {
-            var files = dataFiles.DataSource as List<FileItem>;
+            var files = dataFiles.DataSource as BindingList<FileItem>;
             foreach (var f in files)
             {
                 f.Process = false;
@@ -1693,6 +1689,12 @@ namespace MessageImporter
                 newInv.invoiceHeader.classificationVAT.ids = Properties.Settings.Default.ClasifficationVAT;
                 newInv.invoiceHeader.classificationVAT.classificationVATType1 = classificationVATTypeClassificationVATType.inland;
                 newInv.invoiceHeader.text = inv.TrashNumber + " " + inv.OrderGrandTotal;
+                // KV DPH pre SK faktury
+                if (inv.Country == Country.Slovakia)
+                {
+                    newInv.invoiceHeader.classificationKVDPH = new refType();
+                    newInv.invoiceHeader.classificationKVDPH.ids = "D2";
+                }
 
                 // header->identity
                 newInv.invoiceHeader.partnerIdentity = new address();
@@ -2504,11 +2506,6 @@ namespace MessageImporter
             MessageBox.Show("Stock XML(s) generated!", "Save XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        double ToNumber(string x)
-        {
-            return double.Parse(new string(x.ToCharArray().Where(c => "1234567890.,".Contains(c)).ToArray()));
-        }
-
         internal void InvoiceChanged(object sender, DataGridViewCellEventArgs e)
         {
             var items = GetInvoiceDS();
@@ -2837,7 +2834,7 @@ namespace MessageImporter
 
         internal void dataFiles_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            var ds = dataFiles.DataSource as List<FileItem>;
+            var ds = dataFiles.DataSource as BindingList<FileItem>;
             if (ds == null)
                 return;
 
@@ -2915,7 +2912,7 @@ namespace MessageImporter
             RefreshTab();
         }
 
-        void CalcRateOrderdate(List<FileItem> files)
+        void CalcRateOrderdate(BindingList<FileItem> files)
         {
             foreach (var file in files)
             {
