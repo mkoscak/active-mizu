@@ -31,6 +31,7 @@ namespace MessageImporter
         public Invoice(Invoice copy)
             : this()
         {
+            this.id = copy.id;
             this.BillingCity = copy.BillingCity;
             this.BillingCompany = copy.BillingCompany;
             this.BillingCountry = copy.BillingCountry;
@@ -84,6 +85,29 @@ namespace MessageImporter
             this.fromFile = copy.fromFile;
 
         //    this.TestValues = copy.TestValues;
+        }
+
+        private int id = -1;
+        private bool dirtyFlag = false;
+
+        public void SetDirty(bool val)
+        {
+            dirtyFlag = val;
+        }
+
+        [System.ComponentModel.DisplayName("#")]
+        public int Id
+        {
+            get
+            {
+                if (id == -1 || dirtyFlag)
+                {
+                    id = Common.NextId;
+                    dirtyFlag = false;
+                }
+
+                return id;
+            }
         }
 
         public Image Icon

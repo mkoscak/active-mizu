@@ -16,6 +16,35 @@ namespace MessageImporter
     /// </summary>
     static class Common
     {
+        static int IdCounter = 0;
+        static int IdCounter2 = 0;
+
+        public static int NextId
+        {
+            get
+            {
+                return ++IdCounter;
+            }
+        }
+
+        public static void ResetCounter()
+        {
+            IdCounter = 0;
+        }
+
+        public static int NextId2
+        {
+            get
+            {
+                return ++IdCounter2;
+            }
+        }
+
+        public static void ResetCounter2()
+        {
+            IdCounter2 = 0;
+        }
+
         /// <summary>
         /// Extension metoda na konverziu double cisla na string pre DB operacie
         /// </summary>
@@ -60,6 +89,9 @@ namespace MessageImporter
 
         public static string CleanPrice(string strPrice)
         {
+            if (string.IsNullOrEmpty(strPrice))
+                return string.Empty;
+
             // cena obsahuje aj bodku aj ciarku, napr 1,000.25.. prvy znak vyhodime
             if (strPrice.Contains(',') && strPrice.Contains('.'))
             {
@@ -86,6 +118,9 @@ namespace MessageImporter
 
         public static string ToNumeric(string str)
         {
+            if (string.IsNullOrEmpty(str))
+                return string.Empty;
+
             return new string(str.ToCharArray().Where(c => Char.IsDigit(c)).ToArray());
         }
 
@@ -104,6 +139,9 @@ namespace MessageImporter
 
         public static string GetDate(string value)
         {
+            if (string.IsNullOrEmpty(value))
+                return string.Empty;
+
             var i = value.IndexOf(':');
             if (i == -1)
                 return value;

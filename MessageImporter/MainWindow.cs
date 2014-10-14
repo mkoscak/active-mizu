@@ -47,6 +47,12 @@ namespace MessageImporter
         }
         void SetInvoiceDS(BindingList<Invoice> dataSource)
         {
+            Common.ResetCounter();
+            foreach (var item in dataSource)
+            {
+                item.SetDirty(true);
+                var tmp = item.Id;
+            }
             gridInvoices.DataSource = dataSource;
         }
 
@@ -65,6 +71,12 @@ namespace MessageImporter
         }
         void SetProductsDS(BindingList<StockItem> dataSource)
         {
+            Common.ResetCounter2();
+            foreach (var item in dataSource)
+            {
+                item.SetDirty(true);
+                var tmp = item.Id;
+            }
             gridStocks.DataSource = dataSource;
         }
 
@@ -86,6 +98,9 @@ namespace MessageImporter
             btnChildReload_Click(btnChildReload, new EventArgs());
 
             cbWaitingInvValidity.SelectedIndex = 0;
+            dtInvDate.Value = DateTime.Now;
+
+            SetTooltips();
 
             // stiahnutie a import kurzoveho listka
             try
@@ -108,6 +123,18 @@ namespace MessageImporter
             btnSettingsLoad_Click(btnSettingsLoad, new EventArgs());
 
             btnProcess_Click(btnProcess, new EventArgs());
+        }
+
+        private void SetTooltips()
+        {
+            new ToolTip().SetToolTip(btnInvoiceAdd, "Pridať");
+            new ToolTip().SetToolTip(btnInvCopy, "Kopírovať");
+            new ToolTip().SetToolTip(btnInvoiceRemove, "Odstrániť");
+            new ToolTip().SetToolTip(btnInvoiceItemNew, "Pridať");
+            new ToolTip().SetToolTip(btnInvoiceItemRemove, "Odstrániť");
+            new ToolTip().SetToolTip(btnAddMsg, "Pridať");
+            new ToolTip().SetToolTip(btnStockCopy, "Kopírovať");
+            new ToolTip().SetToolTip(btnRemoveMSG, "Odstrániť");
         }
 
         private void UpdateExRates()
@@ -400,7 +427,7 @@ namespace MessageImporter
                 if (!ProcessSelectedFiles())
                     return;
 
-                var stocks = allMessages.SelectMany(o => o.Items).ToList();
+                var stocks = new BindingList<StockItem>(allMessages.SelectMany(o => o.Items).ToList());
 
                 // naplni allInvoices a nastavi datasource
                 CreateInvoice(allOrders);
@@ -410,7 +437,7 @@ namespace MessageImporter
                 // kontrola na nejasnosti v kodoch produktov
                 CheckPairByHand(stocks);
                 //AllStocks = allMessages.SelectMany(o => o.Items).ToList();
-                SetProductsDS(new /*MySortable*/BindingList<StockItem>(stocks));
+                SetProductsDS(stocks);
                 //UniqueStocks();
                                 
                 // dopocitanie cien s dopravou
@@ -449,7 +476,7 @@ namespace MessageImporter
             Cursor.Current = Cursors.Default;
         }
 
-        private void PostProcessMandM(List<StockItem> stocks)
+        private void PostProcessMandM(IList<StockItem> stocks)
         {
             foreach (var stock in stocks)
             {
@@ -489,7 +516,7 @@ namespace MessageImporter
             return newDs;
         }
 
-        private void CheckPairByHand(List<StockItem> bindingList)
+        private void CheckPairByHand(IList<StockItem> bindingList)
         {
             var checkLength = Properties.Settings.Default.SubProductLength;
 
@@ -898,6 +925,15 @@ namespace MessageImporter
                         inv.ShippingStreet = item.ShippingStreet;
                         inv.ShippingZip = item.ShippingZip;
 
+                        if (inv.CustomerName.Trim().ToUpper() == "GUEST")
+                        {
+                            inv.CustomerName = item.ShippingName;
+                            if (inv.Country == Country.Slovakia)
+                                inv.CustomerEmail = "info@activestyle.sk";
+                            if (inv.Country == Country.Hungary)
+                                inv.CustomerEmail = "info@activestyle.hu";
+                        }
+
                         /*IČO,DIČ,Company*/
                        // inv.company = item.
                      //   inv.TestValues = item.TestValues;
@@ -1281,7 +1317,7 @@ namespace MessageImporter
 
                     item.Total = 5;
                     item.Price = item.Total * item.Ord_Qty;
-                    item.Currency = "£";
+                    item.Currency = "GBP";
                     //item.OrderDate = orderDate;
                     item.FromFile = file;
 
@@ -1397,7 +1433,7 @@ namespace MessageImporter
                 var stop = false;
                 var i = start + 1;
                 file.ProdCount = 0;
-                file.Currency = "£";
+                file.Currency = "GBP";
                 var delivery = (lines.FirstOrDefault(l => l.Trim().StartsWith("Standard Delivery")) ?? "£0.00").Trim();
                 file.Delivery = Common.GetPrice(delivery.Substring(delivery.LastIndexOf('£') + 1));
                 if (double.IsNaN(file.Delivery))
@@ -1425,7 +1461,7 @@ namespace MessageImporter
                     item.Total = Convert.ToDouble(Common.CleanPrice(prop[2].Trim('£')));
                     item.Price = item.Total / item.Ord_Qty;
 
-                    item.Currency = "£";
+                    item.Currency = "GBP";
                     item.FromFile = file;
 
                     while (lines[i].Trim().StartsWith("_") && lines[i].Trim().EndsWith("_"))
@@ -1675,13 +1711,13 @@ namespace MessageImporter
                 newInv.invoiceHeader.symVar = orderNr;
                 newInv.invoiceHeader.symPar = orderNr;
                 newInv.invoiceHeader.invoiceType = invoiceTypeType.issuedInvoice;
-                newInv.invoiceHeader.dateAccounting = DateTime.Now;
+                newInv.invoiceHeader.dateAccounting = dtInvDate.Value;
                 newInv.invoiceHeader.dateAccountingSpecified = true;
                 newInv.invoiceHeader.dateOrder = DateTime.Parse(inv.OrderDate);
                 newInv.invoiceHeader.dateOrderSpecified = true;
-                newInv.invoiceHeader.dateTax = DateTime.Now;
+                newInv.invoiceHeader.dateTax = dtInvDate.Value;
                 newInv.invoiceHeader.dateTaxSpecified = true;
-                newInv.invoiceHeader.dateDue = DateTime.Now.AddDays(Properties.Settings.Default.DueDateAdd);
+                newInv.invoiceHeader.dateDue = dtInvDate.Value;// DateTime.Now.AddDays(Properties.Settings.Default.DueDateAdd);
                 newInv.invoiceHeader.dateDueSpecified = true;
                 newInv.invoiceHeader.accounting = new accountingType();
                 newInv.invoiceHeader.accounting.ids = Properties.Settings.Default.Accounting + GetAccountingSuffix(inv.Country);
@@ -1722,7 +1758,7 @@ namespace MessageImporter
 
                 newInv.invoiceHeader.numberOrder = orderNr;
                 newInv.invoiceHeader.dateSpecified = true;
-                newInv.invoiceHeader.date = DateTime.Now;
+                newInv.invoiceHeader.date = dtInvDate.Value;
                 newInv.invoiceHeader.symConst = Properties.Settings.Default.ConstSym;
                 newInv.invoiceHeader.note = inv.CustomerEmail;
                 newInv.invoiceHeader.intNote = inv.ShippingPhoneNumber;
@@ -2176,12 +2212,12 @@ namespace MessageImporter
 
             foreach (var prod in allProds)
             {
-                if (!prod.EquippedInv && prod.State != StockItemState.Waiting) // do exportu len produkty z vybavenych objednavok
-                    continue;
-
                 // referencny produkt bude prvy korektny
                 if (refProd == null)
                     refProd = prod;
+
+                if (!prod.EquippedInv && prod.State != StockItemState.Waiting) // do exportu len produkty z vybavenych objednavok
+                    continue;
 
                 /////////////////////////////////////////////////// stock item
 
@@ -2338,16 +2374,16 @@ namespace MessageImporter
             newInv.version = invVersionType.Item20;
             newInv.invoiceHeader = new invoiceHeaderType();
             newInv.invoiceHeader.invoiceType = invoiceTypeType.receivedInvoice;
-            newInv.invoiceHeader.dateAccounting = DateTime.Now;
+            newInv.invoiceHeader.dateAccounting = dtInvDate.Value;
             newInv.invoiceHeader.dateAccountingSpecified = true;
             newInv.invoiceHeader.dateOrder = DateTime.Now;
             newInv.invoiceHeader.dateOrderSpecified = true;
-            newInv.invoiceHeader.dateTax = DateTime.Now;
+            newInv.invoiceHeader.dateTax = dtInvDate.Value;
             newInv.invoiceHeader.dateTaxSpecified = true;
-            newInv.invoiceHeader.dateDue = DateTime.Now.AddDays(Properties.Settings.Default.DueDateAdd);
+            newInv.invoiceHeader.dateDue = dtInvDate.Value;// DateTime.Now.AddDays(Properties.Settings.Default.DueDateAdd);
             newInv.invoiceHeader.dateDueSpecified = true;
             newInv.invoiceHeader.dateDeliverySpecified = true;
-            newInv.invoiceHeader.dateDelivery = DateTime.Now;
+            newInv.invoiceHeader.dateDelivery = dtInvDate.Value;
             newInv.invoiceHeader.accounting = new accountingType();
             newInv.invoiceHeader.accounting.ids = "1 GBP";
             newInv.invoiceHeader.classificationVAT = new classificationVATType();
@@ -2379,7 +2415,7 @@ namespace MessageImporter
             }
             newInv.invoiceHeader.numberOrder = "numOrder";
             newInv.invoiceHeader.dateSpecified = true;
-            newInv.invoiceHeader.date = DateTime.Now;
+            newInv.invoiceHeader.date = dtInvDate.Value;
             newInv.invoiceHeader.paymentType = new paymentType();
             newInv.invoiceHeader.paymentType.ids = "cashondelivery";
                         
@@ -2579,6 +2615,7 @@ namespace MessageImporter
                 if (ds == null)
                     return;
                 ds.Remove(selItem);
+                SetInvoiceDS(ds);
             }
 
             CheckAllEqipped();
@@ -2706,6 +2743,7 @@ namespace MessageImporter
                 if (ds == null)
                     return;
                 ds.Remove(selItem);
+                SetProductsDS(ds);
             }
 
             CheckAllEqipped();
@@ -3688,6 +3726,7 @@ namespace MessageImporter
             if (ds == null)
                 return;
             ds.Add(new Invoice(toCopy));
+            SetInvoiceDS(ds);
         }
 
         private void btnStockCopy_Click(object sender, EventArgs e)
@@ -3702,6 +3741,7 @@ namespace MessageImporter
             if (ds == null)
                 return;
             ds.Add(toCopy.Clone() as StockItem);
+            SetProductsDS(ds);
         }
 
         void DownloadExchangeRateXML()

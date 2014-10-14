@@ -38,6 +38,29 @@ namespace MessageImporter
             }
         }
 
+        private int id = -1;
+        private bool dirtyFlag = false;
+
+        public void SetDirty(bool val)
+        {
+            dirtyFlag = val;
+        }
+
+        [System.ComponentModel.DisplayName("#")]
+        public int Id
+        {
+            get
+            {
+                if (id == -1 || dirtyFlag)
+                {
+                    id = Common.NextId2;
+                    dirtyFlag = false;
+                }
+
+                return id;
+            }
+        }
+
         [System.ComponentModel.DisplayName("Icon")]
         public Image Icon
         {
@@ -447,6 +470,7 @@ namespace MessageImporter
         {
             StockItem newObj = new StockItem();
 
+            newObj.id = id;
             newObj.ChangeColor = ChangeColor;
             newObj.Currency = Currency;
             newObj.Description = Description;
