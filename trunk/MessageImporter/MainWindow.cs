@@ -976,10 +976,7 @@ namespace MessageImporter
                CurrentWaitingLoaded.AddRange(waiting);
 
                var toAdd = waiting.Select(e => new InvoiceItem(e)).ToList();
-               foreach (var n in toAdd)
-               {
-                   n.Parent = item;
-               }
+               toAdd.ForEach(it => it.Parent = item);
                item.InvoiceItems.AddRange(toAdd);
            }
         }
@@ -1643,6 +1640,7 @@ namespace MessageImporter
                     // invoice
                 case (int)Tabs.Invoices:
                     StoreInvoice();
+
                     if (CurrentWaitingLoaded != null && CurrentWaitingLoaded.Count > 0)
                     {
                         if (MessageBox.Show(this, string.Format("Chcete nastaviť {0} načítaných čakajúcich produktov ako použité?", CurrentWaitingLoaded.Count), "Čakajúce produkty", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -1963,8 +1961,36 @@ namespace MessageImporter
                 return;
             }
 
+            
             ///////////////////////////////////////////////////////////////////////////////////////////
             // export pre citacku
+            ReaderExport(invDS, outDir);
+
+            MessageBox.Show("Invoice XML generated!", "Save XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnReaderExport_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            try
+            {
+                var outDir = txtOutDir.Text + "/" + InvoiceDir + "/";
+                ReaderExport(GetInvoiceDS(), outDir);
+
+                MessageBox.Show(this,"Export reader-a úspešný!", "Reader export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(this, string.Format("Problem: {0}{0}{1}", Environment.NewLine, ex), "Reader export", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private static void ReaderExport(BindingList<Invoice> invDS, string outDir)
+        {
             var readerItems = new List<ReaderItem>();
             int storeNr = 1;
             foreach (var inv in invDS)
@@ -1972,7 +1998,7 @@ namespace MessageImporter
                 bool nextStore = true;
                 string strStore = storeNr.ToString();
                 var orderNr = Common.ModifyOrderNumber(inv.OrderNumber);
-                
+
                 if (inv.Cancelled)
                 {
                     strStore = "Cancelled";
@@ -2038,9 +2064,8 @@ namespace MessageImporter
             {
                 readerStrings.AppendFormat("{0};{1};{2};{3};{4};{5};{6}{7}", item.StoreNr, item.OrderNr, item.SKU, item.Name, item.ProdName, item.Size, item.Note, Environment.NewLine);
             }
-            File.WriteAllText(outDir + "reader_"+DateTime.Now.ToString("yyyyMMdd_hhmmss")+".csv", readerStrings.ToString());
 
-            MessageBox.Show("Invoice XML generated!", "Save XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            File.WriteAllText(outDir + "reader_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".csv", readerStrings.ToString());
         }
 
         static bool ValidationResult = false;

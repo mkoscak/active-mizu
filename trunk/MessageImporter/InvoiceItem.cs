@@ -136,16 +136,39 @@ namespace MessageImporter
                 // ak nema produkt z MSG kod produktu
                 if (pairProd != null && pairProd.Description != null && pairProd.Description == pairProd.ProductCode && itemOptions != null)
                 {
-                    var prefix = invSKU;
-                    if (!prefix.ToUpper().StartsWith("AG"))
-                        prefix = "AG" + prefix;
-                    prefix = prefix.Insert(2, "_");
+                    if (pairProd.FromFile.Type == MSG_TYPE.FIVE_POUNDS)
+                    {
+                        var xi = invSKU.IndexOf('x');
+                        if (xi == -1)
+                            xi = invSKU.Length;
+                        else
+                            ++xi;
 
-                    var postfix = ItemOptions.Trim().Replace(" ", "");
-                    if (postfix.Length > 4)
-                        postfix = postfix.Substring(0, 4);
+                        var code = "EFP_" + invSKU.Substring(0, xi) + "_";
 
-                    pairProd.ProductCode = prefix + "_" + postfix;
+                        var si = pairProd.SizeInv.ToLower().IndexOf("size");
+                        if (si == -1)
+                            si = 0;
+                        else
+                            si += 5;//za textom "size"
+
+                        var postfix = pairProd.SizeInv.Substring(si, 4);
+
+                        pairProd.ProductCode = code + postfix;
+                    }
+                    else
+                    {
+                        var prefix = invSKU;
+                        if (!prefix.ToUpper().StartsWith("AG"))
+                            prefix = "AG" + prefix;
+                        prefix = prefix.Insert(2, "_");
+
+                        var postfix = ItemOptions.Trim().Replace(" ", "");
+                        if (postfix.Length > 4)
+                            postfix = postfix.Substring(0, 4);
+
+                        pairProd.ProductCode = prefix + "_" + postfix;
+                    }
                 }
             }
         }
