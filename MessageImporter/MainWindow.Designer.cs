@@ -136,6 +136,7 @@
             this.tabData = new System.Windows.Forms.TabControl();
             this.invoice = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnReaderExport = new System.Windows.Forms.Button();
             this.btnSetTrashNr = new System.Windows.Forms.Button();
             this.btnPostaExport = new System.Windows.Forms.Button();
             this.btnRefreshTotalInvSum = new System.Windows.Forms.Button();
@@ -417,6 +418,7 @@
             // 
             // dataFiles
             // 
+            this.dataFiles.AllowUserToAddRows = false;
             this.dataFiles.AllowUserToOrderColumns = true;
             this.dataFiles.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Info;
@@ -1325,6 +1327,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnReaderExport);
             this.splitContainer1.Panel1.Controls.Add(this.btnSetTrashNr);
             this.splitContainer1.Panel1.Controls.Add(this.btnPostaExport);
             this.splitContainer1.Panel1.Controls.Add(this.btnRefreshTotalInvSum);
@@ -1352,6 +1355,17 @@
             this.splitContainer1.SplitterDistance = 454;
             this.splitContainer1.TabIndex = 27;
             // 
+            // btnReaderExport
+            // 
+            this.btnReaderExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnReaderExport.Location = new System.Drawing.Point(245, 422);
+            this.btnReaderExport.Name = "btnReaderExport";
+            this.btnReaderExport.Size = new System.Drawing.Size(105, 24);
+            this.btnReaderExport.TabIndex = 32;
+            this.btnReaderExport.Text = "Reader export";
+            this.btnReaderExport.UseVisualStyleBackColor = true;
+            this.btnReaderExport.Click += new System.EventHandler(this.btnReaderExport_Click);
+            // 
             // btnSetTrashNr
             // 
             this.btnSetTrashNr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1377,11 +1391,11 @@
             // btnRefreshTotalInvSum
             // 
             this.btnRefreshTotalInvSum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefreshTotalInvSum.Location = new System.Drawing.Point(689, 422);
+            this.btnRefreshTotalInvSum.Location = new System.Drawing.Point(719, 422);
             this.btnRefreshTotalInvSum.Name = "btnRefreshTotalInvSum";
-            this.btnRefreshTotalInvSum.Size = new System.Drawing.Size(129, 24);
+            this.btnRefreshTotalInvSum.Size = new System.Drawing.Size(99, 24);
             this.btnRefreshTotalInvSum.TabIndex = 29;
-            this.btnRefreshTotalInvSum.Text = "Refresh invoice total";
+            this.btnRefreshTotalInvSum.Text = "Refresh  total";
             this.btnRefreshTotalInvSum.UseVisualStyleBackColor = true;
             this.btnRefreshTotalInvSum.Click += new System.EventHandler(this.btnRefreshTotalInvSum_Click);
             // 
@@ -2248,6 +2262,7 @@
         private System.Windows.Forms.Button btnFindStock;
         private System.Windows.Forms.DateTimePicker dtInvDate;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Button btnReaderExport;
     }
 }
 
