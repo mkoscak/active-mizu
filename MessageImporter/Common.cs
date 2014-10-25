@@ -295,5 +295,17 @@ namespace MessageImporter
 
             return sfd.FileName;
         }
+
+    }
+
+    /// <summary>
+    /// Doublebuffered grid
+    /// </summary>
+    public class CustomDataGridView : DataGridView
+    {
+        public CustomDataGridView()
+        {
+            DoubleBuffered = true;
+        }
     }
 }

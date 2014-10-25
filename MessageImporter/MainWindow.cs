@@ -4204,13 +4204,6 @@ namespace MessageImporter
         Waiting
     }
 
-    class CustomDataGridView : DataGridView
-    {
-        public CustomDataGridView()
-        {
-            DoubleBuffered = true;
-        }
-    }
     public static class stringFunctions
     {
         public static bool ContainsCaseInsensitive(this string source, string value)
