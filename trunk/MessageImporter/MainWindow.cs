@@ -4194,6 +4194,43 @@ namespace MessageImporter
                gridStocks.Invalidate();
            }
        }
+
+       private void btnCheckShipping_Click(object sender, EventArgs e)
+       {
+           try
+           {
+               Cursor = Cursors.WaitCursor;
+
+               BindingList<Invoice> invoiceDs = this.GetInvoiceDS();
+               if (invoiceDs == null || invoiceDs.Count == 0)
+                   return;
+               int count = 0;
+               foreach (Invoice invoice in invoiceDs)
+               {
+                   if ((invoice.Country == Country.Slovakia && invoice.InvoicePrice >= 74.48) ||
+                       (invoice.Country == Country.Hungary && invoice.InvoicePrice >= 21380.0))
+                   {
+                       invoice.OrderShipping = "0";
+                       InvoiceItem invoiceItem = invoice.InvoiceItems.FirstOrDefault(i => i.PairCode == "shipping");
+                       if (invoiceItem != null)
+                           invoiceItem.ItemPrice = "0";
+                       ++count;
+                   }
+               }
+               this.RefreshTab();
+
+               Cursor = Cursors.Default;
+               MessageBox.Show(this, string.Format("Bolo upravených {0} faktúr.", (object)count), "Kontrola ceny dopravy", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+           } 
+           catch (System.Exception ex)
+           {
+               MessageBox.Show(this, "Problem: " + ex, "Kontrola ceny dopravy", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           }
+           finally
+           {
+               Cursor = Cursors.Default;
+           }
+       }
     }
     
     class ChildItem
