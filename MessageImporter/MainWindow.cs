@@ -2485,16 +2485,16 @@ namespace MessageImporter
                 newInv.version = invVersionType.Item20;
                 newInv.invoiceHeader = new invoiceHeaderType();
                 newInv.invoiceHeader.invoiceType = invoiceTypeType.receivedInvoice;
-                newInv.invoiceHeader.dateAccounting = DateTime.Now;
+                newInv.invoiceHeader.dateAccounting = dtInvDate.Value;
                 newInv.invoiceHeader.dateAccountingSpecified = true;
-                newInv.invoiceHeader.dateOrder = DateTime.Now;
+                newInv.invoiceHeader.dateOrder = dtInvDate.Value;
                 newInv.invoiceHeader.dateOrderSpecified = true;
-                newInv.invoiceHeader.dateTax = DateTime.Now;
+                newInv.invoiceHeader.dateTax = dtInvDate.Value;
                 newInv.invoiceHeader.dateTaxSpecified = true;
                 newInv.invoiceHeader.dateDue = DateTime.Now.AddDays(Properties.Settings.Default.DueDateAdd);
                 newInv.invoiceHeader.dateDueSpecified = true;
                 newInv.invoiceHeader.dateDeliverySpecified = true;
-                newInv.invoiceHeader.dateDelivery = DateTime.Now;
+                newInv.invoiceHeader.dateDelivery = dtInvDate.Value;
                 newInv.invoiceHeader.accounting = new accountingType();
                 newInv.invoiceHeader.accounting.ids = "1 GBP";
                 newInv.invoiceHeader.classificationVAT = new classificationVATType();
@@ -2512,7 +2512,7 @@ namespace MessageImporter
                 }
                 newInv.invoiceHeader.numberOrder = "numOrder";
                 newInv.invoiceHeader.dateSpecified = true;
-                newInv.invoiceHeader.date = DateTime.Now;
+                newInv.invoiceHeader.date = dtInvDate.Value;
                 newInv.invoiceHeader.paymentType = new paymentType();
                 newInv.invoiceHeader.paymentType.ids = "cashondelivery";
                 // summary 
