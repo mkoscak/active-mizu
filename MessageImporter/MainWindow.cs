@@ -3878,7 +3878,7 @@ namespace MessageImporter
             xml.InfoEPH = new ephTypeInfoEPH();
             xml.InfoEPH.Datum = datum;
             xml.InfoEPH.DruhPPP = "";
-            xml.InfoEPH.DruhZasielky = "1";
+            xml.InfoEPH.DruhZasielky = "8";
             xml.InfoEPH.EPHID = "";
             xml.InfoEPH.Mena = "EUR";
             xml.InfoEPH.PocetZasielok = xml.Zasielky.Count.ToString();
@@ -3886,7 +3886,7 @@ namespace MessageImporter
             xml.InfoEPH.TypEPH = "1";
             xml.InfoEPH.Uhrada = new List<ephTypeInfoEPHUhrada>();
             xml.InfoEPH.Uhrada.Add(new ephTypeInfoEPHUhrada());
-            xml.InfoEPH.Uhrada[0].SposobUhrady = "5";
+            xml.InfoEPH.Uhrada[0].SposobUhrady = "8";
             xml.InfoEPH.Uhrada[0].SumaUhrady = "0.00";
             xml.InfoEPH.Odosielatel = new ephTypeInfoEPHOdosielatel();
             //xml.InfoEPH.Odosielatel.CisloUctu = "info@activestyle.sk";
@@ -3928,10 +3928,10 @@ namespace MessageImporter
             zasielka.Adresat.Ulica = invoice.ShippingStreet;
             
             zasielka.Info = new ephTypeZasielkaInfo();
-            zasielka.Info.ZasielkaID = invoice.OrderNumber;
+            zasielka.Info.ZasielkaID = "_"; // invoice.OrderNumber;
             zasielka.Info.Hmotnost = "0.000";
             zasielka.Info.CenaDobierky = invoice.OrderGrandTotal;//VratCenuDopravy(invoice.InvoiceItems);
-            zasielka.Info.Trieda = "1";
+            //zasielka.Info.Trieda = "1";
             zasielka.Info.CisloUctu = "2800328484/8330";
             zasielka.Info.SymbolPrevodu = zasielka.Info.ZasielkaID; // TODO?
             zasielka.Info.Poznamka = zasielka.Info.SymbolPrevodu + " Activestyle.sk";
