@@ -444,6 +444,8 @@ namespace MessageImporter
                 CalcBuyingPrice(GetProductsDS());
                 // parovanie produktov
                 PairProducts();
+                // dodatocne specialne GTL parovanie..
+                PairGTL();
                 // aktualizacia mnoziny volnych produktov
                 UpdateProductSet();
                 // nastavenie vybavenosti objednavkam
@@ -1191,6 +1193,49 @@ namespace MessageImporter
                         }*/
                     //}
                 }
+            }
+        }
+
+        private void PairGTL()
+        {
+            var prods = GetProductsDS();
+            if (prods == null)
+                return;
+
+            var invs = GetInvoiceDS().SelectMany(i=>i.InvoiceItems).Where(ii => ii.PairProduct == null).ToList();
+            var relevant = prods.Where(p => p.FromFile.Type == MSG_TYPE.GETTHELABEL && p.State == StockItemState.Unpaired).ToList();
+            
+            foreach (var product in relevant)
+            {
+                if (string.IsNullOrEmpty(product.ProductCode))
+                    continue;
+
+                // 1. SKU z MSG je podretazcom polozky invoice a existuje prave jedna..
+                var found = invs.Where(ii => !string.IsNullOrEmpty(ii.ItemName) && ii.ItemName.Contains(product.ProductCode)).ToList();
+
+                if (found != null && found.Count == 1)
+                {
+                    found[0].PairProduct = product;
+                }
+                else if (found != null && found.Count == 0 && product.ProductCode.Count(c => c == ' ') > 1)
+                {
+                    // 2. podretazec bez posledneho alebo prveho slova z MSG item
+                    var noWord = product.ProductCode.Substring(0, product.ProductCode.LastIndexOf(' ') + 1).Trim();
+                    found = invs.Where(ii => !string.IsNullOrEmpty(ii.ItemName) && !string.IsNullOrEmpty(noWord) &&
+                        ii.ItemName.Contains(noWord)).ToList();
+                    if (found == null || found.Count == 0)
+                    {
+                        noWord = product.ProductCode.Substring(product.ProductCode.IndexOf(' ') + 1).Trim();
+                        found = invs.Where(ii => !string.IsNullOrEmpty(ii.ItemName) && !string.IsNullOrEmpty(noWord) &&
+                            ii.ItemName.Contains(noWord)).ToList();
+                    }
+
+                    if (found != null && found.Count == 1)
+                    {
+                        found[0].PairProduct = product;
+                    }
+                }
+
             }
         }
 
