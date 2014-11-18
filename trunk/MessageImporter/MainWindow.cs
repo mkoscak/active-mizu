@@ -2562,11 +2562,12 @@ namespace MessageImporter
                 newInv.invoiceHeader.paymentType.ids = "cashondelivery";
                 // summary 
                 newInv.invoiceSummary = new invoiceSummaryType();
-                typeCurrencyForeign foreignCurrency = null;
-                if (newInv.invoiceSummary != null)
-                    foreignCurrency = newInv.invoiceSummary.foreignCurrency;
-
-                newInv.invoiceSummary.foreignCurrency = foreignCurrency;
+                newInv.invoiceSummary.foreignCurrency = new typeCurrencyForeign();
+                if (refProd != null && refProd.FromFile != null)
+                {
+                    newInv.invoiceSummary.foreignCurrency.currency = new refType();
+                    newInv.invoiceSummary.foreignCurrency.currency.ids = refProd.FromFile.Currency;
+                }
 
                 // detail
                 List<invoiceItemType> details = new List<invoiceItemType>();
@@ -3131,6 +3132,10 @@ namespace MessageImporter
 
             txtSetDefStorage.Text = prop.Storage;
             txtCancelledStorage.Text = prop.CancelledStorage;
+
+            txtCiarPrefix.Text = prop.CiarKodPrefix;
+            txtCiarPostfix.Text = prop.CiarKodPostfix;
+            txtCiarKod.Text = prop.CiarKod.ToString();
         }
 
         private void btnSettingsSave_Click(object sender, EventArgs e)
@@ -3179,6 +3184,10 @@ namespace MessageImporter
 
             prop.Storage = txtSetDefStorage.Text;
             prop.CancelledStorage = txtCancelledStorage.Text;
+
+            prop.CiarKodPrefix = txtCiarPrefix.Text;
+            prop.CiarKodPostfix = txtCiarPostfix.Text;
+            prop.CiarKod = Convert.ToInt64(txtCiarKod.Text);
 
             prop.Save();
         }
@@ -3910,6 +3919,8 @@ namespace MessageImporter
             var xml = new ephType();
             xml.verzia = "3";
 
+            var props = Properties.Settings.Default;
+            long code = props.CiarKod;
             // zasielky
             xml.Zasielky = new List<ephTypeZasielka>();
             foreach (var invoice in ds)
@@ -3917,8 +3928,9 @@ namespace MessageImporter
                 if (!invoice.Equipped || invoice.Cancelled)
                     continue;
 
-                SpracujZasielku(xml, invoice);
+                SpracujZasielku(xml, invoice, props.CiarKodPrefix, props.CiarKodPostfix, ref code);
             }
+
 
             xml.InfoEPH = new ephTypeInfoEPH();
             xml.InfoEPH.Datum = datum;
@@ -3952,10 +3964,15 @@ namespace MessageImporter
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
 
-            xml.SaveToFile(dir + "export_"+DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")+".xml");
+            xml.SaveToFile(dir + "export_" + DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".xml");
+            
+            // ak vsetko ok, ulozime nastavenia s novym ciarovym kodom
+            props.CiarKod = code;
+            props.Save();
+            btnSettingsLoad.PerformClick();
         }
 
-        private void SpracujZasielku(ephType xml, Invoice invoice)
+        private void SpracujZasielku(ephType xml, Invoice invoice, string prefix, string postfix, ref long code)
         {
             if (!IsPostaShipping(invoice))
                 return;
@@ -3973,14 +3990,15 @@ namespace MessageImporter
             zasielka.Adresat.Ulica = invoice.ShippingStreet;
             
             zasielka.Info = new ephTypeZasielkaInfo();
-            zasielka.Info.ZasielkaID = "_"; // invoice.OrderNumber;
+            zasielka.Info.ZasielkaID = invoice.OrderNumber;
             zasielka.Info.Hmotnost = "0.000";
             zasielka.Info.CenaDobierky = invoice.OrderGrandTotal;//VratCenuDopravy(invoice.InvoiceItems);
             //zasielka.Info.Trieda = "1";
             zasielka.Info.CisloUctu = "2800328484/8330";
-            zasielka.Info.SymbolPrevodu = zasielka.Info.ZasielkaID; // TODO?
-            zasielka.Info.Poznamka = zasielka.Info.SymbolPrevodu + " Activestyle.sk";
+            zasielka.Info.SymbolPrevodu = zasielka.Info.ZasielkaID; // VS ako zasielkaID
+            zasielka.Info.Poznamka = zasielka.Info.SymbolPrevodu + "_Activestyle.sk";
             zasielka.Info.DruhPPP = "5";
+            zasielka.Info.CiarovyKod = string.Format("{0}{1}{2}", prefix, code++, postfix); // "ER89069766SK";
 
             zasielka.PouziteSluzby = new List<string>();
             zasielka.PouziteSluzby.Add("");
@@ -4265,11 +4283,44 @@ namespace MessageImporter
                this.RefreshTab();
 
                Cursor = Cursors.Default;
-               MessageBox.Show(this, string.Format("Bolo upravených {0} faktúr.", (object)count), "Kontrola ceny dopravy", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+               MessageBox.Show(this, string.Format("Bolo upravených {0} faktúr.", (object)count), "Kontrola ceny dopravy", MessageBoxButtons.OK, MessageBoxIcon.Information);
            } 
            catch (System.Exception ex)
            {
                MessageBox.Show(this, "Problem: " + ex, "Kontrola ceny dopravy", MessageBoxButtons.OK, MessageBoxIcon.Error);
+           }
+           finally
+           {
+               Cursor = Cursors.Default;
+           }
+       }
+
+       private void btnChildItems_Click(object sender, EventArgs e)
+       {
+           try
+           {
+               Cursor = Cursors.WaitCursor;
+
+               var stockDs = this.GetProductsDS();
+               if (stockDs == null || stockDs.Count == 0)
+                   return;
+               int count = 0;
+               foreach (var stock in stockDs)
+               {
+                   if (stock.IsChildItem)
+                   {
+                       stock.Price *= 1.2;
+                       count++;
+                   }
+               }
+               this.RefreshTab();
+
+               Cursor = Cursors.Default;
+               MessageBox.Show(this, string.Format("Bolo upravených {0} položiek.", (object)count), "Úprava detských položiek", MessageBoxButtons.OK, MessageBoxIcon.Information);
+           }
+           catch (System.Exception ex)
+           {
+               MessageBox.Show(this, "Problem: " + ex, "Úprava detských položiek", MessageBoxButtons.OK, MessageBoxIcon.Error);
            }
            finally
            {
