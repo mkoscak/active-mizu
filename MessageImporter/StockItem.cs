@@ -339,14 +339,10 @@ namespace MessageImporter
                     }
                 }
 
-                if (ChildItems != null && description != null)
+                if (IsChildItem)
                 {
-                    var found = ChildItems.Where(ci => description.Contains(ci.ItemText));
-                    if (found != null && found.Count() > 0)
-                    {
-                        tax = 1.0;
-                        ChangeColor = true;
-                    }
+                    tax = 1.0;
+                    ChangeColor = true;
                 }
 
                 // refund sa urcuje pri nacitani suboru: FromFile.Tax
@@ -361,6 +357,17 @@ namespace MessageImporter
             set
             {
                 priceEURnoTax = value;
+            }
+        }
+
+        internal bool IsChildItem
+        {
+            get
+            {
+                if (ChildItems == null || description == null)
+                    return false;
+                
+                return ChildItems.Count(ci => description.Contains(ci.ItemText)) > 0;
             }
         }
 

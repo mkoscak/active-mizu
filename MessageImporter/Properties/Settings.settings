@@ -122,5 +122,14 @@
     <Setting Name="CancelledStorage" Type="System.String" Scope="User">
       <Value Profile="(Default)">09</Value>
     </Setting>
+    <Setting Name="CiarKodPrefix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ER</Value>
+    </Setting>
+    <Setting Name="CiarKodPostfix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SK</Value>
+    </Setting>
+    <Setting Name="CiarKod" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">89069766</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
