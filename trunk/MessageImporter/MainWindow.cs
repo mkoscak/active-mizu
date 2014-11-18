@@ -1754,13 +1754,13 @@ namespace MessageImporter
                 newInv.invoiceHeader.symVar = orderNr;
                 newInv.invoiceHeader.symPar = orderNr;
                 newInv.invoiceHeader.invoiceType = invoiceTypeType.issuedInvoice;
-                newInv.invoiceHeader.dateAccounting = dtInvDate.Value;
+                newInv.invoiceHeader.dateAccounting = DateTime.Now;
                 newInv.invoiceHeader.dateAccountingSpecified = true;
                 newInv.invoiceHeader.dateOrder = DateTime.Parse(inv.OrderDate);
                 newInv.invoiceHeader.dateOrderSpecified = true;
-                newInv.invoiceHeader.dateTax = dtInvDate.Value;
+                newInv.invoiceHeader.dateTax = DateTime.Now;
                 newInv.invoiceHeader.dateTaxSpecified = true;
-                newInv.invoiceHeader.dateDue = dtInvDate.Value;// DateTime.Now.AddDays(Properties.Settings.Default.DueDateAdd);
+                newInv.invoiceHeader.dateDue = DateTime.Now.AddDays(Properties.Settings.Default.DueDateAdd);
                 newInv.invoiceHeader.dateDueSpecified = true;
                 newInv.invoiceHeader.accounting = new accountingType();
                 newInv.invoiceHeader.accounting.ids = Properties.Settings.Default.Accounting + GetAccountingSuffix(inv.Country);
@@ -1801,7 +1801,7 @@ namespace MessageImporter
 
                 newInv.invoiceHeader.numberOrder = orderNr;
                 newInv.invoiceHeader.dateSpecified = true;
-                newInv.invoiceHeader.date = dtInvDate.Value;
+                newInv.invoiceHeader.date = DateTime.Now;
                 newInv.invoiceHeader.symConst = Properties.Settings.Default.ConstSym;
                 newInv.invoiceHeader.note = inv.CustomerEmail;
                 newInv.invoiceHeader.intNote = inv.ShippingPhoneNumber;
