@@ -26,7 +26,7 @@ namespace MessageImporter
         internal const string productCode = "Product Code:";
         internal const string delivery = "Delivery:";
         internal const string deliveryText = "Delivery";
-        internal const string orderRef = "Order Reference:";
+        internal const string orderRef = "Order Reference";
         internal const string ourRef = "Our Reference:";
 
         _Application outlook = new ApplicationClass();
@@ -226,97 +226,136 @@ namespace MessageImporter
 
         internal StockEntity decodeMessage(string messageBody, FileItem file)
         {
-            try
-            {
-                var lines = messageBody.Split(Environment.NewLine.ToCharArray()).Where(s => s != null && s.Trim().Length > 0).ToArray();
-                var positionQTY = 5;
-                if (lines.Contains("\tConfirmation Note\t "))
-                    positionQTY = 4;
+            var lines = messageBody.Split(Environment.NewLine.ToCharArray()).Where(s => s != null && s.Trim().Length > 0).ToArray();
+            var positionQTY = 5;
+            if (lines.Contains("\tConfirmation Note\t "))
+                positionQTY = 4;
              
 
-                var order = new StockEntity();
-                List<StockItem> items = new List<StockItem>();
+            var order = new StockEntity();
+            List<StockItem> items = new List<StockItem>();
 
-                file.ProdCount = 0;
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    string line = lines[i];
-
-                    if (line.Contains(productCode))
-                    {
-                        StockItem item = new StockItem();
-
-                        item.ProductCode = line.Substring(line.IndexOf(':') + 1).Trim();
-                        line = lines[i - positionQTY];//i - 5
-                        item.Ord_Qty = int.Parse(line.Trim());
-                        line = lines[i - 4];
-                        item.Disp_Qty = int.Parse(line.Trim());
-                        line = lines[i - 3];
-                        item.Description = line.Trim();
-                        line = lines[i - 2];
-                        item.Price = Common.GetPrice(line);
-                        line = lines[i - 1];
-                        item.Total = Common.GetPrice(line);
-                        item.Currency = line.Substring(0, 1);
-
-                        item.FromFile = file;
-                        file.ProdCount++;
-
-                        if (item.State == StockItemState.PermanentStorage)
-                            item.Sklad = "02";
-                        else if (item.State == StockItemState.Waiting)
-                            item.Sklad = Properties.Settings.Default.Storage;
-
-                        items.Add(item);
-                    }
-
-                    if (line.Trim() == delivery || line.Trim() == deliveryText)
-                    {
-                        StockItem item = new StockItem();
-
-                        line = lines[i + 1];
-                        line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                        item.Price = Common.GetPrice(line);
-                        item.Total = item.Price;
-                        item.Currency = line.Substring(0, 1);
-
-                        item.Description = deliveryText;
-                        item.Disp_Qty = 1;
-                        item.Ord_Qty = 1;
-                        item.ProductCode = item.Description;
-
-                        item.FromFile = file;
-
-                        file.Delivery += item.Price;
-                        //file.ProdCount++;
-                        //items.Add(item);  // doprava nebude polozka ale spojena so suborom
-                    }
-
-                    if (line.Contains(orderRef))
-                    {
-                        line = lines[i + 1];
-                        order.OrderReference = line.Trim();
-                    }
-
-                    if (line.Contains(ourRef))
-                    {
-                        line = lines[i + 1];
-                        order.OurReference = line.Trim();
-                    }
-                }
-                
-                DecomposeMultipleItems(items);
-
-                order.Items = items.ToArray();
-
-                return order;
-            }
-            catch (System.Exception ex)
+            file.ProdCount = 0;
+            for (int i = 0; i < lines.Length; i++)
             {
-                MessageBox.Show(this, ex.ToString(), "Error");
+                string line = lines[i];
+
+                if (line.Contains(productCode))
+                {
+                    StockItem item = new StockItem();
+
+                    item.ProductCode = line.Substring(line.IndexOf(':') + 1).Trim();
+                    line = lines[i - positionQTY];//i - 5
+                    item.Ord_Qty = int.Parse(line.Trim());
+                    line = lines[i - 4];
+                    item.Disp_Qty = int.Parse(line.Trim());
+                    line = lines[i - 3];
+                    item.Description = line.Trim();
+                    line = lines[i - 2];
+                    item.Price = Common.GetPrice(line);
+                    line = lines[i - 1];
+                    item.Total = Common.GetPrice(line);
+                    item.Currency = line.Substring(0, 1);
+
+                    item.FromFile = file;
+                    file.ProdCount++;
+
+                    if (item.State == StockItemState.PermanentStorage)
+                        item.Sklad = "02";
+                    else if (item.State == StockItemState.Waiting)
+                        item.Sklad = Properties.Settings.Default.Storage;
+
+                    items.Add(item);
+                }
+
+                if (line.Trim() == delivery || line.Trim() == deliveryText)
+                {
+                    StockItem item = new StockItem();
+
+                    line = lines[i + 1];
+                    line = line.Replace(".", CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                    item.Price = Common.GetPrice(line);
+                    item.Total = item.Price;
+                    item.Currency = line.Substring(0, 1);
+
+                    item.Description = deliveryText;
+                    item.Disp_Qty = 1;
+                    item.Ord_Qty = 1;
+                    item.ProductCode = item.Description;
+
+                    item.FromFile = file;
+
+                    file.Delivery += item.Price;
+                    //file.ProdCount++;
+                    //items.Add(item);  // doprava nebude polozka ale spojena so suborom
+                }
+
+                if (line.Contains(orderRef))
+                {
+                    line = lines[i + 1];
+                    order.OrderReference = line.Trim();
+                }
+
+                if (line.Contains(ourRef))
+                {
+                    line = lines[i + 1];
+                    order.OurReference = line.Trim();
+                }
+            }
+                
+            DecomposeMultipleItems(items);
+
+            order.Items = items.ToArray();
+
+            return order;
+        }
+
+        internal StockEntity decodeMessage2(string messageBody, FileItem file)
+        {
+            var lines = messageBody.Split(Environment.NewLine.ToCharArray()).Where(s => s != null && s.Trim().Length > 0).ToList();
+                
+            var order = new StockEntity();
+            List<StockItem> items = new List<StockItem>();
+
+            file.ProdCount = 0;
+            var found = lines.FirstOrDefault(l => l.Contains(orderRef.ToLower()));
+            if (found != null)
+                order.OrderReference = order.OurReference = found.Substring(found.Trim().LastIndexOf(' ')).Trim();
+
+            var start = lines.FirstOrDefault(l => l.Contains("Processed Qty"));
+            if (start == null)
+                return null;
+            var istart = lines.FindIndex(s => s == start);
+            for (int i = istart + 1; i < lines.Count; i += 5)
+            {
+                if (lines[i].Trim().StartsWith("Total") || lines[i].Trim().StartsWith("Grand Total"))
+                    break;
+
+                StockItem item = new StockItem();
+
+                item.Ord_Qty = int.Parse(lines[i].Trim());
+                item.Disp_Qty = item.Ord_Qty;
+                item.Description = lines[i + 1].Trim();// +" " + lines[i + 2].Trim();
+                item.Price = Common.GetPrice(lines[i + 3].Trim());
+                item.Total = Common.GetPrice(lines[i + 4].Trim());
+                item.Currency = "€";
+                item.FromFile = file;
+                item.ProductCode = lines[i + 2].Substring(lines[i + 2].Trim().LastIndexOf(' '));
+
+                file.ProdCount++;
+
+                if (item.State == StockItemState.PermanentStorage)
+                    item.Sklad = "02";
+                else if (item.State == StockItemState.Waiting)
+                    item.Sklad = Properties.Settings.Default.Storage;
+
+                items.Add(item);
             }
 
-            return null;
+            DecomposeMultipleItems(items);
+            order.Items = items.ToArray();
+
+            return order;
         }
 
         private static void DecomposeMultipleItems(List<StockItem> items)
@@ -1257,7 +1296,23 @@ namespace MessageImporter
                 MailItem item = (MailItem)outlook.CreateItemFromTemplate(file.FullFileName, Type.Missing);
 
                 if (file.Type == MSG_TYPE.SPORTS_DIRECT)
-                    order = decodeMessage(item.Body, file);
+                {
+                    try
+                    {
+                        order = decodeMessage(item.Body, file);
+                    }
+                    catch (System.Exception)
+                    {
+                        try
+                        {
+                            order = decodeMessage2(item.Body, file);
+                        }
+                        catch(System.Exception ex)
+                        {
+                            MessageBox.Show("Spravu sportsdirect sa nepoadrilo nacitat! " + ex.Message);
+                        }
+                    }
+                }
                 else if (file.Type == MSG_TYPE.MANDM_DIRECT)
                     order = decodeMandMMessage(item.Body, file);
                 else if (file.Type == MSG_TYPE.GETTHELABEL)

@@ -136,7 +136,7 @@ namespace MessageImporter
                 // ak nema produkt z MSG kod produktu
                 if (pairProd != null && pairProd.Description != null && pairProd.Description == pairProd.ProductCode && itemOptions != null)
                 {
-                    if (pairProd.FromFile.Type == MSG_TYPE.FIVE_POUNDS)
+                    if (pairProd.FromFile != null && pairProd.FromFile.Type == MSG_TYPE.FIVE_POUNDS)
                     {
                         var xi = invSKU.IndexOf('x');
                         if (xi == -1)

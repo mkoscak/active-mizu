@@ -58,7 +58,7 @@ namespace MessageImporter
 
                 if (fileName.ToLower().EndsWith(".msg"))
                 {
-                    if (fileName.ToLower().Contains(SportsDirect.ToLower()))
+                    if (fileName.Replace(" ", "").ToLower().Contains(SportsDirect.ToLower()))
                         Type = MSG_TYPE.SPORTS_DIRECT;
                     else if (fileName.ToLower().Contains(MandMDirect.ToLower()) || fileName.ToLower().Contains(MandMDirectOld.ToLower()))
                         Type = MSG_TYPE.MANDM_DIRECT;
